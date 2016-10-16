@@ -1,0 +1,12 @@
+#sections_table{
+	/* width: 600px; */
+	
+}
+
+.edit{
+	cursor: pointer;
+}
+
+.section_number_header{
+	background : none !important;
+}

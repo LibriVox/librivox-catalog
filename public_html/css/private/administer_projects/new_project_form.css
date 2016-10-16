@@ -1,0 +1,22 @@
+#results{
+	min-height: 100px;
+	background-color: #FFFFCC;
+	margin-top: 2px !important;
+}
+
+.result_list{
+	list-style: none;
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+
+.result_list li{
+	padding: 2px 0px;
+}
+
+.result_item{
+	cursor:pointer;
+}
+.result_item:hover{
+	color:blue;
+}

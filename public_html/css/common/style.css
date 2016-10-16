@@ -1,0 +1,76 @@
+body{
+  padding-top: 40px;position: relative;
+}
+
+.drop-from-top{
+  padding: 80px 30px !important;
+}
+
+.menu_link{
+  margin-left: 10px;
+}
+
+.fieldset-margin{
+  margin-top: 10px;
+}
+
+.red{
+  color: red;
+}
+
+.submit_top_line{
+  font-size: 18px;
+}
+.submit_bottom_line{
+  font-size: 12px;
+}
+
+.no-margin{
+  margin: 0px !important;
+}
+
+
+
+legend {
+	margin-bottom: 0px !important;
+}
+
+textarea {
+	margin-left: 20px !important;
+}
+
+.20marginleft {
+	margin-left: 20px !important;
+}
+
+.140wide{
+	width: 140px; !important; 
+}
+
+.scroll_checkbox {
+  border: 1px solid #CCCCCC;
+  height: 200px;
+  overflow: auto;
+  padding: 5px;
+  width: 250px;
+  background-color: #fff;
+  margin: 5px 0 10px 20px;
+}
+
+.toggle_form_btn{
+  cursor: pointer;
+}
+
+.form_error{
+  color: red !important;
+  border: 2px solid red !important;
+}
+
+.loading_img{
+
+  width: 130px;
+  height: 130px;
+  margin:0px auto;
+  
+}
+
