@@ -79,16 +79,10 @@ class Iarchive_uploader
 		curl_setopt($ch, CURLOPT_URL, $url );
 
 	    curl_setopt($ch, CURLOPT_UPLOAD, 1);
+	    curl_setopt($ch, CURLOPT_PUT, 1);
 		curl_setopt($ch, CURLOPT_INFILE, fopen($full_file_path, "rb"));
 		curl_setopt($ch, CURLOPT_INFILESIZE, filesize($full_file_path));
 
-		//most importent curl assumes @filed as file field
-	    $post_array = array(
-	        "upload-file"=>'@'. $file_location . '/' . $filename
-	    );
-
-	    curl_setopt($ch, CURLOPT_POST, true);
-	    curl_setopt($ch, CURLOPT_POSTFIELDS, $post_array);
 
 
 	    curl_setopt($ch, CURLOPT_TIMEOUT, 3000);
