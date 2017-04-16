@@ -90,11 +90,6 @@ class Administer_projects extends Private_Controller {
       $prototype['mcs'] = $this->user_model->get_dropdown_by_role('mc', true, true) + $volunteer_array['mc'];
       $prototype['pls'] = $this->user_model->get_dropdown_by_role('pl', true, true) + $volunteer_array['pl'];
 
-      sort($prototype['bcs'], SORT_NATURAL | SORT_FLAG_CASE);
-      sort($prototype['altbcs'], SORT_NATURAL | SORT_FLAG_CASE);
-      sort($prototype['mcs'], SORT_NATURAL | SORT_FLAG_CASE);
-      sort($prototype['pls'], SORT_NATURAL | SORT_FLAG_CASE);
-
 		if ($fields = $this->input->post(null, true))
 		{
 			$this->load->model('form_generator_model');
