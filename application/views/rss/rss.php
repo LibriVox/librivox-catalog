@@ -22,12 +22,12 @@
     <title><![CDATA[<?= $section->title?>]]></title>
     <!--<reader>file element=reader</reader> -->
     <link><![CDATA[<?=  $project->url_librivox?>]]></link>
-    <enclosure url="<?= $section->mp3_64_url?>" length="<?= $section->mp3_64_size?>" type="audio/mpeg" />
+    <enclosure url="<?= $section->mp3_64_url?>" type="audio/mpeg" />
   <itunes:explicit>No</itunes:explicit>
   <itunes:block>No</itunes:block>
   <itunes:duration><![CDATA[<?= $section->migrated_time?>]]></itunes:duration>
   <!--<pubDate>file element=rss.pubDate</pubDate>-->
-  <media:content url="<?= $section->mp3_64_url?>" fileSize="<?= $section->mp3_64_size?>" type="audio/mpeg" />
+  <media:content url="<?= $section->mp3_64_url?>" type="audio/mpeg" />
  </item>
   <?php endforeach; ?>
   <!-- end file loop -->
