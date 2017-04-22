@@ -1,3 +1,5 @@
+<?php header("Content-Type: application/rss+xml; charset=utf-8"); ?>
+<?php echo '<?xml version="1.0" ?>' ?>
 <rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:creativeCommons="http://blogs.law.harvard.edu/tech/creativeCommonsRssModule" version="2.0">
 
 <channel>
