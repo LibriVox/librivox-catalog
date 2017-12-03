@@ -103,8 +103,7 @@ class Uploader extends Public_Controller {
 
             //make dir if it doesn't exist
             if (!is_dir($config['upload_path'])) {
-                mkdir($config['upload_path']);
-                chmod($config['upload_path'], 0777); 
+                mkdir($config['upload_path'], 0775);
             }
 
 
@@ -116,6 +115,7 @@ class Uploader extends Public_Controller {
 	            // Codeigniter Upload class alters name automatically (e.g. periods are escaped with an
 	            //underscore) - so use the altered name for thumbnail
 	            $data = $this->upload->data();
+	            chmod($data['full_path'], 0664);
 	            $name = $data['file_name'];
 
 	            /*

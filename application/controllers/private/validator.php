@@ -189,7 +189,7 @@ class Validator extends Private_Controller {
 
 	    if(is_dir($path)) return false;
 
-	    return mkdir($path,0777,TRUE);
+	    return mkdir($path,0775,TRUE);
 	    //return true;		
 	}
 
@@ -225,8 +225,7 @@ class Validator extends Private_Controller {
 
             //make dir if it doesn't exist
             if (!is_dir($config['upload_path'])) {
-                mkdir($config['upload_path']);
-                chmod($config['upload_path'], 0777); 
+                mkdir($config['upload_path'], 0775);
             }
 
 
@@ -239,6 +238,7 @@ class Validator extends Private_Controller {
 	            // Codeigniter Upload class alters name automatically (e.g. periods are escaped with an
 	            //underscore) - so use the altered name for thumbnail
 	            $data = $this->upload->data();
+	            chmod($data['full_path'], 0664);
 	            $name = $data['file_name'];
 
 	            //Get info 
@@ -543,6 +543,7 @@ class Validator extends Private_Controller {
     	$file_array = explode('/',$local_file);
     	$file_name = trim(end($file_array));
     	$copied = copy($local_file, $copy_to_dir.'/'. $file_name);
+    	chmod($copy_to_dir.'/'.$file_name, 0664);
     	return ($copied)? $file_name: false;
     }
 
