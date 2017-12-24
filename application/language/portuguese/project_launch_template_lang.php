@@ -12,7 +12,7 @@ $lang['project_launch_template_copy_from_here'] = 'COPIE DAQUI ATÉ O FIM DA PÁ
 $lang['project_launch_template_author_line'] = '[color=indigo][size=150][b]%s de %s[/b][/size][/color]. %s';
 $lang['project_launch_template_target_completion_date'] = 'Data de término do projeto';
 $lang['project_launch_template_text_source'] = 'Texto-fonte (leia apenas a partir deste texto!)';
-$lang['project_launch_template_type_of_proof'] = 'Tipo de revisão de áudio solicitada (Nota: por favor leia o [url=http://librivox.org/forum/viewtopic.php?t=17680][u]PL FAQ[/u][/url]):';
+$lang['project_launch_template_type_of_proof'] = 'Tipo de revisão de áudio solicitada (Nota: por favor leia o [url=https://forum.librivox.org/viewtopic.php?f=21&t=17680][u]PL FAQ[/u][/url]):';
 $lang['project_launch_template_soloist_note'] = '[b]IMPORTANTE - solista, por favor observe: [/b]com o intuito de limitar a quantidade de projetos incompletos (e, com isso, o número de arquivos em nosso servidor), nós pedimos que você poste uma mensagem pelo menos uma vez por mês, informando sobre o andamento do seu projeto, mesmo que você não tenha gravado nada. Se você não deixar nenhuma mensagem em seu projeto por três meses, o projeto será considerado órfão e reaberto como colaborativo assim que houver um coordenador disponível. Seus arquivos completados serão usados no projeto. Se você ainda não tiver gravado nenhuma seção, o projeto será removido do fórum (contate um administrador para recomeçá-lo).
 ';
 $lang['project_launch_template_please_dont_download'] = 'Por favor, não descarregue arquivos pertencentes a projetos em andamento (exceto se você for o Coordenador do Projeto ou o Revisor de Áudio). Nossos servidores não estão preparados para lidar com grande volume de tráfego de dados. Por favor aguarde até que o projeto esteja completo. Obrigado!';
@@ -96,7 +96,7 @@ $lang['project_launch_template_this_week_poem'] = 'O poema desta semana pode ser
 $lang['project_launch_template_each_fortnight_poem_chosen'] = 'A cada quinzena um poema é escolhido para ser gravado por tantos voluntários quanto possível!';
 $lang['project_launch_template_this_fortnight_poem'] = 'O poema desta quinzena pode ser encontrado [url=%s][u]aqui[/u][/url].';
 $lang['project_launch_template_questions_how'] = 'Perguntas sobre o "como"?';
-$lang['project_launch_template_check_recording_notes'] = 'Leia o tópico LV\'s Recording Notes antes da gravação: [url]http://librivox.org/forum/viewtopic.php?p=6427#6430[/url]';
+$lang['project_launch_template_check_recording_notes'] = 'Leia o tópico LV\'s Recording Notes antes da gravação: [url]https://forum.librivox.org/viewtopic.php?p=6430#p6430[/url]';
 $lang['project_launch_template_useful_link'] = 'Se esta for sua primeira gravação, esta página será útil: [url]http://wiki.librivox.org/index.php/Guia_do_rec%C3%A9m-chegado_ao_Librivox[/url]';
 $lang['project_launch_template_begin_with_disclaimer'] = 'Comece a sua leitura com a introdução abreviada:';
 $lang['project_launch_template_title_author_read_by'] = '%s de %s, lido para oo LibriVox.org por [seu nome].';

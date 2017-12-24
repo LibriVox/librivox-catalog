@@ -13,7 +13,7 @@ $lang['project_launch_template_copy_from_here'] = 'KOPIERE VON HIER BIS ZUM ENDE
 $lang['project_launch_template_author_line'] = '[color=indigo][size=150][b]%s von %s[/b][/size][/color]. %s';
 $lang['project_launch_template_target_completion_date'] = 'Zieldatum für die Fertigstellung:';
 $lang['project_launch_template_text_source'] = 'Textquelle (nur von diesem Text lesen!):';
-$lang['project_launch_template_type_of_proof'] = 'Art des Korrekturhörens (bitte lies die - englische - [url=http://librivox.org/forum/viewtopic.php?t=17680][u]PL FAQ[/u][/url]):';
+$lang['project_launch_template_type_of_proof'] = 'Art des Korrekturhörens (bitte lies die - englische - [url=https://forum.librivox.org/viewtopic.php?f=21&t=17680][u]PL FAQ[/u][/url]):';
 $lang['project_launch_template_soloist_note'] = '[b]WICHTIG - bitte beachten:[/b] Um die Anzahl der langwierigen Projekte (und damit die Anzahl der Dateien auf unserem sehr beanspruchten Server) zu begrenzen, melde dich bitte mindestens einmal im Monat hier im Thread, auch wenn Du nicht zum Aufnehmen gekommen bist. Wenn wir drei Monate lang nichts von Dir hören, wird Dein Projekt als Gruppenprojekt weitergeführt, sobald sich ein Buchkoordinator dafür findet, und Deine fertigen Dateien werden dafür verwendet. Wenn du gar nichts aufgenommen hast, wird dein Projekt aus dem Forum entfernt. (Wende dich an einen der Admins, um es zurückzubekommen.)';
 $lang['project_launch_template_please_dont_download'] = 'Bitte warte mit dem Herunterladen und Zuhören bis das Projekt fertig ist (außer Du bist der BC oder PL). Unser Server ist leider nicht für so viele Downloads geeignet. Dankeschön!';
 $lang['project_launch_template_temp_paragraph'] = 'Dieser vorläufige Absatz wird vom MC mit einer Liste der Abschnitte und Leser (Magic Window) ersetzt, wenn das Projekt in die Datenbank aufgenommen wurde. ';
@@ -71,7 +71,7 @@ $lang['project_launch_template_where_is_text'] = 'Wo finde ich den Text?';
 $lang['project_launch_template_where_is_text_answer'] = 'Quelltext (Bitte nur von diesem Text lesen!): ';
 $lang['project_launch_template_claim_sections'] = 'Bitte suche Dir einen Abschnitt aus (entsprechend den Nummern in der ersten Spalte unten)!';
 $lang['project_launch_template_what_name'] = 'Falls dies Deine erste Aufnahme ist, lasse mich bitte wissen, unter welchem Namen oder Pseudonym Du im Librivox Katalog aufscheinen möchtest. Wir können auch eine persönliche Webseite oder Blog verlinken.';
-$lang['project_launch_template_proof_listeners'] = 'Potenzielle Korrekturhörer: Bitte lies die [url=http://librivox.org/forum/viewtopic.php?t=17680][u]Listeners Wanted FAQ[/u][/url] vor dem Zuhören. Erwünschte Korrekturstufe:';
+$lang['project_launch_template_proof_listeners'] = 'Potenzielle Korrekturhörer: Bitte lies die [url=https://forum.librivox.org/viewtopic.php?f=21&t=17680][u]Listeners Wanted FAQ[/u][/url] vor dem Zuhören. Erwünschte Korrekturstufe:';
 $lang['project_launch_template_claim_role'] = 'Bitte suche Dir eine Rolle aus (entsprechend den Nummern in der ersten Spalte unten)! Bitte beachte: Alle Librivox Aufnahmen sind gemeinfrei. Wenn Du Deine Aufnahme hochlädtst, stellst Du sie gemeinfrei zur Verfügung. ';
 $lang['project_launch_template_first_recording'] = 'Falls dies Deine erste Aufnahme ist, lasse mich bitte wissen unter welchem Namen oder Pseudonym Du im Librivox Katalog aufscheinen möchtest. Wir können auch eine persönliche Webseite oder Blog verlinken.';
 $lang['project_launch_template_check_notes'] = 'Bitte lies die Aufnahmehinweise: ';
@@ -96,7 +96,7 @@ $lang['project_launch_template_this_week_poem'] = 'Das Gedicht für diese Woche 
 $lang['project_launch_template_each_fortnight_poem_chosen'] = 'Alle vierzehn Tage wird ein Gedicht ausgewählt, um von so vielen Librivox Freiwilligen wie möglich gelesen zu werden! ';
 $lang['project_launch_template_this_fortnight_poem'] = 'Das laufende vierzehntägliche Gedicht ist [url=%s][u]hier[/u][/url].';
 $lang['project_launch_template_questions_how'] = 'Fragen zum "Wie"?';
-$lang['project_launch_template_check_recording_notes'] = 'Lies vor dem Aufnehmen den Thread mit den Librivox Aufnahme Hinweisen: [url]http://librivox.org/forum/viewtopic.php?p=6427#6430[/url]';
+$lang['project_launch_template_check_recording_notes'] = 'Lies vor dem Aufnehmen den Thread mit den Librivox Aufnahme Hinweisen: [url]https://forum.librivox.org/viewtopic.php?p=6430#p6430[/url]';
 $lang['project_launch_template_useful_link'] = 'Falls diese Deine erste Aufnahme ist, ist diese Seite auch hilfreich: [url]http://wiki.librivox.org/index.php/Anleitung_zum_Aufnehmen[/url]';
 $lang['project_launch_template_begin_with_disclaimer'] = 'Beginne Deine Aufnahme mit dem abgekürzten Librivox Disclaimer:';
 $lang['project_launch_template_title_author_read_by'] = '%s von %s, gelesen für LibriVox.org von [Dein Name].';

@@ -12,7 +12,7 @@ $lang['project_launch_template_copy_from_here'] = 'Kopieer vanaf hiet tot aan de
 $lang['project_launch_template_author_line'] = '[color=indigo][size=150][b] %s door %s[/b][/size][/color]. %s';
 $lang['project_launch_template_target_completion_date'] = 'Streefdatum';
 $lang['project_launch_template_text_source'] = 'Tekstbron (lees alleen van deze tekst!):';
-$lang['project_launch_template_type_of_proof'] = 'Gewenste soort van proefluisteren (Lees a.u.b. de [url=http://librivox.org/forum/viewtopic.php?t=17680][u]PL FAQ[/u][/url]):';
+$lang['project_launch_template_type_of_proof'] = 'Gewenste soort van proefluisteren (Lees a.u.b. de [url=https://forum.librivox.org/viewtopic.php?f=21&t=17680][u]PL FAQ[/u][/url]):';
 $lang['project_launch_template_soloist_note'] = 'NOTA BENE: Beste solist, we willen voorkomen dat onze zwaarbelaste server volstroomt met bestanden van projecten die nooit af komen omdat de inspreker verdwenen is. Laat ons daarom alsjeblieft tenminste één keer per maand weten dat je er nog bent, en nog van plan bent het project af te maken. Doe dit door het plaatsen van een berichtje in deze forumdraad. Zelfs als het je niet gelukt is om iets nieuws in te spreken, willen we graag van je horen. Als we drie maanden niets van je gehoord hebben, zou je project omgezet kunnen worden in een groepsproject. Bestanden die je al hebt ingestuurd zullen dan in dat groepsproject gebruikt worden. Als er nog geen bestanden zijn, zal het project verwijderd worden van het forum (neem dan contact op met een admin om te kijken of het hersteld kan worden als je later van gedachten verandert).
 ';
 $lang['project_launch_template_please_dont_download'] = 'Wilt u a.u.b. geen bestanden downloaden van lopende projecten (tenzij u medewerker bent van het project). Onze servers hebben niet voldoende capaciteit om grote hoeveelheden verkeer af te handelen. Wacht tot de voltooiing van het project. Bedankt!
@@ -74,7 +74,7 @@ $lang['project_launch_template_where_is_text'] = 'Waar vind ik de tekst?';
 $lang['project_launch_template_where_is_text_answer'] = 'Brontekst (lees aub alleen van deze tekst!):';
 $lang['project_launch_template_claim_sections'] = 'Kies secties (de nummers in de eerste kolom hieronder)!';
 $lang['project_launch_template_what_name'] = 'Als dit je eerste opname voor Librivox is, laat me aub weten onder welke naam of pseudoniem je vermeld wilt worden in de Librivox catalogus. We kunnen ook een link naar een persoonlijke website/blog plaatsen.';
-$lang['project_launch_template_proof_listeners'] = 'Wil je graag proefluisteren? (PL-ers): lees de [url=http://librivox.org/forum/viewtopic.php?t=17680][u]Listeners Wanted FAQ[/u][/url] voor je begint! (Alleen beschikbaar in het Engels, je kunt ook hier om advies vragen als je twijfelt.) Soort proefluisteren gewenst:
+$lang['project_launch_template_proof_listeners'] = 'Wil je graag proefluisteren? (PL-ers): lees de [url=https://forum.librivox.org/viewtopic.php?f=21&t=17680][u]Listeners Wanted FAQ[/u][/url] voor je begint! (Alleen beschikbaar in het Engels, je kunt ook hier om advies vragen als je twijfelt.) Soort proefluisteren gewenst:
 ';
 $lang['project_launch_template_claim_role'] = 'Kies rollen (de nummers in de eerste kolom hieronder)! Attentie: Alle opnamen van LibriVox worden rechtenvrij uitgegeven. Als je een opname aan ons stuurt, geef je daarmee aan dat je afstand doet van je rechten.';
 $lang['project_launch_template_first_recording'] = 'Als dit je eerste opname voor Librivox is, laat me aub weten onder welke naam of pseudoniem je vermeld wilt worden in de Librivox catalogus. We kunnen ook een link naar een persoonlijke website/blog plaatsen.';
@@ -99,7 +99,7 @@ $lang['project_launch_template_this_week_poem'] = 'Het gedicht van deze week sta
 $lang['project_launch_template_each_fortnight_poem_chosen'] = 'Elke veertien dagen wordt er een gedicht gekozen die door zoveel mogelijk LibriVox-vrijwilligers wordt opgenomen.';
 $lang['project_launch_template_this_fortnight_poem'] = 'Het tweewekelijkse gedicht staat [url=%s][u]hier[/u][/url].';
 $lang['project_launch_template_questions_how'] = 'Heb je vragen over hoe het moet?';
-$lang['project_launch_template_check_recording_notes'] = 'Lees deze opnamenotities na: [url]http://librivox.org/forum/viewtopic.php?p=6427#6430[/url]';
+$lang['project_launch_template_check_recording_notes'] = 'Lees deze opnamenotities na: [url]https://forum.librivox.org/viewtopic.php?p=6430#p6430[/url]';
 $lang['project_launch_template_useful_link'] = 'Als dit je eerste opname is, dan vind je hier ook nog veel informatie: [url]http://wiki.librivox.org/index.php/Beginnersgids[/url].';
 $lang['project_launch_template_begin_with_disclaimer'] = 'Start de opname met het ingekorte LibriVox intro:';
 $lang['project_launch_template_title_author_read_by'] = '%s door %s, gelezen voor LibriVox door [jouw naam].';

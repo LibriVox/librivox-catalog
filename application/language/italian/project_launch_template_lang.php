@@ -12,7 +12,7 @@ $lang['project_launch_template_copy_from_here'] = 'COPIA DALLA RIGA SEGUENTE FIN
 $lang['project_launch_template_author_line'] = '[color=indigo][size=150][b]%s di %s[/b][/size][/color]. %s';
 $lang['project_launch_template_target_completion_date'] = 'L\'obiettivo è di completare questo progetto entro il:';
 $lang['project_launch_template_text_source'] = 'Fonte (per la lettura usa solo questo testo!):';
-$lang['project_launch_template_type_of_proof'] = 'Livello di accuratezza richiesto agli ascoltatori (Ai potenziali revisori: per favore leggete le [url=http://librivox.org/forum/viewtopic.php?t=17680][u]Listeners Wanted FAQ[/u][/url] prima di inziare l\'ascolto!):';
+$lang['project_launch_template_type_of_proof'] = 'Livello di accuratezza richiesto agli ascoltatori (Ai potenziali revisori: per favore leggete le [url=https://forum.librivox.org/viewtopic.php?f=21&t=17680][u]Listeners Wanted FAQ[/u][/url] prima di inziare l\'ascolto!):';
 $lang['project_launch_template_soloist_note'] = '[b]IMPORTANTE - solista, Nota Bene:[/ b] al fine di limitare la quantità di progetti che languono (e quindi la quantità di file sul nostro server), ti chiediamo di mandare un messggio di aggiornamento almeno una volta al mese, anche se non hai registrato nulla. Se non ci sono aggiornamenti per più di tre mesi, il progetto può essere trasformato in un progetto collettivo, qualora venga trovato un BC. Le registrazioni già completate verranno usate nel nuovo progetto collaborativo. Se nessun file è stato ancora registrato, il progetto verrà rimosso dal forum; in tal caso si prega di contattare un amministratore per riaprire il progetto.';
 $lang['project_launch_template_please_dont_download'] = 'Per favore non scaricare o ascoltare file appartenenti a progetti in corso (a meno che tu non sia il BC o il PL). I nostri server non hanno adeguata capacità per gestire grandi volumi di traffico. Sei pertanto pregato di attendere che il progetto sia completato. Grazie!';
 $lang['project_launch_template_temp_paragraph'] = 'Questo paragrafo è provvisorio e sarà sostituito dall\'MC con la lista delle sezioni e dei lettori (Magic Window) una volta che il progetto sarà inserito nel sistema di amministrazione.';
@@ -72,7 +72,7 @@ $lang['project_launch_template_where_is_text'] = 'Dove trovo il testo?';
 $lang['project_launch_template_where_is_text_answer'] = 'Fonte (per favore per la lettura usa solo questo testo!):';
 $lang['project_launch_template_claim_sections'] = 'Richiedi sezioni (trovi i numeri nella prima colonna qui sotto)!';
 $lang['project_launch_template_what_name'] = 'Se questa è la tua prima registrazione, per favore facci sapere con quale nome o pseudonimo ti piacerebbe apparire nel catalogo LibriVox. Possiamo anche mettere un link a un blog o sito web personale.';
-$lang['project_launch_template_proof_listeners'] = 'Ai potenziali revisori: per favore leggete le [url=http://librivox.org/forum/viewtopic.php?t=17680][u]Listeners Wanted FAQ[/u][/url] prima di inziare l\'ascolto! Livello di accuratezza richiesto agli ascoltatori:';
+$lang['project_launch_template_proof_listeners'] = 'Ai potenziali revisori: per favore leggete le [url=https://forum.librivox.org/viewtopic.php?f=21&t=17680][u]Listeners Wanted FAQ[/u][/url] prima di inziare l\'ascolto! Livello di accuratezza richiesto agli ascoltatori:';
 $lang['project_launch_template_claim_role'] = 'Richiedi un ruolo (i numeri nella prima colonna di seguito)! Nota: Tutte le registrazioni Librivox sono di dominio pubblico. Quando invii una registrazione, essa diventerà automaticamente di dominio pubblico.';
 $lang['project_launch_template_first_recording'] = 'Se questa è la tua prima registrazione, per favore facci sapere con quale nome o pseudonimo ti piacerebbe apparire nel catalogo LibriVox. Possiamo anche mettere un link a un blog o sito web personale.';
 $lang['project_launch_template_check_notes'] = 'Si prega di verificare le Note di Registrazione:';
@@ -96,7 +96,7 @@ $lang['project_launch_template_this_week_poem'] = 'La poesia di questa settimana
 $lang['project_launch_template_each_fortnight_poem_chosen'] = 'Ogni quindici giorni scegliamo una poesia da registrare dal maggior numero possibile di volontari LibriVox!';
 $lang['project_launch_template_this_fortnight_poem'] = 'La poesia di questi quindici giorni si può trovare [url=%s][u]qui[/u][/url].';
 $lang['project_launch_template_questions_how'] = 'Avete domande su "come"?';
-$lang['project_launch_template_check_recording_notes'] = 'Si prega di verificare le Note di Registrazione prima di registrare: [url]http://librivox.org/forum/viewtopic.php?p=6427#6430[/url]';
+$lang['project_launch_template_check_recording_notes'] = 'Si prega di verificare le Note di Registrazione prima di registrare: [url]https://forum.librivox.org/viewtopic.php?p=6430#p6430[/url]';
 $lang['project_launch_template_useful_link'] = 'Se questa è la tua prima registrazione, troverai utile anche questo link: [url]http://wiki.librivox.org/index.php/Newbie_Guide_to_Recording[/url]';
 $lang['project_launch_template_begin_with_disclaimer'] = 'Inizia la lettura con l\'introduzione abbreviata:';
 $lang['project_launch_template_title_author_read_by'] = '%s di %s, letto per librivox.org da [nome].';

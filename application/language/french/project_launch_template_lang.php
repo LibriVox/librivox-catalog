@@ -12,7 +12,7 @@ $lang['project_launch_template_copy_from_here'] = 'COPIEZ CE QUI SUIT JUSQU\'EN 
 $lang['project_launch_template_author_line'] = '[color=indigo][size=150][b]%s par %s[/b][/size][/color]. %s.';
 $lang['project_launch_template_target_completion_date'] = 'Date d\'échéance prévue:';
 $lang['project_launch_template_text_source'] = 'Source du texte (ne lire qu\'à partir de ce texte!):';
-$lang['project_launch_template_type_of_proof'] = 'Niveau d\'écoute requis (Note: veuillez lire la [url=http://librivox.org/forum/viewtopic.php?t=17680][u]PL FAQ[/u][/url] (en anglais)):';
+$lang['project_launch_template_type_of_proof'] = 'Niveau d\'écoute requis (Note: veuillez lire la [url=https://forum.librivox.org/viewtopic.php?f=21&t=17680][u]PL FAQ[/u][/url] (en anglais)):';
 $lang['project_launch_template_soloist_note'] = '[b]IMPORTANT - vous lisez en solo, merci de noter que[/b]: pour éviter l\'accumulation de projets dont on n\'arrive pas à bout (et donc, pour éviter un amoncellement de fichiers sur notre serveur déjà bien chargé), nous vous demandons de poster une note, au moins une fois par mois, dans le fil de discussion de votre projet, pour nous tenir au courant de la situation, même si vous n\'avez pas eu l\'occasion d\'enregistrer quoique ce soit. Si nous n\'avons pas de vos nouvelles pendant trois mois consécutifs, votre projet deviendra un projet collectif dès qu\'un coordinateur (Book Coordinator) se proposera. Les fichiers qui auront déjà été achevés seront utilisés dans le « nouveau » projet. Si vous n\'aviez encore rien enregistré, votre projet sera retiré du forum (contactez alors un admin si vous voulez le réactiver).';
 $lang['project_launch_template_please_dont_download'] = 'Merci de ne pas télécharger les fichiers pour les projets qui sont encore en cours (sauf si vous êtes le BC ou DPL). Notre serveur n\'a pas la capacité appropriée. S\'il vous plaît attendez que le projet sera complété. Merci!';
 $lang['project_launch_template_temp_paragraph'] = 'Ce paragraphe est temporaire. Le MC y substituera la liste des sections et des lecteurs (boîte magique) lorsque ce projet sera rentré dans le système.';
@@ -73,7 +73,7 @@ $lang['project_launch_template_where_is_text'] = 'Où trouver le texte?';
 $lang['project_launch_template_where_is_text_answer'] = 'texte électronique (merci de ne lire qu\'à partir de cette source-ci!):';
 $lang['project_launch_template_claim_sections'] = 'Demandez un/des chapitre(s) (les numéros sont dans la première colonne ci-dessous)!';
 $lang['project_launch_template_what_name'] = 'Si c\'est votre premier enregistrement, merci de me dire sous quel nom ou pseudonyme vous souhaitez apparaître dans le catalogue de LibriVox. Nous pouvons aussi placer un lien vers une page web ou un blogue privés.';
-$lang['project_launch_template_proof_listeners'] = 'Aux auditeurs potentiels : Veuillez lire la [url=http://librivox.org/forum/viewtopic.php?t=17680][u]FAQ dans le forum [i]Listeners Wanted[/i][/u][/url] ~-(en anglais)-~ avant d\'écouter! Niveau d’écoute requis:';
+$lang['project_launch_template_proof_listeners'] = 'Aux auditeurs potentiels : Veuillez lire la [url=https://forum.librivox.org/viewtopic.php?f=21&t=17680][u]FAQ dans le forum [i]Listeners Wanted[/i][/u][/url] ~-(en anglais)-~ avant d\'écouter! Niveau d’écoute requis:';
 $lang['project_launch_template_claim_role'] = 'Veuillez choisir un rôle (les numéros de la première colonne ci-dessous)! Merci de bien noter que tous les enregistrements LibriVox sont dans le domaine public. Lorsque vous soumettez votre enregistrement, vous le placez également dans le domaine public.';
 $lang['project_launch_template_first_recording'] = 'Si c\'est votre premier enregistrement, merci de me dire sous quel nom ou pseudonyme vous souhaitez apparaître dans le catalogue de LibriVox. Nous pouvons aussi placer un lien vers une page web ou un blogue privés.';
 $lang['project_launch_template_check_notes'] = 'Merci de lire les notes sur l\'enregistrement (en anglais):';
@@ -97,7 +97,7 @@ $lang['project_launch_template_this_week_poem'] = 'Le poème de cette semaine se
 $lang['project_launch_template_each_fortnight_poem_chosen'] = 'Toutes les deux semaines un poème est choisi pour être enregistré par autant de bénévoles de LibriVox que possible!';
 $lang['project_launch_template_this_fortnight_poem'] = 'Le poème sélectionné se trouve [url=%s][u]ici[/u][/url].';
 $lang['project_launch_template_questions_how'] = 'Vous vous demandez "comment"?';
-$lang['project_launch_template_check_recording_notes'] = 'Veuillez lire les notes sur l\'enregistrement avant de commencer à enregistrer: [url]http://librivox.org/forum/viewtopic.php?p=6427#6430[/url]';
+$lang['project_launch_template_check_recording_notes'] = 'Veuillez lire les notes sur l\'enregistrement avant de commencer à enregistrer: [url]https://forum.librivox.org/viewtopic.php?p=6430#p6430[/url]';
 $lang['project_launch_template_useful_link'] = 'Si c\'est votre premier enregistrement, vous trouverez ceci utile: [url]http://wiki.librivox.org/index.php/Guide_pour_les_d%E9butants[/url]';
 $lang['project_launch_template_begin_with_disclaimer'] = 'Commencez votre lecture avec la version abrégée de l\'intro LibriVox:';
 $lang['project_launch_template_title_author_read_by'] = '%s par %s, lu pour LibriVox par [votre nom].';

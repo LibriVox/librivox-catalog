@@ -96,7 +96,7 @@
  
 ============================================ 
  
-[*][b]<?= lang('project_launch_template_before_recording')?>[/b] [b][i]<?= lang('project_launch_template_check_notes')?>[/b][/i] http://librivox.org/forum/viewtopic.php?p=6427#6430
+[*][b]<?= lang('project_launch_template_before_recording')?>[/b] [b][i]<?= lang('project_launch_template_check_notes')?>[/b][/i] https://forum.librivox.org/viewtopic.php?p=6430#p6430
 
 [b][i]<?= lang('project_launch_template_set_recording_software')?>[/b][/i]
 <?= lang('project_launch_template_channels')?>: 1 (Mono)
