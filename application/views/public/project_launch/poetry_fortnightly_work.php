@@ -82,7 +82,7 @@
  [color=blue][i][b]<?= lang('project_launch_template_please_post')?>
  <?= lang('project_launch_template_please_post_length')?>[/b][/i][/color]
  [list][*]<?= lang('project_launch_template_upload_with_uploader')?>
-<?= base_url(UPLOADER_LINK) ?> 
+ <?= base_url(UPLOADER_LINK) ?>
  [img]<?= base_url(). $project_img_url?>[/img] 
  <?= lang('project_launch_template_if_you_have_trouble')?>
  [*][color=blue]<?= lang('project_launch_template_select_mc')?> yy - yyyyy[/color]

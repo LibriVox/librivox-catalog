@@ -48,7 +48,7 @@ $lang['project_launch_template_end_of_section'] = 'Zeg aan het einde van de opna
 $lang['project_launch_template_end_of_chapter'] = 'Einde van [hoofdstuk]';
 $lang['project_launch_template_end_of_book'] = 'Voeg extra toe bij het einde van het boek:';
 $lang['project_launch_template_end_of_title'] = 'Einde van %s, door %s. %s';
-$lang['project_launch_template_end_silence'] = 'Voeg 5 seconden stilte toe aan het einde van je opname, of 10 seconden voor opnamen langer dan 30 minuten!';
+$lang['project_launch_template_end_silence'] = 'Voeg ~5 seconden stilte toe aan het einde van je opname.';
 $lang['project_launch_template_example_filename'] = 'Voorbeeld bestandsnaam';
 $lang['project_launch_template_example_tags'] = 'Voorbeeld ID3 V2 tags';
 $lang['project_launch_template_title'] = 'Titel (hoofdstuktitel):';
@@ -57,7 +57,7 @@ $lang['project_launch_template_album'] = 'Album (boektitel):';
 $lang['project_launch_template_transfer_of_files'] = 'Overdracht van bestanden (opnamen die klaar zijn)';
 $lang['project_launch_template_please_post'] = 'Vergeet niet om een post te maken als je een bestand hebt ingestuurd.';
 $lang['project_launch_template_please_post_length'] = 'Geef ook de lengte op van het bestand (tijdsaanduiding: mm:ss) en de gegeven link ';
-$lang['project_launch_template_upload_with_uploader'] = 'Stuur je bestand op met de LibriVox Uploader';
+$lang['project_launch_template_upload_with_uploader'] = 'Stuur je bestand op met de LibriVox Uploader:';
 $lang['project_launch_template_if_you_have_trouble'] = '(Als je de afbeelding hierboven niet kunt lezen, stuur een berichtje naar een admin) 
 ';
 $lang['project_launch_template_select_mc'] = 'Je zult de MC moeten kiezen; voor dit project is dat:';
@@ -131,5 +131,5 @@ $lang['project_launch_template_id3_tags_learn_more'] = '(Om meer te weten te kom
 $lang['project_launch_template_id3_tags_add'] = 'Voeg de volgende tags toe aan je .mp3-bestand (hoe dat moet wordt bepaald door de software die je gebruikt; als je niet weet hoe dat moet, stuur me dan een berichtje). Let op kleine- en hoofdletters.';
 $lang['project_launch_template_tags_ignore'] = 'Let niet op de tags Genre en Nummer - deze worden automatisch gevuld tijdens het catalogiseren.';
 $lang['project_launch_template_act_number'] = '(alles in kleine letters) waar ## staat voor het acte-nummer.';
-$lang['project_launch_template_section_number'] = '(alles in kleine letters) waar ## staat voor het sectie-nummer.';
+$lang['project_launch_template_section_number'] = '[b](alles in kleine letters)[/b] waar ## staat voor het sectie-nummer.';
 ?>

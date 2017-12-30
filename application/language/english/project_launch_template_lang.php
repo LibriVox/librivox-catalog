@@ -45,7 +45,7 @@ $lang['project_launch_template_end_of_section'] = 'At the end of the section, sa
 $lang['project_launch_template_end_of_chapter'] = '"End of [Chapter]"';
 $lang['project_launch_template_end_of_book'] = 'At the end of the book, say (in addition):';
 $lang['project_launch_template_end_of_title'] = '"End of  %s, by  %s.  %s"';
-$lang['project_launch_template_end_silence'] = 'There should be 5 seconds silence at the end of the recording, or 10 seconds for files longer than 30 minutes.';
+$lang['project_launch_template_end_silence'] = 'There should be ~5 seconds silence at the end of the recording.';
 $lang['project_launch_template_example_filename'] = 'Example filename';
 $lang['project_launch_template_example_tags'] = 'Example ID3 V2 tags';
 $lang['project_launch_template_title'] = 'Title:';
@@ -126,5 +126,5 @@ $lang['project_launch_template_id3_tags_learn_more'] = '(To find out more about 
 $lang['project_launch_template_id3_tags_add'] = 'Add the following tags to your .mp3 file (how you do this depends on which software you use &ndash; if you are unsure about ID3 tags, send me a message). Please mind upper and lower case!';
 $lang['project_launch_template_tags_ignore'] = 'Please ignore tags for Genre and Track Number - these will be filled in automatically at the cataloguing stage.';
 $lang['project_launch_template_act_number'] = '(all lower-case) where ## is the act number.';
-$lang['project_launch_template_section_number'] = '(all lower-case) where ## is the section number';
+$lang['project_launch_template_section_number'] = '[b](all lower-case)[/b] where ## is the section number';
 ?>

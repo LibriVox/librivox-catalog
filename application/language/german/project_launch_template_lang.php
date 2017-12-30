@@ -46,7 +46,7 @@ $lang['project_launch_template_end_of_section'] = 'Am Ende jedes Abschnittes sag
 $lang['project_launch_template_end_of_chapter'] = '"Ende von Abschnitt [Nummer]"';
 $lang['project_launch_template_end_of_book'] = 'Am Ende des Buches sage (zusätzlich):';
 $lang['project_launch_template_end_of_title'] = '"Ende von %s, von %s. %s"';
-$lang['project_launch_template_end_silence'] = 'Lasse am Ende jeder Aufnahme 5 Sekunden Stille, oder 10 Sekunden, wenn die Aufnahme länger als 30 Minuten ist.';
+$lang['project_launch_template_end_silence'] = 'Lasse am Ende jeder Aufnahme ~5 Sekunden Stille.';
 $lang['project_launch_template_example_filename'] = 'Beispiel für den Dateinamen:';
 $lang['project_launch_template_example_tags'] = 'Beispiel für die ID3 V2 tags:';
 $lang['project_launch_template_title'] = 'Titel:';
@@ -128,5 +128,5 @@ $lang['project_launch_template_id3_tags_learn_more'] = '(Wenn Du mehr über ID3 
 $lang['project_launch_template_id3_tags_add'] = 'Füge die folgenden Tags zu Deinem .mp3 file hinzu: (Wie Du das machst, ist abhängig vom Programm, das Du benutzt &ndash; wenn Du nicht sicher bist, schicke mir eine Nachricht.) Bitte beachte Groß- und Kleinschreibung! ';
 $lang['project_launch_template_tags_ignore'] = 'Die Tags für Genre und Titelnummer kannst Du ignorieren &ndash; diese werden beim Katalogisieren automatisch vergeben. ';
 $lang['project_launch_template_act_number'] = '(alles in Kleinbuchstaben), wobei ## die Nummer des Aktes ist.';
-$lang['project_launch_template_section_number'] = '(alles in Kleinbuchstaben), wobei ## die Sektionsnummer ist';
+$lang['project_launch_template_section_number'] = '[b](alles in Kleinbuchstaben)[/b], wobei ## die Sektionsnummer ist';
 ?>

@@ -46,7 +46,7 @@ $lang['project_launch_template_end_of_section'] = 'À la fin de la section, dite
 $lang['project_launch_template_end_of_chapter'] = '« Fin du [chapitre] »';
 $lang['project_launch_template_end_of_book'] = 'À la fin du livre, dites (en plus):';
 $lang['project_launch_template_end_of_title'] = '"Fin de %s, par %s. %s"';
-$lang['project_launch_template_end_silence'] = 'Veuillez laisser 5 secondes de silence à la fin de l’enregistrement, ou 10 secondes si le fichier dépasse 30 minutes. ';
+$lang['project_launch_template_end_silence'] = 'Veuillez laisser ~5 secondes de silence à la fin de l’enregistrement.';
 $lang['project_launch_template_example_filename'] = 'Exemple de nom de fichier (merci de ne pas utiliser d\'accents!)';
 $lang['project_launch_template_example_tags'] = 'Exemple de balises ID3 V2';
 $lang['project_launch_template_title'] = 'Titre:';
@@ -129,5 +129,5 @@ $lang['project_launch_template_id3_tags_learn_more'] = '(Pour en savoir plus, co
 $lang['project_launch_template_id3_tags_add'] = 'Ajoutez ces balises à vos fichiers .mp3. (La façon de le faire dépend du logiciel que vous utilisez.) Merci de faire attention aux majuscules et minuscules ainsi qu\'aux espacements!';
 $lang['project_launch_template_tags_ignore'] = 'Ne vous souciez pas des balises pour le genre et le numéro de piste, celles-ci seront automatiquement ajoutées lors du catalogage.';
 $lang['project_launch_template_act_number'] = '(tout en minuscules) où ## est le numéro de l\'acte.';
-$lang['project_launch_template_section_number'] = '(tout en minuscules) où ## est le numéro de la section ';
+$lang['project_launch_template_section_number'] = '[b](tout en minuscules)[/b] où ## est le numéro de la section ';
 ?>

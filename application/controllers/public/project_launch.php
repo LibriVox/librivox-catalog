@@ -212,7 +212,7 @@ class Project_launch extends Public_Controller {
 	
 	public function solo_work($data)
 	{
-		$data['url'] 			= $data['titleid'] . "_##_" . $data['authorlc'][0] . ".mp3 [b]". lang('project_launch_template_section_number')." (e.g. " . $data['titleid'] . "_01_" . $data['authorlc'][0] . ".mp3)";
+		$data['url'] 			= $data['titleid'] . "_##_" . $data['authorlc'][0] . "_128kb.mp3 ". lang('project_launch_template_section_number')." (e.g. " . $data['titleid'] . "_01_" . $data['authorlc'][0] . "_128kb.mp3)";
 	
 	
 		//return $this->load->view($this->base_path.'/'.build_view_path(__METHOD__), $data, true);
@@ -223,7 +223,7 @@ class Project_launch extends Public_Controller {
 
 	public function collaborative_work($data)
 	{
-		$data['url'] 			= $data['titleid'] . "_##_" . $data['authorlc'][0] . ".mp3 [b]". lang('project_launch_template_section_number')." (e.g. " . $data['titleid'] . "_01_" . $data['authorlc'][0] . ".mp3)";
+		$data['url'] 			= $data['titleid'] . "_##_" . $data['authorlc'][0] . "_128kb.mp3 ". lang('project_launch_template_section_number')." (e.g. " . $data['titleid'] . "_01_" . $data['authorlc'][0] . "_128kb.mp3)";
 		
 		//return $this->load->view($this->base_path.'/'.build_view_path(__METHOD__), $data, true);
 		$this->template->write_view('content_left',$this->base_path.'/'.build_view_path(__METHOD__), $data);			
@@ -232,7 +232,7 @@ class Project_launch extends Public_Controller {
 
 	public function dramatic_work($data)
 	{
-		$data['url'] 		= $data['titleid'] . "_[role]_[#].mp3 ". lang('project_launch_template_act_number');
+		$data['url'] 		= $data['titleid'] . "_[role]_[#]_128kb.mp3 ". lang('project_launch_template_act_number');
 		
 		//return $this->load->view($this->base_path.'/'.build_view_path(__METHOD__), $data, true);
 		$this->template->write_view('content_left',$this->base_path.'/'.build_view_path(__METHOD__), $data);			
@@ -241,7 +241,7 @@ class Project_launch extends Public_Controller {
 
 	public function poetry_weekly_work($data)
 	{
-		$data['url'] 		= $data['titleid'] . "_" . $data['authorlc'][0] . "_your initials.mp3";
+		$data['url'] 		= $data['titleid'] . "_" . $data['authorlc'][0] . "_your initials_128kb.mp3";
 		
 		//return $this->load->view($this->base_path.'/'.build_view_path(__METHOD__), $data, true);
 		$this->template->write_view('content_left',$this->base_path.'/'.build_view_path(__METHOD__), $data);			
@@ -250,7 +250,7 @@ class Project_launch extends Public_Controller {
 
 	public function poetry_fortnightly_work($data)
 	{
-		$data['url'] 		= $data['titleid'] . "_" . $data['authorlc'][0] . "_your initials.mp3";
+		$data['url'] 		= $data['titleid'] . "_" . $data['authorlc'][0] . "_your initials_128kb.mp3";
 	
 		//return $this->load->view($this->base_path.'/'.build_view_path(__METHOD__), $data, true);
 		$this->template->write_view('content_left',$this->base_path.'/'.build_view_path(__METHOD__), $data);			
