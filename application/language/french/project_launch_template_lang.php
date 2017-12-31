@@ -2,7 +2,7 @@
 
 $lang['project_launch_template_solo_project_template'] = 'Canevas pour projet solo';
 $lang['project_launch_template_summary_by'] = 'Résumé par';
-$lang['project_launch_template_trans_by'] = 'Traduisé par';
+$lang['project_launch_template_trans_by'] = 'Traduit par';
 $lang['project_launch_template_copyright_warning'] = '[b]Bénévoles résidant en-dehors des États-Unis[/b]: %s est décédé en %s. Les oeuvres de cet auteur sont toujours protégées en Europe, où les oeuvres ne tombent dans le domaine public que 70 ans après le décès de l\'auteur, en Australie (décès de l\'auteur plus 70 ans pour les auteurs morts après 1955) ou le Canada (décès de l\'auteur plus 50 ans).';
 $lang['project_launch_template_collaborative_project_template'] = 'Canevas pour projet collaboratif';
 $lang['project_launch_template_dramatic_project_template'] = 'Canevas pour projet dramatique';
