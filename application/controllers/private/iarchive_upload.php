@@ -50,6 +50,9 @@ class Iarchive_upload extends Private_Controller {
 		$description	= $this->_get_full_description($params, $project);
 		$params['description']  = trim(preg_replace('/\s+/', ' ', $description));  //trims all newlines before placing in header
 		
+		// Close db connection before uploading to avoid hogging connections
+		$this->db->close();
+
 		foreach ($files as $key=>$filename)
 		{
 			$params['filename']		= $filename;
@@ -61,25 +64,28 @@ class Iarchive_upload extends Private_Controller {
 
 		}					
 
-	    $link = '<a href="'. $config['iarchive_project_page']. '/' . $params['project_slug'] .'">Internet Archive</a>';
+		// Re-open db connection to write info we got from IA
+		$this->load->database();
 
-	    //update the project
-	    $update['url_iarchive'] = $config['iarchive_project_page']. '/' . $params['project_slug'];
-	    $update['zip_url'] 		= 'http://www.archive.org/download/' . '/' . $params['project_slug'] . '/' . $params['project_slug'] . '_64kb_mp3.zip';
+		$link = '<a href="'. $config['iarchive_project_page']. '/' . $params['project_slug'] .'">Internet Archive</a>';
 
-	    $this->project_model->update($project->id, $update);
+		//update the project
+		$update['url_iarchive'] = $config['iarchive_project_page']. '/' . $params['project_slug'];
+		$update['zip_url'] 		= 'http://www.archive.org/download/' . '/' . $params['project_slug'] . '/' . $params['project_slug'] . '_64kb_mp3.zip';
 
-	    //https://archive.org/download/grainofdust_test_1307_librivox/grainofdust_test_1307_librivox_64kb_mp3.zip
-	    //http://www.archive.org/download/secret_garden_librivox/secret_garden_librivox_64kb_mp3.zip
+		$this->project_model->update($project->id, $update);
+
+		//https://archive.org/download/grainofdust_test_1307_librivox/grainofdust_test_1307_librivox_64kb_mp3.zip
+		//http://www.archive.org/download/secret_garden_librivox/secret_garden_librivox_64kb_mp3.zip
 
 		//update project sections' file urls
-	    $this->_update_section_urls($project, $params); 
+		$this->_update_section_urls($project, $params); 
 
-	    $this->_update_section_sizes($project);
+		$this->_update_section_sizes($project);
 
-	    $this->_update_total_runtime($project);
+		$this->_update_total_runtime($project);
 
-	    $this->_update_total_zipsize($project);
+		$this->_update_total_zipsize($project);
 
 		$this->ajax_output(array('message'=>'Success', 'link'=> $link ,'files'=>$files,'params'=>$params, 'retval'=>$retval), true);
 
