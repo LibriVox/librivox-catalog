@@ -113,7 +113,7 @@ class Catalog_item {
 			    'title' => 'title',
 			    'table' => 'projects',
 			    'id' => 'id',
-			    'base_url' => 'http://librivox.org/', //replace with a config from somewhere
+			    'base_url' => 'https://librivox.org/', //replace with a config from somewhere
 			);
 			$this->ci->load->library('slug', $config);
 

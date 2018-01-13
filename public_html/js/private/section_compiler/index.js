@@ -153,7 +153,7 @@ $(document).ready(function() {
 						'<td id="title-'+response_obj.data.id+'" class="edit">'+title+'</td>',
 						'<td id="reader-'+response_obj.data.id+'" class="edit">'+reader+'</td>',
 						'<td id="notes-'+response_obj.data.id+'" class="edit">'+notes+'</td>',
-						'<td id="listen_url-'+response_obj.data.id+'" class="edit">http://librivox.local/uploads/</td>',
+						'<td id="listen_url-'+response_obj.data.id+'" class="edit">https://librivox.local/uploads/</td>',
 						'<td id="listen_link_url-'+response_obj.data.id+'"  style="cursor:default;"></td>',
 						'<td id="status-'+response_obj.data.id+'" class="edit"></td>',
 						'<td><i data-section_id="'+response_obj.data.id+'" data-placement="left" rel="tooltip" class="icon-remove delete_section" data-original-title="Remove Section"></i></td>'

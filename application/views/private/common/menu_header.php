@@ -103,9 +103,9 @@
                         <ul class="dropdown-menu">  
                             <li data-filter-camera-type="all"><a href="http://archive.org/details/librivoxaudio">Internet Archive</a></li> 
                             <li data-filter-camera-type="all"><a href="http://www.gutenberg.org/">Project Gutenberg</a></li> 
-                            <li data-filter-camera-type="all"><a href="http://librivox.org">Librivox Main site</a></li> 
+                            <li data-filter-camera-type="all"><a href="https://librivox.org">Librivox Main site</a></li> 
                             <li data-filter-camera-type="all"><a href="<?= base_url() ?>search">Librivox Catalog Search</a></li> 
-                            <li data-filter-camera-type="all"><a href="http://wiki.librivox.org/index.php">Librivox Wiki</a></li> 
+                            <li data-filter-camera-type="all"><a href="https://wiki.librivox.org/index.php">Librivox Wiki</a></li> 
                             <li data-filter-camera-type="all"><a href="<?= base_url() ?>workflow">Librivox Manage Dashboard</a></li>  
                             <li data-filter-camera-type="all"><a href="<?= base_url() ?>uploader">Librivox File Uploader</a></li> 
                             <li data-filter-camera-type="all"><a href="https://forum.librivox.org">Librivox Forum</a></li>  

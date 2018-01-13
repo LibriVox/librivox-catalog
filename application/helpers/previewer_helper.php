@@ -153,12 +153,12 @@ function build_genre_element($genre)
 
 function create_title_slug($project)
 {
-	//http://librivox.org/the-count-of-monte-cristo-by-alexandre-dumas/
+	//https://librivox.org/the-count-of-monte-cristo-by-alexandre-dumas/
 	$project = (object) $project;
 
 	if (!empty($project->url_librivox))
 	{
-		$slug = str_replace('http://librivox.org/', '', $project->url_librivox);
+		$slug = str_replace('https://librivox.org/', '', $project->url_librivox);
 	}	
 
 	if (empty($slug))

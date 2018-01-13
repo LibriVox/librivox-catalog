@@ -58,11 +58,11 @@ $lang['project_launch_template_upload_with_uploader'] = 'Upload your file with t
 $lang['project_launch_template_if_you_have_trouble'] = '(If you have trouble reading the image above, please message an admin)';
 $lang['project_launch_template_select_mc'] = 'You\'ll need to select the MC, which for this project is:';
 $lang['project_launch_template_please_post_link'] = 'When your upload is complete, you will receive a link - please post it in this thread.';
-$lang['project_launch_template_please_check_send_recording'] = 'If this doesn\'t work, or you have questions, please check our [u][url=http://wiki.librivox.org/index.php/How_to_Send_Your_Recording]How To Send Your Recording wiki page[/url][/u].';
+$lang['project_launch_template_please_check_send_recording'] = 'If this doesn\'t work, or you have questions, please check our [u][url=https://wiki.librivox.org/index.php/How_to_Send_Your_Recording]How To Send Your Recording wiki page[/url][/u].';
 $lang['project_launch_template_how_to_claim_part'] = 'How to claim a part, and "how it all works" here';
 $lang['project_launch_template_how_to_claim_part_2'] = 'To find a section to record, simply look at point 5. below at the sections. All the ones without names beside them are "up for grabs." Click "Post reply" at the top left of the screen and tell us which section you would like to read (include the section number from the left-most column in the reader list, please). Read points 6. to 8. below for what to do before, during and after your recording.';
 $lang['project_launch_template_new_to_recording'] = 'New to recording?';
-$lang['project_launch_template_please_read_guide'] = 'Please read our [u][url=http://wiki.librivox.org/index.php/Newbie_Guide_to_Recording]Newbie Guide to Recording[/url][/u]!';
+$lang['project_launch_template_please_read_guide'] = 'Please read our [u][url=https://wiki.librivox.org/index.php/Newbie_Guide_to_Recording]Newbie Guide to Recording[/url][/u]!';
 $lang['project_launch_template_is_there_deadline'] = 'Is there a deadline?';
 $lang['project_launch_template_is_there_deadline_answer'] = 'We ask that you submit your recorded sections within 1-2 months of placing your claim. [color=red]Please note that to be fair to the readers who have completed their sections in a timely way, if you haven\'t submitted your recording(s) after two months, your sections will automatically be re-opened for other readers to claim, unless you post in this thread to request an extension.[/color] Extensions will be granted at the discretion of the Book Coordinator.  If you cannot do your section, for whatever reason, just let me know and it\'ll go back to the pool. There\'s no shame in this; we\'re all volunteers and things happen.';
 $lang['project_launch_template_is_there_deadline_answer_2'] = 'Please do not sign up for more sections than you can complete within the two month deadline.';
@@ -95,7 +95,7 @@ $lang['project_launch_template_each_fortnight_poem_chosen'] = 'Each fortnight a 
 $lang['project_launch_template_this_fortnight_poem'] = 'This fortnight\'s poem can be found [url=%s][u]here[/u][/url].';
 $lang['project_launch_template_questions_how'] = 'Have questions on "how"?';
 $lang['project_launch_template_check_recording_notes'] = 'Check LV\'s [url=https://forum.librivox.org/viewtopic.php?p=6430#p6430][u]Recording Notes thread[/u][/url] before recording. ';
-$lang['project_launch_template_useful_link'] = 'If this is your first recording, you\'ll also find this [url=http://wiki.librivox.org/index.php/Newbie_Guide_to_Recording][u]Newbie Guide to Recording[/u][/url] useful.';
+$lang['project_launch_template_useful_link'] = 'If this is your first recording, you\'ll also find this [url=https://wiki.librivox.org/index.php/Newbie_Guide_to_Recording][u]Newbie Guide to Recording[/u][/url] useful.';
 $lang['project_launch_template_begin_with_disclaimer'] = 'Begin your reading with the abbreviated LibriVox disclaimer:';
 $lang['project_launch_template_title_author_read_by'] = '%s by  %s, read for LibriVox.org by [your name].';
 $lang['project_launch_template_title_author_read_by_include'] = '[Add, if you wish, date, your location, and/or your personal url.]';
@@ -121,8 +121,8 @@ $lang['project_launch_template_contribute_deadline'] = '(If you wish to contribu
 $lang['project_launch_template_suggest_poem_weekly'] = '(And remember, anyone can suggest a poem for a certain week and/or coordinate an upcoming weekly poem! If you\'d like to suggest a poem or coordinate a future Weekly Poetry project, please visit [url=https://forum.librivox.org/viewtopic.php?f=19&t=37723][u][b]this thread[/b][/u][/url].)';
 $lang['project_launch_template_suggest_poem_fortnightly'] = '(And remember, anyone can suggest a poem for a certain week and/or coordinate an upcoming fortnightly poem! If you\'d like to suggest a poem or coordinate a future Fortnightly Poetry project, please visit [url=https://forum.librivox.org/viewtopic.php?f=19&t=37723][u][b]this thread[/b][/u][/url].)';
 $lang['project_launch_template_need_noise_cleaning'] = 'Need noise-cleaning?';
-$lang['project_launch_template_noise_cleaning_software'] = 'Listen to your file through headphones. If you can hear some constant background noise (hiss/buzz), you may want to clean it up a bit. The latest version of Audacity is recommended for noise-cleaning. See [url=http://wiki.librivox.org/index.php/Noise_Cleaning][u]this LibriVox wiki page[/u][/url] for a complete guide.';
-$lang['project_launch_template_id3_tags_learn_more'] = '(To find out more about ID3 tags, go to our wiki: http://wiki.librivox.org/index.php/What_is_ID3)';
+$lang['project_launch_template_noise_cleaning_software'] = 'Listen to your file through headphones. If you can hear some constant background noise (hiss/buzz), you may want to clean it up a bit. The latest version of Audacity is recommended for noise-cleaning. See [url=https://wiki.librivox.org/index.php/Noise_Cleaning][u]this LibriVox wiki page[/u][/url] for a complete guide.';
+$lang['project_launch_template_id3_tags_learn_more'] = '(To find out more about ID3 tags, go to our wiki: https://wiki.librivox.org/index.php/What_is_ID3)';
 $lang['project_launch_template_id3_tags_add'] = 'Add the following tags to your .mp3 file (how you do this depends on which software you use &ndash; if you are unsure about ID3 tags, send me a message). Please mind upper and lower case!';
 $lang['project_launch_template_tags_ignore'] = 'Please ignore tags for Genre and Track Number - these will be filled in automatically at the cataloguing stage.';
 $lang['project_launch_template_act_number'] = '(all lower-case) where ## is the act number.';

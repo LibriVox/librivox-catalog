@@ -48,7 +48,7 @@
 			<div class="assistive-text skip-link"><a href="#" title="Skip to content">Skip to content</a></div> 
 				<ul class="sub-menu-list">
 					<li class="first"><a href="<?= base_url('pages/about-librivox/');?>">about</a></li>
-					<li><a href="http://forum.librivox.org/">forum</a></li>	
+					<li><a href="https://forum.librivox.org/">forum</a></li>	
 					<li><a href="<?= base_url('pages/contact-librivox/');?>">contact</a></li>
 					<li><a href="<?= base_url('pages/help/');?>">help</a></li>
 					<li class="twitter ir"><a href="http://twitter.com/librivox">Twitter</a></li>

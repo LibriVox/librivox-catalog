@@ -193,7 +193,7 @@ class Slug
 		$new_uri = ($count > 0) ? $uri.$this->_get_replacement().$count : $uri;
 
 		// Librivox overwrite 
-		$new_uri = $this->base_url . $new_uri . '/';  //$this->base_url  // 'http://librivox.org/'
+		$new_uri = $this->base_url . $new_uri . '/';  //$this->base_url  // 'https://librivox.org/'
 
 		// Setup the query
 		$CI->db->select($this->field)->where($this->field, $new_uri);

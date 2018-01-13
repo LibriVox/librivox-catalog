@@ -335,9 +335,9 @@ class testing extends CI_Controller {
 	public function test_get()
 	{
 
-		//http://librivox.local/testing/test_get/?fields={test1,test2}
+		//https://librivox.local/testing/test_get/?fields={test1,test2}
 
-		//http://librivox.local/testing/test_get/?fields[]=test1&fields[]=test
+		//https://librivox.local/testing/test_get/?fields[]=test1&fields[]=test
 
 		$params = $this->input->get();
 

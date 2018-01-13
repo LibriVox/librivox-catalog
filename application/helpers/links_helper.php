@@ -23,7 +23,7 @@ function torrent_link($url_iarchive = '')
 
 function rss_link()
 {
-	//http://librivox.org/rss/6792
+	//https://librivox.org/rss/6792
 
 
 }

@@ -12,7 +12,7 @@ $lang['proj_launch_uploader_instruct_3'] = 'Puede hacer click en el botón "Star
 $lang['proj_launch_uploader_instruct_4'] = 'Cuando haya terminado de subir todas sus fichas, por favor copie cada enlace y péguelo en el hilo del proyecto.';
 $lang['proj_launch_uploader_notes'] = 'Notas';
 $lang['proj_launch_uploader_notes_1'] = 'Si no pega los enlaces en el foro, nadie sabrá que se han subido las fichas!';
-$lang['proj_launch_uploader_notes_2'] = 'Si está enviando una ficha de prueba, siga las instrucciones de su BC, o las instrucciones en esta página: <a href="http://wiki.librivox.org/index.php/Prueba_de_1_minuto">http://wiki.librivox.org/index.php/Prueba_de_1_minuto</a>';
+$lang['proj_launch_uploader_notes_2'] = 'Si está enviando una ficha de prueba, siga las instrucciones de su BC, o las instrucciones en esta página: <a href="https://wiki.librivox.org/index.php/Prueba_de_1_minuto">https://wiki.librivox.org/index.php/Prueba_de_1_minuto</a>';
 $lang['proj_launch_uploader_notes_3'] = 'Si se equivocó y escogió las fichas incorrectas, antes de empezar a subir las fichas, puede cancelar una de o todas las fichas usando el botón "Cancel"';
 $lang['proj_launch_uploader_notes_4'] = 'Si sube la misma ficha más de una vez (con el mismo nombre), la primera ficha se renombrará, para que no se pierda.';
 $lang['proj_launch_uploader_notes_5'] = 'Si hace click en "Clear", la ficha desaparecerá de la lista, pero no del servidor. Para borrar una ficha, pídale a un administrador.';

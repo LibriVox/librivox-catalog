@@ -6,7 +6,7 @@
 
 <title>LibriVox's New Releases</title>
 
-<link>http://librivox.org</link>
+<link>https://librivox.org</link>
 
 <description>LibriVox volunteers record chapters of books in the public domain and release the audio files back onto the net. Our goal is to make all public domain books available as free audio books. We are a totally volunteer, open source, free content, public domain project.</description>
 

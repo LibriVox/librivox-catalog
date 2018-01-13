@@ -133,7 +133,7 @@ class Librivox_API{
 			$project['copyright_year'] 	= $row['copyright_year'];
 			$project['num_sections'] 	= $row['num_sections'];
 
-			$project['url_rss'] 		= 'http://librivox.org/rss/'.$row['id'];
+			$project['url_rss'] 		= 'https://librivox.org/rss/'.$row['id'];
 			//$project['url_zip_file'] 	= 'http://www.archive.org/download/'. $row['title'] . '_' . $row['id'] . '_librivox_/' . $row['title'] . '_' . $row['id'] . '_librivox_64kb_mp3.zip';
 			$project['url_zip_file'] 	= $row['zip_url'];
 			$project['url_project'] 	= $row['url_project'];

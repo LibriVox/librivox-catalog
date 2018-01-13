@@ -12,7 +12,7 @@ $lang['proj_launch_uploader_instruct_3'] = 'Du kannst den blauen "Start upload" 
 $lang['proj_launch_uploader_instruct_4'] = 'Wenn alle Dateien hochgeladen sind, kopiere bitte jede URL und poste sie im jeweiligen Projekt thread. ';
 $lang['proj_launch_uploader_notes'] = 'Anmerkungen';
 $lang['proj_launch_uploader_notes_1'] = 'Wenn Du die URLs nicht im Forum postest, weiß niemand daß Du etwas hochgeladen hast! ';
-$lang['proj_launch_uploader_notes_2'] = 'Wenn Du einen Test sendest, folge entweder den Anweisungen Deines BC oder diesen hier: <a href="http://wiki.librivox.org/index.php/1-Minuten-Probe">http://wiki.librivox.org/index.php/1-Minuten-Probe</a>';
+$lang['proj_launch_uploader_notes_2'] = 'Wenn Du einen Test sendest, folge entweder den Anweisungen Deines BC oder diesen hier: <a href="https://wiki.librivox.org/index.php/1-Minuten-Probe">https://wiki.librivox.org/index.php/1-Minuten-Probe</a>';
 $lang['proj_launch_uploader_notes_3'] = 'Wenn Du versehentlich falsche Dateien ausgewählt hast, kannst Du einzelne oder alle Dateien vor dem hochladen mit dem "Cancel" Button wieder löschen.';
 $lang['proj_launch_uploader_notes_4'] = 'Wenn Du eine Datei zweimal hochlädtst (mit dem selben Dateinamen), wird die erste Datei umbenannt, also nicht überschrieben.';
 $lang['proj_launch_uploader_notes_5'] = 'Wenn Du den "Clear" Button drückst, wird die Datei von der Liste entfernt, aber nicht vom Server. Bitte kontaktiere einen Admin um Dateien zu löschen. ';

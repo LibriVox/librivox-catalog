@@ -12,7 +12,7 @@ $lang['proj_launch_uploader_instruct_3'] = 'Premi "Start upload" per caricare tu
 $lang['proj_launch_uploader_instruct_4'] = 'Una volta che hai finito di caricare i tuoi file, sei pregato di copiare gli indirizzi che riceverai nella discussione del progetto.';
 $lang['proj_launch_uploader_notes'] = 'Note';
 $lang['proj_launch_uploader_notes_1'] = 'Se non copi gli indirizzi nel forum, nessuno saprà che hai inviato dei file!';
-$lang['proj_launch_uploader_notes_2'] = 'Se stai inviando un file di prova, segui le istruzioni del tuo BC o le istuzioni in questa pagina: <a href="http://wiki.librivox.org/index.php/1-Minute_Test">http://wiki.librivox.org/index.php/1-Minute_Test</a>
+$lang['proj_launch_uploader_notes_2'] = 'Se stai inviando un file di prova, segui le istruzioni del tuo BC o le istuzioni in questa pagina: <a href="https://wiki.librivox.org/index.php/1-Minute_Test">https://wiki.librivox.org/index.php/1-Minute_Test</a>
 ';
 $lang['proj_launch_uploader_notes_3'] = 'Se per sbaglio selezioni uno o più file errati, prima di caricare puoi rimuoverli usando i pulsanti "Cancel" (per rimuovere singoli file) o "Cancel upload" (per rimuovere tutti i file).';
 $lang['proj_launch_uploader_notes_4'] = 'Se carichi lo stesso file due volte con lo stesso nome, il primo file verrà automaticamente rinominato e non sovrascritto.';

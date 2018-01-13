@@ -871,7 +871,7 @@ class Validator extends Private_Controller {
 
     function test_local_file()
     {
-    	$listen_url = 'http://librivox.local/uploads/tests/Omar of Ispahân.mp3';
+    	$listen_url = 'https://librivox.local/uploads/tests/Omar of Ispahân.mp3';
     	
         $exists = $this->_local_file($listen_url);
     	echo $exists;
@@ -890,7 +890,7 @@ class Validator extends Private_Controller {
     function test_copy_remote_file()
     {
         $listen_url = 'http://upload.librivox.org/share/uploads/rg/aristopia_00_holford.mp3';
-        $listen_url = 'http://librivox.local/librivox-validator-books/the_secret_garden_1308/aristopia_00_holford.mp3';
+        $listen_url = 'https://librivox.local/librivox-validator-books/the_secret_garden_1308/aristopia_00_holford.mp3';
         $copy_to_dir = 'C:/test_files/';        
 
         $this->_get_file($listen_url, $copy_to_dir);
@@ -900,7 +900,7 @@ class Validator extends Private_Controller {
     {
         //echo 'TEST';
 
-        //$file_url = 'http://librivox.greenkri.com/uploader/incoming/count_of_monte_cristo_003_dumas.mp3';
+        //$file_url = 'https://librivox.greenkri.com/uploader/incoming/count_of_monte_cristo_003_dumas.mp3';
         //$copy_to_dir    = './' . DIR_VALIDATOR . '/count_of_monte_cristo_1302/';
 
         //$this->_get_file($file_url, $copy_to_dir);

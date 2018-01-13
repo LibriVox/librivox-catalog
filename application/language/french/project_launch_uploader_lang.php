@@ -12,7 +12,7 @@ $lang['proj_launch_uploader_instruct_3'] = 'Vous pouvez utiliser le bouton bleu 
 $lang['proj_launch_uploader_instruct_4'] = 'Quand vous avez fini de télécharger tous les fichiers, merci de copier chaque lien URL et de le coller dans une note postée dans le fil du projet.';
 $lang['proj_launch_uploader_notes'] = 'N.B.';
 $lang['proj_launch_uploader_notes_1'] = 'Si vous ne postez pad les liens URLs sur le forum, perconne ne saura qu\'ils ont été envoyés !';
-$lang['proj_launch_uploader_notes_2'] = 'Si vous envoyez un fichier test suivez les instructions de votre BC ou les instructions reprises ici : <a href="http://wiki.librivox.org/index.php/Test_1_minute">http://wiki.librivox.org/index.php/Test_1_minute</a> .';
+$lang['proj_launch_uploader_notes_2'] = 'Si vous envoyez un fichier test suivez les instructions de votre BC ou les instructions reprises ici : <a href="https://wiki.librivox.org/index.php/Test_1_minute">https://wiki.librivox.org/index.php/Test_1_minute</a> .';
 $lang['proj_launch_uploader_notes_3'] = 'Si, par accident, vous sélectionnez des mauvais fichiers, avant de procéder au chargement, vous pouvez annuleer l\'un ou/et l\'autre fichiers en cliquant sur « annuler. »';
 $lang['proj_launch_uploader_notes_4'] = 'Si vous chargez un même fichier deux fois (avec le même nom de fichier), le premier fichier chargé sera renommé afin de ne pas être effacer.';
 $lang['proj_launch_uploader_notes_5'] = 'Le fait de cliquer sur « annuler » supprime le fichier de la liste mais ne le supprime pas du serveur. Pour en supprimer des fichiers, contactez un admin.';

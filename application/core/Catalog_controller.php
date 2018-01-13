@@ -147,7 +147,7 @@ class Catalog_controller extends CI_Controller {
 		if (empty($project))
 		{
 			//our data is all hard-coded...
-			$url = 'http://librivox.org/' . $slug;
+			$url = 'https://librivox.org/' . $slug;
 
 			$sql = "SELECT * FROM (`projects`) WHERE `url_librivox` = '".rtrim($url,"/") ."' OR `url_librivox` = '". rtrim($url). "/'";
 

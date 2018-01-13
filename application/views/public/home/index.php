@@ -8,6 +8,6 @@
         <p><a href="login/manage_dashboard" class="btn primary large">Login (for BCs & MCs) »</a></p>
 
         <br />
-        <p>Looking for the Librivox Audio Book Collection? <a href="http://librivox.org/">Click here</a></p>
+        <p>Looking for the Librivox Audio Book Collection? <a href="https://librivox.org/">Click here</a></p>
         <p>Go to the Librivox Forum? <a href="https://forum.librivox.org/">Click here</a></p>
 </div>

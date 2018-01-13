@@ -27,7 +27,7 @@
 			  <dd><a href="itpc://librivox.org/rss/<?= $project->id ?>" class="book-download-btn">iTunes</a></dd>
 
 			  <dt>RSS Feed</dt>
-			  <dd><a href="http://librivox.org/rss/<?= $project->id ?>" class="book-download-btn">RSS</a></dd>
+			  <dd><a href="https://librivox.org/rss/<?= $project->id ?>" class="book-download-btn">RSS</a></dd>
 
 			  <dt>Download torrent</dt>
 			  <dd><a href="<?= torrent_link($project->url_iarchive) ?>" class="book-download-btn">Torrent</a></dd> 					  
