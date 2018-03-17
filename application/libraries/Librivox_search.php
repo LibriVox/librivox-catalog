@@ -35,9 +35,9 @@ class Librivox_search{
 		$title = ' ';
 		if (!empty($params['title']) )
 		{
-			$params['title'] = str_replace(' ', '%', $params['title']);
-			$title = 'AND st.`search_field` LIKE "' . $params['like_left'] . $params['title'] . $params['like_right'] .'"';
-		}		
+			$title_search = '%' . str_replace(' ', '%', $params['title']) . '%';
+			$title = 'AND st.`search_field` LIKE ' . $this->db->escape($title_search);
+		}
 
 		/* Status */
 
