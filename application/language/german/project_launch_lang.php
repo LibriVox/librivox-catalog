@@ -1,18 +1,17 @@
 <?php
 
-$lang['proj_launch_intro_header'] = 'LIBRIVOX: VORLAGEN GENERATOR FÜR NEUES PROJEKT
-';
+$lang['proj_launch_intro_header'] = 'LIBRIVOX: VORLAGEN GENERATOR FÜR NEUES PROJEKT';
 $lang['proj_launch_intro_1'] = 'WILLKOMMEN zum neuen Librivox Vorlagen Generator';
-$lang['proj_launch_intro_2'] = 'Bitte gib so viele Informationen wie möglich unten an. ';
-$lang['proj_launch_intro_3'] = 'Keine Panik, das kann spaeter noch von Deinem MC geändert.';
-$lang['proj_launch_intro_4'] = 'Wenn Du fertig bist, klicke bitte auf "Weiter" um den code zu generieren, den Du dann im Forum posten kannst.';
+$lang['proj_launch_intro_2'] = 'Bitte gib so viele Informationen wie möglich unten an.';
+$lang['proj_launch_intro_3'] = 'Keine Panik, Dein MC kann das später alles noch ändern.';
+$lang['proj_launch_intro_4'] = 'Wenn Du fertig bist, klicke bitte auf "Weiter", um den Code zu generieren, den Du dann im Forum posten kannst.';
 $lang['proj_launch_intro_5'] = '(*) sind Pflichtfelder';
 $lang['proj_launch_author_add'] = 'Füge einen weiteren Autor hinzu.';
-$lang['proj_launch_edition_year'] = 'Copyright der Ausgabe, die für die Aufnahme benutzt wird. ';
+$lang['proj_launch_edition_year'] = 'Copyright der Ausgabe, die für die Aufnahme benutzt wird.';
 $lang['proj_launch_is_compilation'] = '<span class="red">*</span> Ist dies eine Sammlung mit mehreren Autoren und Quellen?';
-$lang['proj_launch_translator_add'] = 'Füge einen weiteren Übersetzer hinzu. ';
-$lang['proj_launch_additional_info_work'] = 'Zusätzliche Informationen über das Werk. ';
-$lang['proj_launch_additional_info_project'] = 'Zusätzliche Informationen über das Projekt. ';
+$lang['proj_launch_translator_add'] = 'Füge einen weiteren Übersetzer hinzu.';
+$lang['proj_launch_additional_info_work'] = 'Zusätzliche Informationen über das Werk.';
+$lang['proj_launch_additional_info_project'] = 'Zusätzliche Informationen über das Projekt.';
 $lang['proj_launch_additional_info_soloist'] = 'Informationen über Dich (Falls dies Dein erstes Solo ist)';
 $lang['proj_launch_choose_lang'] = 'Wähle eine Sprache für das Formular aus';
 $lang['proj_launch_project_solo'] = 'Solo';
@@ -20,7 +19,7 @@ $lang['proj_launch_project_collaborative'] = 'Gemeinschaft';
 $lang['proj_launch_project_dramatic'] = 'Hörspiel';
 $lang['proj_launch_project_poetry_weekly'] = 'Wöchentliches Gedicht';
 $lang['proj_launch_project_poetry_fortnightly'] = 'Vierzehntägiges Gedicht';
-$lang['proj_launch_fill_form'] = 'Fülle dieses Formular so vollständig wie möglich aus. Kopiere den erzeugten Code und füge ihn in einen neuen Beitrag im New Projects/Launch Pad-Forum ein.';
+$lang['proj_launch_fill_form'] = 'Fülle dieses Formular so vollständig wie möglich aus. Kopiere den erzeugten Code und füge ihn in einen neuen Beitrag im Forum "New Projects/Launch Pad" ein.';
 $lang['proj_launch_type_of_project'] = '<span class="red">*</span> Art des Projekts';
 $lang['proj_launch_recorded_language'] = '<span class="red">*</span>Aufnahmesprache';
 $lang['proj_launch_recorded_language_other'] = 'Andere';
@@ -28,8 +27,7 @@ $lang['proj_launch_title'] = '<span class="red">*</span> Titel';
 $lang['proj_launch_author'] = 'Informationen über den Autor (die Autoren)';
 $lang['proj_launch_project'] = 'Benötigte Informationen über das Projekt';
 $lang['proj_launch_auth_first_name'] = 'Vorname(n)';
-$lang['proj_launch_auth_last_name'] = '<span class="red">*</span> Nachname
-';
+$lang['proj_launch_auth_last_name'] = '<span class="red">*</span> Nachname';
 $lang['proj_launch_auth_dob'] = 'Geburtsjahr';
 $lang['proj_launch_auth_dod'] = 'Todesjahr';
 $lang['proj_launch_translator'] = 'Informationen über den (die) Übersetzer';
@@ -43,7 +41,7 @@ $lang['proj_launch_brief_summary_by'] = 'Zusammenfassung von';
 $lang['proj_launch_link_to_text_1'] = '<span class="red">*</span> Link zum Text';
 $lang['proj_launch_link_to_text_2'] = '(bei Links zu Gutenberg verwende bitte die Hauptseite des Buches)';
 $lang['proj_launch_link_to_auth'] = 'Link zum Autor auf Wikipedia';
-$lang['proj_launch_link_to_trans'] = 'Link zur Wikipedia Seite des Übersetzers';
+$lang['proj_launch_link_to_trans'] = 'Link zur Wikipediaseite des Übersetzers';
 $lang['proj_launch_link_to_book'] = 'Link zum Buch auf Wikipedia';
 $lang['proj_launch_pub_year'] = 'Erscheinungsjahr des Originals';
 $lang['proj_launch_expected_completion'] = 'Zieldatum für Fertigstellung';
@@ -61,7 +59,7 @@ $lang['proj_launch_month_11'] = 'November';
 $lang['proj_launch_month_12'] = 'Dezember';
 $lang['proj_launch_proof_level'] = 'Art des Korrekturhörens';
 $lang['proj_launch_proof_level_standard'] = 'Standard';
-$lang['proj_launch_proof_level_wordperfect'] = 'Word Perfect';
+$lang['proj_launch_proof_level_wordperfect'] = 'Wortgetreu';
 $lang['proj_launch_proof_level_special'] = 'Spezial';
 $lang['proj_launch_proof_level_translatedtext'] = 'Übersetzter Text';
 $lang['proj_launch_num_sections'] = 'Anzahl der Abschnitte';
@@ -125,6 +123,5 @@ $lang['proj_launch_soloist_name'] = 'Wenn Du ein Solo aufnimmst und noch keinen 
 $lang['proj_launch_soloist_link_1'] = 'Du kannst auch eine URL mit Deinem Namen verlinken (persönlicher Blog oder Website).';
 $lang['proj_launch_soloist_link_2'] = 'Wenn Du keine URL angibst, wird Deine Katalogseite verwendet werden.';
 $lang['proj_launch_submit'] = 'Weiter!';
-$lang['proj_launch_submit_2'] = 'Generiere meinen Forum Code!';
+$lang['proj_launch_submit_2'] = 'Generiere meinen Forum-Code!';
 $lang['proj_launch_clear_form'] = 'Formular zurücksetzen';
-?>
