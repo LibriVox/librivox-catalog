@@ -18,13 +18,12 @@ class Librivox_simple_search{
 
 	function simple_search($params)
 	{
-
-		$params['like_left'] = '%';
-		$params['like_right'] = '%';
-
-		$params['title'] = str_replace(' ', '%', $params['title']);
-		$params['author'] = str_replace(' ', '%', $params['author']);
-
+		$like_title = $this->db->escape('%' . str_replace(' ', '%', $params['title']) . '%');
+		$like_author = $this->db->escape('%' . str_replace(' ', '%', $params['author']) . '%');
+		$like_reader = $this->db->escape('%' . str_replace(' ', '%', $params['reader']) . '%');
+		$sort_order = $params['sort_order'];
+		$offset = (int)$params['offset'];
+		$limit = (int)$params['limit'];
 
 		$sql = '';
 
@@ -72,7 +71,7 @@ class Librivox_simple_search{
 
 					JOIN languages l ON (l.id = p.language_id )
 
-					WHERE st.`search_field` LIKE "' . $params['like_left'] . $params['title'] . $params['like_right'] .'"';
+					WHERE st.`search_field` LIKE ' . $like_title;
 
 
 
@@ -121,7 +120,7 @@ class Librivox_simple_search{
 
 					JOIN groups gr ON (gr.id = st.source_id AND st.source_table = "groups" )
 
-					WHERE st.`search_field` LIKE "' . $params['like_left'] . $params['title'] . $params['like_right'] .'"';
+					WHERE st.`search_field` LIKE ' . $like_title;
 
 
 		//*****  Readers ***** //
@@ -166,9 +165,9 @@ class Librivox_simple_search{
 
 					FROM users pr
 
-					WHERE pr.display_name LIKE "' . $params['like_left'] . $params['reader'] . $params['like_right'] .'"
+					WHERE pr.display_name LIKE ' . $like_reader .'
 
-					OR pr.username LIKE "' . $params['like_left'] . $params['reader'] . $params['like_right'] .'" ';
+					OR pr.username LIKE ' . $like_reader;
 
 
 		//***** Authors and pseudonyms *****//
@@ -214,7 +213,7 @@ class Librivox_simple_search{
 
 					FROM authors a
 
-					WHERE CONCAT(a.first_name, " " , a.last_name) LIKE "' . $params['like_left'] . $params['author'] . $params['like_right'] .'"
+					WHERE CONCAT(a.first_name, " " , a.last_name) LIKE ' . $like_author .'
 
 					AND a.linked_to = 0	';
 
@@ -264,9 +263,9 @@ class Librivox_simple_search{
 
 					JOIN authors a ON (ap.author_id = a.id)
 
-					WHERE ( CONCAT(ap.first_name, " " , ap.last_name) LIKE "' . $params['like_left'] . $params['author'] . $params['like_right'] .'"
+					WHERE ( CONCAT(ap.first_name, " " , ap.last_name) LIKE ' . $like_author .'
 
-					OR CONCAT(a.first_name, " " , a.last_name) LIKE "' . $params['like_left'] . $params['author'] . $params['like_right'] .'" )
+					OR CONCAT(a.first_name, " " , a.last_name) LIKE ' . $like_author .' )
 
 					AND a.linked_to = 0 ';
 
@@ -317,7 +316,7 @@ class Librivox_simple_search{
 
 					JOIN authors a ON (ap.author_id = a.id)
 
-					WHERE CONCAT(ap.first_name, " " , ap.last_name) LIKE "' . $params['like_left'] . $params['author'] . $params['like_right'] .'"
+					WHERE CONCAT(ap.first_name, " " , ap.last_name) LIKE ' . $like_author .'
 
 					AND a.linked_to = 0 ';
 
@@ -325,9 +324,11 @@ class Librivox_simple_search{
 
 		//***** finalize query parts *****//
 
-			$sql .= ($params['sort_order'] == 'catalog_date') ? ' ORDER BY FIELD(blade, "title", "group", "reader", "author") , 6 DESC ' : ' ORDER BY FIELD(blade, "title", "group", "reader", "author") , 4 ASC ';
+			$sql .= ($sort_order == 'catalog_date')
+				? ' ORDER BY FIELD(blade, "title", "group", "reader", "author") , 6 DESC '
+				: ' ORDER BY FIELD(blade, "title", "group", "reader", "author") , 4 ASC ';
 
-			$sql .= ' LIMIT ' . $params['offset'] . ', ' . $params['limit'];
+			$sql .= ' LIMIT ' . $offset . ', ' . $limit;
 
 			$query = $this->db->query($sql);
 			//echo $this->db->last_query();
