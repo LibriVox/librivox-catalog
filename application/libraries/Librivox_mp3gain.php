@@ -3,9 +3,9 @@
 class Librivox_mp3gain
 {
 
-	private $flag; 
+	private $flag;
 
-	private $mp3gain; 
+	private $mp3gain;
 
 
 	public function __construct($config=null)
@@ -21,7 +21,7 @@ class Librivox_mp3gain
 			$this->mp3gain  = '"C:\Program Files\MP3Gain\mp3gain"';
 		}
 
-		
+
 
 		//$this->_set_tests(); //this way we can override which tests we want to run
 
@@ -30,7 +30,7 @@ class Librivox_mp3gain
 
 	public function initialize($config){
 		if(!is_array($config)) return false;
-		
+
 		foreach($config as $key => $val){
 			$this->$key = $val;
 		}
@@ -39,7 +39,7 @@ class Librivox_mp3gain
 	public function __get($var)
 	{
 		return get_instance()->$var;
-	}		
+	}
 
 	public function analyze($dir, $map)
 	{
@@ -52,10 +52,10 @@ class Librivox_mp3gain
 			$command = $this->mp3gain .  ' ' . $this->flag . $dir. $file_name;
 			exec($command, $output);
 
-			$parts = explode("\t", $output[1]); 
+			$parts = explode("\t", $output[1]);
 
 			unset($output);
-		}	
+		}
 	}
 
 
@@ -68,7 +68,7 @@ class Librivox_mp3gain
 		$command = $this->mp3gain .  ' ' . $this->flag . $dir. $file_name;
 		exec($command, $output);
 
-		$parts = explode("\t", $output[1]); 
+		$parts = explode("\t", $output[1]);
 
 		return $parts;
 
@@ -77,7 +77,7 @@ class Librivox_mp3gain
 
 	public function adjust($dir, $map)
 	{
-		
+
 		if (empty($dir) || empty($map)) return false;
 
 		$this->flag 	= ' -q -k -r ';
@@ -87,6 +87,6 @@ class Librivox_mp3gain
 			exec($this->mp3gain .  ' ' . $this->flag . $dir. $file_name, $output);
 
 			unset($output);
-		}			
-	}		
+		}
+	}
 }
