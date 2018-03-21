@@ -20,15 +20,16 @@ class User_model extends MY_Model {
 
         if (!empty($params['user_search']))
         {
-            $sql .= ' AND (u.username LIKE "%' . $params['user_search'] . '%" OR u.email LIKE "%' . $params['user_search'] . '%") ' ;
+            $user_like = $this->db->escape('%' . $params['user_search'] . '%');
+            $sql .= ' AND (u.username LIKE ' . $user_like . ' OR u.email LIKE ' . $user_like . ') ' ;
         }   
 
         if (!empty($params['user_type']))
         {   
             if ($params['user_type'] == 'all') 
                 $limit = '';
-            else  
-                $sql .= ' AND r.name = "'. $params['user_type'] .'" ';
+            else
+                $sql .= ' AND r.name = '. $this->db->escape($params['user_type']) .' ';
         } 
 
         $sql .= ' ORDER BY u.username '. $limit;

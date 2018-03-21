@@ -17,11 +17,13 @@ class Project_model extends MY_Model
         $sql = 'SELECT DISTINCT p.id, p.title, p.status, p.url_forum, p. url_librivox ' ;
 
         if (!empty($params['user_projects']))
-        { 
-           $sql .= ' , IF (p.person_bc_id = '.$params['user_projects']. ', "x", "") AS bc,
-            IF (p.person_mc_id = '.$params['user_projects']. ', "x", "") AS mc,
-            IF (p.person_pl_id = '.$params['user_projects']. ', "x", "") AS pl,
-            IF (reader_data.reader_id = '.$params['user_projects']. ', "x", "") AS reader ';
+        {
+            $user_projects = $this->db->escape($params['user_projects']);
+            $sql .= '
+                , IF (p.person_bc_id        = '.$user_projects. ', "x", "") AS bc
+                , IF (p.person_mc_id        = '.$user_projects. ', "x", "") AS mc
+                , IF (p.person_pl_id        = '.$user_projects. ', "x", "") AS pl
+                , IF (reader_data.reader_id = '.$user_projects. ', "x", "") AS reader ';
         }
 
         $sql .= ' FROM ' . $this->_table . ' p ';
@@ -30,28 +32,33 @@ class Project_model extends MY_Model
         {
             //here's where it gets hairy... find the authors, get the project ids, include those
             $project_ids_by_author = $this->get_project_ids_by_author($params['project_search']);
-
-            $sql .= ' WHERE (p.id LIKE "%' .$params['project_search']. '%" OR  p.title LIKE "%' .$params['project_search']. '%" OR p.id IN ('.$project_ids_by_author.') ) ';
+            $project_search = $this->db->escape('%' . $params['project_search'] . '%');
+            $sql .= '
+                WHERE (   p.id    LIKE '.$project_search.'
+                       OR p.title LIKE '.$project_search.'
+                       OR p.id    IN  ('.$project_ids_by_author.') ) ';
         } 
 
         if (!empty($params['user_projects']))
         {
-            
+            $user_projects = $this->db->escape($params['user_projects']);
+
             //$sql .= ' LEFT OUTER JOIN sections s ON (s.project_id = p.id) 
             //        LEFT OUTER JOIN section_readers sr ON (sr.section_id = s.id) ';
 
             $sql .= '   LEFT OUTER JOIN (SELECT s.project_id AS section_project_id, sr.reader_id AS reader_id
                         FROM sections s
                         JOIN section_readers sr ON (sr.section_id = s.id) 
-                        WHERE sr.reader_id = '.$params['user_projects']. ') as reader_data ON (reader_data.section_project_id = p.id)' ;       
+                        WHERE sr.reader_id = '.$user_projects.') as reader_data ON (reader_data.section_project_id = p.id)' ;
 
 
             // as other volunteer
-            $sql .= ' WHERE (p.person_bc_id = '.$params['user_projects']. ' 
-                OR p.person_altbc_id = '.$params['user_projects']. ' 
-                OR p.person_mc_id = '.$params['user_projects']. '
-                OR p.person_pl_id = '.$params['user_projects']. '
-                OR reader_data.reader_id = '.$params['user_projects']. ')';                
+            $sql .= '
+                WHERE (p.person_bc_id    = '.$user_projects.'
+                OR p.person_altbc_id     = '.$user_projects.'
+                OR p.person_mc_id        = '.$user_projects.'
+                OR p.person_pl_id        = '.$user_projects.'
+                OR reader_data.reader_id = '.$user_projects.')';
         }           
 
         $sql .= ' ORDER BY p.title '. $limit;
@@ -118,10 +125,11 @@ class Project_model extends MY_Model
         $sql = 'SELECT pa.project_id
         FROM project_authors pa 
         JOIN authors a ON (a.id = pa.author_id)
-        WHERE (a.first_name LIKE "%'. $search.'%" OR a.last_name LIKE "%'. $search.'%") 
+        WHERE (a.first_name LIKE ? OR a.last_name LIKE ?)
         AND pa.type = "author"';
-        
-        $query = $this->db->query($sql);
+
+        $search_like = "%$search%";
+        $query = $this->db->query($sql, array($search_like, $search_like));
         $project_ids = $query->result();
 
         if (empty($project_ids)) return 0;
@@ -343,36 +351,32 @@ class Project_model extends MY_Model
 
     function get_projects_by_reader($params)
     {
+        $sql = 'SELECT DISTINCT p.id, p.project_type, p.title_prefix, p.title, p.date_catalog, p.url_librivox, p.status, p.coverart_thumbnail, p.zip_url, p.zip_size,
+                    l.two_letter_code, l.language , p.url_forum
+                FROM projects p
+                JOIN project_readers pr ON (pr.project_id = p.id)
+                JOIN languages l ON (l.id = p.language_id)
+                WHERE pr.reader_id = ?';
 
-        $where_project_type = '';
-        if (!empty($params['project_type']) && $params['project_type'] != 'either')
+        $project_type = $params['project_type'];
+        if (!empty($project_type) && $project_type != 'either')
         {
-            if ($params['project_type'] == 'solo')
-            {
-                $where_project_type = ' AND p.project_type = "solo"';
-            }   
-            else
-            {
-                $where_project_type = ' AND p.project_type != "solo"';
-            }   
+            $sql .= ($project_type == 'solo')
+                ? ' AND p.project_type = "solo"'
+                : ' AND p.project_type != "solo"';
         }
 
-        $sql = 'SELECT DISTINCT p.id, p.project_type, p.title_prefix, p.title, p.date_catalog, p.url_librivox, p.status, p.coverart_thumbnail, p.zip_url, p.zip_size, 
-                    l.two_letter_code, l.language , p.url_forum
-                FROM projects p 
-                JOIN project_readers pr ON (pr.project_id = p.id) 
-                JOIN languages l ON (l.id = p.language_id)               
-                WHERE pr.reader_id = ' . $params['reader_id'] ;
+        $order = ($params['search_order'] == 'catalog_date')
+            ? ' 5 DESC ' // release date
+            : ' 4 ASC '; // title
 
-        $sql .= $where_project_type;        
+        $sql .= ' ORDER BY ' . $order;
 
-        $order = ($params['search_order'] == 'catalog_date') ? ' 5 DESC ' : ' 4 ASC '; //release date, else alpha as default       
+        $offset = 0 + $params['offset'];
+        $limit = 0 + $params['limit'];
+        $sql .= ' LIMIT ' . $offset . ', ' . $limit;
 
-        $sql .= ' ORDER BY ' . $order; 
-
-        $sql .= ' LIMIT ' . $params['offset'] . ', ' . $params['limit'];        
-
-        $query = $this->db->query($sql);                
+        $query = $this->db->query($sql, array($params['reader_id']));
 
         return $query->result_array();
     }
@@ -393,7 +397,9 @@ class Project_model extends MY_Model
                 
         $sql .= ' ORDER BY p.title ASC ';
 
-        $sql .= ' LIMIT ' . $params['offset'] . ', ' . $params['limit'];                
+        $offset = 0 + $params['offset'];
+        $limit = 0 + $params['limit'];
+        $sql .= ' LIMIT ' . $offset . ', ' . $limit;
 
 
         $query = $this->db->query($sql, array($params['group_id']));                
@@ -540,12 +546,12 @@ class Project_model extends MY_Model
                 FROM projects p 
                 JOIN project_readers pr ON (pr.project_id = p.id) 
                 JOIN languages l ON (l.id = p.language_id)
-                WHERE pr.reader_id = ' . $params['user_id'] . 
+                WHERE pr.reader_id = ? ' .
                 $status_where .                 
                 'ORDER BY p.title ASC ';
                 //LIMIT '. $params['search_offset']. ',' . $params['search_limit'];
 
-        $query = $this->db->query($sql);                
+        $query = $this->db->query($sql, array($params['user_id']));
 
         return $query->result_array();
     }

@@ -35,9 +35,9 @@ class Librivox_search{
 		$title = ' ';
 		if (!empty($params['title']) )
 		{
-			$params['title'] = str_replace(' ', '%', $params['title']);
-			$title = 'AND st.`search_field` LIKE "' . $params['like_left'] . $params['title'] . $params['like_right'] .'"';
-		}		
+			$title_search = '%' . str_replace(' ', '%', $params['title']) . '%';
+			$title = 'AND st.`search_field` LIKE ' . $this->db->escape($title_search);
+		}
 
 		/* Status */
 
@@ -313,16 +313,17 @@ class Librivox_search{
 		$sql = 'SELECT pa.project_id
 				FROM project_authors pa 
 				JOIN authors a ON (pa.author_id = a.id)
-				WHERE CONCAT(a.first_name, " " , a.last_name) LIKE "%' . $author . '%"  
+				WHERE CONCAT(a.first_name, " " , a.last_name) LIKE ?
 				AND a.linked_to = 0 
 				UNION
 				SELECT pa.project_id
 				FROM project_authors pa 
 				JOIN authors a ON (pa.author_id = a.id)
 				JOIN author_pseudonyms ap ON (ap.author_id = a.id)
-				WHERE CONCAT(ap.first_name, " " , ap.last_name) LIKE "%' . $author . '%"  
+				WHERE CONCAT(ap.first_name, " " , ap.last_name) LIKE ?
 				AND a.linked_to = 0	';
-		$query = $this->db->query($sql);
+		$author_like = "%$author%";
+		$query = $this->db->query($sql, array($author_like, $author_like));
 
 		// why the zero, you ask? makes sure our IN clause always has a value for valid sql
 		$project_ids[0] = 0;
@@ -340,16 +341,17 @@ class Librivox_search{
 		$sql = 'SELECT st.source_id
 				FROM search_table st 
 				JOIN authors a ON (st.section_author_id = a.id)
-				WHERE CONCAT(a.first_name, " " , a.last_name) LIKE "%' . $author . '%"  
+				WHERE CONCAT(a.first_name, " " , a.last_name) LIKE ?
 				AND a.linked_to = 0 
 				UNION
 				SELECT st.source_id
 				FROM search_table st 
 				JOIN authors a ON (st.section_author_id = a.id)
 				JOIN author_pseudonyms ap ON (ap.author_id = a.id)
-				WHERE CONCAT(ap.first_name, " " , ap.last_name) LIKE "%' . $author . '%"  
+				WHERE CONCAT(ap.first_name, " " , ap.last_name) LIKE ?
 				AND a.linked_to = 0	';
-		$query = $this->db->query($sql);
+		$author_like = "%$author%";
+		$query = $this->db->query($sql, array($author_like, $author_like));
 
 		$project_ids[0] = 0;
 		foreach ($query->result() as $key => $value) {
@@ -366,15 +368,16 @@ class Librivox_search{
 	{
 		$sql = 'SELECT a.id
 				FROM authors a 
-				WHERE CONCAT(a.first_name, " " , a.last_name) LIKE "%' . $author . '%"  
+				WHERE CONCAT(a.first_name, " " , a.last_name) LIKE ?
 				AND a.linked_to = 0 
 				UNION
 				SELECT a.id
 				FROM authors a 
 				JOIN author_pseudonyms ap ON (ap.author_id = a.id)
-				WHERE CONCAT(ap.first_name, " " , ap.last_name) LIKE "%' . $author . '%"  
+				WHERE CONCAT(ap.first_name, " " , ap.last_name) LIKE ?
 				AND a.linked_to = 0	';
-		$query = $this->db->query($sql);
+		$author_like = "%$author%";
+		$query = $this->db->query($sql, array($author_like, $author_like));
 
 		$author_ids[0] = 0;
 		foreach ($query->result() as $key => $value) {
@@ -386,13 +389,12 @@ class Librivox_search{
 
 	private function _get_reader_ids($reader, $exact_match)
 	{
-		$wildcard =  ($exact_match) ? '' : '%';
-
 		$sql = 'SELECT u.id
 				FROM users u 
-				WHERE u.display_name LIKE "' . $wildcard . $reader . $wildcard .'"  
-				OR u.username LIKE "' . $wildcard . $reader . $wildcard .'"';
-		$query = $this->db->query($sql);
+				WHERE u.display_name LIKE ?
+				OR u.username LIKE ?';
+		$reader_like =  $exact_match ? $reader : "%$reader%";
+		$query = $this->db->query($sql, array($reader_like, $reader_like));
 
 		$reader_ids[0] = 0;
 		foreach ($query->result() as $key => $value) {
@@ -423,14 +425,12 @@ class Librivox_search{
 
 	private function _get_projects_by_reader($reader, $exact_match)
 	{
-
-		$wildcard =  ($exact_match) ? '' : '%';
-
 		$sql = 'SELECT pr.project_id
 				FROM project_readers pr 
-				WHERE pr.display_name LIKE "' . $wildcard . $reader . $wildcard .'"  
-				OR pr.username LIKE "' . $wildcard . $reader . $wildcard .'"';
-		$query = $this->db->query($sql);
+				WHERE pr.display_name LIKE ?  
+				OR pr.username LIKE ?';
+		$reader_like =  $exact_match ? $reader : "%$reader%";
+		$query = $this->db->query($sql, array($reader_like, $reader_like));
 
 		//echo $this->db->last_query();				
 
@@ -443,4 +443,4 @@ class Librivox_search{
 	}	
 
 
-}	
+}
