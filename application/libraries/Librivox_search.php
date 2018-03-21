@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Librivox_search{
-	
+
 	// this is searching logic for the main, public-facing catalog search
 	// may be some complications, so keeping it all together here
 
@@ -26,7 +26,7 @@ class Librivox_search{
 	function advanced_title_search($params)
 	{
 
-		$params['like_left'] = '%';	
+		$params['like_left'] = '%';
 		$params['like_right'] = '%';
 
 		$sql = '';
@@ -62,12 +62,12 @@ class Librivox_search{
 			if ($params['project_type'] == 'solo')
 			{
 				$project_type = ' AND p.project_type = "solo"';
-			}	
+			}
 			else
 			{
 				$project_type = ' AND p.project_type != "solo"';
-			}	
-		}	
+			}
+		}
 
 		/* Language */
 
@@ -93,7 +93,7 @@ class Librivox_search{
 			$genre = $this->genre_model->get($params['genre_id']);
 
 			$genre_clause	 = 	' JOIN project_genres pg ON (pg.project_id = p.id)  ';
-			$genre_clause	 .=	' JOIN genres g ON (g.id = pg.genre_id) AND g.lineage LIKE  "'. $genre->lineage . '%"';				
+			$genre_clause	 .=	' JOIN genres g ON (g.id = pg.genre_id) AND g.lineage LIKE  "'. $genre->lineage . '%"';
 		}
 
 		/* Keywords */
@@ -105,8 +105,8 @@ class Librivox_search{
 			$keywords = array_map('trim', $keywords);  // clean it up
 
 			$keywords_array = sprintf('"%s"', implode('", "', $keywords));
-			
-			$keyword_clause	 =	' JOIN project_keywords pk ON (pk.project_id = p.id) ';	
+
+			$keyword_clause	 =	' JOIN project_keywords pk ON (pk.project_id = p.id) ';
 			$keyword_clause	 .= ' JOIN keywords k ON (k.id = pk.keyword_id) AND k.value IN ('. $keywords_array .')  ';
 
 		}
@@ -146,10 +146,10 @@ class Librivox_search{
 
 
 
-		}		
+		}
 
 		// ======================================================================================================================================
-		
+
 
 			//***** Projects from compilations *****//
 
@@ -174,24 +174,24 @@ class Librivox_search{
 
 				$sql .= '
 
-				SELECT DISTINCT "title" AS blade, ' . implode(',' , $cols) . ' 
-							 
+				SELECT DISTINCT "title" AS blade, ' . implode(',' , $cols) . '
+
 				FROM search_table st
 
-				JOIN projects p ON (p.id = st.source_id AND st.source_table IN  ("projects" ) ) 
+				JOIN projects p ON (p.id = st.source_id AND st.source_table IN  ("projects" ) )
 
-				JOIN languages l ON (l.id = p.language_id ' . $language . ')  
+				JOIN languages l ON (l.id = p.language_id ' . $language . ')
 
 				' . $genre_clause . '
 				' . $keyword_clause . '
 
 
-				WHERE 1   
-				' . $status . '  
-				' . $project_type . '		
+				WHERE 1
+				' . $status . '
+				' . $project_type . '
 				' . $title . '
 				' . $author_clause . '
-				' . $reader_clause . ' 
+				' . $reader_clause . '
 				' . $language_clause . ' ';
 
 			//***** Sections from compilations *****//
@@ -215,31 +215,31 @@ class Librivox_search{
 				$cols[] = 'l.id AS language_id';
 				$cols[] = 'l.two_letter_code';
 
-				$sql .= ' 
-					UNION 
+				$sql .= '
+					UNION
 
-				SELECT DISTINCT "title" AS blade, ' . implode(',' , $cols) . ' 
-							 
+				SELECT DISTINCT "title" AS blade, ' . implode(',' , $cols) . '
+
 				FROM search_table st
 
-				JOIN projects p ON (p.id = st.source_id AND st.source_table IN  ( "sections" ) ) 
+				JOIN projects p ON (p.id = st.source_id AND st.source_table IN  ( "sections" ) )
 
-				JOIN languages l ON (l.id = p.language_id ' . $language . ')  
+				JOIN languages l ON (l.id = p.language_id ' . $language . ')
 
 				' . $genre_clause . '
 				' . $keyword_clause . '
 
 
-				WHERE 1   
-				' . $status . '  
-				' . $project_type . '		
+				WHERE 1
+				' . $status . '
+				' . $project_type . '
 				' . $title . '
 				' . $section_author_clause . '
-				' . $reader_clause . ' 
+				' . $reader_clause . '
 				' . $language_clause . ' ';
 
 
-			//* Groups *//	
+			//* Groups *//
 
 				unset($cols);
 
@@ -260,64 +260,64 @@ class Librivox_search{
 				$cols[] = '""';
 				$cols[] = '""';
 
-				$sql .= ' 
-					UNION 
+				$sql .= '
+					UNION
 
-					SELECT DISTINCT "group" AS blade,' . implode(',' , $cols) . ' 
-					
+					SELECT DISTINCT "group" AS blade,' . implode(',' , $cols) . '
+
 					FROM search_table st
 
 					JOIN groups gr ON (gr.id = st.source_id AND st.source_table = "groups" )
 
-					JOIN group_projects gp ON (gp.group_id = gr.id)	
+					JOIN group_projects gp ON (gp.group_id = gr.id)
 
-					JOIN projects p ON (p.id = gp.project_id) 
-			
-					JOIN languages l ON (l.id = p.language_id ' . $language . ')  
+					JOIN projects p ON (p.id = gp.project_id)
+
+					JOIN languages l ON (l.id = p.language_id ' . $language . ')
 
 				' . $genre_clause . '
 				' . $keyword_clause . '
 
 
-				WHERE 1   
-				' . $status . '  
-				' . $project_type . '		
+				WHERE 1
+				' . $status . '
+				' . $project_type . '
 				' . $title . '
 				' . $author_clause . '
-				' . $reader_clause . ' 
+				' . $reader_clause . '
 				' . $language_clause . ' ';
 
 
 				//***** finalize query parts *****//
 
-				$sql .= ($params['sort_order'] == 'catalog_date') ? ' ORDER BY 5 DESC ' : ' ORDER BY 4 ASC '; 		
+				$sql .= ($params['sort_order'] == 'catalog_date') ? ' ORDER BY 5 DESC ' : ' ORDER BY 4 ASC ';
 
 				$sql .= ' LIMIT ' . $params['offset'] . ', ' . $params['limit'];
 
 				$query = $this->db->query($sql);
-				//echo $this->db->last_query();				
+				//echo $this->db->last_query();
 
 				return $query->result_array();
 
 
-	}	
+	}
 
 
 	/*
 		Utility functions
 	*/
 
-	// return an array of project ids where author or pseudonym linked 
+	// return an array of project ids where author or pseudonym linked
 	private function _get_projects_by_author($author)
 	{
 		$sql = 'SELECT pa.project_id
-				FROM project_authors pa 
+				FROM project_authors pa
 				JOIN authors a ON (pa.author_id = a.id)
 				WHERE CONCAT(a.first_name, " " , a.last_name) LIKE ?
-				AND a.linked_to = 0 
+				AND a.linked_to = 0
 				UNION
 				SELECT pa.project_id
-				FROM project_authors pa 
+				FROM project_authors pa
 				JOIN authors a ON (pa.author_id = a.id)
 				JOIN author_pseudonyms ap ON (ap.author_id = a.id)
 				WHERE CONCAT(ap.first_name, " " , ap.last_name) LIKE ?
@@ -331,7 +331,7 @@ class Librivox_search{
 			$project_ids[] = $value->project_id;
 		}
 
-		return $project_ids;		
+		return $project_ids;
 	}
 
 
@@ -339,13 +339,13 @@ class Librivox_search{
 	private function _get_projects_by_section_author($author)
 	{
 		$sql = 'SELECT st.source_id
-				FROM search_table st 
+				FROM search_table st
 				JOIN authors a ON (st.section_author_id = a.id)
 				WHERE CONCAT(a.first_name, " " , a.last_name) LIKE ?
-				AND a.linked_to = 0 
+				AND a.linked_to = 0
 				UNION
 				SELECT st.source_id
-				FROM search_table st 
+				FROM search_table st
 				JOIN authors a ON (st.section_author_id = a.id)
 				JOIN author_pseudonyms ap ON (ap.author_id = a.id)
 				WHERE CONCAT(ap.first_name, " " , ap.last_name) LIKE ?
@@ -358,7 +358,7 @@ class Librivox_search{
 			$project_ids[] = $value->source_id;
 		}
 
-		return $project_ids; 
+		return $project_ids;
 
 	}
 
@@ -367,12 +367,12 @@ class Librivox_search{
 	private function _get_author_ids($author)
 	{
 		$sql = 'SELECT a.id
-				FROM authors a 
+				FROM authors a
 				WHERE CONCAT(a.first_name, " " , a.last_name) LIKE ?
-				AND a.linked_to = 0 
+				AND a.linked_to = 0
 				UNION
 				SELECT a.id
-				FROM authors a 
+				FROM authors a
 				JOIN author_pseudonyms ap ON (ap.author_id = a.id)
 				WHERE CONCAT(ap.first_name, " " , ap.last_name) LIKE ?
 				AND a.linked_to = 0	';
@@ -384,13 +384,13 @@ class Librivox_search{
 			$author_ids[] = $value->id;
 		}
 
-		return $author_ids; 
+		return $author_ids;
 	}
 
 	private function _get_reader_ids($reader, $exact_match)
 	{
 		$sql = 'SELECT u.id
-				FROM users u 
+				FROM users u
 				WHERE u.display_name LIKE ?
 				OR u.username LIKE ?';
 		$reader_like =  $exact_match ? $reader : "%$reader%";
@@ -401,7 +401,7 @@ class Librivox_search{
 			$reader_ids[] = $value->id;
 		}
 
-		return $reader_ids; 
+		return $reader_ids;
 
 	}
 
@@ -418,7 +418,7 @@ class Librivox_search{
 			$project_ids[] = $value->source_id;
 		}
 
-		return $project_ids; 
+		return $project_ids;
 
 	}
 
@@ -426,21 +426,21 @@ class Librivox_search{
 	private function _get_projects_by_reader($reader, $exact_match)
 	{
 		$sql = 'SELECT pr.project_id
-				FROM project_readers pr 
-				WHERE pr.display_name LIKE ?  
+				FROM project_readers pr
+				WHERE pr.display_name LIKE ?
 				OR pr.username LIKE ?';
 		$reader_like =  $exact_match ? $reader : "%$reader%";
 		$query = $this->db->query($sql, array($reader_like, $reader_like));
 
-		//echo $this->db->last_query();				
+		//echo $this->db->last_query();
 
 		$project_ids[0] = 0;
 		foreach ($query->result() as $key => $value) {
 			$project_ids[] = $value->project_id;
 		}
 
-		return $project_ids;		
-	}	
+		return $project_ids;
+	}
 
 
 }

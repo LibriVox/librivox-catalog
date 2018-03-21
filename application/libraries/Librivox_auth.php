@@ -9,7 +9,7 @@ class Librivox_auth extends Ion_Auth{
 		if (!empty($user_id))
 		{
 			return $user_id;
-		}	
+		}
 		return 0;
 	}
 
@@ -22,7 +22,7 @@ class Librivox_auth extends Ion_Auth{
 			if ($this->in_group($check_group, $user_id)) return true;
 		}
 
-		return false;		
+		return false;
 	}
 
 

@@ -2,7 +2,7 @@
 
 // our api is quite simple, so we'll just build it all here
 class Librivox_API{
-	
+
 	//private $ci = &get_instance();
 
 
@@ -16,7 +16,7 @@ class Librivox_API{
 	public function __get($var)
 	{
 		return get_instance()->$var;
-	}	
+	}
 
 	public function get_audiobooks($params)
 	{
@@ -34,22 +34,22 @@ class Librivox_API{
 	public function get_audiotracks($params)
 	{
 		if (!empty($params['id'])) $array['sections'] =  $this->_get_section($params['id']);
-		elseif (!empty($params['project_id'])) $array['sections'] =  $this->_get_sections($params['project_id']); 
+		elseif (!empty($params['project_id'])) $array['sections'] =  $this->_get_sections($params['project_id']);
 		else $array = false;
 
 		return $array;
 
-	}	
+	}
 
 	public function get_authors($params)
 	{
 		if (!empty($params['id'])) $array['authors'] =  $this->_get_author($params);
-		elseif (!empty($params['last_name'])) $array['authors'] =  $this->_get_author($params); 
+		elseif (!empty($params['last_name'])) $array['authors'] =  $this->_get_author($params);
 		else $array['authors'] =  $this->_get_authors(0, 'author');
 
 		return $array;
 
-	}		
+	}
 
 	function _build_data_set($params)
 	{
@@ -65,14 +65,14 @@ class Librivox_API{
 		$params['author'] 	= $this->get('author');  -- checked
 
 		$params['extended'] = $this->get('extended');
-		
+
 		*/
 
 		//var_dump($params);
 		//return $params;
 
 		$extended = (empty($params['extended'])) ? 0 : 1;
-		
+
 		$limit = (!empty($params['limit'])) ? $params['limit'] : 50;
 		$offset = (!empty($params['offset'])) ? $params['offset'] : 0;
 
@@ -93,12 +93,12 @@ class Librivox_API{
 			{
 				$params['title'] = substr($params['title'], 1);
 				$this->db->like('p.title', $params['title'],'after');
-			}	
+			}
 			else
 			{
 				$this->db->where('p.title', $params['title']);
-			}			
-		} 
+			}
+		}
 
 
 		if (!empty($params['author']))
@@ -138,7 +138,7 @@ class Librivox_API{
 			$project['url_zip_file'] 	= $row['zip_url'];
 			$project['url_project'] 	= $row['url_project'];
 			$project['url_librivox'] 	= $row['url_librivox'];
-			
+
 			$project['url_other'] 		= $row['url_other'];
 
 			$project['totaltime'] 		= $row['totaltime'];
@@ -161,7 +161,7 @@ class Librivox_API{
 					foreach ($project['sections'] as $key=>$section)
 					{
 						$project['sections'][$key]['readers'] =$this->_get_readers($section['id']);
-					}	
+					}
 				}
 
 				// get genres
@@ -172,7 +172,7 @@ class Librivox_API{
 
 			}
 
-			// Filter out the list so only fields param request is returned (we can move some stuff higher to avoid all the extra queries)	
+			// Filter out the list so only fields param request is returned (we can move some stuff higher to avoid all the extra queries)
 
 			if (!empty($params['fields']))
 			{
@@ -187,7 +187,7 @@ class Librivox_API{
 
 				$project = array_intersect_key($project, array_flip($filter));
 			}
-			
+
 
 			$book['books'][$key] = $project;
 		}
@@ -206,7 +206,7 @@ class Librivox_API{
 		->get('authors a')
 		->result_array();
 
-		return $result;  
+		return $result;
 	}
 
 	function _get_author($params)
@@ -219,7 +219,7 @@ class Librivox_API{
 		->get('authors a')
 		->result_array();
 
-		return $result;  
+		return $result;
 	}
 
 	function _get_sections($project_id)
@@ -230,7 +230,7 @@ class Librivox_API{
 		->get('sections s')
 		->result_array();
 
-		return $result; 
+		return $result;
 	}
 
 	function _get_section($id)
@@ -241,7 +241,7 @@ class Librivox_API{
 		->get('sections s')
 		->row_array();
 
-		return $result; 
+		return $result;
 	}
 
 	function _get_readers($section_id)
@@ -252,7 +252,7 @@ class Librivox_API{
 		->get('section_readers sr')
 		->result_array();
 
-		return $result; 
+		return $result;
 	}
 
 
@@ -264,8 +264,8 @@ class Librivox_API{
 		->get('genres g')
 		->result_array();
 
-		return $result; 
-	}	
+		return $result;
+	}
 
 	function _build_author_project_id_list($author)
 	{
@@ -273,7 +273,7 @@ class Librivox_API{
 		{
 			$author = substr($author, 1);
 			$this->db->like('a.last_name', $author,'before');
-		}	
+		}
 		else
 		{
 			$this->db->where('a.last_name', $author);
@@ -284,14 +284,14 @@ class Librivox_API{
 			->where('pa.type', 'author')
 			->get('authors a')
 			->result_array();
-			
+
 		require_once(APPPATH.'libraries/underscore.php');
-		
+
 		$project_ids = __()->pluck($result , 'project_id');
 
 		return (empty($project_ids)) ? 0 : $project_ids;
 		//return implode(', ', $project_ids);
-				
+
 	}
 
 	function _build_genre_project_id_list($genre)
@@ -300,7 +300,7 @@ class Librivox_API{
 		{
 			$genre = substr($genre, 1);
 			$this->db->like('LOWER(g.name)', strtolower($genre),'after');
-		}	
+		}
 		else
 		{
 			$this->db->where('g.name', $genre);
@@ -312,12 +312,12 @@ class Librivox_API{
 			->result_array();
 
 		//return $result;
-			
+
 		require_once(APPPATH.'libraries/underscore.php');
-		
+
 		return $project_ids = __()->pluck($result , 'project_id');
 		//return implode(', ', $project_ids);
-				
+
 	}
 
 }
