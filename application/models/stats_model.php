@@ -143,8 +143,18 @@ class Stats_model extends CI_Model {
 
 	function reader_count_with_completed()
 	{
-		
-	}		
+		$sql = '
+			SELECT
+				COUNT(DISTINCT sr.reader_id) AS reader_count
+			FROM section_readers sr
+				JOIN sections s ON s.id = sr.section_id
+			WHERE s.status = ?
+			';
+
+		$query = $this->db->query($sql, SECTION_STATUS_PL_OK);
+
+		return $query->row()->reader_count;
+	}
 
 
 	function active_projects()
