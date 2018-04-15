@@ -8,16 +8,16 @@ function translator_name($fields)
 	{
 		return '';
 	}
-	
+
 	$return = lang('result_page_translated_by').' '.$fields['trans_name'];
-	
+
 	$dates = ' ('.$fields['trans_yob'];
 	if (!empty($fields['trans_yod']))
 	{
 		$dates .= ' - '.$fields['trans_yod'];
 	}
 	$dates .= ')';
-	
+
 	$return .= $dates;
 	return $return;
 }
@@ -31,7 +31,7 @@ function author_name($fields)
 function author_lowercase($fields)
 {
 	// Removes spaces from compound last names, sets to lower case
-	return strtolower(preg_replace("/\s+/", "", $fields['last_name']));	
+	return strtolower(preg_replace("/\s+/", "", $fields['last_name']));
 }
 
 function clean_title($title, $retval = 'title')
@@ -50,7 +50,7 @@ function clean_title($title, $retval = 'title')
 	}
 
 	if ($retval == 'title') return $title;
-	
+
 	return $prefix;
 }
 
@@ -58,7 +58,7 @@ function create_full_title($project)
 {
 	if (is_array($project)) $project = (object) $project;
 
-	$project->full_title = (!empty($project->title_prefix))? $project->title_prefix.' ': '';    
+	$project->full_title = (!empty($project->title_prefix))? $project->title_prefix.' ': '';
     return $project->full_title .= $project->title;
 }
 
@@ -78,7 +78,7 @@ function create_title_id($titlelc)
 }
 
 function concat_date($year, $month, $day)
-{	
+{
 	$month = date( 'm', mktime(0, 0, 0, $month) );
 	$day = str_pad($day, 2, 0, STR_PAD_LEFT);
 	return $year . "-" . $month . "-" . $day;
@@ -121,7 +121,7 @@ function create_array_from_lang($check_string, $array_keys, $alpha = false)
 		{
 			//asort($values);
 			array_multisort(array_map('sortify', $values), $values);
-		}	
+		}
 
 		return $values;
 }
@@ -159,12 +159,12 @@ function create_title_slug($project)
 	if (!empty($project->url_librivox))
 	{
 		$slug = str_replace('https://librivox.org/', '', $project->url_librivox);
-	}	
+	}
 
 	if (empty($slug))
 	{
 		return $project->id;
-	}	
+	}
 
 	return $slug;
 
@@ -189,7 +189,7 @@ function build_author_name($author)
 
 function get_language_code($language)
 {
-	if (empty($language)) return ''; 
+	if (empty($language)) return '';
 
 	return (empty($language->two_letter_code)) ? $language->three_letter_code: $language->two_letter_code;
 
