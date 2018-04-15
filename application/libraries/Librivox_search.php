@@ -73,14 +73,20 @@ class Librivox_search{
 
 		$language = ' ';
 		$language_clause = ' ';
-		if (!empty($params['recorded_language']))
+		$section_language_clause = ' ';
+		$recorded_language = (int)$params['recorded_language'];
+		if ($recorded_language !== 0)
 		{
 			//$language = ' AND p.language_id = ' . $params['recorded_language'] ;
 
-			$section_project_ids = $this->_get_projects_by_section_language($params['recorded_language']);
+			// Projects having at least one section in that language.
+			$section_project_ids = $this->_get_projects_by_section_language($recorded_language);
 			//$language_clause = ' AND p.id IN (' . implode(',', $section_project_ids) . ') ';
 
-			$language_clause = ' AND ( p.language_id = ' . $params['recorded_language'] . ' OR p.id IN (' . implode(',', $section_project_ids) . ') ) ';
+			$language_clause = ' AND ( p.language_id = ' . $recorded_language . ' OR p.id IN (' . implode(',', $section_project_ids) . ') ) ';
+			$section_language_clause = '
+				AND ( p.language_id = ' . $recorded_language . '
+					OR st.section_language_id = ' . $recorded_language . ') ';
 		}
 
 
@@ -236,7 +242,7 @@ class Librivox_search{
 				' . $title . '
 				' . $section_author_clause . '
 				' . $reader_clause . ' 
-				' . $language_clause . ' ';
+				' . $section_language_clause . ' ';
 
 
 			//* Groups *//	
