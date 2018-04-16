@@ -200,6 +200,7 @@ function build_author_years($author)
 	$author->dob = (empty($author->dob)) ? ' ': $author->dob;
 	$author->dod = (empty($author->dod)) ? ' ': $author->dod;
 
-	return sprintf("(%s)", implode(' - ', array($author->dob, $author->dod)));
-
+	return $author->dob === ' ' && $author->dod === ' '
+		? ""
+		: sprintf("(%s - %s)", $author->dob, $author->dod);
 }
