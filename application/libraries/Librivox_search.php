@@ -104,10 +104,13 @@ class Librivox_search{
 			$keywords = explode(' ', $params['keywords']); //maybe preg_match if extra spaces cause trouble - thinnk we're ok
 			$keywords = array_map('trim', $keywords);  // clean it up
 
-			$keywords_array = sprintf('"%s"', implode('", "', $keywords));
+			$escaped_keywords = [];
+			foreach ($keywords as $keyword)
+				$escaped_keywords[] = $this->db->escape($keyword);
+			$in_keywords = implode(", ", $escaped_keywords);
 
 			$keyword_clause	 =	' JOIN project_keywords pk ON (pk.project_id = p.id) ';
-			$keyword_clause	 .= ' JOIN keywords k ON (k.id = pk.keyword_id) AND k.value IN ('. $keywords_array .')  ';
+			$keyword_clause	 .= ' JOIN keywords k ON (k.id = pk.keyword_id) AND k.value IN ('. $in_keywords .')  ';
 
 		}
 
