@@ -2,13 +2,13 @@
 
 // We put all of our different file tests here for neatness & convenience
 
-// We typically run these before uploading to Archive.org, but may run them earlier to give 
+// We typically run these before uploading to Archive.org, but may run them earlier to give
 // visual clues in the table
 
 
 class Librivox_filecheck{
 
-	private $file_array;	
+	private $file_array;
 
 	private $validation_dir;
 
@@ -36,17 +36,17 @@ class Librivox_filecheck{
 
 	public function initialize($config){
 		if(!is_array($config)) return false;
-		
+
 		foreach($config as $key => $val){
 			$this->$key = $val;
 		}
-	}	
+	}
 
 	//lets us skip writing $this->ci-> everywhere
 	public function __get($var)
 	{
 		return get_instance()->$var;
-	}	
+	}
 
 
 	public function load_project_map($validation_dir, $map, $project)
@@ -70,19 +70,19 @@ class Librivox_filecheck{
 	function _set_tests()
 	{
 
-		$this->test_array = array( 			
-			'bitrate', 
-			'samplerate', 
-			'permissions', 
-			'mode' , 
-			'tag_completeness', 
+		$this->test_array = array(
+			'bitrate',
+			'samplerate',
+			'permissions',
+			'mode' ,
+			'tag_completeness',
 			'file_length',
-			//'reader', 
-			'id3v2' , 
-			'chapter_name', 			
-			'filename_chapter',  
-			'tracknumber', 			
-			'filename',			
+			//'reader',
+			'id3v2' ,
+			'chapter_name',
+			'filename_chapter',
+			'tracknumber',
+			'filename',
 			'album_tags'
 		);
 
@@ -102,7 +102,7 @@ class Librivox_filecheck{
 
 			// i think more useful than using the key...?
 			$this->file_array[$key] = array(
-				'file_name'	=> $file_name, 
+				'file_name'	=> $file_name,
 				'album'		=> $file_tags['comments']['album'][0],
 				'artist'	=> $file_tags['comments']['artist'][0],
 				'chapter' 	=> $file_tags['comments']['title'][0],
@@ -133,7 +133,7 @@ class Librivox_filecheck{
 
 			if (!$i) $this->first_album = $this->file_array[$file_name]['album'];
 			$i++;
-			
+
 			foreach ($this->test_array as $test) {
 				$this->file_array[$file_name]['tests'][$test] =  $this->{'check_'.$test}($file_array);
 
@@ -164,7 +164,7 @@ class Librivox_filecheck{
 	function check_permissions(&$file_array)
 	{
 		return is_writeable($this->validation_dir. $file_array['file_name']);
-	}		
+	}
 
 
 	function check_mode(&$file_array)
@@ -194,13 +194,13 @@ class Librivox_filecheck{
 	function check_id3v2(&$file_array)
 	{
 		return $file_array['id3v2'];
-	}	
+	}
 
 	function check_chapter_name(&$file_array)
 	{
 		$pattern = ($this->project_type == 'poem') ? '/^(.*)_.*?$/' : '/^[0-9]+.*$/';
 
-		preg_match($pattern, $file_array['chapter'], $matches);  //for poems - 
+		preg_match($pattern, $file_array['chapter'], $matches);  //for poems -
 		return (!empty($matches));
 	}
 
@@ -208,26 +208,26 @@ class Librivox_filecheck{
 	{
 		$pattern = ($this->project_type == 'poem') ? '/^(.+)_.*?\.mp3$/' : '/^(.+)_[\d-]+(.*)\.mp3$/';
 
-		preg_match($pattern, $file_array['file_name'], $matches);  //for poems - 
-		return (!empty($matches));		
+		preg_match($pattern, $file_array['file_name'], $matches);  //for poems -
+		return (!empty($matches));
 	}
 
 	function check_filename_chapter(&$file_array)
 	{
 		// we may need to revist this. looks at "letters_of_two_brides_02_balzac_128kb.mp3" & "02 - Chapter 2" and tries to compare "02"
 		$file_name_array = explode('_' , $file_array['file_name']);
-		$chapter_array = explode('-' , $file_array['chapter']); 
+		$chapter_array = explode('-' , $file_array['chapter']);
 
 		return ($file_name_array[count($file_name_array) -3]  == trim($chapter_array[0]));
-	}	
+	}
 
 	// checks filename contains same number as track number
 	function check_tracknumber(&$file_array)
 	{
 		$file_name_array = explode('_' , $file_array['file_name']);
 		$compare = (int)$file_name_array[count($file_name_array) -3] + $this->project->has_preface;
-		return ($compare == (int)$file_array['track']);		
-	}	
+		return ($compare == (int)$file_array['track']);
+	}
 
 	//check all files have same album
 	function check_album_tags(&$file_array)
@@ -247,11 +247,11 @@ class Librivox_filecheck{
 		for($i = 0; $i < $project->num_sections; $i++)
 		{
 
-			if (!isset($file_array[$i])) 
+			if (!isset($file_array[$i]))
 			{
 				$errors[] = 'Expected ' . $project->num_sections .' files: file #'. ($i + $project->has_preface). ' does not appear to exist. Please check all sections are loaded.';
 				continue;
-			}	
+			}
 			$curr_file = $file_array[$i];
 
 			$file_name_array = explode('_' , $curr_file['file_name']);
@@ -269,18 +269,18 @@ class Librivox_filecheck{
 			}
 
 			//does the counter match the Chapter prefix?
-			$chapter_array = explode('-' , $curr_file['chapter']); 
+			$chapter_array = explode('-' , $curr_file['chapter']);
 			$chapter_number = trim($chapter_array[0]);
 			if ($first != $chapter_number)
 			{
 				$errors[] = 'Expecting file #'. $first. ' to have chapter number ' . str_pad($first, 2, '0', STR_PAD_LEFT). ' DEBUG:('.$first .'::'.$chapter_number.')';
-			}	
+			}
 
 			//does the counter (adjusted) match the track number?
 			if (($first + $project->has_preface) != $curr_file['track'])
 			{
 				$errors[] = 'Expecting file #'. $first. ' to have track number ' . $first. ' DEBUG:('.$first + $project->has_preface .'::'.$curr_file['track'].')';
-			}	
+			}
 
 			$first++;
 		}
@@ -296,16 +296,16 @@ class Librivox_filecheck{
 	/*
 	function check_artist_tags()
 	{
-		
+
 	}
 
 	function check_chapter_tags()
 	{
-		
+
 	}
 	*/
 
-	
+
 
 
 

@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Librivox_simple_search{
-	
+
 	//this is searching logic for the main, public-facing catalog search
 	// may be some complications, so keeping it all together here
 
@@ -19,17 +19,17 @@ class Librivox_simple_search{
 	function simple_search($params)
 	{
 
-		$params['like_left'] = '%';	
+		$params['like_left'] = '%';
 		$params['like_right'] = '%';
 
 		$params['title'] = str_replace(' ', '%', $params['title']);
 		$params['author'] = str_replace(' ', '%', $params['author']);
 
 
-		$sql = '';		
+		$sql = '';
 
 
-		//***** Titles, Sections from compilations *****//	
+		//***** Titles, Sections from compilations *****//
 
 			$cols = array();
 
@@ -52,8 +52,8 @@ class Librivox_simple_search{
 			$cols[] = '"" AS last_name';
 			$cols[] = '"" AS dob';
 			$cols[] = '"" AS dod';
-			$cols[] = '"" AS meta_complete';		
-			$cols[] = '"" AS meta_in_progress';		
+			$cols[] = '"" AS meta_complete';
+			$cols[] = '"" AS meta_in_progress';
 			$cols[] = '"" AS reader_id';
 			$cols[] = '"" AS display_name';
 			$cols[] = '"" AS username';
@@ -61,18 +61,18 @@ class Librivox_simple_search{
 			$cols[] = 'l.id AS language_id';
 			$cols[] = 'l.two_letter_code';
 
-			// q is in the title, and not in a group. Joins language & author for fields. 
+			// q is in the title, and not in a group. Joins language & author for fields.
 
 			$sql .= '
-					SELECT DISTINCT "title" AS blade, ' . implode(',' , $cols) . ' 
-								 
+					SELECT DISTINCT "title" AS blade, ' . implode(',' , $cols) . '
+
 					FROM search_table st
 
 					JOIN projects p ON (p.id = st.source_id AND st.source_table IN  ("projects", "sections" ) )
 
-					JOIN languages l ON (l.id = p.language_id )  
+					JOIN languages l ON (l.id = p.language_id )
 
-					WHERE st.`search_field` LIKE "' . $params['like_left'] . $params['title'] . $params['like_right'] .'"';   
+					WHERE st.`search_field` LIKE "' . $params['like_left'] . $params['title'] . $params['like_right'] .'"';
 
 
 
@@ -88,40 +88,40 @@ class Librivox_simple_search{
 			$cols[] = 'gr.id';
 			$cols[] = '""';
 			$cols[] = '""';
-			$cols[] = '""';		
 			$cols[] = '""';
 			$cols[] = '""';
-			$cols[] = '""';		
 			$cols[] = '""';
-			$cols[] = '""';		
 			$cols[] = '""';
-			$cols[] = '""';		
 			$cols[] = '""';
-			$cols[] = '""';		
 			$cols[] = '""';
-			$cols[] = '""';		
 			$cols[] = '""';
-			$cols[] = '""';		
 			$cols[] = '""';
-			$cols[] = '""';				
-			$cols[] = '""';	
-			$cols[] = '""';		
+			$cols[] = '""';
+			$cols[] = '""';
+			$cols[] = '""';
+			$cols[] = '""';
+			$cols[] = '""';
+			$cols[] = '""';
+			$cols[] = '""';
+			$cols[] = '""';
+			$cols[] = '""';
+			$cols[] = '""';
 			$cols[] = '""';
 
 
-			// q is in the project title, which is part of a group. author not required for select 
+			// q is in the project title, which is part of a group. author not required for select
 
-			$sql .= ' 
+			$sql .= '
 
-					UNION 
+					UNION
 
-					SELECT DISTINCT "group" AS blade,' . implode(',' , $cols) . ' 
+					SELECT DISTINCT "group" AS blade,' . implode(',' , $cols) . '
 
 					FROM search_table st
 
 					JOIN groups gr ON (gr.id = st.source_id AND st.source_table = "groups" )
 
-					WHERE st.`search_field` LIKE "' . $params['like_left'] . $params['title'] . $params['like_right'] .'"';   
+					WHERE st.`search_field` LIKE "' . $params['like_left'] . $params['title'] . $params['like_right'] .'"';
 
 
 		//*****  Readers ***** //
@@ -147,20 +147,20 @@ class Librivox_simple_search{
 			$cols[] = '"" AS last_name';
 			$cols[] = '"" AS dob';
 			$cols[] = '"" AS dod';
-			$cols[] = '"" AS meta_complete';		
-			$cols[] = '"" AS meta_in_progress';	
+			$cols[] = '"" AS meta_complete';
+			$cols[] = '"" AS meta_in_progress';
 
-			$cols[] = 'pr.id AS reader_id';		
+			$cols[] = 'pr.id AS reader_id';
 			$cols[] = 'pr.display_name';
-			$cols[] = 'pr.username';		
+			$cols[] = 'pr.username';
 			$cols[] = '""';
-			$cols[] = '""';				
-			$cols[] = '""';	
+			$cols[] = '""';
+			$cols[] = '""';
 
 
-			$sql .= ' 
+			$sql .= '
 
-					UNION 
+					UNION
 
 					SELECT "reader" AS blade, ' . implode(',' , $cols) . '
 
@@ -168,7 +168,7 @@ class Librivox_simple_search{
 
 					WHERE pr.display_name LIKE "' . $params['like_left'] . $params['reader'] . $params['like_right'] .'"
 
-					OR pr.username LIKE "' . $params['like_left'] . $params['reader'] . $params['like_right'] .'" ';					
+					OR pr.username LIKE "' . $params['like_left'] . $params['reader'] . $params['like_right'] .'" ';
 
 
 		//***** Authors and pseudonyms *****//
@@ -191,31 +191,31 @@ class Librivox_simple_search{
 			$cols[] = '"" AS zip_size';
 
 			$cols[] = 'a.id AS author_id';
-			$cols[] = 'a.first_name';		
+			$cols[] = 'a.first_name';
 			$cols[] = 'a.last_name';
-			$cols[] = 'a.dob';		
+			$cols[] = 'a.dob';
 			$cols[] = 'a.dod';
 
-			$cols[] = 'a.meta_complete';		
-			$cols[] = 'a.meta_in_progress';			
+			$cols[] = 'a.meta_complete';
+			$cols[] = 'a.meta_in_progress';
 
-			$cols[] = '""';		
 			$cols[] = '""';
-			$cols[] = '""';		
 			$cols[] = '""';
-			$cols[] = '""';				
-			$cols[] = '""';	
+			$cols[] = '""';
+			$cols[] = '""';
+			$cols[] = '""';
+			$cols[] = '""';
 
-			$sql .= ' 
+			$sql .= '
 
-					UNION 
-				
+					UNION
+
 					SELECT "author" AS blade, ' . implode(',' , $cols) . '
-				
+
 					FROM authors a
-				
+
 					WHERE CONCAT(a.first_name, " " , a.last_name) LIKE "' . $params['like_left'] . $params['author'] . $params['like_right'] .'"
-				
+
 					AND a.linked_to = 0	';
 
 			// Also do pseudonyms - psuedonym name, where either psuedonym or real author name matches search
@@ -223,7 +223,7 @@ class Librivox_simple_search{
 			unset($cols);
 
 			$cols[] = '"pseudonyms" AS source_table';
-			$cols[] = '"" AS search_field';			
+			$cols[] = '"" AS search_field';
 			$cols[] = 'ap.last_name AS sort_field';
 			$cols[] = '"" AS title';
 			$cols[] = '"" AS date_catalog';
@@ -238,36 +238,36 @@ class Librivox_simple_search{
 			$cols[] = '"" AS zip_size';
 
 			$cols[] = 'a.id AS author_id';
-			$cols[] = 'ap.first_name';		
+			$cols[] = 'ap.first_name';
 			$cols[] = 'ap.last_name';
-			$cols[] = 'a.dob';		
+			$cols[] = 'a.dob';
 			$cols[] = 'a.dod';
 
-			$cols[] = 'a.meta_complete';		
-			$cols[] = 'a.meta_in_progress';				
+			$cols[] = 'a.meta_complete';
+			$cols[] = 'a.meta_in_progress';
 
-			$cols[] = '""';		
 			$cols[] = '""';
-			$cols[] = '""';		
 			$cols[] = '""';
-			$cols[] = '""';				
-			$cols[] = '""';	
+			$cols[] = '""';
+			$cols[] = '""';
+			$cols[] = '""';
+			$cols[] = '""';
 
 
-			$sql .= ' 
+			$sql .= '
 
-					UNION 
+					UNION
 
 					SELECT "author", ' . implode(',' , $cols) . '
-				
+
 					FROM author_pseudonyms ap
-				
+
 					JOIN authors a ON (ap.author_id = a.id)
-				
+
 					WHERE ( CONCAT(ap.first_name, " " , ap.last_name) LIKE "' . $params['like_left'] . $params['author'] . $params['like_right'] .'"
 
 					OR CONCAT(a.first_name, " " , a.last_name) LIKE "' . $params['like_left'] . $params['author'] . $params['like_right'] .'" )
-				
+
 					AND a.linked_to = 0 ';
 
 
@@ -276,7 +276,7 @@ class Librivox_simple_search{
 			unset($cols);
 
 			$cols[] = '"pseudonyms" AS source_table';
-			$cols[] = '"" AS search_field';			
+			$cols[] = '"" AS search_field';
 			$cols[] = 'a.last_name AS sort_field';
 			$cols[] = '"" AS title';
 			$cols[] = '"" AS date_catalog';
@@ -291,49 +291,49 @@ class Librivox_simple_search{
 			$cols[] = '"" AS zip_size';
 
 			$cols[] = 'a.id AS author_id';
-			$cols[] = 'a.first_name';		
+			$cols[] = 'a.first_name';
 			$cols[] = 'a.last_name';
-			$cols[] = 'a.dob';		
+			$cols[] = 'a.dob';
 			$cols[] = 'a.dod';
 
-			$cols[] = 'a.meta_complete';		
-			$cols[] = 'a.meta_in_progress';				
+			$cols[] = 'a.meta_complete';
+			$cols[] = 'a.meta_in_progress';
 
-			$cols[] = '""';		
 			$cols[] = '""';
-			$cols[] = '""';		
 			$cols[] = '""';
-			$cols[] = '""';				
-			$cols[] = '""';	
+			$cols[] = '""';
+			$cols[] = '""';
+			$cols[] = '""';
+			$cols[] = '""';
 
 
-			$sql .= ' 
+			$sql .= '
 
-					UNION 
+					UNION
 
 					SELECT "author", ' . implode(',' , $cols) . '
-				
+
 					FROM author_pseudonyms ap
-				
+
 					JOIN authors a ON (ap.author_id = a.id)
-				
+
 					WHERE CONCAT(ap.first_name, " " , ap.last_name) LIKE "' . $params['like_left'] . $params['author'] . $params['like_right'] .'"
-				
+
 					AND a.linked_to = 0 ';
 
 
 
-		//***** finalize query parts *****//		
+		//***** finalize query parts *****//
 
-			$sql .= ($params['sort_order'] == 'catalog_date') ? ' ORDER BY FIELD(blade, "title", "group", "reader", "author") , 6 DESC ' : ' ORDER BY FIELD(blade, "title", "group", "reader", "author") , 4 ASC '; 		
+			$sql .= ($params['sort_order'] == 'catalog_date') ? ' ORDER BY FIELD(blade, "title", "group", "reader", "author") , 6 DESC ' : ' ORDER BY FIELD(blade, "title", "group", "reader", "author") , 4 ASC ';
 
 			$sql .= ' LIMIT ' . $params['offset'] . ', ' . $params['limit'];
 
 			$query = $this->db->query($sql);
-			//echo $this->db->last_query();				
+			//echo $this->db->last_query();
 
 			return $query->result_array();
 
-	}	
+	}
 
-}	
+}
