@@ -25,7 +25,7 @@
 
 	<div class="result-data">
 		<?php if ( isset($item['source_table']) &&  $item['source_table'] == 'sections'): ?>
-			<h3><?= $item['search_field']?> (in <a href="<?= ($item['status'] == PROJECT_STATUS_COMPLETE) ? $item['url_librivox'] : $item['url_forum'] ?>"> <?= create_full_title($item)?></a> )</h3>
+			<h3><?= $item['search_field']?> (in <a href="<?= ($item['status'] == PROJECT_STATUS_COMPLETE) ? $item['url_librivox'] : $item['url_forum'] ?>"> <?= create_full_title($item)?></a>)</h3>
 		<?php else: ?>
 			<h3><a href="<?= ($item['status'] == PROJECT_STATUS_COMPLETE) ? $item['url_librivox'] : $item['url_forum'] ?>"><?= create_full_title($item)?></a></h3>
 		<?php endif; ?>
