@@ -36,16 +36,6 @@ class Search_table_update extends CI_Controller {
 				JOIN projects p ON (p.id = gp.project_id);';
 		$this->db->query($sql);
 	
-		/*	
-		$sql = 'INSERT INTO search_table (search_field, source_table, source_id, section_language_id, section_author_id)
-				SELECT s.title, "sections", p.id, s.language_id, s.author_id
-				FROM projects p
-				JOIN sections s ON (p.id = s.project_id)
-				WHERE p.is_compilation = 1
-				AND p.status = "Complete";';		
-		$this->db->query($sql);
-		*/
-
 		$sql = 'INSERT INTO search_table (search_field, source_table, source_id, section_language_id, section_author_id, section_reader_id)
 				SELECT s.title, "sections", p.id, s.language_id, s.author_id, sr.reader_id
 				FROM projects p
