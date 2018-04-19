@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "764ce6f2_6c4f7cee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1012843
+      },
+      "writtenOn": "2018-04-19T02:59:21Z",
+      "side": 1,
+      "message": "I\u0027d honestly remove all this. I couldn\u0027t make sense of it when I first had a go at understanding this patch. The first paragraph is concise and explains perfectly what this patch does and why it does it.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 13
+      },
+      "revId": "c5379f8e70d91bd3f42ab955688d43fd58591d19",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
