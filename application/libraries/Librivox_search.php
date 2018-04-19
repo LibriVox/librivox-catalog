@@ -85,8 +85,8 @@ class Librivox_search{
 
 			$language_clause = ' AND ( p.language_id = ' . $recorded_language . ' OR p.id IN (' . implode(',', $section_project_ids) . ') ) ';
 			$section_language_clause = '
-				AND ( p.language_id = ' . $recorded_language . '
-					OR st.section_language_id = ' . $recorded_language . ') ';
+				AND ( p.language_id <> ' . $recorded_language . '
+					AND st.section_language_id = ' . $recorded_language . ') ';
 		}
 
 
