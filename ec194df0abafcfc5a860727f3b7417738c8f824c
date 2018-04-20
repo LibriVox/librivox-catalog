@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "027096ce_2da8aa33",
+        "filename": "application/libraries/Librivox_search.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1012843
+      },
+      "writtenOn": "2018-04-20T02:29:08Z",
+      "side": 1,
+      "message": "Wouldn\u0027t this filter out projects in the searched language? This seems to be what\u0027s happening when I test this. For instance, when I search for german in the advanced search, without this patch I get sections from Sammlung deutscher Gedichte 024. When I try with this patch, instead of seeing one result for Sammlung deutscher Gedichte 024 (instead of every single section), I don\u0027t see it at all.",
+      "revId": "ec194df0abafcfc5a860727f3b7417738c8f824c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
