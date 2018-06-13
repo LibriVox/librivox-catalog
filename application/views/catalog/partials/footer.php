@@ -15,46 +15,46 @@
 
 <script type="text/javascript">
 
-	var search_category = "<?= $search_category; ?>";
+	var search_category = <?= json_encode($search_category, JSON_HEX_TAG | JSON_HEX_QUOT); ?>;
 
 	var sub_category;
 
-	var advanced_search = "<?= empty($advanced_search)? 0 : $advanced_search; ?>";
+	var advanced_search = <?= (int)$advanced_search ?>;
 
-	var primary_key = <?= $primary_key; ?>;
+	var primary_key = <?= (int)$primary_key ?>;
 
-	var search_page  = "<?= empty($search_page)? 1 : $search_page; ?>";
+	var search_page = <?= (int)($search_page ?: 1) ?>;
 	set_advanced_form_page(search_page);
 
 	var search_order = 'alpha';
 
 	var project_type = 'either';
 
-	var q = "<?= empty($search_value)? '': $search_value; ?>";
+	var q = <?= json_encode($search_value ?: '', JSON_HEX_TAG | JSON_HEX_QUOT) ?>;
 
 	var spinner = '<div class="loading_img" style="margin-left:300px;margin-top:60px;"><img src="../../img/loading.gif"/></div>';
 
 	$('.browse-header').hide();
 
-	var pathArray = window.location.pathname.split( '/' );
+	var pathArray = window.location.pathname.split('/');
 
 	var current_page = pathArray[1]; 
 
-	if (q != '')
+	if (q !== '')
 	{
 		advanced_search = 0;
 		$('.advanced-search-inner').hide('slow');
 		librivox_search();
 	}
-	else if (advanced_search == 1)
+	else if (advanced_search === 1)
 	{
 		advanced_search_actions();
 	}
-	else if (advanced_search == 2)
+	else if (advanced_search === 2)
 	{
 		advanced_form_submit();
 	}
-	else if (advanced_search == 3)
+	else if (advanced_search === 3)
 	{
 		//may be able to combine with below
 		$('.advanced-search-inner').hide();
@@ -63,7 +63,7 @@
 	else
 	{	
 		//only on loading search page
-		if (current_page == 'search') 
+		if (current_page === 'search')
 		{
 			var item = $('.js-menu_item[data-menu_item="'+search_category+'"]');
 			load_search_data(item, search_category);
@@ -79,13 +79,13 @@
 
 	// do better 
 	$('#sort_type').hide();
-	if (search_category == 'title' ||  search_category == 'reader')
+	if (search_category === 'title' ||  search_category === 'reader')
 	{
 		$('#sort_type').show();
 	}	
 
 	$('#sort_menu').hide();
-	if (search_category == 'title' || (primary_key > 0))
+	if (search_category === 'title' || (primary_key > 0))
 	{
 		$('#sort_menu').show();
 	}	
@@ -98,7 +98,7 @@
 
 		primary_key = 0;
 
-		if (current_page != 'search') 
+		if (current_page !== 'search')
 		{
 			window.location.href = CI_ROOT + 'search/' + search_category;
 		}	
@@ -109,7 +109,7 @@
 		$('#sidebar_wrapper').show();
 
 		$('#sort_menu').hide();
-		if (search_category == 'title' || (primary_key > 0))
+		if (search_category === 'title' || (primary_key > 0))
 		{
 			$('#sort_menu').show();
 		}	
