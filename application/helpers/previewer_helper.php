@@ -204,3 +204,9 @@ function build_author_years($author)
 		? ""
 		: sprintf("(%s - %s)", $author->dob, $author->dod);
 }
+
+/** Example: translate_plural($n, "%d book", "%d books") => "1 book" or "13 books" */
+function translate_plural($n, $one, $other)
+{
+	return str_replace("%d", $n, (int)$n === 1 ? $one : $other);
+}
