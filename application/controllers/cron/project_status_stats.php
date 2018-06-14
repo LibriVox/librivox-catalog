@@ -22,7 +22,11 @@ class Project_status_stats extends CI_Controller {
 
 	public function author()
 	{
-		
+		$this->db->query('
+			UPDATE authors
+			SET meta_complete = 0,
+				meta_in_progress = 0');
+
 		$sql = '
 			UPDATE authors
 			JOIN 
@@ -33,9 +37,8 @@ class Project_status_stats extends CI_Controller {
 				WHERE p.status IN ' . sprintf('("%s")', implode('","', $this->status_complete)) . '
 				GROUP BY a.id ) as metadata ON (authors.id = metadata.id)
 			SET meta_complete = metadata.count ';
-		$this->db->query($sql);	
+		$this->db->query($sql);
 
-		
 		$sql = '
 			UPDATE authors
 			JOIN 
@@ -47,7 +50,6 @@ class Project_status_stats extends CI_Controller {
 				GROUP BY a.id ) as metadata ON (authors.id = metadata.id)
 			SET meta_in_progress = metadata.count ';
 		$this->db->query($sql);
-
 	}
 
 	public function genre()
