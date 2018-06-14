@@ -22,6 +22,11 @@ class Project_status_stats extends CI_Controller
 
 	public function author()
 	{
+		$this->db->query('
+			UPDATE authors
+			SET meta_complete = 0,
+				meta_in_progress = 0');
+
 		$sql = '
 			UPDATE authors
 			JOIN 
