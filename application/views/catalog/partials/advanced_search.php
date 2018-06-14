@@ -5,7 +5,7 @@
 		
 		<h2>Advanced Search</h2>
 
-		<h5>Fill in as many fields & options as you like.</h5>	
+		<h5>Fill in as many fields &amp; options as you like.</h5>
 
 		<div class="clearfix" style="height:20px;"></div>
 		
@@ -15,7 +15,7 @@
 			<div class="control-group">
 			     <div class="controls center">
 			     	<label for="title" ><span class="span2">Title:</span>
-					<input type="text" class="span4" id="title" name="title" value="<?= $advanced_search_form['title'] ?>"/>
+					<input type="text" class="span4" id="title" name="title" value="<?= htmlspecialchars($advanced_search_form['title']) ?>"/>
 					</label>
 			     </div>
 			</div>   
@@ -23,7 +23,7 @@
 			<div class="control-group">
 			     <div class="controls center">
 			     	<label for="author" ><span class="span2">Author:</span>
-					<input type="text" class="span4" id="author" name="author" value="<?= $advanced_search_form['author'] ?>"/>
+					<input type="text" class="span4" id="author" name="author" value="<?= htmlspecialchars($advanced_search_form['author']) ?>"/>
 					</label>
 			     </div>
 			</div>   
@@ -31,7 +31,7 @@
 			<div class="control-group">
 			     <div class="controls center">
 			     	<label for="reader" ><span class="span2">Reader:</span>
-					<input type="text" class="span4" id="reader" name="reader" value="<?= $advanced_search_form['reader'] ?>"/>
+					<input type="text" class="span4" id="reader" name="reader" value="<?= htmlspecialchars($advanced_search_form['reader']) ?>"/>
 					</label>
 			     </div>
 
@@ -47,7 +47,7 @@
 			<div class="control-group">
 			     <div class="controls center">
 			     	<label for="keywords" ><span class="span2">Keywords:</span>
-					<input type="text" class="span4" id="keywords" name="keywords" value="<?= $advanced_search_form['keywords'] ?>"/>
+					<input type="text" class="span4" id="keywords" name="keywords" value="<?= htmlspecialchars($advanced_search_form['keywords']) ?>"/>
 					</label>
 			     </div>
 			</div> 
