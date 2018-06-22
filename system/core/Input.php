@@ -267,9 +267,8 @@ class CI_Input {
 	 */
 	public function post_get($index, $xss_clean = NULL)
 	{
-		return isset($_POST[$index])
-			? $this->post($index, $xss_clean)
-			: $this->get($index, $xss_clean);
+		$output = $this->post($index, $xss_clean);
+		return ($output !== NULL) ? $output : $this->get($index, $xss_clean);
 	}
 
 	// --------------------------------------------------------------------
@@ -283,9 +282,8 @@ class CI_Input {
 	 */
 	public function get_post($index, $xss_clean = NULL)
 	{
-		return isset($_GET[$index])
-			? $this->get($index, $xss_clean)
-			: $this->post($index, $xss_clean);
+		$output = $this->get($index, $xss_clean);
+		return ($output !== NULL) ? $output : $this->post($index, $xss_clean);
 	}
 
 	// --------------------------------------------------------------------
