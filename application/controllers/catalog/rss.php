@@ -1,6 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Rss extends Catalog_controller {
+class Rss extends Catalog_controller
+{
 
 	public function __construct()
 	{
@@ -9,9 +10,6 @@ class Rss extends Catalog_controller {
 
 	public function index($project_id)
 	{
-		
 		echo 'Coming soon!';
-
 	}
-
-}	
+}

@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Auth extends MY_Controller {
+class Auth extends MY_Controller
+{
 
 	function __construct()
 	{
@@ -14,20 +15,18 @@ class Auth extends MY_Controller {
 			$this->load->library('mongo_db') :
 			$this->load->database();
 
-				// setup generic template stuff
+		// setup generic template stuff
 		$this->loadGenericAssets();
 		$this->template->write_view('header', 'common/public_header', $this->data);
 		$this->template->write_view('bottom_tagline', 'common/public_bottom_tagline');
-		$this->template->write_view('footer', 'common/public_footer');		
+		$this->template->write_view('footer', 'common/public_footer');
 
-
-		$this->session->keep_flashdata('referrer');	
+		$this->session->keep_flashdata('referrer');
 	}
 
 	//redirect if needed, otherwise display the user list
 	function index()
 	{
-
 		if (!$this->ion_auth->logged_in())
 		{
 			//redirect them to the login page
@@ -50,20 +49,18 @@ class Auth extends MY_Controller {
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
 
-
 			$this->load->view('auth/index', $this->data);
 		}
 	}
 
 	//log the user in
-	function login($redirect_url='')
+	function login($redirect_url = '')
 	{
-
-		if($this->ion_auth->logged_in()) 
+		if ($this->ion_auth->logged_in())
 		{
-			$redirect_url = ($redirect_url == 'manage_dashboard')? base_url().'projects/'. $this->librivox_auth->get_user_id(): $redirect_url;
+			$redirect_url = ($redirect_url == 'manage_dashboard') ? base_url() . 'projects/' . $this->librivox_auth->get_user_id() : $redirect_url;
 			redirect($redirect_url);
-		}	
+		}
 
 		$this->data['title'] = "Login";
 
@@ -74,7 +71,7 @@ class Auth extends MY_Controller {
 		if ($this->form_validation->run() == true)
 		{ //check to see if the user is logging in
 			//check for "remember me"
-			$remember = (bool) $this->input->post('remember');
+			$remember = (bool)$this->input->post('remember');
 
 			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
 			{ //if the login is successful
@@ -84,12 +81,12 @@ class Auth extends MY_Controller {
 				//redirect($this->config->item('admin_dashboard_url', 'ion_auth'), 'refresh');  //MODIFIED
 				$redirect_url = $this->input->post('redirect_url');
 
-				$redirect_url = empty($redirect_url) ? $this->session->flashdata('referrer')  : $redirect_url;
+				$redirect_url = empty($redirect_url) ? $this->session->flashdata('referrer') : $redirect_url;
 
-				$redirect_url = empty($redirect_url) ? '/'  : $redirect_url;
+				$redirect_url = empty($redirect_url) ? '/' : $redirect_url;
 
 				//crappy hack - if manage dashboard, take them instead to their MY Projects page
-				$redirect_url = ($redirect_url == 'manage_dashboard')? base_url().'projects/'. $this->librivox_auth->get_user_id(): $redirect_url;
+				$redirect_url = ($redirect_url == 'manage_dashboard') ? base_url() . 'projects/' . $this->librivox_auth->get_user_id() : $redirect_url;
 
 				redirect($redirect_url, 'refresh');  //MODIFIED
 
@@ -119,8 +116,8 @@ class Auth extends MY_Controller {
 			$this->data['redirect_url'] = $redirect_url;
 
 			//$this->load->view('auth/login', $this->data);
-			$this->template->write_view('content_left', build_view_path(__METHOD__), $this->data);			
-			$this->template->render();	
+			$this->template->write_view('content_left', build_view_path(__METHOD__), $this->data);
+			$this->template->render();
 		}
 	}
 
@@ -158,32 +155,32 @@ class Auth extends MY_Controller {
 			$this->data['min_password_length'] = $this->config->item('min_password_length', 'ion_auth');
 			$this->data['old_password'] = array(
 				'name' => 'old',
-				'id'   => 'old',
+				'id' => 'old',
 				'type' => 'password',
 			);
 			$this->data['new_password'] = array(
 				'name' => 'new',
-				'id'   => 'new',
+				'id' => 'new',
 				'type' => 'password',
-				'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
+				'pattern' => '^.{' . $this->data['min_password_length'] . '}.*$',
 			);
 			$this->data['new_password_confirm'] = array(
 				'name' => 'new_confirm',
-				'id'   => 'new_confirm',
+				'id' => 'new_confirm',
 				'type' => 'password',
-				'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
+				'pattern' => '^.{' . $this->data['min_password_length'] . '}.*$',
 			);
 			$this->data['user_id'] = array(
-				'name'  => 'user_id',
-				'id'    => 'user_id',
-				'type'  => 'hidden',
+				'name' => 'user_id',
+				'id' => 'user_id',
+				'type' => 'hidden',
 				'value' => $user->id,
 			);
 
 			//render
 			//$this->load->view('auth/change_password', $this->data);
-			$this->template->write_view('content_left', build_view_path(__METHOD__), $this->data);			
-			$this->template->render();	
+			$this->template->write_view('content_left', build_view_path(__METHOD__), $this->data);
+			$this->template->render();
 		}
 		else
 		{
@@ -217,9 +214,8 @@ class Auth extends MY_Controller {
 			//set any errors and display the form
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 			//$this->load->view('auth/forgot_password', $this->data);
-			$this->template->write_view('content_left', build_view_path(__METHOD__), $this->data);			
-			$this->template->render();	
-
+			$this->template->write_view('content_left', build_view_path(__METHOD__), $this->data);
+			$this->template->render();
 		}
 		else
 		{
@@ -263,20 +259,20 @@ class Auth extends MY_Controller {
 				$this->data['min_password_length'] = $this->config->item('min_password_length', 'ion_auth');
 				$this->data['new_password'] = array(
 					'name' => 'new',
-					'id'   => 'new',
-				'type' => 'password',
-					'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
+					'id' => 'new',
+					'type' => 'password',
+					'pattern' => '^.{' . $this->data['min_password_length'] . '}.*$',
 				);
 				$this->data['new_password_confirm'] = array(
 					'name' => 'new_confirm',
-					'id'   => 'new_confirm',
+					'id' => 'new_confirm',
 					'type' => 'password',
-					'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
+					'pattern' => '^.{' . $this->data['min_password_length'] . '}.*$',
 				);
 				$this->data['user_id'] = array(
-					'name'  => 'user_id',
-					'id'    => 'user_id',
-					'type'  => 'hidden',
+					'name' => 'user_id',
+					'id' => 'user_id',
+					'type' => 'hidden',
 					'value' => $user->id,
 				);
 				$this->data['csrf'] = $this->_get_csrf_nonce();
@@ -284,20 +280,21 @@ class Auth extends MY_Controller {
 
 				//render
 				//$this->load->view('auth/reset_password', $this->data);
-				$this->template->write_view('content_left', build_view_path(__METHOD__), $this->data);			
-				$this->template->render();	
+				$this->template->write_view('content_left', build_view_path(__METHOD__), $this->data);
+				$this->template->render();
 			}
 			else
 			{
 				// do we have a valid request?
-				if ($this->_valid_csrf_nonce() === FALSE || $user->id != $this->input->post('user_id')) {
-
+				if ($this->_valid_csrf_nonce() === FALSE || $user->id != $this->input->post('user_id'))
+				{
 					//something fishy might be up
 					$this->ion_auth->clear_forgotten_password_code($code);
 
 					show_404();
-
-				} else {
+				}
+				else
+				{
 					// finally change the password
 					$identity = $user->{$this->config->item('identity', 'ion_auth')};
 
@@ -323,9 +320,8 @@ class Auth extends MY_Controller {
 		}
 	}
 
-
 	//activate the user
-	function activate($id, $code=false)
+	function activate($id, $code = false)
 	{
 		if ($code !== false)
 			$activation = $this->ion_auth->activate($id, $code);
@@ -349,7 +345,7 @@ class Auth extends MY_Controller {
 	//deactivate the user
 	function _deactivate($id = NULL)
 	{
-		$id = $this->config->item('use_mongodb', 'ion_auth') ? (string) $id : (int) $id;
+		$id = $this->config->item('use_mongodb', 'ion_auth') ? (string)$id : (int)$id;
 
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('confirm', 'confirmation', 'required');
@@ -493,7 +489,7 @@ class Auth extends MY_Controller {
 	function _valid_csrf_nonce()
 	{
 		if ($this->input->post($this->session->flashdata('csrfkey')) !== FALSE &&
-				$this->input->post($this->session->flashdata('csrfkey')) == $this->session->flashdata('csrfvalue'))
+			$this->input->post($this->session->flashdata('csrfkey')) == $this->session->flashdata('csrfvalue'))
 		{
 			return TRUE;
 		}
@@ -505,9 +501,7 @@ class Auth extends MY_Controller {
 
 	function error_no_permission()
 	{
-
-   		$this->template->write_view('content_left','errors/error_no_permission', $this->data);			
+		$this->template->write_view('content_left', 'errors/error_no_permission', $this->data);
 		$this->template->render();
-	}	
-
+	}
 }

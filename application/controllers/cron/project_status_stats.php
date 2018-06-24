@@ -1,6 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Project_status_stats extends CI_Controller {
+class Project_status_stats extends CI_Controller
+{
 
 	private $status_complete;
 
@@ -15,14 +16,12 @@ class Project_status_stats extends CI_Controller {
 		$this->status_complete = array(PROJECT_STATUS_COMPLETE);
 
 		$this->status_in_progress = array(PROJECT_STATUS_OPEN, PROJECT_STATUS_FULLY_SUBSCRIBED, PROJECT_STATUS_PROOF_LISTENING, PROJECT_STATUS_VALIDATION);
-
 		// "php ../public_html/index.php cron project_status_stats author"
 
 	}
 
 	public function author()
 	{
-		
 		$sql = '
 			UPDATE authors
 			JOIN 
@@ -33,9 +32,8 @@ class Project_status_stats extends CI_Controller {
 				WHERE p.status IN ' . sprintf('("%s")', implode('","', $this->status_complete)) . '
 				GROUP BY a.id ) as metadata ON (authors.id = metadata.id)
 			SET meta_complete = metadata.count ';
-		$this->db->query($sql);	
+		$this->db->query($sql);
 
-		
 		$sql = '
 			UPDATE authors
 			JOIN 
@@ -47,7 +45,6 @@ class Project_status_stats extends CI_Controller {
 				GROUP BY a.id ) as metadata ON (authors.id = metadata.id)
 			SET meta_in_progress = metadata.count ';
 		$this->db->query($sql);
-
 	}
 
 	public function genre()
@@ -62,9 +59,8 @@ class Project_status_stats extends CI_Controller {
 				WHERE p.status IN ' . sprintf('("%s")', implode('","', $this->status_complete)) . '
 				GROUP BY g.id ) as metadata ON (genres.id = metadata.id)
 			SET meta_complete = metadata.count ';
-		$this->db->query($sql);	
+		$this->db->query($sql);
 
-		
 		$sql = '
 			UPDATE genres
 			JOIN 
@@ -75,12 +71,11 @@ class Project_status_stats extends CI_Controller {
 				WHERE p.status IN ' . sprintf('("%s")', implode('","', $this->status_in_progress)) . '
 				GROUP BY g.id ) as metadata ON (genres.id = metadata.id)
 			SET meta_in_progress = metadata.count ';
-		$this->db->query($sql);		
+		$this->db->query($sql);
 	}
 
 	public function language()
 	{
-
 		$sql = '
 			UPDATE languages
 			SET meta_complete = 0 ';
@@ -95,7 +90,7 @@ class Project_status_stats extends CI_Controller {
 				WHERE p.status IN ' . sprintf('("%s")', implode('","', $this->status_complete)) . '
 				GROUP BY l.id ) as metadata ON (languages.id = metadata.id)
 			SET meta_complete = metadata.count ';
-		$this->db->query($sql);	
+		$this->db->query($sql);
 
 		$sql = '
 			UPDATE languages
@@ -107,8 +102,7 @@ class Project_status_stats extends CI_Controller {
 			        AND p.is_compilation = 1 
 			        GROUP BY s.language_id ) as metadata ON (languages.id = metadata.language_id)
 			SET meta_complete = meta_complete + metadata.count';
-		$this->db->query($sql);	
-
+		$this->db->query($sql);
 
 		$sql = '
 			UPDATE languages
@@ -119,7 +113,7 @@ class Project_status_stats extends CI_Controller {
 				WHERE p.status IN ' . sprintf('("%s")', implode('","', $this->status_in_progress)) . '
 				GROUP BY l.id ) as metadata ON (languages.id = metadata.id)
 			SET meta_in_progress = metadata.count ';
-		$this->db->query($sql);			
+		$this->db->query($sql);
 	}
 }
 
