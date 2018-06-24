@@ -1,20 +1,19 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Temp_info extends Public_Controller {
+class Temp_info extends Public_Controller
+{
 
 	public function index()
 	{
-		
 	}
 
 	public function api()
 	{
+		$this->template->set_template('single_column');
+		$this->loadGenericAssets();
 
-   		$this->template->set_template('single_column');
-      	$this->loadGenericAssets();
-
-   		$this->template->write_view('content',$this->base_path.'/'.build_view_path(__METHOD__), $this->data);			
-		$this->template->render();	
+		$this->template->write_view('content', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
+		$this->template->render();
 	}
 }
 

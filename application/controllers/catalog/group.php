@@ -1,6 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Group extends Catalog_controller {
+class Group extends Catalog_controller
+{
 
 	public function __construct()
 	{
@@ -11,10 +12,8 @@ class Group extends Catalog_controller {
 
 	public function index($group_id)
 	{
-		
 		$this->load->model('group_model');
-		$this->data['group'] = $this->group_model->get($group_id); 
-		
+		$this->data['group'] = $this->group_model->get($group_id);
 
 		$this->data['search_category'] = 'group';
 
@@ -25,7 +24,6 @@ class Group extends Catalog_controller {
 
 		$this->_render('catalog/group');
 		return;
-
 	}
 
 	function get_results()
@@ -34,7 +32,7 @@ class Group extends Catalog_controller {
 		$input = $this->input->get_post(null, true);
 
 		//format offset
-		$offset = ($input['search_page'] -1 ) * CATALOG_RESULT_COUNT;
+		$offset = ($input['search_page'] - 1) * CATALOG_RESULT_COUNT;
 
 		// go get results
 		$results = $this->_get_all_group_projects($input['primary_key'], $offset, CATALOG_RESULT_COUNT);
@@ -46,34 +44,34 @@ class Group extends Catalog_controller {
 		$retval['results'] = $this->_format_results($results, 'title');
 
 		//pagination
-		$page_count = (count($full_set) > CATALOG_RESULT_COUNT) ? ceil(count($full_set)/ CATALOG_RESULT_COUNT): 0;
+		$page_count = (count($full_set) > CATALOG_RESULT_COUNT) ? ceil(count($full_set) / CATALOG_RESULT_COUNT) : 0;
 		$retval['pagination'] = (empty($page_count)) ? '' : $this->_format_pagination($input['search_page'], $page_count);   // $first_page, $page_count
 
-		$retval['status']  = 'SUCCESS';
+		$retval['status'] = 'SUCCESS';
 
 		//return - results, pagination
 		if ($this->input->is_ajax_request())
 		{
 			header('Content-Type: application/json;charset=utf-8');
-			echo json_encode($retval); return;
-		}		
+			echo json_encode($retval);
+			return;
+		}
 	}
 
-	function _get_all_group_projects($group_id, $offset=0, $limit=1000000)
+	function _get_all_group_projects($group_id, $offset = 0, $limit = 1000000)
 	{
-		$params['group_id'] 		= $group_id;
-		$params['offset'] 			= $offset;
-		$params['limit'] 			= $limit;
+		$params['group_id'] = $group_id;
+		$params['offset'] = $offset;
+		$params['limit'] = $limit;
 
 		$this->load->model('project_model');
-		$projects =  $this->project_model->get_projects_by_group($params);		
+		$projects = $this->project_model->get_projects_by_group($params);
 
-		foreach ($projects as $key => $project) {			
-			 $projects[$key]['author_list'] = $this->_author_list($project['id']);
+		foreach ($projects as $key => $project)
+		{
+			$projects[$key]['author_list'] = $this->_author_list($project['id']);
 		}
 
 		return $projects;
-
 	}
-	
-}		
+}

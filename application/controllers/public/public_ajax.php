@@ -1,11 +1,11 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Public_ajax extends Public_Controller {
+class Public_ajax extends Public_Controller
+{
 
 	function language_switcher()
 	{
 		$this->lang_select();
-		
 	}
 
 	// project launch autocomplete code
@@ -21,7 +21,6 @@ class Public_ajax extends Public_Controller {
 
 		// Return data
 		echo json_encode($names);
-
 	}
 
 	function __add_author()
@@ -31,9 +30,8 @@ class Public_ajax extends Public_Controller {
 		$this->load->model('Form_generators_authors_model');
 		$auth_id = $this->Form_generators_authors_model->insert($fields);
 
-		$data = array('auth_id'=>$auth_id);
+		$data = array('auth_id' => $auth_id);
 		echo json_encode($data);
-
 	}
 
 	function add_author()
@@ -42,9 +40,9 @@ class Public_ajax extends Public_Controller {
 
 		//get next counter
 		$data['counter']++;
-		
+
 		$html = $this->load->view('public/project_launch/author_block', $data, TRUE);
-		$data = array('html'=>$html);
+		$data = array('html' => $html);
 		echo json_encode($data);
 	}
 
@@ -54,9 +52,9 @@ class Public_ajax extends Public_Controller {
 
 		//get next counter
 		$data['counter']++;
-		
+
 		$html = $this->load->view('public/project_launch/translator_block', $data, TRUE);
-		$data = array('html'=>$html);
+		$data = array('html' => $html);
 		echo json_encode($data);
 	}
 
@@ -71,20 +69,20 @@ class Public_ajax extends Public_Controller {
 		$names = $this->user_model->search_by($term, $search_field);
 
 		// Return data
-		echo json_encode($names);		
+		echo json_encode($names);
 	}
 
 	function test_search_readers()
 	{
-		$search_field 	= 'display_name';
-		$term 			= 'Caprisha';
+		$search_field = 'display_name';
+		$term = 'Caprisha';
 
 		$this->load->model('user_model');
 
-		$names = $this->user_model->search_by($term, $search_field);	
-		
+		$names = $this->user_model->search_by($term, $search_field);
+
 		var_dump($names);
 
-		echo $this->db->last_query();	
-	}	
+		echo $this->db->last_query();
+	}
 }

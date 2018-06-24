@@ -1,6 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Author extends Catalog_controller {
+class Author extends Catalog_controller
+{
 
 	public function __construct()
 	{
@@ -11,9 +12,8 @@ class Author extends Catalog_controller {
 
 	public function index($author_id)
 	{
-		
 		$this->load->model('author_model');
-		$this->data['author'] = $this->author_model->get($author_id);		
+		$this->data['author'] = $this->author_model->get($author_id);
 
 		$this->data['search_category'] = 'author';
 
@@ -24,7 +24,6 @@ class Author extends Catalog_controller {
 
 		$this->_render('catalog/author');
 		return;
-
 	}
 
 	function get_results()
@@ -33,7 +32,7 @@ class Author extends Catalog_controller {
 		$input = $this->input->get_post(null, true);
 
 		//format offset
-		$offset = ($input['search_page'] -1 ) * CATALOG_RESULT_COUNT;
+		$offset = ($input['search_page'] - 1) * CATALOG_RESULT_COUNT;
 
 		// go get results
 		$results = $this->_get_all_author($input['primary_key'], $offset, CATALOG_RESULT_COUNT, $input['search_order'], $input['project_type']);
@@ -45,10 +44,10 @@ class Author extends Catalog_controller {
 		$retval['results'] = $this->_format_results($results, 'title');
 
 		//pagination
-		$page_count = (count($full_set) > CATALOG_RESULT_COUNT) ? ceil(count($full_set)/ CATALOG_RESULT_COUNT): 0;
+		$page_count = (count($full_set) > CATALOG_RESULT_COUNT) ? ceil(count($full_set) / CATALOG_RESULT_COUNT) : 0;
 		$retval['pagination'] = (empty($page_count)) ? '' : $this->_format_pagination($input['search_page'], $page_count);   // $first_page, $page_count
 
-		$retval['status']  = 'SUCCESS';
+		$retval['status'] = 'SUCCESS';
 
 		//$retval['page_count'] = $page_count;
 		//$retval['full_set'] = $full_set;
@@ -57,17 +56,18 @@ class Author extends Catalog_controller {
 		if ($this->input->is_ajax_request())
 		{
 			header('Content-Type: application/json;charset=utf-8');
-			echo json_encode($retval); return;
-		}		
+			echo json_encode($retval);
+			return;
+		}
 	}
 
-	function _get_all_author($author_id, $offset=0, $limit=1000000, $search_order='alpha', $project_type='either')
+	function _get_all_author($author_id, $offset = 0, $limit = 1000000, $search_order = 'alpha', $project_type = 'either')
 	{
-		$params['author_id'] 		= $author_id;
-		$params['offset'] 			= $offset;
-		$params['limit'] 			= $limit;
-		$params['search_order'] 	= $search_order;
-		$params['project_type'] 	= $project_type;
+		$params['author_id'] = $author_id;
+		$params['offset'] = $offset;
+		$params['limit'] = $limit;
+		$params['search_order'] = $search_order;
+		$params['project_type'] = $project_type;
 
 		$this->load->model('project_model', 'model');
 		$projects = $this->model->get_projects_by_author($params);
@@ -77,7 +77,7 @@ class Author extends Catalog_controller {
 		$this->load->model('author_model');
 		$this->load->model('section_model');
 
-		foreach($projects as $key=>$project)
+		foreach ($projects as $key => $project)
 		{
 			if ($project['primary_type'] == 'section')
 			{
@@ -87,7 +87,7 @@ class Author extends Catalog_controller {
 				{
 					$projects[$key]['author_list'] = 'n/a';
 					continue;
-				}	
+				}
 
 				//echo $section->author_id. '::';
 
@@ -95,33 +95,28 @@ class Author extends Catalog_controller {
 				if (empty($authors))
 				{
 					$projects[$key]['author_list'] = 'n/a';
-				}	
+				}
 				else
 				{
-					$authors = array_slice($authors, 0 , 20); //only show 20 authors on page
+					$authors = array_slice($authors, 0, 20); //only show 20 authors on page
 					$projects[$key]['author_list'] = $this->_authors_string($authors);
 				}
-			}	
+			}
 			else
 			{
 				$authors = $this->author_model->get_author_list_by_project($project['primary_key'], 'author');
 				if (empty($authors))
 				{
 					$projects[$key]['author_list'] = 'n/a';
-				}	
+				}
 				else
 				{
-					$authors = array_slice($authors, 0 , 20); //only show 20 authors on page
+					$authors = array_slice($authors, 0, 20); //only show 20 authors on page
 					$projects[$key]['author_list'] = $this->_authors_string($authors);
 				}
-
-			}	
-
-
-		}	
+			}
+		}
 
 		return $projects;
-
 	}
-	
-}		
+}

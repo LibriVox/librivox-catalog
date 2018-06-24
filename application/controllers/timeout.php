@@ -1,6 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Timeout extends CI_Controller {
+class Timeout extends CI_Controller
+{
 
 #	public function index()
 #	{
@@ -15,7 +16,8 @@ class Timeout extends CI_Controller {
 #
 #	}
 
-	public function index() {
+	public function index()
+	{
 		$timeout = 60;
 		sleep($timeout);
 		echo "Slept for $timeout seconds.";
