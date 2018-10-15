@@ -1,0 +1,6 @@
+system/
+application/config/config.php
+application/config/database.php
+application/config/iarchive_uploader.php
+public_html/librivox-validator-books
+public_html/uploads
