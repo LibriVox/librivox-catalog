@@ -149,28 +149,6 @@ class CI_Form_validation {
 		return $this;
 	}
 
-	/**
-	 * By default, form validation uses the $_POST array to validate
-	 *
-	 * If an array is set through this method, then this array will
-	 * be used instead of the $_POST array
-	 *
-	 * Note that if you are validating multiple arrays, then the
-	 * reset_validation() function should be called after validating
-	 * each array due to the limitations of CI's singleton
-	 *
-	 * @param	array	$data
-	 * @return	void
-	 */
-	public function set_data($data = '')
-	{
-		if ( ! empty($data) && is_array($data))
-		{
-			$this->validation_data = $data;
-		}
-	}
-	
-
 	// --------------------------------------------------------------------
 
 	/**
