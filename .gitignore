@@ -1,4 +1,3 @@
-system/
 application/config/config.php
 application/config/database.php
 application/config/iarchive_uploader.php
