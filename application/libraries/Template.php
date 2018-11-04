@@ -30,7 +30,7 @@
  * @version 1.4.1
  * 
  */
-class CI_Template {
+class Template {
    
    var $CI;
    var $config;
@@ -56,7 +56,7 @@ class CI_Template {
    * @access  public
    */
    
-   function CI_Template()
+   function Template()
    {
       // Copy an instance of CI so we can use the entire framework.
       $this->CI =& get_instance();
