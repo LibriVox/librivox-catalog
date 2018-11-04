@@ -1,6 +1,6 @@
 <?php
 
-require_once(APPPATH.'libraries/underscore.php');
+require_once(APPPATH.'libraries/Underscore.php');
 
 class Project_model extends MY_Model
 {
@@ -588,4 +588,3 @@ class Project_model extends MY_Model
         return $query->result_array();
     }
 }
-        
