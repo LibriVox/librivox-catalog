@@ -8,6 +8,7 @@
   <description><![CDATA[<?= strip_tags($project->description) ?>]]></description>
   <!--<genre>project element=Genre</genre>-->
   <!--<language>project element=lang.code</language>-->
+  <itunes:type>serial</itunes:type>
   <itunes:author>LibriVox</itunes:author>
   <itunes:summary><![CDATA[<?= strip_tags($project->description) ?>]]></itunes:summary>
   <itunes:owner>
@@ -21,6 +22,7 @@
   <?php foreach($sections as $section): ?>
   <item>
     <title><![CDATA[<?= $section->title?>]]></title>
+    <itunes:episode><![CDATA[<?= $section->section_number?>]]></itunes:episode>
     <!--<reader>file element=reader</reader> -->
     <link><![CDATA[<?=  $project->url_librivox?>]]></link>
       <?php /* 1 kbps is equivalent to 125 bytes per second. Our 64kbps
