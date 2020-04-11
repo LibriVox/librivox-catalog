@@ -1,6 +1,6 @@
 <?php
 
-class MY_Form_Validation extends CI_Form_Validation
+class MY_Form_validation extends CI_Form_validation
 {
 	function alpha_dash_space($str)
     {

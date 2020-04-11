@@ -285,7 +285,7 @@ class Librivox_API{
 			->get('authors a')
 			->result_array();
 
-		require_once(APPPATH.'libraries/underscore.php');
+		require_once(APPPATH.'libraries/Underscore.php');
 
 		$project_ids = __()->pluck($result , 'project_id');
 
@@ -313,7 +313,7 @@ class Librivox_API{
 
 		//return $result;
 
-		require_once(APPPATH.'libraries/underscore.php');
+		require_once(APPPATH.'libraries/Underscore.php');
 
 		return $project_ids = __()->pluck($result , 'project_id');
 		//return implode(', ', $project_ids);
