@@ -58,7 +58,7 @@ class Author_manager extends Private_Controller
 			$project_authors = $this->project_author_model->get_many_by(array('author_id' => $author_id));
 			$new_project_authors = $this->project_author_model->get_many_by(array('author_id' => $update['author_id']));
 
-			require_once(APPPATH . 'libraries/underscore.php');
+			require_once(APPPATH . 'libraries/Underscore.php');
 			$project_ids = __()->pluck($project_authors, 'project_id');
 			$new_project_ids = __()->pluck($new_project_authors, 'project_id');
 
@@ -180,7 +180,7 @@ class Author_manager extends Private_Controller
 
 		var_dump($new_project_authors);
 
-		require_once(APPPATH . 'libraries/underscore.php');
+		require_once(APPPATH . 'libraries/Underscore.php');
 		$project_ids = __()->pluck($project_authors, 'project_id');
 		$new_project_ids = __()->pluck($new_project_authors, 'project_id');
 
