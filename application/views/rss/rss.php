@@ -18,6 +18,7 @@
   <itunes:category text="Arts">
     <itunes:category text="Literature" />
   </itunes:category>
+  <itunes:image href="<?= $project->coverart_jpg ?>"/>
   <!-- file loop -->
   <?php foreach($sections as $section): ?>
   <item>
