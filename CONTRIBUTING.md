@@ -8,6 +8,5 @@ $ git commit
 $ git review
 ```
 
-There are many issues, unfortunately most of them are not tracked publicly and
-are hidden away in random Google Docs. Converting them to GitHub issues should
-really be Issue 0.
+Issues are currently listed ("tracked" would be too generous) in a [Google
+doc](https://docs.google.com/spreadsheets/u/1/d/1LTMEmwxH1vKLwNXN4U3wop69ElWFjnmqWyV5Jxbl9qc/). Converting these to GitHub issues should be issue #0.
