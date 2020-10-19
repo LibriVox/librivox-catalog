@@ -158,9 +158,9 @@ class Librivox_API{
 
 				if (!empty($project['sections']))
 				{
-					foreach ($project['sections'] as $key=>$section)
+					foreach ($project['sections'] as $ks=>$section)
 					{
-						$project['sections'][$key]['readers'] =$this->_get_readers($section['id']);
+						$project['sections'][$ks]['readers'] =$this->_get_readers($section['id']);
 					}
 				}
 
