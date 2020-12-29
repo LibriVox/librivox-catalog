@@ -177,9 +177,7 @@ class Project_launch extends Public_Controller
 		$data['titlelc'] = clean_title($fields['title']);
 		$data['titleid'] = create_title_id($data['titlelc']);
 
-		//$data['date']			= concat_date($fields['expected_completion_year'], $fields['expected_completion_month'], $fields['expected_completion_day']);
-
-		$data['downloads'] = "[color=red][b]Please don't download files belonging to projects in process (unless you are the BC or PL). Our servers are not set up to handle the greater volume of traffic. Please wait until the project has been completed. Thanks![/b][/color]<p>";
+		$data['date'] = concat_date($fields['expected_completion_year'], $fields['expected_completion_month'], $fields['expected_completion_day']);
 
 		$this->load->model('genre_model');
 		$data['genres'] = $this->genre_model->convert_ids_to_name($fields['genres']);
@@ -199,51 +197,43 @@ class Project_launch extends Public_Controller
 		$this->insertMethodJS();
 
 		$this->{$fields['project_type'] . '_work'}($data);
-	}
-
-	public function solo_work($data)
-	{
-		$data['url'] = $data['titleid'] . "_##_" . $data['authorlc'][0] . "_128kb.mp3 " . lang('project_launch_template_section_number') . " (e.g. " . $data['titleid'] . "_01_" . $data['authorlc'][0] . "_128kb.mp3)";
 
 		//return $this->load->view($this->base_path.'/'.build_view_path(__METHOD__), $data, true);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $data);
 		$this->template->render();
 	}
 
-	public function collaborative_work($data)
+	public function solo_work(&$data)
 	{
-		$data['url'] = $data['titleid'] . "_##_" . $data['authorlc'][0] . "_128kb.mp3 " . lang('project_launch_template_section_number') . " (e.g. " . $data['titleid'] . "_01_" . $data['authorlc'][0] . "_128kb.mp3)";
-
-		//return $this->load->view($this->base_path.'/'.build_view_path(__METHOD__), $data, true);
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $data);
-		$this->template->render();
+		$data['url'] = $data['titleid'] . '_##_' . $data['authorlc'][0] . '_128kb.mp3 ' .
+			lang('project_launch_template_section_number') . ' (e.g. ' . $data['titleid'] .
+			'_01_' . $data['authorlc'][0] . '_128kb.mp3)';
 	}
 
-	public function dramatic_work($data)
+	public function collaborative_work(&$data)
 	{
-		$data['url'] = $data['titleid'] . "_[role]_[#]_128kb.mp3 " . lang('project_launch_template_act_number');
-
-		//return $this->load->view($this->base_path.'/'.build_view_path(__METHOD__), $data, true);
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $data);
-		$this->template->render();
+		$this->solo_work($data);
 	}
 
-	public function poetry_weekly_work($data)
+	public function dramatic_work(&$data)
 	{
-		$data['url'] = $data['titleid'] . "_" . $data['authorlc'][0] . "_your initials_128kb.mp3";
-
-		//return $this->load->view($this->base_path.'/'.build_view_path(__METHOD__), $data, true);
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $data);
-		$this->template->render();
+		$data['url'] = array();
+		$data['url'][0] = $data['titleid'] . '_[i]role[/i]_#.mp3 ' . lang('project_launch_template_act_number') .
+			' (e.g. ' . $data['titleid'] . '_romeo_1.mp3)';
+		$data['url'][1] = $data['titleid'] . '_#_' . $data['authorlc'][0] . '_128kb.mp3 ' .
+			lang('project_launch_template_act_number') . ' (e.g. ' . $data['titleid'] .
+			'_1_' . $data['authorlc'][0] . '_128kb.mp3)';
 	}
 
-	public function poetry_fortnightly_work($data)
+	public function poetry_weekly_work(&$data)
 	{
-		$data['url'] = $data['titleid'] . "_" . $data['authorlc'][0] . "_your initials_128kb.mp3";
+		$data['url'] = $data['titleid'] . "_" . $data['authorlc'][0] . '_[i]your initials in lowercase[/i]_128kb.mp3 (e.g. ' .
+			$data['titleid'] . '_' . $data['authorlc'][0] . '_klh_128kb.mp3)';
+	}
 
-		//return $this->load->view($this->base_path.'/'.build_view_path(__METHOD__), $data, true);
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $data);
-		$this->template->render();
+	public function poetry_fortnightly_work(&$data)
+	{
+		$this->poetry_weekly_work($data);
 	}
 
 	private function _validate_form()

@@ -2,26 +2,6 @@
 
 // functions specific to setting up strings for the Result Page
 
-function translator_name($fields)
-{
-	if (empty($fields['trans_name']))
-	{
-		return '';
-	}
-
-	$return = lang('result_page_translated_by').' '.$fields['trans_name'];
-
-	$dates = ' ('.$fields['trans_yob'];
-	if (!empty($fields['trans_yod']))
-	{
-		$dates .= ' - '.$fields['trans_yod'];
-	}
-	$dates .= ')';
-
-	$return .= $dates;
-	return $return;
-}
-
 function author_name($fields)
 {
 	$fields['dob'] = (empty($fields['dob'])) ? '' : $fields['dob'];
@@ -64,7 +44,7 @@ function create_full_title($project)
 
 function summary_author($fields)
 {
-	return " (".lang('proj_launch_project_summary_by')." " . $fields['brief_summary_by'] . ")";
+	return '(' . lang('project_launch_template_summary_by') . ' ' . $fields['brief_summary_by'] . ')';
 }
 
 function create_title_id($titlelc)
@@ -89,8 +69,6 @@ function clean_summary($project_launch_data)
 	return $project_launch_data->brief_summary . $summary = (empty($project_launch_data->brief_summary_by)) ? '' :' - Summary by '. $project_launch_data->brief_summary_by;
 }
 
-
-
 function copyright_notice($fields)
 {
 	//Copyright notices for death plus 50/70 countries
@@ -99,12 +77,11 @@ function copyright_notice($fields)
     $author = $fields['first_name']. " " .$fields['last_name'];
 
 	if ($copyauthor < 69) {
-		$notice = "[color=darkred]".sprintf(lang('project_launch_template_copyright_warning'), $author, $fields['dod'])."[/color]<p>";
+		$notice = sprintf(lang('project_launch_template_copyright_warning'), $author, $fields['dod']);
 	} else {
 		$notice = array();
 	}
 	return $notice;
-
 }
 
 function create_array_from_lang($check_string, $array_keys, $alpha = false)
