@@ -1,84 +1,284 @@
 <div class="tpl">
-<h1><?= $page_title ?></h1>
-<h2><?= lang('project_launch_template_copy_from_here')?></h2>
+	<div style="height:100px;">
+		<div class="pull-left" >
+			<h1><?= $page_title?></h1>
+			<h2><?= lang('project_launch_template_copy_from_here')?></h2>
+		</div>
+		<div class="pull-right">
+			<?= $forum_link; ?>
+			<?= $help_link; ?>
+		</div>
+	</div>
+	<hr />
+<textarea id="copy_content" style="width:1200px;height:600px;">
+<?php
+	$upload_msg = function() use ($project_type, $project_img_url)
+	{
+		echo "\n";
+		echo lang('project_launch_template_upload_with_uploader'), "\n";
 
-<hr />
-  
-<?= sprintf(lang('project_launch_template_author_line'),$title, $authorall, $translatorall   )?>
+		if ($project_type != 'solo')
+		{
+			echo '[img]' . base_url() . "${project_img_url}[/img]\n";
+			echo lang('project_launch_template_if_you_have_trouble'), "\n";
+		}
 
-[quote] <?= $brief_summary ?><?= $brief_summary_by ?>  [/quote]<p>
+		echo "\n";
+		echo '[b]', lang('project_launch_template_select_mc'), "[/b] xxxx\n";
+		echo "\n";
 
-<p><?= $notice ?><p>
+		if ($project_type == 'solo')
+			echo lang('project_launch_template_copy_and_paste_solo'), "\n";
+		else
+			echo lang('project_launch_template_copy_and_paste_group'), "\n";
 
-<?= $page_intro ?>
+		if ($project_type == 'poetry_weekly' || $project_type == 'poetry_fortnightly')
+		{
+			echo "\n";
+			echo lang('project_launch_template_include_credit_name'), "\n";
+		}
+	};
 
-<?= $downloads ?>
+	$author_text = $author[0];
+	$author_all_text = $authorall[0];
+	if (count($author) > 1)
+	{
+		$author_text .= ' and others';
+		$author_all_text .= ' and others';
+	}
+	if ($translator[0])
+	{
+		$author_text .= ', ' . lang('project_launch_template_trans_by') . ' ' . $translator[0];
+		$author_all_text  .= ', ' . lang('project_launch_template_trans_by') . ' ' . $translatorall[0];
+		if (count($translator) > 1)
+		{
+			$author_text .= ' and others';
+			$author_all_text .= ' and others';
+		}
+	}
 
-[MW]xxxx[/MW]<p>
+	echo '[color=indigo][size=150][b]', sprintf(lang('project_launch_template_title_author'), $title, $author_all_text), "[/b][/size][/color]\n";
 
-=========================================== <br /> 
-<?= lang('project_launch_template_temp_paragraph')?> <p>
+	foreach ($notice as $notice_msg)
+	{
+		if (!empty($notice_msg))
+		{
+			echo "\n";
+			echo "[color=red]${notice_msg}[/color]\n";
+		}
+	}
 
- [list] 
-<br /> [*]<?= lang('project_launch_template_author_wiki')?> <?= $link_to_auth ?>  
-<br /> [*]<?= lang('project_launch_template_title_wiki')?> <?= $link_to_book ?>  
-<br /> [*]<?= lang('project_launch_template_num_sections')?> <?= $num_sections ?>  
-<br /> [*]<?= lang('project_launch_template_has_preface')?> <?= $has_preface ?>  
-<br /> [*]<?= lang('project_launch_template_orig_pub_date')?> <?= $pub_year ?>  
-<br /> [*]<?= lang('project_launch_template_name_credit')?> <?= $soloist_name ?>
-<br /> <?= lang('project_launch_template_self_url')?> <?= $soloist_link ?>  [/list]<br />
-============================================ <p>
+	echo "\n";
+	echo "[quote]$brief_summary ${summaryauthor}[/quote]\n";
 
-<?= lang('project_launch_template_genres')?><br />
- <?= $genres ?> <p>
+	if ($project_type == 'collaborative' || $project_type == 'dramatic')
+	{
+		echo "\n";
+		echo lang('project_launch_template_text_source'), " $link_to_text\n";
+		echo "\n";
+		echo lang('project_launch_template_deadline'), "\n";
+		echo "\n";
 
-<?= lang('project_launch_template_keywords')?><br />
- <?= $keyword ?> <p>
- 
- 
+		if ($project_type == 'collaborative')
+		{
+			echo lang('project_launch_template_claiming_sections'), "\n";
+		}
+		else
+		{
+			echo lang('project_launch_template_claiming_roles'), "\n";
+			echo lang('project_launch_template_note_public_domain'), "\n";
+		}
 
- 
- 
- 
+		echo "\n";
+		echo lang('project_launch_template_new_to_recording'), "\n";
+		echo "\n";
+		echo '[b]', lang('project_launch_template_proof_level'), "[/b] $proof_level\n";
+		echo lang('project_launch_template_prospective_pls'), "\n";
+	}
+	else if ($project_type == 'poetry_weekly' || $project_type == 'poetry_fortnightly')
+	{
+		echo "\n";
 
-[*]<?= lang('project_launch_template_reader_will_record')?> 
-<br /><?= lang('project_launch_template_seconds_of_silence')?>
+		if ($project_type == 'poetry_weekly')
+		{
+			echo lang('project_launch_template_each_week_poem_chosen'), "\n";
+			echo sprintf(lang('project_launch_template_this_week_poem'), $link_to_text), "\n";
+		}
+		else
+		{
+			echo lang('project_launch_template_each_fortnight_poem_chosen'), "\n";
+			echo sprintf(lang('project_launch_template_this_fortnight_poem'), $link_to_text), "\n";
+		}
 
-<p><?= lang('project_launch_template_start_of_recording')?>[list][*]<?= sprintf(lang('project_launch_template_chapter_number'), $title)?>[*] <?= lang('project_launch_template_if_you_wish')?> 
-<br /> [*] <?= lang('project_launch_template_say')?> 
-<br /> <?= sprintf(lang('project_launch_template_author_intro'),$title, $author, $translator )?> [/list] <p>
+		echo "\n";
+		echo lang('project_launch_template_new_to_recording'), "\n";
+		echo "\n";
+		echo lang('project_launch_template_begin_with_disclaimer'), "\n";
+		echo lang('project_launch_template_seconds_of_silence'), "\n";
+		echo '[quote]', sprintf(lang('project_launch_template_title_author_read_by'), $title, $author[0]), "\n";
+		echo lang('project_launch_template_title_author_read_by_include'), "[/quote]\n";
+		echo "\n";
+		echo '[b]', lang('project_launch_template_read_poem'), "[/b]\n";
+		echo "\n";
+		echo "[quote]\n";
+		echo lang('project_launch_template_insert_poem_text'), "\n";
+		echo "[/quote]\n";
+		echo "\n";
+		echo '[b]', lang('project_launch_template_at_end_of_reading'), "[/b]\n";
+		echo '[quote]', lang('project_launch_template_end_of_poem'), "[/quote]\n";
+		echo lang('project_launch_template_end_silence'), "\n";
+		echo "\n";
+		echo '[b]', lang('project_launch_template_filename'), "[/b] $url\n";
+		$upload_msg();
+		echo "\n";
+		echo lang('project_launch_template_deadline_poetry'), "\n";
+		echo "\n";
+		echo lang('project_launch_template_check_back'), "\n";
+	}
 
-<?= lang('project_launch_template_shortened_intro')?>
-[list][*]<?= sprintf(lang('project_launch_template_public_domain'),$title, $author, $translator )?>  
-[*]<?= lang('project_launch_template_if_you_wish_2')?> 
-<br /> <?= lang('project_launch_template_recording_by')?> 
-<br /> [*] <?= lang('project_launch_template_if_applicable')?> 
-<br /> <?= lang('project_launch_template_chapter_title')?>[/list]
+	echo "\n";
+	echo '[color=red]', lang('project_launch_template_please_dont_download'), "[/color]\n";
+	echo "\n";
+	echo "[MW]xxxx[/MW]\n";
+	if ($project_type == 'poetry_weekly' || $project_type == 'poetry_fortnightly')
+	{
+		echo "Project Code: $project_code\n";
+	}
+	else
+	{
+		echo str_repeat('=', 40), "\n";
+		echo lang('project_launch_template_temp_paragraph'), "\n";
+		echo "\n";
+		echo "[list]\n";
+		echo "[*]Project Code: $project_code\n";
+		foreach ($link_to_auth as $key => $link_to_auth_single)
+		{
+			echo '[*]', lang('project_launch_template_author_wiki');
+			if (!empty($link_to_auth_single))
+				echo " $link_to_auth_single ($author[$key])\n";
+		}
+		echo '[*]', lang('project_launch_template_title_wiki'), " $link_to_book\n";
+		echo '[*]', lang('project_launch_template_num_sections'), " $num_sections\n";
+		echo '[*]', lang('project_launch_template_has_preface'), " $has_preface\n";
+		echo '[*]', lang('project_launch_template_orig_pub_date'), " $pub_year\n";
+		echo '[*]', lang('project_launch_template_name_credit'), " $soloist_name\n";
+		echo '[*]', lang('project_launch_template_self_url'), " $soloist_link\n";
+		echo "[/list]\n", str_repeat('=', 40), "\n";
+		echo "\n";
+		echo lang('project_launch_template_genres'), " $genres\n";
+		echo "\n";
+		echo lang('project_launch_template_keywords'), " $keyword\n";
+		echo "\n";
+		echo str_repeat('=', 40), "\n";
+	}
 
-<?= lang('project_launch_template_end_of_recording')?>[list][*]<?= lang('project_launch_template_end_of_section')?> 
-<br /> <?= lang('project_launch_template_end_of_chapter')?> 
-<br /> [*]<?= lang('project_launch_template_if_you_wish_2')?> 
-<br /> <?= lang('project_launch_template_recording_by')?><p>
+	if ($project_type == 'solo')
+	{
+		echo "\n";
+		echo lang('project_launch_template_text_source'), " $link_to_text\n";
+		echo "\n";
+		echo '[b]', lang('project_launch_template_target_completion_date'), "[/b] $date\n";
+		echo "\n";
+		echo '[b]', lang('project_launch_template_proof_level'), "[/b] $proof_level\n";
+		echo lang('project_launch_template_prospective_pls'), "\n";
+		echo "\n";
+		echo lang('project_launch_template_soloist_note'), "\n";
+	}
 
-[*]<?= lang('project_launch_template_end_of_book')?> 
-<br /> <?= sprintf(lang('project_launch_template_end_of_title'),$title, $author, $translator )?> [/list] 
-<br /> <?= lang('project_launch_template_end_silence')?> <p>
+	if ($project_type == 'solo' || $project_type == 'collaborative')
+	{
+		echo "\n";
+		echo '[b]', lang('project_launch_template_start_of_recording'), "[/b]\n";
+		echo lang('project_launch_template_seconds_of_silence'), "\n";
+		echo "\n";
+		echo ($project_type == 'solo') ? lang('project_launch_template_for_first_say') : lang('project_launch_template_say'), "\n";
+		echo sprintf(lang('project_launch_template_section_of_first'), $title,
+			lang('project_launch_template_this_is_a_librivox_recording'), $title,
+			$author_text), "\n";
 
-[*]<?= lang('project_launch_template_example_filename')?>  <br />  <?= $url ?> <p>
+		if ($project_type == 'solo')
+		{
+			echo "\n";
+			echo lang('project_launch_template_shortened_intro'), "\n";
+			echo sprintf(lang('project_launch_template_section_of_second'), $title, $author_text), "\n";
+		}
 
-[*]<?= lang('project_launch_template_example_tags')?> 
-<br /> <?= lang('project_launch_template_title')?> ## - [Section title] 
-<br /> <?= lang('project_launch_template_artist')?>  <?= $author ?>
-<br /> <?= lang('project_launch_template_album')?>  <?= $title ?> <p>
+		echo "\n";
+		echo '[b]', lang('project_launch_template_end_of_recording'), "[/b]\n";
+		echo lang('project_launch_template_say'), "\n";
+		echo lang('project_launch_template_end_of_section'), "\n";
+		echo "\n";
+		echo lang('project_launch_template_if_final_section'), "\n";
+		echo sprintf(lang('project_launch_template_end_of_title'), $title, $author_text), "\n";
+		echo "\n";
+		echo lang('project_launch_template_end_silence'), "\n";
+	}
+	else if ($project_type == 'dramatic')
+	{
+		echo "\n";
+		echo '[b]', lang('project_launch_template_for_individual_roles'), "[/b]\n";
+		echo lang('project_launch_template_one_file_per_act'), "\n";
+		echo lang('project_launch_template_character_read_by'), "\n";
+		echo "\n";
+		echo lang('project_launch_template_space_between_lines'), "\n";
+		echo "\n";
+		echo '[b]', lang('project_launch_template_for_narration'), "[/b]\n";
+		echo lang('project_launch_template_seconds_of_silence'), "\n";
+		echo "\n";
+		echo lang('project_launch_template_say'), "\n";
+		echo sprintf(lang('project_launch_template_act_of'), $title, $author_text,
+			lang('project_launch_template_this_is_a_librivox_recording')), "\n";
+		echo "\n";
+		echo lang('project_launch_template_end_of_file'), "\n";
+		echo lang('project_launch_template_end_of_act'), "\n";
+		echo "\n";
+		echo lang('project_launch_template_if_final_section'), "\n";
+		echo sprintf(lang('project_launch_template_end_of_title'), $title, $author_text), "\n";
+		echo "\n";
+		echo lang('project_launch_template_end_silence'), "\n";
+	}
 
-<?= lang('project_launch_template_transfer_of_files')?>
-<br /> [color=blue][i][b]<?= lang('project_launch_template_please_post')?>
-<br /> <?= lang('project_launch_template_please_post_length')?>[/b][/i][/color]
-<br /> [list][*]<?= lang('project_launch_template_upload_with_uploader')?>
-<br /> http://upload.librivox.org 
-<br /> [img]http://kayray.org/audiobooks/librivox/login.jpg[/img] 
-<br /> <?= lang('project_launch_template_if_you_have_trouble')?>
-<br /> [*][color=blue]<?= lang('project_launch_template_select_mc')?> yy - yyyyy[/color]
-<br /> [*][color=#FF0000][b]<?= lang('project_launch_template_please_post_link')?>[/b][/color]
-<br /> [*]<?= lang('project_launch_template_please_check_send_recording')?>[/list][/list]<p>
+	if (!($project_type == 'poetry_weekly' || $project_type == 'poetry_fortnightly'))
+	{
+		echo "\n";
+		echo '[b]', lang('project_launch_template_filename'), '[/b]';
+		if ($project_type == 'dramatic')
+		{
+			echo "\n", lang('project_launch_template_for_individual_roles'), " $url[0]\n";
+			echo lang('project_launch_template_for_final_files'), " $url[1]\n";
+		}
+		else
+		{
+			echo " $url\n";
+		}
+
+		$upload_msg();
+	}
+
+	if ($project_type == 'poetry_weekly')
+	{
+		echo "\n";
+		echo lang('project_launch_template_suggest_poem_weekly'), ' ';
+		echo lang('project_launch_template_suggest_poem_link'), "\n";
+	}
+	else if ($project_type == 'poetry_fortnightly')
+	{
+		echo "\n";
+		echo lang('project_launch_template_suggest_poem_fortnightly'), ' ';
+		echo lang('project_launch_template_suggest_poem_link'), "\n";
+	}
+
+	if ($project_type != 'solo')
+	{
+		echo "\n";
+		echo lang('project_launch_template_any_questions'), "\n";
+	}
+?>
+</textarea>
+	<hr />
+	<div style="height:100px;">
+		<div class="pull-right">
+			<?= $forum_link; ?>
+		</div>
+	</div>
 </div>
