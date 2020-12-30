@@ -99,7 +99,7 @@ $lang['project_launch_template_questions_how'] = '¿Necesita saber cómo?';
 $lang['project_launch_template_check_recording_notes'] = 'Por favor lea las Notas de Grabación antes de grabar: [url]https://forum.librivox.org/viewtopic.php?p=6430#p6430[/url]';
 $lang['project_launch_template_useful_link'] = 'Si es su primera grabación, por favor también vea: [url]https://wiki.librivox.org/index.php/Gu%C3%ADa_Para_Nuevos_Lectores[/url]';
 $lang['project_launch_template_begin_with_disclaimer'] = 'Empiece su grabación con la forma breve de la introducción:';
-$lang['project_launch_template_title_author_read_by'] = '%s de %s, leído para LibriVox.org por [su nombre].';
+$lang['project_launch_template_title_author_read_by'] = '%s de %s, leído para librivox.org por [su nombre].';
 $lang['project_launch_template_title_author_read_by_include'] = '[Si desea, agregue la fecha, su ubicación y/o la liga a su sitio personal.]';
 $lang['project_launch_template_read_poem'] = 'Ahora lea el poema:';
 $lang['project_launch_template_insert_poem_text'] = 'PONGA AQUI EL TEXTO DEL POEMA';

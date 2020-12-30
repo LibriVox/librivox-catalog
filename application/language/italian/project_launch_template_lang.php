@@ -31,7 +31,7 @@ $lang['project_launch_template_before_recording'] = 'PRIMA di registrare:';
 $lang['project_launch_template_start_of_recording'] = 'ALL\'INIZIO della registrazione';
 $lang['project_launch_template_middle_of_recording'] = 'DURANTE la registrazione';
 $lang['project_launch_template_after_recording'] = 'DOPO la registrazione';
-$lang['project_launch_template_chapter_number'] = '"Capitolo [numero] di %s. Questa è una registrazione Librivox. Tutte le registazioni Librivox sono di dominio pubblico. Per maggiori informazioni o per diventare volontari visistate il sito: librivox PUNTO org."';
+$lang['project_launch_template_chapter_number'] = '"Capitolo [numero] di %s. Questa è una registrazione LibriVox. Tutte le registazioni LibriVox sono di dominio pubblico. Per maggiori informazioni o per diventare volontari visistate il sito: librivox PUNTO org."';
 $lang['project_launch_template_if_you_wish'] = 'Se vuoi, puoi dire:';
 $lang['project_launch_template_recording_by'] = 'Registrazione di [il tuo nome], [città, il tuo blog, podcast, indirizzo web]"';
 $lang['project_launch_template_say'] = 'Dire:';
@@ -73,7 +73,7 @@ $lang['project_launch_template_where_is_text_answer'] = 'Fonte (per favore per l
 $lang['project_launch_template_claim_sections'] = 'Richiedi sezioni (trovi i numeri nella prima colonna qui sotto)!';
 $lang['project_launch_template_what_name'] = 'Se questa è la tua prima registrazione, per favore facci sapere con quale nome o pseudonimo ti piacerebbe apparire nel catalogo LibriVox. Possiamo anche mettere un link a un blog o sito web personale.';
 $lang['project_launch_template_proof_listeners'] = 'Ai potenziali revisori: per favore leggete le [url=https://forum.librivox.org/viewtopic.php?f=21&t=17680][u]Listeners Wanted FAQ[/u][/url] prima di inziare l\'ascolto! Livello di accuratezza richiesto agli ascoltatori:';
-$lang['project_launch_template_claim_role'] = 'Richiedi un ruolo (i numeri nella prima colonna di seguito)! Nota: Tutte le registrazioni Librivox sono di dominio pubblico. Quando invii una registrazione, essa diventerà automaticamente di dominio pubblico.';
+$lang['project_launch_template_claim_role'] = 'Richiedi un ruolo (i numeri nella prima colonna di seguito)! Nota: Tutte le registrazioni LibriVox sono di dominio pubblico. Quando invii una registrazione, essa diventerà automaticamente di dominio pubblico.';
 $lang['project_launch_template_first_recording'] = 'Se questa è la tua prima registrazione, per favore facci sapere con quale nome o pseudonimo ti piacerebbe apparire nel catalogo LibriVox. Possiamo anche mettere un link a un blog o sito web personale.';
 $lang['project_launch_template_check_notes'] = 'Si prega di verificare le Note di Registrazione:';
 $lang['project_launch_template_set_recording_software'] = 'Imposta il tuo software di registrazione:';

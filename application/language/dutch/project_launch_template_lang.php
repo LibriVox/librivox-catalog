@@ -40,7 +40,7 @@ $lang['project_launch_template_recording_by'] = 'Opname door [jouw naam], [stad,
 $lang['project_launch_template_say'] = 'Zeg:';
 $lang['project_launch_template_author_intro'] = '%s, door %s. %s [Hoofdstuk]';
 $lang['project_launch_template_shortened_intro'] = 'Als begin van de tweede en volgende opnamen mag je ook kiezen voor dit ingekorte intro';
-$lang['project_launch_template_public_domain'] = 'Hoofdstuk [nummer] van %s door %s. %s Deze Librivox-opname is vrij van auteursrechten.';
+$lang['project_launch_template_public_domain'] = 'Hoofdstuk [nummer] van %s door %s. %s Deze LibriVox-opname is vrij van auteursrechten.';
 $lang['project_launch_template_if_applicable'] = 'Indien van toepassing, zeg:';
 $lang['project_launch_template_chapter_title'] = '[hoofdstuk titel]';
 $lang['project_launch_template_end_of_recording'] = 'Einde van de opname';
@@ -73,11 +73,11 @@ $lang['project_launch_template_is_there_deadline_answer_2'] = 'Teken a.u.b. niet
 $lang['project_launch_template_where_is_text'] = 'Waar vind ik de tekst?';
 $lang['project_launch_template_where_is_text_answer'] = 'Brontekst (lees aub alleen van deze tekst!):';
 $lang['project_launch_template_claim_sections'] = 'Kies secties (de nummers in de eerste kolom hieronder)!';
-$lang['project_launch_template_what_name'] = 'Als dit je eerste opname voor Librivox is, laat me aub weten onder welke naam of pseudoniem je vermeld wilt worden in de Librivox catalogus. We kunnen ook een link naar een persoonlijke website/blog plaatsen.';
+$lang['project_launch_template_what_name'] = 'Als dit je eerste opname voor LibriVox is, laat me aub weten onder welke naam of pseudoniem je vermeld wilt worden in de LibriVox catalogus. We kunnen ook een link naar een persoonlijke website/blog plaatsen.';
 $lang['project_launch_template_proof_listeners'] = 'Wil je graag proefluisteren? (PL-ers): lees de [url=https://forum.librivox.org/viewtopic.php?f=21&t=17680][u]Listeners Wanted FAQ[/u][/url] voor je begint! (Alleen beschikbaar in het Engels, je kunt ook hier om advies vragen als je twijfelt.) Soort proefluisteren gewenst:
 ';
 $lang['project_launch_template_claim_role'] = 'Kies rollen (de nummers in de eerste kolom hieronder)! Attentie: Alle opnamen van LibriVox worden rechtenvrij uitgegeven. Als je een opname aan ons stuurt, geef je daarmee aan dat je afstand doet van je rechten.';
-$lang['project_launch_template_first_recording'] = 'Als dit je eerste opname voor Librivox is, laat me aub weten onder welke naam of pseudoniem je vermeld wilt worden in de Librivox catalogus. We kunnen ook een link naar een persoonlijke website/blog plaatsen.';
+$lang['project_launch_template_first_recording'] = 'Als dit je eerste opname voor LibriVox is, laat me aub weten onder welke naam of pseudoniem je vermeld wilt worden in de LibriVox catalogus. We kunnen ook een link naar een persoonlijke website/blog plaatsen.';
 $lang['project_launch_template_check_notes'] = 'Lees de volgende tips voor het opnemen door (in Engels):';
 $lang['project_launch_template_set_recording_software'] = 'Stel je opname-software in op:';
 $lang['project_launch_template_channels'] = 'Kanalen (channels)';
