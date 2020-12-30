@@ -1,7 +1,7 @@
 <?php
 
 $lang['proj_launch_intro_header'] = 'LIBRIVOX: VORLAGEN GENERATOR FÜR NEUES PROJEKT';
-$lang['proj_launch_intro_1'] = 'WILLKOMMEN zum neuen Librivox Vorlagen Generator';
+$lang['proj_launch_intro_1'] = 'WILLKOMMEN zum neuen LibriVox Vorlagen Generator';
 $lang['proj_launch_intro_2'] = 'Bitte gib so viele Informationen wie möglich unten an.';
 $lang['proj_launch_intro_3'] = 'Keine Panik, Dein MC kann das später alles noch ändern.';
 $lang['proj_launch_intro_4'] = 'Wenn Du fertig bist, klicke bitte auf "Weiter", um den Code zu generieren, den Du dann im Forum posten kannst.';

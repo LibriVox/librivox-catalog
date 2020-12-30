@@ -63,8 +63,8 @@ $lang['project_launch_template_please_post_link'] = 'Quando a transferência est
 $lang['project_launch_template_please_check_send_recording'] = 'Se você tiver dificuldades ou dúvidas, consulte a seguinte página da wiki: [u][url=https://wiki.librivox.org/index.php/How_to_Send_Your_Recording]How To Send Your Recording wiki page[/url][/u].';
 $lang['project_launch_template_how_to_claim_part'] = 'Como contribuir com o projeto e como tudo funciona aqui';
 $lang['project_launch_template_how_to_claim_part_2'] = 'Para encontrar uma seção para gravar, observe o ponto 5 abaixo. Todas as seções sem nomes ao lado estão disponíveis. Clique em "Post reply" no topo da tela, à esquerda e informe qual seção você gostaria de ler (por favor, inclua o número da seção, na coluna à esquerda na lista de leitores). Leia os pontos 6 a 8 abaixo, sobre o que fazer antes, durante e depois de sua gravação.';
-$lang['project_launch_template_new_to_recording'] = 'Recém-chegado ao Librivox?';
-$lang['project_launch_template_please_read_guide'] = 'Por favor leia o [u][url=https://wiki.librivox.org/index.php/Portuguese_Newbie_Guide]Guia dos Recém-Chegado ao Librivox[/url][/u] (em português!)';
+$lang['project_launch_template_new_to_recording'] = 'Recém-chegado ao LibriVox?';
+$lang['project_launch_template_please_read_guide'] = 'Por favor leia o [u][url=https://wiki.librivox.org/index.php/Portuguese_Newbie_Guide]Guia dos Recém-Chegado ao LibriVox[/url][/u] (em português!)';
 $lang['project_launch_template_is_there_deadline'] = 'Há um prazo?';
 $lang['project_launch_template_is_there_deadline_answer'] = 'Nós pedimos que você entregue suas gravações dentro de um ou dois meses após ter reservado as seções. [color=red]Por favor, observe que, para sermos justos com os leitores que completam suas seções dentro do prazo, se você não entregar suas gravações em até dois meses, suas seções serão automaticamente reabertas para outros voluntários, a não ser que você deixe uma mensagem pedindo uma extensão de prazo.[/color] As extensões poderão ser dadas ou não, a critério do coordenador do livro (BC).Se você não puder completar suas seções, por qualquer razão, por favor, avise-me e ela voltará a aparecer como disponível. Não há problema algum; somos todos voluntários, e imprevistos acontecem.';
 $lang['project_launch_template_is_there_deadline_answer_2'] = 'Por favor, não reserve mais seções do que você será capaz de completar em dois meses.';
@@ -97,9 +97,9 @@ $lang['project_launch_template_each_fortnight_poem_chosen'] = 'A cada quinzena u
 $lang['project_launch_template_this_fortnight_poem'] = 'O poema desta quinzena pode ser encontrado [url=%s][u]aqui[/u][/url].';
 $lang['project_launch_template_questions_how'] = 'Perguntas sobre o "como"?';
 $lang['project_launch_template_check_recording_notes'] = 'Leia o tópico LV\'s Recording Notes antes da gravação: [url]https://forum.librivox.org/viewtopic.php?p=6430#p6430[/url]';
-$lang['project_launch_template_useful_link'] = 'Se esta for sua primeira gravação, esta página será útil: [url]https://wiki.librivox.org/index.php/Guia_do_rec%C3%A9m-chegado_ao_Librivox[/url]';
+$lang['project_launch_template_useful_link'] = 'Se esta for sua primeira gravação, esta página será útil: [url]https://wiki.librivox.org/index.php/Guia_do_rec%C3%A9m-chegado_ao_LibriVox[/url]';
 $lang['project_launch_template_begin_with_disclaimer'] = 'Comece a sua leitura com a introdução abreviada:';
-$lang['project_launch_template_title_author_read_by'] = '%s de %s, lido para oo LibriVox.org por [seu nome].';
+$lang['project_launch_template_title_author_read_by'] = '%s de %s, lido para oo librivox.org por [seu nome].';
 $lang['project_launch_template_title_author_read_by_include'] = '[Se você quiser, acrescente data, sua localização e sua página pessoal.]';
 $lang['project_launch_template_read_poem'] = 'Leia o poema:';
 $lang['project_launch_template_insert_poem_text'] = 'INSIRA O POEMA AQUI';
