@@ -1,16 +1,18 @@
-<div class="tpl">
-	<div style="height:100px;">
-		<div class="pull-left" >
-			<h1><?= $page_title?></h1>
-			<h2><?= lang('project_launch_template_copy_from_here')?></h2>
-		</div>
-		<div class="pull-right">
-			<?= $forum_link; ?>
-			<?= $help_link; ?>
-		</div>
+<div class="row">
+	<div class="pull-left">
+		<h1><?= $page_title?></h1>
+		<h2><?= lang('project_launch_template_copy_from_here')?></h2>
 	</div>
-	<hr />
-<textarea id="copy_content" style="width:1200px;height:600px;">
+	<div class="pull-right">
+		<?= $forum_link; ?>
+		<?= $help_link; ?>
+	</div>
+</div>
+<div class="row">
+	<button id="copy" class="btn btn-primary pull-right"><?= lang('project_launch_template_copy_button')?></button>
+</div>
+<div class="row">
+<textarea id="textarea" class="span12" style="margin-top:10px;resize:none;opacity:0">
 <?php
 	$upload_msg = function() use ($project_type, $project_img_url)
 	{
@@ -275,10 +277,4 @@
 	}
 ?>
 </textarea>
-	<hr />
-	<div style="height:100px;">
-		<div class="pull-right">
-			<?= $forum_link; ?>
-		</div>
-	</div>
 </div>
