@@ -14,8 +14,8 @@
   <meta content="text/html; charset=utf-8" http-equiv="content-type">
 
   <title>LibriVox</title>
-  <meta name="description" content="Librivox" />
-  <meta name="author" content="Librivox" />
+  <meta name="description" content="LibriVox" />
+  <meta name="author" content="LibriVox" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="<?= base_url() ?>favicon.ico">
   <link rel="stylesheet" href="<?= base_url() ?>css/style.css?v=1">
@@ -38,7 +38,7 @@
 		
 			<!-- Site title/Logo and tagline -->
 			<hgroup class="logo-wrap">
-				<h1 class="logo"><a href="<?= base_url(); ?>"><img src="<?= base_url() ?>images/librivox-logo.png" alt="librivox-logo" width="180" height="37"><span class="assistive-text">Librivox</span></a></h1>
+				<h1 class="logo"><a href="<?= base_url(); ?>"><img src="<?= base_url() ?>images/librivox-logo.png" alt="librivox-logo" width="180" height="37"><span class="assistive-text">LibriVox</span></a></h1>
 				<h3 class="tagline">Acoustical liberation of books in the public domain</h3>
 			</hgroup>
 			
@@ -60,7 +60,7 @@
 			<!-- Search Form -->	
 			<div class="search-wrap">
 				<form role="search" action="#" id="searchform" method="get" class="searchform">
-					<label class="assistive-text" for="q">Search Librivox</label>
+					<label class="assistive-text" for="q">Search LibriVox</label>
 					<input type="text" placeholder="Search by Author, Title or Reader" id="q" name="q" class="field">
 					<input type="text" id="dummy" name="dummy" style="display:none;">
 					<input type="submit" value="Search" id="searchsubmit" name="submit" class="submit">
