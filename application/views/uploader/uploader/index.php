@@ -6,8 +6,8 @@
 
 
           <div class="pull-right">
-               <a href="<?= base_url()?>workflow" class="menu_link">Librivox Dashboard</a>
-               <a href="https://forum.librivox.org" class="menu_link">Librivox Forum</a>
+               <a href="<?= base_url()?>workflow" class="menu_link">LibriVox Dashboard</a>
+               <a href="https://forum.librivox.org" class="menu_link">LibriVox Forum</a>
                <a href="<?= base_url()?>pages/workflow-help" class="menu_link">Help</a>
           </div>
      </div>

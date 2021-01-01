@@ -191,7 +191,7 @@ class Project_launch extends Public_Controller
 
 		$data['has_preface'] = ($fields['has_preface']) ? lang('proj_launch_yes') : lang('proj_launch_no');
 
-		$data['forum_link'] = '<a href="https://forum.librivox.org" style="margin-right:10px;">Librivox Forum</a>';
+		$data['forum_link'] = '<a href="https://forum.librivox.org" style="margin-right:10px;">LibriVox Forum</a>';
 		$data['help_link'] = '<a href="' . base_url() . 'pages/workflow-help">Help</a>';
 
 		$this->insertMethodJS();

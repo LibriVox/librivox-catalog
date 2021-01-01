@@ -1,6 +1,6 @@
 <!doctype html>
 <head>
-	<title>Librivox Project iFrame</title>
+	<title>LibriVox Project iFrame</title>
 	<meta charset="utf-8">
 	<base target="_blank">
 

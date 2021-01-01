@@ -252,7 +252,7 @@
         <div id="project_urls" style="margin-top:10px;">
       	<div class="control-group">
            	<div class="controls center">
-           		<?= form_label('Librivox Url',  'librivoxurl', array('class'=>'span2')); ?>
+           		<?= form_label('LibriVox Url',  'librivoxurl', array('class'=>'span2')); ?>
            		<?= form_input(array('name'=> 'librivoxurl', 'id' => 'librivoxurl', 'value'=>$librivoxurl, 'class'=>"span8" )); ?>
               <a id="librivoxurl_link" href="<?= $librivoxurl ?>" target="_blank">Link</a>
     		    </div>

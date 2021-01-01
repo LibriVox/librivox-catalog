@@ -102,12 +102,12 @@
                         <ul class="dropdown-menu">  
                             <li data-filter-camera-type="all"><a href="http://archive.org/details/librivoxaudio">Internet Archive</a></li> 
                             <li data-filter-camera-type="all"><a href="http://www.gutenberg.org/">Project Gutenberg</a></li> 
-                            <li data-filter-camera-type="all"><a href="https://librivox.org">Librivox Main site</a></li> 
-                            <li data-filter-camera-type="all"><a href="<?= base_url() ?>search">Librivox Catalog Search</a></li> 
-                            <li data-filter-camera-type="all"><a href="https://wiki.librivox.org/index.php">Librivox Wiki</a></li> 
-                            <li data-filter-camera-type="all"><a href="<?= base_url() ?>workflow">Librivox Manage Dashboard</a></li>  
-                            <li data-filter-camera-type="all"><a href="<?= base_url() ?>uploader">Librivox File Uploader</a></li> 
-                            <li data-filter-camera-type="all"><a href="https://forum.librivox.org">Librivox Forum</a></li>  
+                            <li data-filter-camera-type="all"><a href="https://librivox.org">LibriVox Main site</a></li>
+                            <li data-filter-camera-type="all"><a href="<?= base_url() ?>search">LibriVox Catalog Search</a></li>
+                            <li data-filter-camera-type="all"><a href="https://wiki.librivox.org/index.php">LibriVox Wiki</a></li>
+                            <li data-filter-camera-type="all"><a href="<?= base_url() ?>workflow">LibriVox Manage Dashboard</a></li>
+                            <li data-filter-camera-type="all"><a href="<?= base_url() ?>uploader">LibriVox File Uploader</a></li>
+                            <li data-filter-camera-type="all"><a href="https://forum.librivox.org">LibriVox Forum</a></li>
                         </ul> 
                         </li>
 
