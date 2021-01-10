@@ -267,7 +267,7 @@
 		$.ajax({
 		  	url: CI_ROOT  + 'advanced_search',
 		  	type: 'get',
-		  	data: $('#advanced_search_form').serialize() + '&q=' + q ,
+		  	data: $('#advanced_search_form').serialize() + '&q=' + encodeURIComponent(q),
 		  	beforeSend: function(){
 		  		$('.browse-list').html(spinner);
 		  		$('.page-number-nav').html('');
@@ -356,7 +356,8 @@
 
 		if (current_page != 'search') 
 		{
-			window.location.href = CI_ROOT + 'search/q/' + q;
+			window.location.href = CI_ROOT + 'search?search_form=get_results&q=' + encodeURIComponent(q);
+			return;
 		}
 
 		librivox_search();
