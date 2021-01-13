@@ -21,7 +21,7 @@
 				</div>
 				
 				<div class="page-header-half">	
-					<p><span>Total section:</span> <?= $sections ?></p>
+					<p><span>Total sections:</span> <?= $sections ?></p>
 					<p><span>Total matches:</span> <?= $matches ?></p>
 					<p><span>URL:</span> <a href="<?= $reader->website?>"><?= $reader->website?></a></p>
 				</div>	
