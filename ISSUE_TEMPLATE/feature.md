@@ -1,5 +1,5 @@
 ---
-name: Feature time
+name: Feature
 about: Create a report to help us decide what to do next
 title: ''
 labels: ''
