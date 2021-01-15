@@ -47,10 +47,10 @@
 			<h1 class="assistive-text icon-fontawesome-webfont"><span>Menu</span></h1>
 			<div class="assistive-text skip-link"><a href="#" title="Skip to content">Skip to content</a></div> 
 				<ul class="sub-menu-list">
-					<li class="first"><a href="<?= base_url('pages/about-librivox/');?>">about</a></li>
-					<li><a href="https://forum.librivox.org/">forum</a></li>	
-					<li><a href="<?= base_url('pages/contact-librivox/');?>">contact</a></li>
-					<li><a href="<?= base_url('pages/help/');?>">help</a></li>
+					<li class="first"><a href="<?= base_url('pages/about-librivox/');?>">About</a></li>
+					<li><a href="<?= base_url('pages/contact-librivox/');?>">Contact</a></li>
+					<li><a href="https://forum.librivox.org/">Forum</a></li>
+					<li><a href="<?= base_url('pages/help/');?>">Help</a></li>
 					<li class="twitter ir"><a href="http://twitter.com/librivox">Twitter</a></li>
 					<!-- <li class="facebook ir"><a href="http://www.facebook.com/LibriVox">Facebook</a></li> -->
 					<li class="rss "><a href="<?= base_url('pages/librivox-feeds/');?>">rss</a></li> 
