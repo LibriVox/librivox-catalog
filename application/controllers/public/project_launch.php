@@ -113,7 +113,7 @@ class Project_launch extends Public_Controller
 		{
 			$data['author'][0] = '';
 			$data['authorall'][0] = '';
-			$data['authorlc'][0] = '';
+			$data['author_filename'][0] = '';
 			$data['link_to_auth'][0] = '';
 			$data['notice'][0] = '';
 		}
@@ -123,7 +123,7 @@ class Project_launch extends Public_Controller
 			{
 				$data['author'][] = $author['first_name'] . " " . $author['last_name'];
 				$data['authorall'][] = author_name($author);
-				$data['authorlc'][] = author_lowercase($author);
+				$data['author_filename'][] = format_filename($author['last_name']);
 				$data['link_to_auth'][] = $author['author_url'];
 				$data['notice'][] = copyright_notice($author);
 			}
@@ -155,7 +155,6 @@ class Project_launch extends Public_Controller
 		{
 			$data['translator'][0] = '';
 			$data['translatorall'][0] = '';
-			$data['translatorlc'][0] = '';
 			$data['notice'][0] = '';
 		}
 		else
@@ -164,8 +163,6 @@ class Project_launch extends Public_Controller
 			{
 				$data['translator'][] = $translator['first_name'] . " " . $translator['last_name'];
 				$data['translatorall'][] = author_name($translator);
-				$data['translatorlc'][] = author_lowercase($translator);
-				//$data['link_to_auth'][] 	= $translator['author_url'];
 				$data['notice'][] = copyright_notice($translator);
 			}
 		}
@@ -175,7 +172,7 @@ class Project_launch extends Public_Controller
 		$data['summaryauthor'] = summary_author($fields);
 
 		$data['titlelc'] = clean_title($fields['title']);
-		$data['titleid'] = create_title_id($data['titlelc']);
+		$data['title_filename'] = format_filename($data['titlelc']);
 
 		$data['date'] = concat_date($fields['expected_completion_year'], $fields['expected_completion_month'], $fields['expected_completion_day']);
 
@@ -205,9 +202,9 @@ class Project_launch extends Public_Controller
 
 	public function solo_work(&$data)
 	{
-		$data['url'] = $data['titleid'] . '_##_' . $data['authorlc'][0] . '_128kb.mp3 ' .
-			lang('project_launch_template_section_number') . ' (e.g. ' . $data['titleid'] .
-			'_01_' . $data['authorlc'][0] . '_128kb.mp3)';
+		$data['url'] = $data['title_filename'] . '_##_' . $data['author_filename'][0] . '_128kb.mp3 ' .
+			lang('project_launch_template_section_number') . ' (e.g. ' . $data['title_filename'] .
+			'_01_' . $data['author_filename'][0] . '_128kb.mp3)';
 	}
 
 	public function collaborative_work(&$data)
@@ -218,17 +215,17 @@ class Project_launch extends Public_Controller
 	public function dramatic_work(&$data)
 	{
 		$data['url'] = array();
-		$data['url'][0] = $data['titleid'] . '_[i]role[/i]_#.mp3 ' . lang('project_launch_template_act_number') .
-			' (e.g. ' . $data['titleid'] . '_romeo_1.mp3)';
-		$data['url'][1] = $data['titleid'] . '_#_' . $data['authorlc'][0] . '_128kb.mp3 ' .
-			lang('project_launch_template_act_number') . ' (e.g. ' . $data['titleid'] .
-			'_1_' . $data['authorlc'][0] . '_128kb.mp3)';
+		$data['url'][0] = $data['title_filename'] . '_[i]role[/i]_#.mp3 ' . lang('project_launch_template_act_number') .
+			' (e.g. ' . $data['title_filename'] . '_romeo_1.mp3)';
+		$data['url'][1] = $data['title_filename'] . '_#_' . $data['author_filename'][0] . '_128kb.mp3 ' .
+			lang('project_launch_template_act_number') . ' (e.g. ' . $data['title_filename'] .
+			'_1_' . $data['author_filename'][0] . '_128kb.mp3)';
 	}
 
 	public function poetry_weekly_work(&$data)
 	{
-		$data['url'] = $data['titleid'] . "_" . $data['authorlc'][0] . '_[i]your initials in lowercase[/i]_128kb.mp3 (e.g. ' .
-			$data['titleid'] . '_' . $data['authorlc'][0] . '_klh_128kb.mp3)';
+		$data['url'] = $data['title_filename'] . "_" . $data['author_filename'][0] . '_[i]your initials in lowercase[/i]_128kb.mp3 (e.g. ' .
+			$data['title_filename'] . '_' . $data['author_filename'][0] . '_klh_128kb.mp3)';
 	}
 
 	public function poetry_fortnightly_work(&$data)

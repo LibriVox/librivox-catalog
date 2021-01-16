@@ -2,16 +2,18 @@
 
 // functions specific to setting up strings for the Result Page
 
+function format_filename($string)
+{
+	// Convert to all ASCII characters (which also removes accents), lower case and drop all but alpha numberic.
+	// This will even convert strings such as "汉语" to "hanyu" ("han yu" before spaces are removed).
+	$transliterator = Transliterator::create('Any-Latin;Latin-ASCII;Lower;[^a-z0-9] Remove');
+	return $transliterator->transliterate($string);
+}
+
 function author_name($fields)
 {
 	$fields['dob'] = (empty($fields['dob'])) ? '' : $fields['dob'];
 	return $fields['first_name']. " " .$fields['last_name']. " (" . $fields['dob'] . " - " . $fields['dod'] . ")";
-}
-
-function author_lowercase($fields)
-{
-	// Removes spaces from compound last names, sets to lower case
-	return strtolower(preg_replace("/\s+/", "", $fields['last_name']));
 }
 
 function clean_title($title, $retval = 'title')
@@ -45,16 +47,6 @@ function create_full_title($project)
 function summary_author($fields)
 {
 	return '(' . lang('project_launch_template_summary_by') . ' ' . $fields['brief_summary_by'] . ')';
-}
-
-function create_title_id($titlelc)
-{
-	//Remove punctuation, etc from title
-	$replace = array(" ", ",", "-", "?", "!", "\"", "'", ":", ".", ";", "°", "ª");
-	$titleid = str_replace($replace, "", $titlelc);
-
-	//Make title lower case
-	return strtolower($titleid);
 }
 
 function concat_date($year, $month, $day)
