@@ -71,7 +71,7 @@ function copyright_notice($fields)
 	if ($copyauthor < 69) {
 		$notice = sprintf(lang('project_launch_template_copyright_warning'), $author, $fields['dod']);
 	} else {
-		$notice = array();
+		$notice = null;
 	}
 	return $notice;
 }
