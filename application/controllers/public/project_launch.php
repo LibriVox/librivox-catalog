@@ -108,25 +108,18 @@ class Project_launch extends Public_Controller
 		$full_author_list = array_merge($author_list, $new_author_list);
 
 		$data['author'] = array();
+		$data['authorall'] = array();
+		$data['author_filename'] = array();
+		$data['link_to_auth'] = array();
+		$data['notice'] = array();
 
-		if (empty($full_author_list))
+		foreach ($full_author_list as $author)
 		{
-			$data['author'][0] = '';
-			$data['authorall'][0] = '';
-			$data['author_filename'][0] = '';
-			$data['link_to_auth'][0] = '';
-			$data['notice'][0] = '';
-		}
-		else
-		{
-			foreach ($full_author_list as $key => $author)
-			{
-				$data['author'][] = $author['first_name'] . " " . $author['last_name'];
-				$data['authorall'][] = author_name($author);
-				$data['author_filename'][] = format_filename($author['last_name']);
-				$data['link_to_auth'][] = $author['author_url'];
-				$data['notice'][] = copyright_notice($author);
-			}
+			$data['author'][] = $author['first_name'] . " " . $author['last_name'];
+			$data['authorall'][] = author_name($author);
+			$data['author_filename'][] = format_filename($author['last_name']);
+			$data['link_to_auth'][] = $author['author_url'];
+			$data['notice'][] = copyright_notice($author);
 		}
 
 		//**** do it all again for translators ***//
@@ -150,21 +143,13 @@ class Project_launch extends Public_Controller
 		$full_trans_list = array_merge($trans_list, $new_trans_list);
 
 		$data['translator'] = array();
+		$data['translatorall'] = array();
 
-		if (empty($full_trans_list))
+		foreach ($full_trans_list as $translator)
 		{
-			$data['translator'][0] = '';
-			$data['translatorall'][0] = '';
-			$data['notice'][0] = '';
-		}
-		else
-		{
-			foreach ($full_trans_list as $key => $translator)
-			{
-				$data['translator'][] = $translator['first_name'] . " " . $translator['last_name'];
-				$data['translatorall'][] = author_name($translator);
-				$data['notice'][] = copyright_notice($translator);
-			}
+			$data['translator'][] = $translator['first_name'] . " " . $translator['last_name'];
+			$data['translatorall'][] = author_name($translator);
+			$data['notice'][] = copyright_notice($translator);
 		}
 
 		//***  continue
