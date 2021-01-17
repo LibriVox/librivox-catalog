@@ -30,6 +30,7 @@
                             ?>   
                               
                             <li data-filter-camera-type="all"><a href="<?= base_url() ?>projects/<?= $user_id?>">My Projects</a></li> 
+                            <li data-filter-camera-type="all"><a href="<?= base_url() ?>stats/sections" >My Sections</a></li>
 
                             <?php 
                               //check permissions 
@@ -78,8 +79,6 @@
                         <li class="dropdown all-camera-dropdown">  
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Stats<b class="caret"></b></a>  
                         <ul class="dropdown-menu">  
-                            <li data-filter-camera-type="all"><a href="<?= base_url()?>stats/sections" >My Sections</a></li>
-
                             <?php 
                               //check permissions 
                               $allowed_groups = array(PERMISSIONS_ADMIN, PERMISSIONS_MCS);
