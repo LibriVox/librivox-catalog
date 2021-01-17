@@ -142,7 +142,7 @@ class Search extends Catalog_controller
 
 	public function advanced_search()
 	{
-		$input = $this->input->get_post(null, true);
+		$input = $this->input->get(null, true);
 
 		if (!empty($input['q']))
 		{
@@ -244,7 +244,7 @@ class Search extends Catalog_controller
 	public function get_results()
 	{
 		//collect - search_category, sub_category, page_number, sort_order
-		$input = $this->input->get_post(null, true);
+		$input = $this->input->get(null, true);
 
 		$retval['input'] = $input;
 
