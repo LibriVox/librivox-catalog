@@ -28,7 +28,7 @@ class Group extends Catalog_controller
 	function get_results()
 	{
 		//collect - search_category, sub_category, page_number, sort_order
-		$input = $this->input->get_post(null, true);
+		$input = $this->input->get(null, true);
 
 		//format offset
 		$offset = ($input['search_page'] - 1) * CATALOG_RESULT_COUNT;
