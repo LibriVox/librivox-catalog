@@ -258,7 +258,7 @@ class Project_launch extends Public_Controller
 
 		$this->form_validation->set_rules('list_keywords', 'Keywords', 'trim|xss_clean');
 
-		$this->form_validation->set_rules('soloist_name', 'lang:proj_launch_soloist_name', 'trim|xss_clean|alpha_num');
+		$this->form_validation->set_rules('soloist_name', 'lang:proj_launch_soloist_name', 'trim|xss_clean');
 		$this->form_validation->set_rules('soloist_link', 'Soloist url', 'trim|xss_clean|prep_url');
 
 		return $this->form_validation->run();
