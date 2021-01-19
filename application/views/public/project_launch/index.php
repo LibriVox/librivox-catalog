@@ -43,12 +43,26 @@
 
                     <div class="control-group">
                          <div class="controls center">
+                              <?= form_label(lang('proj_launch_is_compilation'),  'is_compilation', array('class'=>'span4')); ?>
+                              <label>
+                                   <?= form_radio(array('name'=> 'is_compilation', 'id' => 'is_compilation', 'value'=>'1', 'style'=>'margin: 0 0 0 10px !important;', 'checked'=>(set_value('is_compilation'))? TRUE: FALSE)); ?>
+                                   <span><?= lang('proj_launch_yes'); ?></span>
+                              </label>
+                              <label>
+                                   <?= form_radio(array('name'=> 'is_compilation', 'id' => 'is_compilation', 'value'=>'0', 'style'=>'margin: 0 0 0 10px !important;', 'checked'=>(set_value('is_compilation'))? FALSE: TRUE)); ?>
+                                   <span><?= lang('proj_launch_no'); ?></span>
+                              </label>
+                         </div>
+                         <br />
+                    </div>
+
+                    <div id="link_to_text_block" class="control-group">
+                         <div class="controls center">
                               <?= form_label(lang('proj_launch_link_to_text_1').' '.lang('proj_launch_link_to_text_2'),  'link_to_text', array('class'=>'span4')); ?>
                               <?= form_input(array('name'=> 'link_to_text', 'id' => 'link_to_text', 'class'=>'span6', 'value'=>set_value('link_to_text'))); ?>                   
                          </div>
+                         <br />
                     </div>
-
-                    <br />
 
                     <div class="control-group">
                          <div class="controls center">
@@ -73,29 +87,12 @@
                               <?= form_label(lang('proj_launch_recorded_language'),  'recorded_language', array('class'=>'span2')); ?>
                               <?= $recorded_languages ?>
 
-                              <?= form_label(lang('proj_launch_recorded_language_other'),  'recorded_language_other', array('id'=>'recorded_language_other_label','style'=>'display:none;margin-left:30px;width:140px')); ?>
+                              <?= form_label(lang('proj_launch_recorded_language_other'),  'recorded_language_other', array('id'=>'recorded_language_other_label','style'=>'display:none;margin-left:30px;width:180px')); ?>
                               <?= form_input(array('name'=> 'recorded_language_other', 'id' => 'recorded_language_other', 'value'=>set_value('recorded_language_other'), 'style'=>'display:none;')); ?>     
                               
                          </div>
                     </div> 
 
-                    <div class="control-group">
-                         <div class="controls center">
-                              <?= form_label(lang('proj_launch_is_compilation'),  'is_compilation', array('class'=>'span5')); ?>
-                              
-                              
-                              <label>
-                                   <?= form_radio(array('name'=> 'is_compilation', 'id' => 'is_compilation', 'value'=>'1', 'style'=>'margin: 0 0 0 10px !important;', 'checked'=>(set_value('is_compilation'))? TRUE: FALSE)); ?>
-                                   <span><?= lang('proj_launch_yes'); ?></span>
-                              </label>
-                              
-                              <label>
-                                   <?= form_radio(array('name'=> 'is_compilation', 'id' => 'is_compilation', 'value'=>'0', 'style'=>'margin: 0 0 0 10px !important;', 'checked'=>(set_value('is_compilation'))? FALSE: TRUE)); ?>
-                                   <span><?= lang('proj_launch_no'); ?></span>
-                              </label>                 
-                                               
-                         </div>
-                    </div>   
                </fieldset> 
 
 
@@ -246,7 +243,8 @@
 
                     <div class="control-group">
                          <div class="controls center">
-                              <?= form_label(lang('proj_launch_num_sections'),  'num_sections', array('class'=>'span4')); ?>
+                              <?= form_label('<span class="red">*</span>' . lang('proj_launch_num_sections'),  'num_sections',
+                                   array('class'=>'span4')); ?>
                               <?= form_input(array('name'=> 'num_sections', 'id' => 'num_sections', 'class'=>'span1', 'value'=>set_value('num_sections'))); ?>                   
                          </div>
                     </div>

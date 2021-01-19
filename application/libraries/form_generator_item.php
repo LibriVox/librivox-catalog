@@ -29,6 +29,9 @@ class Form_generator_item {
 
 		//---$fields['genres'] = $this->_process_genres($fields['genres']);
 
+		if ($fields['is_compilation'])
+			$fields['link_to_text'] = '';
+
 		//authors
 		if (isset($fields['auth_id']))
 		{		

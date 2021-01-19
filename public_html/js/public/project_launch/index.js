@@ -52,7 +52,6 @@ $(document).ready(function(){
        'width':'770px',
     });
 
-
     $('#lang_select').live('change', function(){
 	  	var language = $(this).val();
 		
@@ -67,34 +66,59 @@ $(document).ready(function(){
         });        
     });
 
-    $('#project_type').live('change', function(){
-        var arr = [ 'solo', 'poetry_weekly', 'poetry_fortnightly'];
+	function is_compilation_change(value) {
+		if (value == '0')
+			$('#link_to_text_block').show();
+		else
+			$('#link_to_text_block').hide();
+	}
 
-        if (jQuery.inArray($(this).val(), arr) != -1)
-        {
-            $('#completion_date_block').show();
-        }
-        else
-        {
-            $('#completion_date_block').hide();
-        }    
-        
-    });
+	$('input[type=radio][name=is_compilation]').change(function() {
+		is_compilation_change(this.value);
+	});
 
-    $('#recorded_language').live('change', function(){
-        if ($('#recorded_language option:selected').text() == 'Other')
-        {
-            $('#recorded_language_other').show();
-            $('#recorded_language_other_label').show();
+	function project_type_change(value) {
+		var arr = [ 'solo', 'poetry_weekly', 'poetry_fortnightly'];
 
-        }
-        else
-        {
-            $('#recorded_language_other').hide();
-            $('#recorded_language_other_label').hide();
-        }            
-    }); 
+		if (jQuery.inArray(value, arr) != -1)
+			$('#completion_date_block').show();
+		else
+			$('#completion_date_block').hide();
+	}
 
+	$('#project_type').change(function() {
+		project_type_change(this.value);
+	});
+
+	function recorded_language_change(value) {
+		if (value.startsWith('Other'))
+		{
+			$('#recorded_language_other').show();
+			$('#recorded_language_other_label').show();
+		}
+		else
+		{
+			$('#recorded_language_other').hide();
+			$('#recorded_language_other_label').hide();
+		}
+	}
+
+	$('#recorded_language').change(function() {
+		recorded_language_change($('#recorded_language option:selected').text());
+	});
+
+	function reset() {
+		is_compilation_change($('input[type=radio][name=is_compilation]:checked').val());
+		project_type_change($('#project_type').val());
+		recorded_language_change($('#recorded_language option:selected').text());
+	}
+	reset();
+
+	$("button:reset").click(function() {
+		this.form.reset();
+		reset();
+		return false;
+	});
 
     $("#add_project").validate({
 
@@ -105,7 +129,7 @@ $(document).ready(function(){
             {
                 $("#showErrors").html("<h4>Your form contains "
                            + validator.numberOfInvalids() 
-                           + " errors, see details below.</h4>").css('color', 'red');
+                           + " error(s), see details below.</h4>").css('color', 'red');
                 validator.defaultShowErrors();
             }            
         },
@@ -123,6 +147,7 @@ $(document).ready(function(){
             title: "required",
             link_to_text: "required",
             "auth_last_name[1]": "required",
+            num_sections: { required: true, number: true },
         },
 
         messages: {
