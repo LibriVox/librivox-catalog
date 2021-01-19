@@ -106,7 +106,7 @@ class Catalog_item {
 	private function _create_project_slug($project_info)
 	{
 		// if we are marking "complete" we need to create the slug
-		if ($project_info['status'] == PROJECT_STATUS_COMPLETE && empty($project_info['url_librivox']))
+		if ($project_info['status'] == PROJECT_STATUS_VALIDATION && empty($project_info['url_librivox']))
 		{
 			$config = array(
 			    'field' => 'url_librivox',
