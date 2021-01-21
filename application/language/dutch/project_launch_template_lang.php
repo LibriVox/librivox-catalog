@@ -17,11 +17,11 @@ $lang['project_launch_template_soloist_note'] = 'NOTA BENE: Beste solist, we wil
 ';
 $lang['project_launch_template_please_dont_download'] = 'Wilt u a.u.b. geen bestanden downloaden van lopende projecten (tenzij u medewerker bent van het project). Onze servers hebben niet voldoende capaciteit om grote hoeveelheden verkeer af te handelen. Wacht tot de voltooiing van het project. Bedankt!
 ';
-$lang['project_launch_template_temp_paragraph'] = 'Deze paragraaf is tijdelijk en zal vervangen worden door de MC met de lijst van secties en lezers (Magic Window) zodra het project in het adminsysteem is geplaatst. ';
+$lang['project_launch_template_temp_paragraph'] = 'Deze paragraaf is tijdelijk en zal vervangen worden door de MC met de lijst van secties en lezers (Magic Window) zodra het project in het adminsysteem is geplaatst.';
 $lang['project_launch_template_author_wiki'] = 'Link naar auteur op wikipedia (wanneer beschikbaar):';
 $lang['project_launch_template_title_wiki'] = 'Link naar boek op wikipedia (wanneer beschikbaar):';
 $lang['project_launch_template_num_sections'] = 'Aantal secties (bestanden) voor dit project:';
-$lang['project_launch_template_has_preface'] = 'Heeft dit project een introductie of voorwoord [j/n]:';
+$lang['project_launch_template_has_preface'] = 'Heeft dit project een introductie of voorwoord:';
 $lang['project_launch_template_orig_pub_date'] = 'Jaar van eerste publicatie (voor zover bekend):';
 $lang['project_launch_template_name_credit'] = 'Als je nieuw bent als vrijwilliger: hoe wil je dat je naam (of pseudoniem) in de catalogus vermeld zal worden:
 ';
@@ -56,7 +56,7 @@ $lang['project_launch_template_artist'] = 'Artiest (schrijver):';
 $lang['project_launch_template_album'] = 'Album (boektitel):';
 $lang['project_launch_template_transfer_of_files'] = 'Overdracht van bestanden (opnamen die klaar zijn)';
 $lang['project_launch_template_please_post'] = 'Vergeet niet om een post te maken als je een bestand hebt ingestuurd.';
-$lang['project_launch_template_please_post_length'] = 'Geef ook de lengte op van het bestand (tijdsaanduiding: mm:ss) en de gegeven link ';
+$lang['project_launch_template_please_post_length'] = 'Geef ook de lengte op van het bestand (tijdsaanduiding: mm:ss) en de gegeven link';
 $lang['project_launch_template_upload_with_uploader'] = 'Stuur je bestand op met de LibriVox Uploader:';
 $lang['project_launch_template_if_you_have_trouble'] = '(Als je de afbeelding hierboven niet kunt lezen, stuur een berichtje naar een admin) 
 ';
@@ -66,10 +66,10 @@ $lang['project_launch_template_please_check_send_recording'] = 'Als dit niet wer
 $lang['project_launch_template_how_to_claim_part'] = 'Hoe je een deel toegewezen krijgt, en \'hoe het hier werkt\'';
 $lang['project_launch_template_how_to_claim_part_2'] = 'Voor het kiezen van een sectie om op te nemen, kijk onder punt 5 hieronder naar de secties. Al de secties zonder namen ernaast zijn \'vrij spel\'. Klik op \'Post reply\' links bovenaan op het scherm en zeg ons welke sectie je zou willen lezen (gebruik het sectie nummer uit de meest linkse kolom in de lezerslijst, aub). Lees punt 6 tot 8 hieronder voor wat je moet doen voor, tijdens en na het opnemen.';
 $lang['project_launch_template_new_to_recording'] = 'Is opnemen nieuw voor je?';
-$lang['project_launch_template_please_read_guide'] = 'Lees onze [url=https://wiki.librivox.org/index.php/Beginnersgids]Beginnersgids[/url] ';
+$lang['project_launch_template_please_read_guide'] = 'Lees onze [url=https://wiki.librivox.org/index.php/Beginnersgids]Beginnersgids[/url]';
 $lang['project_launch_template_is_there_deadline'] = 'Is er een deadline?';
 $lang['project_launch_template_is_there_deadline_answer'] = 'Stuur je opname alsjeblieft in binnen 1-2 maanden nadat je de sectie geclaimd hebt (of voor de streefdatum van het project, als dat eerder is). [color=red]NB - tbv lezers die hun opnames op tijd voltooid hebben, zullen secties die niet binnen 2 maanden klaar zijn automatisch weer vrijgegeven worden, en vervalt je claim, tenzij je op tijd om een verlenging vraagt.[/color] De BC beslist of de verlenging verleend wordt. Als het je duidelijk wordt dat het je niet lukt om je sectie te doen, om wat voor reden dan ook, laat het ons weten, dan geven we die weer vrij. Dit is helemaal geen schande; we zijn allemaal vrijwilligers en er kunnen altijd dingen gebeuren. [b]De streefdatum voor voltooiing van dit project is [color=blue] -- [/color].[/b]';
-$lang['project_launch_template_is_there_deadline_answer_2'] = 'Teken a.u.b. niet te veel in. De opnamen moeten in twee maanden klaar zijn. ';
+$lang['project_launch_template_is_there_deadline_answer_2'] = 'Teken a.u.b. niet te veel in. De opnamen moeten in twee maanden klaar zijn.';
 $lang['project_launch_template_where_is_text'] = 'Waar vind ik de tekst?';
 $lang['project_launch_template_where_is_text_answer'] = 'Brontekst (lees aub alleen van deze tekst!):';
 $lang['project_launch_template_claim_sections'] = 'Kies secties (de nummers in de eerste kolom hieronder)!';
@@ -106,7 +106,7 @@ $lang['project_launch_template_title_author_read_by'] = '%s door %s, gelezen voo
 $lang['project_launch_template_title_author_read_by_include'] = '[Voeg als je wilt toe: datum, plaats en/of je webadres.]';
 $lang['project_launch_template_read_poem'] = 'Lees dan het gedicht:';
 $lang['project_launch_template_insert_poem_text'] = 'VOEG HIER DE TEXT VAN HET GEDICHT IN';
-$lang['project_launch_template_at_end_of_reading'] = 'Laat san het einde van de opname een korte stilte vallen en zeg dan: ';
+$lang['project_launch_template_at_end_of_reading'] = 'Laat san het einde van de opname een korte stilte vallen en zeg dan:';
 $lang['project_launch_template_end_of_poem'] = 'Einde van het gedicht. Deze opname is vrij van rechten.';
 $lang['project_launch_template_leave_five_seconds'] = 'Voeg vijf seconden stilte toe aan het einde van de opname.';
 $lang['project_launch_template_save_recording'] = 'Sla je opname op als een [b]mp3[/b]-bestand met de volgende bestandsnaam en ID3-tag:';
@@ -114,7 +114,7 @@ $lang['project_launch_template_file_name'] = 'Bestandsnaam:';
 $lang['project_launch_template_lower_case'] = '- alleen kleine letters en geen bijzondere tekens:';
 $lang['project_launch_template_id3_tags'] = 'ID3 tags (Versie 2):';
 $lang['project_launch_template_artist_name'] = 'Artiest (auteur):';
-$lang['project_launch_template_track_title'] = 'Track Titel (naam van het gedicht): ';
+$lang['project_launch_template_track_title'] = 'Track Titel (naam van het gedicht):';
 $lang['project_launch_template_album_title'] = 'Album Titel (naam van het project):';
 $lang['project_launch_template_comments'] = 'Opmerkingen:';
 $lang['project_launch_template_read_by_poem'] = '%s - Gelezen door JOUW INITIALEN (bv. [color=red]%s - Gelezen door KLH[/color])';
@@ -123,7 +123,7 @@ $lang['project_launch_template_librivox_fortnightly_poem'] = 'LibriVox Tweewekel
 $lang['project_launch_template_optional_recorded_by'] = '(indien gewenst) Opgenomen door [jouw naam]';
 $lang['project_launch_template_include_credit_name'] = 'Als je je link doorgeeft, geef dan ook op met welke naam je in de catalogus wilt staan en welk webadres daaraan gekoppeld moet worden. (Dit hoeft natuurlijk niet als je dat al eens eerder hebt gedaan.)';
 $lang['project_launch_template_contribute_deadline'] = '(Als je wilt bijdragen, zorg dan dat je opname binnen is voor 0600 GMT zondag, %s (0700 CET, 0800 zomertijd)';
-$lang['project_launch_template_suggest_poem_weekly'] = '(Iedereen kan een suggestie doen voor een gedicht, of coördinator worden van een wekelijks gedicht. Kijk [url=https://forum.librivox.org/viewtopic.php?f=19&t=37723]hier[/url]): ';
+$lang['project_launch_template_suggest_poem_weekly'] = '(Iedereen kan een suggestie doen voor een gedicht, of coördinator worden van een wekelijks gedicht. Kijk [url=https://forum.librivox.org/viewtopic.php?f=19&t=37723]hier[/url]):';
 $lang['project_launch_template_suggest_poem_fortnightly'] = '(Iedereen kan een suggestie doen voor een gedicht, of coördinator worden van een tweewekelijks gedicht. Kijk [url=https://forum.librivox.org/viewtopic.php?f=19&t=37723]hier[/url]):';
 $lang['project_launch_template_need_noise_cleaning'] = 'Is ruis-onderdrukking nodig?';
 $lang['project_launch_template_noise_cleaning_software'] = 'Luister met een koptelefoon naar je opname. Als je een constant achtergrondgeluid (ruis/zoemtoon) hoort, zou je die misschien willen verwijderen. We raden aan om voor het verwijderen van achtergrondgeruis de meest recente versie van Audacity te gebruiken. Zie deze Engelstalige [url=https://wiki.librivox.org/index.php/Noise_Cleaning]pagina[/url] voor een uitgebreise handleiding.';
