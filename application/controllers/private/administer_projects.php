@@ -103,9 +103,7 @@ class Administer_projects extends Private_Controller
 		$this->load->library('mahana_hierarchy', $config);
 		$prototype['genres'] = $this->mahana_hierarchy->get_grouped_children();
 
-		$array_keys = array_flip($this->lang->language);
-		$check_string = 'proj_launch_project_';
-		$prototype['project_types'] = create_array_from_lang($check_string, $array_keys);
+		$prototype['project_types'] = create_array_from_lang('proj_launch_project_', $this->lang->language);
 
 		$this->insertMethodCSS();
 		$this->insertMethodJS();

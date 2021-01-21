@@ -48,19 +48,11 @@ class Project_launch extends Public_Controller
 		$this->data['recorded_languages'] = full_languages_dropdown('recorded_language');
 		//$this->data['recorded_languages'] = $this->language_model->dropdown('id', 'language');   //as_array()->get_all();
 
-		$array_keys = array_flip($this->lang->language);
+		$this->data['project_types'] = create_array_from_lang('proj_launch_project_', $this->lang->language);
 
-		// project types
-		$check_string = 'proj_launch_project_';
-		$this->data['project_types'] = create_array_from_lang($check_string, $array_keys);
+		$this->data['months'] = array(0 => '--') + create_array_from_lang('proj_launch_month_', $this->lang->language);
 
-		// months
-		$check_string = 'proj_launch_month_';
-		$this->data['months'] = array(0 => '--') + create_array_from_lang($check_string, $array_keys);
-
-		//proof levels
-		$check_string = 'proj_launch_proof_level_';
-		$this->data['proof_level'] = create_array_from_lang($check_string, $array_keys);
+		$this->data['proof_level'] = create_array_from_lang('proj_launch_proof_level_', $this->lang->language);
 
 		// genres
 		//$check_string = 'proj_launch_genre_';
