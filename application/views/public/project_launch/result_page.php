@@ -26,7 +26,7 @@
 		}
 
 		echo "\n";
-		echo '[b]', lang('project_launch_template_select_mc'), "[/b] xxxx\n";
+		echo '[b]', lang('project_launch_template_select_mc'), "[/b] [color=#0000FF]xxxx[/color]\n";
 		echo "\n";
 
 		if ($project_type == 'solo')
@@ -73,29 +73,43 @@
 	echo "\n";
 	echo "[quote]$brief_summary ${summaryauthor}[/quote]\n";
 
-	if ($project_type == 'collaborative' || $project_type == 'dramatic')
+	if ($project_type == 'solo' || $project_type == 'collaborative' || $project_type == 'dramatic')
 	{
 		echo "\n";
 		echo lang('project_launch_template_text_source'), " $link_to_text\n";
 		echo "\n";
-		echo lang('project_launch_template_deadline'), "\n";
-		echo "\n";
+		if ($project_type == 'solo')
+			echo '[b]', lang('project_launch_template_target_completion_date'), "[/b] $date\n";
+		else
+			echo lang('project_launch_template_deadline'), "\n";
 
 		if ($project_type == 'collaborative')
 		{
+			echo "\n";
 			echo lang('project_launch_template_claiming_sections'), "\n";
 		}
-		else
+		else if($project_type == 'dramatic')
 		{
+			echo "\n";
 			echo lang('project_launch_template_claiming_roles'), "\n";
 			echo lang('project_launch_template_note_public_domain'), "\n";
 		}
 
+		if ($project_type != 'solo')
+		{
+			echo "\n";
+			echo lang('project_launch_template_new_to_recording'), "\n";
+		}
+
 		echo "\n";
-		echo lang('project_launch_template_new_to_recording'), "\n";
-		echo "\n";
-		echo '[b]', lang('project_launch_template_proof_level'), "[/b] $proof_level\n";
+		echo '[b]', lang('project_launch_template_proof_level'), '[/b] ';
+		echo lang('proj_launch_proof_level_' . $proof_level), "\n";
 		echo lang('project_launch_template_prospective_pls'), "\n";
+
+		if ($project_type == 'solo') {
+			echo "\n";
+			echo lang('project_launch_template_soloist_note'), "\n";
+		}
 	}
 	else if ($project_type == 'poetry_weekly' || $project_type == 'poetry_fortnightly')
 	{
@@ -115,6 +129,8 @@
 		echo "\n";
 		echo lang('project_launch_template_new_to_recording'), "\n";
 		echo "\n";
+		echo lang('project_launch_recording_settings'), "\n";
+		echo "\n";
 		echo lang('project_launch_template_begin_with_disclaimer'), "\n";
 		echo lang('project_launch_template_seconds_of_silence'), "\n";
 		echo '[quote]', sprintf(lang('project_launch_template_title_author_read_by'), $title, $author[0]), "\n";
@@ -133,9 +149,9 @@
 		echo '[b]', lang('project_launch_template_filename'), "[/b] $url\n";
 		$upload_msg();
 		echo "\n";
-		echo lang('project_launch_template_deadline_poetry'), "\n";
-		echo "\n";
 		echo lang('project_launch_template_check_back'), "\n";
+		echo "\n";
+		echo lang('project_launch_template_deadline_poetry'), "\n";
 	}
 
 	echo "\n";
@@ -153,12 +169,18 @@
 		echo "\n";
 		echo "[list]\n";
 		echo "[*]Project Code: $project_code\n";
+		$link_to_auth_count = 0;
 		foreach ($link_to_auth as $key => $link_to_auth_single)
 		{
-			echo '[*]', lang('project_launch_template_author_wiki');
 			if (!empty($link_to_auth_single))
+			{
+				echo '[*]', lang('project_launch_template_author_wiki');
 				echo " $link_to_auth_single ($author[$key])\n";
+				$link_to_auth_count++;
+			}
 		}
+		if (!$link_to_auth_count)
+			echo '[*]', lang('project_launch_template_author_wiki'), "\n";
 		echo '[*]', lang('project_launch_template_title_wiki'), " $link_to_book\n";
 		echo '[*]', lang('project_launch_template_num_sections'), " $num_sections\n";
 		echo '[*]', lang('project_launch_template_has_preface'), " $has_preface\n";
@@ -172,19 +194,8 @@
 		echo lang('project_launch_template_keywords'), " $keyword\n";
 		echo "\n";
 		echo str_repeat('=', 40), "\n";
-	}
-
-	if ($project_type == 'solo')
-	{
 		echo "\n";
-		echo lang('project_launch_template_text_source'), " $link_to_text\n";
-		echo "\n";
-		echo '[b]', lang('project_launch_template_target_completion_date'), "[/b] $date\n";
-		echo "\n";
-		echo '[b]', lang('project_launch_template_proof_level'), "[/b] $proof_level\n";
-		echo lang('project_launch_template_prospective_pls'), "\n";
-		echo "\n";
-		echo lang('project_launch_template_soloist_note'), "\n";
+		echo lang('project_launch_recording_settings'), "\n";
 	}
 
 	if ($project_type == 'solo' || $project_type == 'collaborative')
@@ -194,24 +205,24 @@
 		echo lang('project_launch_template_seconds_of_silence'), "\n";
 		echo "\n";
 		echo ($project_type == 'solo') ? lang('project_launch_template_for_first_say') : lang('project_launch_template_say'), "\n";
-		echo sprintf(lang('project_launch_template_section_of_first'), $title,
+		echo '[quote]', sprintf(lang('project_launch_template_section_of_first'), $title,
 			lang('project_launch_template_this_is_a_librivox_recording'), $title,
-			$author_text), "\n";
+			$author_text), "[/quote]\n";
 
 		if ($project_type == 'solo')
 		{
 			echo "\n";
 			echo lang('project_launch_template_shortened_intro'), "\n";
-			echo sprintf(lang('project_launch_template_section_of_second'), $title, $author_text), "\n";
+			echo '[quote]', sprintf(lang('project_launch_template_section_of_second'), $title, $author_text), "[/quote]\n";
 		}
 
 		echo "\n";
 		echo '[b]', lang('project_launch_template_end_of_recording'), "[/b]\n";
 		echo lang('project_launch_template_say'), "\n";
-		echo lang('project_launch_template_end_of_section'), "\n";
+		echo '[quote]', lang('project_launch_template_end_of_section'), "[/quote]\n";
 		echo "\n";
 		echo lang('project_launch_template_if_final_section'), "\n";
-		echo sprintf(lang('project_launch_template_end_of_title'), $title, $author_text), "\n";
+		echo '[quote]', sprintf(lang('project_launch_template_end_of_title'), $title, $author_text), "[/quote]\n";
 		echo "\n";
 		echo lang('project_launch_template_end_silence'), "\n";
 	}
@@ -220,7 +231,7 @@
 		echo "\n";
 		echo '[b]', lang('project_launch_template_for_individual_roles'), "[/b]\n";
 		echo lang('project_launch_template_one_file_per_act'), "\n";
-		echo lang('project_launch_template_character_read_by'), "\n";
+		echo '[quote]', lang('project_launch_template_character_read_by'), "[/quote]\n";
 		echo "\n";
 		echo lang('project_launch_template_space_between_lines'), "\n";
 		echo "\n";
@@ -228,14 +239,14 @@
 		echo lang('project_launch_template_seconds_of_silence'), "\n";
 		echo "\n";
 		echo lang('project_launch_template_say'), "\n";
-		echo sprintf(lang('project_launch_template_act_of'), $title, $author_text,
-			lang('project_launch_template_this_is_a_librivox_recording')), "\n";
+		echo '[quote]', sprintf(lang('project_launch_template_act_of'), $title, $author_text,
+			lang('project_launch_template_this_is_a_librivox_recording')), "[/quote]\n";
 		echo "\n";
 		echo lang('project_launch_template_end_of_file'), "\n";
-		echo lang('project_launch_template_end_of_act'), "\n";
+		echo '[quote]', lang('project_launch_template_end_of_act'), "[/quote]\n";
 		echo "\n";
 		echo lang('project_launch_template_if_final_section'), "\n";
-		echo sprintf(lang('project_launch_template_end_of_title'), $title, $author_text), "\n";
+		echo '[quote]', sprintf(lang('project_launch_template_end_of_title'), $title, $author_text), "[/quote]\n";
 		echo "\n";
 		echo lang('project_launch_template_end_silence'), "\n";
 	}

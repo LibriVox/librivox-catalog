@@ -20,12 +20,13 @@ $lang['project_launch_template_temp_paragraph'] = 'This paragraph is temporary a
 $lang['project_launch_template_author_wiki'] = 'Link to author on Wikipedia (if available):';
 $lang['project_launch_template_title_wiki'] = 'Link to title on Wikipedia (if available):';
 $lang['project_launch_template_num_sections'] = 'Number of sections (files) this project will have:';
-$lang['project_launch_template_has_preface'] = 'Does the project have an introduction or preface [y/n]:';
+$lang['project_launch_template_has_preface'] = 'Does the project have an introduction or preface:';
 $lang['project_launch_template_orig_pub_date'] = 'Original publication date (if known):';
 $lang['project_launch_template_name_credit'] = 'If you are a new volunteer, how would you like your name (or pseudonym) credited in the catalog?';
 $lang['project_launch_template_self_url'] = 'Do you have a URL you would like associated with your name?:';
 $lang['project_launch_template_genres'] = 'Genres for the project:';
 $lang['project_launch_template_keywords'] = 'Keywords that describe the book:';
+$lang['project_launch_recording_settings'] = '[b]LibriVox recording settings:[/b] mono (1 channel), 44100 Hz sample rate, 128 kbps constant bit rate MP3. See the [url=https://wiki.librivox.org/index.php?title=Tech_Specs]Tech Specs[/url]';
 $lang['project_launch_template_reader_will_record'] = 'The reader will record the following at the beginning and end of each file:';
 $lang['project_launch_template_seconds_of_silence'] = 'Leave 0.5 to 1 second of silence at the beginning.';
 $lang['project_launch_template_before_recording'] = 'BEFORE recording:';
