@@ -76,25 +76,25 @@ function copyright_notice($fields)
 	return $notice;
 }
 
-function create_array_from_lang($check_string, $array_keys, $alpha = false)
+function create_array_from_lang($check_string, $lang, $alpha = false)
 {
-		//$check_string = 'proj_launch_project_';
-		$raw_array = array_flip(array_filter($array_keys, function($key) use ($check_string) {return (substr($key, 0,  strlen($check_string) ) == $check_string);}));
-		foreach ($raw_array as $key =>$value)
-		{
-			$clean_key = substr($key, strlen($check_string));
-			$values[$clean_key] = $value;
-		}
+	$check_len = strlen($check_string);
+	$values = array();
 
-		if ($alpha)
-		{
-			//asort($values);
-			array_multisort(array_map('sortify', $values), $values);
-		}
+	foreach ($lang as $key => $value)
+	{
+		if (substr($key, 0, $check_len) == $check_string)
+			$values[substr($key, $check_len)] = $value;
+	}
 
-		return $values;
+	if ($alpha)
+	{
+		//asort($values);
+		array_multisort(array_map('sortify', $values), $values);
+	}
+
+	return $values;
 }
-
 
 function sortify($string)
 {
