@@ -299,7 +299,7 @@
                <div class="control-group">
                  <div class="controls center" style="margin-left: 600px;">
                      <button class="btn btn-tiny btn-primary" type="reset"><?= lang('proj_launch_clear_form')?></button>
-                     <button id="generate_form_submit" class="btn btn-large btn-primary">
+                     <button id="generate_form_submit" class="btn btn-large btn-primary" type="button">
                          <span class="submit_top_line"><?= lang('proj_launch_submit')?></span><br />
                          <span class="submit_bottom_line"><?= lang('proj_launch_submit_2')?></span>
                       </button>
