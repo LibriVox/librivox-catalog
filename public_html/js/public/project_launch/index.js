@@ -3,16 +3,6 @@
  */
 $(document).ready(function(){
 
-    $('form').bind("keypress", function(e) {
-        var code = e.keyCode || e.which; 
-        if (code  == 13) {               
-            e.preventDefault();
-            return false;
-        }
-    });
-
-
-
     //we'd like to completely clear the author data (including id) if the first or last name is deleted
     $('form').bind("keydown", function(e) {  //NOT keypress
         var code = e.keyCode || e.which; 
@@ -118,6 +108,13 @@ $(document).ready(function(){
 		this.form.reset();
 		reset();
 		return false;
+	});
+
+	$('#generate_form_submit').click(function() {
+		var $form = $("#add_project");
+		if($form.validate().form()) {
+			$form.submit();
+		}
 	});
 
     $("#add_project").validate({
