@@ -1,5 +1,4 @@
 <?php
-
 $lang['project_launch_template_solo_project_template'] = 'Modello per progetto solista';
 $lang['project_launch_template_summary_by'] = 'Riassunto di';
 $lang['project_launch_template_trans_by'] = 'Tradotto da';
@@ -44,7 +43,7 @@ $lang['project_launch_template_end_of_recording'] = 'ALLA FINE della registrazio
 $lang['project_launch_template_end_of_section'] = 'Alla fine di ogni sezione, devi dire:';
 $lang['project_launch_template_end_of_chapter'] = '"Fine del [Capitolo]"';
 $lang['project_launch_template_end_of_book'] = 'Alla fine del libro devi dire in aggiunta:';
-$lang['project_launch_template_end_of_title'] = '"Fine di %s, di %s. %s"';
+$lang['project_launch_template_end_of_title'] = '"Fine di %s, di %s."';
 $lang['project_launch_template_end_silence'] = 'Per favore lascia ~5 secondi alla fine della tua registrazione.';
 $lang['project_launch_template_example_filename'] = 'Salva i files come';
 $lang['project_launch_template_example_tags'] = 'Esempio di tag ID3 V2';
@@ -64,9 +63,7 @@ $lang['project_launch_template_how_to_claim_part_2'] = 'Per trovare una sezione 
 $lang['project_launch_template_new_to_recording'] = 'È la tua prima registrazione?';
 $lang['project_launch_template_please_read_guide'] = 'Per favore leggi la nostra [url=https://wiki.librivox.org/index.php/Newbie_Guide_to_Recording]Newbie Guide to Recording[/url]!';
 $lang['project_launch_template_is_there_deadline'] = 'C\'è un termine ultimo?';
-$lang['project_launch_template_is_there_deadline_answer'] = 'Ti chiediamo di inviare la registrazione delle sezioni da te scelte entro 1-2 mesi dalla richiesta (o entro il termine ultimo, se questo cade prima). Per favore nota che, per rispetto ai lettori che hanno completato in tempo le loro sezioni, se dopo due mesi non avrai ancora inviato le tue sezioni, queste saranno automaticamente rimesse a disposizione degli altri volontari, a meno che non invii qui un messaggio per chiedere una dilazione. Le dilazioni saranno concesse a discrezione del Book Coordinator. Se, per qualsiasi ragione, non puoi completare le tue sezioni, faccelo sapere, in modo da poterle rimettere in gioco. Non c\'è da vergognarsi: siamo tutti volontari e imprevisti possono sempre accadere.
-
-';
+$lang['project_launch_template_is_there_deadline_answer'] = 'Ti chiediamo di inviare la registrazione delle sezioni da te scelte entro 1-2 mesi dalla richiesta (o entro il termine ultimo, se questo cade prima). Per favore nota che, per rispetto ai lettori che hanno completato in tempo le loro sezioni, se dopo due mesi non avrai ancora inviato le tue sezioni, queste saranno automaticamente rimesse a disposizione degli altri volontari, a meno che non invii qui un messaggio per chiedere una dilazione. Le dilazioni saranno concesse a discrezione del Book Coordinator. Se, per qualsiasi ragione, non puoi completare le tue sezioni, faccelo sapere, in modo da poterle rimettere in gioco. Non c\'è da vergognarsi: siamo tutti volontari e imprevisti possono sempre accadere.';
 $lang['project_launch_template_is_there_deadline_answer_2'] = 'Si prega di non sottoscrivere più sezioni di quelle completabili entro il termine di due mesi.';
 $lang['project_launch_template_where_is_text'] = 'Dove trovo il testo?';
 $lang['project_launch_template_where_is_text_answer'] = 'Fonte (per favore per la lettura usa solo questo testo!):';

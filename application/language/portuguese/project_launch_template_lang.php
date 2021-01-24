@@ -1,5 +1,4 @@
 <?php
-
 $lang['project_launch_template_solo_project_template'] = 'Modelo para projeto solo';
 $lang['project_launch_template_summary_by'] = 'Resumo escrito por';
 $lang['project_launch_template_trans_by'] = '';
@@ -13,8 +12,7 @@ $lang['project_launch_template_author_line'] = '[color=indigo][size=150][b]%s de
 $lang['project_launch_template_target_completion_date'] = 'Data de término do projeto';
 $lang['project_launch_template_text_source'] = 'Texto-fonte (leia apenas a partir deste texto!)';
 $lang['project_launch_template_type_of_proof'] = 'Tipo de revisão de áudio solicitada (Nota: por favor leia o [url=https://forum.librivox.org/viewtopic.php?f=21&t=17680]PL FAQ[/url]):';
-$lang['project_launch_template_soloist_note'] = '[b]IMPORTANTE - solista, por favor observe: [/b]com o intuito de limitar a quantidade de projetos incompletos (e, com isso, o número de arquivos em nosso servidor), nós pedimos que você poste uma mensagem pelo menos uma vez por mês, informando sobre o andamento do seu projeto, mesmo que você não tenha gravado nada. Se você não deixar nenhuma mensagem em seu projeto por três meses, o projeto será considerado órfão e reaberto como colaborativo assim que houver um coordenador disponível. Seus arquivos completados serão usados no projeto. Se você ainda não tiver gravado nenhuma seção, o projeto será removido do fórum (contate um administrador para recomeçá-lo).
-';
+$lang['project_launch_template_soloist_note'] = '[b]IMPORTANTE - solista, por favor observe: [/b]com o intuito de limitar a quantidade de projetos incompletos (e, com isso, o número de arquivos em nosso servidor), nós pedimos que você poste uma mensagem pelo menos uma vez por mês, informando sobre o andamento do seu projeto, mesmo que você não tenha gravado nada. Se você não deixar nenhuma mensagem em seu projeto por três meses, o projeto será considerado órfão e reaberto como colaborativo assim que houver um coordenador disponível. Seus arquivos completados serão usados no projeto. Se você ainda não tiver gravado nenhuma seção, o projeto será removido do fórum (contate um administrador para recomeçá-lo).';
 $lang['project_launch_template_please_dont_download'] = 'Por favor, não descarregue arquivos pertencentes a projetos em andamento (exceto se você for o Coordenador do Projeto ou o Revisor de Áudio). Nossos servidores não estão preparados para lidar com grande volume de tráfego de dados. Por favor aguarde até que o projeto esteja completo. Obrigado!';
 $lang['project_launch_template_temp_paragraph'] = 'Este parágrafo é temporário e será substituído pela lista de seções e leitores (Magic Window) quando o projeto for incluído no sistema.';
 $lang['project_launch_template_author_wiki'] = 'Link para página do autor na Wikipedia (se houver):';
@@ -37,8 +35,7 @@ $lang['project_launch_template_if_you_wish'] = 'Se desejar, diga:';
 $lang['project_launch_template_recording_by'] = '"Gravado por [seu nome], [cidade, blog, podcast, endereço virtual]"';
 $lang['project_launch_template_say'] = 'Diga:';
 $lang['project_launch_template_author_intro'] = '"%s, de %s. %s [capítulo]"';
-$lang['project_launch_template_shortened_intro'] = 'No segundo capítulo e todos os subsequentes, você tem a opção de usar uma versão reduzida desta introdução:
-';
+$lang['project_launch_template_shortened_intro'] = 'No segundo capítulo e todos os subsequentes, você tem a opção de usar uma versão reduzida desta introdução:';
 $lang['project_launch_template_public_domain'] = '"Capítulo [número] de %s de %s. Esta gravação LibriVox está em domínio público."';
 $lang['project_launch_template_if_applicable'] = 'Se adequado, diga:';
 $lang['project_launch_template_chapter_title'] = '"[Título do capítulo]"';
@@ -46,7 +43,7 @@ $lang['project_launch_template_end_of_recording'] = 'FIM da gravação';
 $lang['project_launch_template_end_of_section'] = 'Ao final da seção, diga:';
 $lang['project_launch_template_end_of_chapter'] = '"Fim do [capítulo]"';
 $lang['project_launch_template_end_of_book'] = 'Ao final do livro, diga também:';
-$lang['project_launch_template_end_of_title'] = '"Fim de %s, de %s. %s"';
+$lang['project_launch_template_end_of_title'] = '"Fim de %s, de %s."';
 $lang['project_launch_template_end_silence'] = 'Por favor, deixe ~5 segundos de silêncio ao final de sua gravação.';
 $lang['project_launch_template_example_filename'] = 'Exemplo de nome de arquivo';
 $lang['project_launch_template_example_tags'] = 'Exemplo de ID3 V2 tags';
@@ -129,5 +126,4 @@ $lang['project_launch_template_id3_tags_add'] = '';
 $lang['project_launch_template_tags_ignore'] = '';
 $lang['project_launch_template_act_number'] = '';
 $lang['project_launch_template_section_number'] = '';
-$lang[''] = '';
 ?>

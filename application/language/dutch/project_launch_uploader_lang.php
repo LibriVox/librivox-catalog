@@ -1,10 +1,5 @@
 <?php
-
-$lang['proj_launch_uploader_intro'] = 'Gebruik deze pagina om je bestanden te uploaden als je klaar bent met inspreken en editen.
-
-Je kunt alleen .mp3, .wav, .flac, .zip en .txt bestanden uploaden. Maximale grootte is 100 MB.
-
-De tijdelijke URLs die deze uploader oplevert zijn ALLEEN voor intern gebruik voor LibriVox. Gebruik ze a.u.b. NIET als links op andere websites en deel ze niet met niet-LibriVox mensen.';
+$lang['proj_launch_uploader_intro'] = 'Gebruik deze pagina om je bestanden te uploaden als je klaar bent met inspreken en editen. Je kunt alleen .mp3, .wav, .flac, .zip en .txt bestanden uploaden. Maximale grootte is 100 MB. De tijdelijke URLs die deze uploader oplevert zijn ALLEEN voor intern gebruik voor LibriVox. Gebruik ze a.u.b. NIET als links op andere websites en deel ze niet met niet-LibriVox mensen.';
 $lang['proj_launch_uploader_instructions'] = 'Instructies';
 $lang['proj_launch_uploader_instruct_1'] = 'Gebruik de knop "Add files" om het bestand of de bestanden te selecteren die je wilt uploaden. Je kunt meerdere bestanden tegelijk uploaden, zolang ze allemaal bij hetzelfde project horen.';
 $lang['proj_launch_uploader_instruct_2'] = 'Kies de MC voor je project uit het keuzemenu.';

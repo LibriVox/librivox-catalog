@@ -1,10 +1,5 @@
 <?php
-
-$lang['proj_launch_uploader_intro'] = 'Cuando haya terminado de grabar su audiolibro, por favor use esta página para subir sus fichas.
-
-Solo puede subir fichas de formato .mp3, .wav, .flac, .zip, y .txt. El límite de tamaño es 100MB.
-
-Los enlaces provisionales que le dará este uploader son EXCLUSIVAMENTE para uso interno de LibriVox. Favor de NO pegarlos en cualquier otro sitio, ni de compartirlos con personas no afiliadas con LibriVox.';
+$lang['proj_launch_uploader_intro'] = 'Cuando haya terminado de grabar su audiolibro, por favor use esta página para subir sus fichas. Solo puede subir fichas de formato .mp3, .wav, .flac, .zip, y .txt. El límite de tamaño es 100MB. Los enlaces provisionales que le dará este uploader son EXCLUSIVAMENTE para uso interno de LibriVox. Favor de NO pegarlos en cualquier otro sitio, ni de compartirlos con personas no afiliadas con LibriVox.';
 $lang['proj_launch_uploader_instructions'] = 'Instrucciones';
 $lang['proj_launch_uploader_instruct_1'] = 'Use el botón "Add Files" para escoger las fichas en su computadora/ordinador. Puede escoger multiples fichas, con tal de que todas pertenezcan al mismo proyecto.';
 $lang['proj_launch_uploader_instruct_2'] = 'Escoja al MC de su proyecto del menú.';

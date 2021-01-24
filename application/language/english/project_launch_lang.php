@@ -1,5 +1,4 @@
 <?php
-
 $lang['proj_launch_intro_header'] = 'LIBRIVOX: NEW PROJECT TEMPLATE GENERATOR';
 $lang['proj_launch_intro_1'] = 'WELCOME! to the LibriVox New Project Template Generator';
 $lang['proj_launch_intro_2'] = 'Please fill in as much information as you can below';

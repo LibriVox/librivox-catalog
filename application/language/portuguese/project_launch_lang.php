@@ -1,5 +1,4 @@
 <?php
-
 $lang['proj_launch_intro_header'] = '';
 $lang['proj_launch_intro_1'] = '';
 $lang['proj_launch_intro_2'] = '';
@@ -125,5 +124,4 @@ $lang['proj_launch_soloist_link_2'] = 'Se você não indicar uma outra página, 
 $lang['proj_launch_submit'] = 'Enviar.';
 $lang['proj_launch_submit_2'] = '';
 $lang['proj_launch_clear_form'] = 'Limpar o formulário.';
-$lang[''] = '';
 ?>

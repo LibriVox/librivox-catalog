@@ -1,5 +1,4 @@
 <?php
-
 $lang['project_launch_template_solo_project_template'] = 'Sjabloon voor een soloproject';
 $lang['project_launch_template_summary_by'] = 'Samenvatting door';
 $lang['project_launch_template_trans_by'] = 'Vertaald door';
@@ -13,18 +12,15 @@ $lang['project_launch_template_author_line'] = '[color=indigo][size=150][b] %s d
 $lang['project_launch_template_target_completion_date'] = 'Streefdatum';
 $lang['project_launch_template_text_source'] = 'Tekstbron (lees alleen van deze tekst!):';
 $lang['project_launch_template_type_of_proof'] = 'Gewenste soort van proefluisteren (Lees a.u.b. de [url=https://forum.librivox.org/viewtopic.php?f=21&t=17680]PL FAQ[/url]):';
-$lang['project_launch_template_soloist_note'] = 'NOTA BENE: Beste solist, we willen voorkomen dat onze zwaarbelaste server volstroomt met bestanden van projecten die nooit af komen omdat de inspreker verdwenen is. Laat ons daarom alsjeblieft tenminste één keer per maand weten dat je er nog bent, en nog van plan bent het project af te maken. Doe dit door het plaatsen van een berichtje in deze forumdraad. Zelfs als het je niet gelukt is om iets nieuws in te spreken, willen we graag van je horen. Als we drie maanden niets van je gehoord hebben, zou je project omgezet kunnen worden in een groepsproject. Bestanden die je al hebt ingestuurd zullen dan in dat groepsproject gebruikt worden. Als er nog geen bestanden zijn, zal het project verwijderd worden van het forum (neem dan contact op met een admin om te kijken of het hersteld kan worden als je later van gedachten verandert).
-';
-$lang['project_launch_template_please_dont_download'] = 'Wilt u a.u.b. geen bestanden downloaden van lopende projecten (tenzij u medewerker bent van het project). Onze servers hebben niet voldoende capaciteit om grote hoeveelheden verkeer af te handelen. Wacht tot de voltooiing van het project. Bedankt!
-';
+$lang['project_launch_template_soloist_note'] = 'NOTA BENE: Beste solist, we willen voorkomen dat onze zwaarbelaste server volstroomt met bestanden van projecten die nooit af komen omdat de inspreker verdwenen is. Laat ons daarom alsjeblieft tenminste één keer per maand weten dat je er nog bent, en nog van plan bent het project af te maken. Doe dit door het plaatsen van een berichtje in deze forumdraad. Zelfs als het je niet gelukt is om iets nieuws in te spreken, willen we graag van je horen. Als we drie maanden niets van je gehoord hebben, zou je project omgezet kunnen worden in een groepsproject. Bestanden die je al hebt ingestuurd zullen dan in dat groepsproject gebruikt worden. Als er nog geen bestanden zijn, zal het project verwijderd worden van het forum (neem dan contact op met een admin om te kijken of het hersteld kan worden als je later van gedachten verandert).';
+$lang['project_launch_template_please_dont_download'] = 'Wilt u a.u.b. geen bestanden downloaden van lopende projecten (tenzij u medewerker bent van het project). Onze servers hebben niet voldoende capaciteit om grote hoeveelheden verkeer af te handelen. Wacht tot de voltooiing van het project. Bedankt!';
 $lang['project_launch_template_temp_paragraph'] = 'Deze paragraaf is tijdelijk en zal vervangen worden door de MC met de lijst van secties en lezers (Magic Window) zodra het project in het adminsysteem is geplaatst.';
 $lang['project_launch_template_author_wiki'] = 'Link naar auteur op wikipedia (wanneer beschikbaar):';
 $lang['project_launch_template_title_wiki'] = 'Link naar boek op wikipedia (wanneer beschikbaar):';
 $lang['project_launch_template_num_sections'] = 'Aantal secties (bestanden) voor dit project:';
 $lang['project_launch_template_has_preface'] = 'Heeft dit project een introductie of voorwoord:';
 $lang['project_launch_template_orig_pub_date'] = 'Jaar van eerste publicatie (voor zover bekend):';
-$lang['project_launch_template_name_credit'] = 'Als je nieuw bent als vrijwilliger: hoe wil je dat je naam (of pseudoniem) in de catalogus vermeld zal worden:
-';
+$lang['project_launch_template_name_credit'] = 'Als je nieuw bent als vrijwilliger: hoe wil je dat je naam (of pseudoniem) in de catalogus vermeld zal worden:';
 $lang['project_launch_template_self_url'] = 'Je kunt ook een url opgeven om je naam naar te linken (persoonlijke blog of website):';
 $lang['project_launch_template_genres'] = 'Genres voor dit project:';
 $lang['project_launch_template_keywords'] = 'Steekwoorden die het boek beschrijven:';
@@ -47,7 +43,7 @@ $lang['project_launch_template_end_of_recording'] = 'Einde van de opname';
 $lang['project_launch_template_end_of_section'] = 'Zeg aan het einde van de opname:';
 $lang['project_launch_template_end_of_chapter'] = 'Einde van [hoofdstuk]';
 $lang['project_launch_template_end_of_book'] = 'Voeg extra toe bij het einde van het boek:';
-$lang['project_launch_template_end_of_title'] = 'Einde van %s, door %s. %s';
+$lang['project_launch_template_end_of_title'] = 'Einde van %s, door %s.';
 $lang['project_launch_template_end_silence'] = 'Voeg ~5 seconden stilte toe aan het einde van je opname.';
 $lang['project_launch_template_example_filename'] = 'Voorbeeld bestandsnaam';
 $lang['project_launch_template_example_tags'] = 'Voorbeeld ID3 V2 tags';
@@ -58,8 +54,7 @@ $lang['project_launch_template_transfer_of_files'] = 'Overdracht van bestanden (
 $lang['project_launch_template_please_post'] = 'Vergeet niet om een post te maken als je een bestand hebt ingestuurd.';
 $lang['project_launch_template_please_post_length'] = 'Geef ook de lengte op van het bestand (tijdsaanduiding: mm:ss) en de gegeven link';
 $lang['project_launch_template_upload_with_uploader'] = 'Stuur je bestand op met de LibriVox Uploader:';
-$lang['project_launch_template_if_you_have_trouble'] = '(Als je de afbeelding hierboven niet kunt lezen, stuur een berichtje naar een admin) 
-';
+$lang['project_launch_template_if_you_have_trouble'] = '(Als je de afbeelding hierboven niet kunt lezen, stuur een berichtje naar een admin)';
 $lang['project_launch_template_select_mc'] = 'Je zult de MC moeten kiezen; voor dit project is dat:';
 $lang['project_launch_template_please_post_link'] = 'Kopieer de link die deze Uploader je geeft in een berichtje in deze forumdraad.';
 $lang['project_launch_template_please_check_send_recording'] = 'Als dit niet werkt, of als je vragen hebt: meer informatie hier (in het Engels): [url=https://wiki.librivox.org/index.php/How_to_Send_Your_Recording]How To Send Your Recording wiki page[/url]';
@@ -74,8 +69,7 @@ $lang['project_launch_template_where_is_text'] = 'Waar vind ik de tekst?';
 $lang['project_launch_template_where_is_text_answer'] = 'Brontekst (lees aub alleen van deze tekst!):';
 $lang['project_launch_template_claim_sections'] = 'Kies secties (de nummers in de eerste kolom hieronder)!';
 $lang['project_launch_template_what_name'] = 'Als dit je eerste opname voor LibriVox is, laat me aub weten onder welke naam of pseudoniem je vermeld wilt worden in de LibriVox catalogus. We kunnen ook een link naar een persoonlijke website/blog plaatsen.';
-$lang['project_launch_template_proof_listeners'] = 'Wil je graag proefluisteren? (PL-ers): lees de [url=https://forum.librivox.org/viewtopic.php?f=21&t=17680]Listeners Wanted FAQ[/url] voor je begint! (Alleen beschikbaar in het Engels, je kunt ook hier om advies vragen als je twijfelt.) Soort proefluisteren gewenst:
-';
+$lang['project_launch_template_proof_listeners'] = 'Wil je graag proefluisteren? (PL-ers): lees de [url=https://forum.librivox.org/viewtopic.php?f=21&t=17680]Listeners Wanted FAQ[/url] voor je begint! (Alleen beschikbaar in het Engels, je kunt ook hier om advies vragen als je twijfelt.) Soort proefluisteren gewenst:';
 $lang['project_launch_template_claim_role'] = 'Kies rollen (de nummers in de eerste kolom hieronder)! Attentie: Alle opnamen van LibriVox worden rechtenvrij uitgegeven. Als je een opname aan ons stuurt, geef je daarmee aan dat je afstand doet van je rechten.';
 $lang['project_launch_template_first_recording'] = 'Als dit je eerste opname voor LibriVox is, laat me aub weten onder welke naam of pseudoniem je vermeld wilt worden in de LibriVox catalogus. We kunnen ook een link naar een persoonlijke website/blog plaatsen.';
 $lang['project_launch_template_check_notes'] = 'Lees de volgende tips voor het opnemen door (in Engels):';
@@ -87,7 +81,7 @@ $lang['project_launch_template_one_file_per_act'] = 'Maak per acte één bestand
 $lang['project_launch_template_add_to_beginning'] = 'Zorg dat je dit toevoegt aan het begin van je opname:';
 $lang['project_launch_template_read_by'] = '[Rol], gelezen door [jouw naam].';
 $lang['project_launch_template_read_stage_directions'] = 'Als je de toneelaanwijzingen voorleest, voeg dan aan ieder bestand het volgende toe:';
-$lang['project_launch_template_drama_at_beginning'] = '[i]Aan het begin:[/i] Acte [#] van %s, door $s. %s';
+$lang['project_launch_template_drama_at_beginning'] = '[i]Aan het begin:[/i] Acte [#] van %s, door %s. %s';
 $lang['project_launch_template_drama_at_end_of_act'] = '[i]Aan het einde:[/i] Einde van acte [x]';
 $lang['project_launch_template_drama_at_end_of_play'] = '[i]Voeg toe aan het einde van het toneelstuk:[/i] Einde van %s, door %s, %s';
 $lang['project_launch_template_check_for_updates'] = 'Denk er a.u.b. aan om deze draad geregeld na te lezen voor eventuele wijzigingen!';

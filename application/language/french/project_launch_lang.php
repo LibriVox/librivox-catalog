@@ -1,5 +1,4 @@
 <?php
-
 $lang['proj_launch_intro_header'] = 'LIBRIVOX : GÉNÉRATEUR DE CANEVAS POUR NOUVEAU PROJET';
 $lang['proj_launch_intro_1'] = 'BIENVENUE sur le générateur de canevas pour nouveau projet de LibriVox !';
 $lang['proj_launch_intro_2'] = 'Merci de compléter autant d\'informations que possible';
@@ -51,8 +50,7 @@ $lang['proj_launch_month_3'] = 'Mars';
 $lang['proj_launch_month_4'] = 'Avril';
 $lang['proj_launch_month_5'] = 'Mai';
 $lang['proj_launch_month_6'] = 'Juin';
-$lang['proj_launch_month_7'] = 'Juillet
-';
+$lang['proj_launch_month_7'] = 'Juillet';
 $lang['proj_launch_month_8'] = 'Août';
 $lang['proj_launch_month_9'] = 'Septembre';
 $lang['proj_launch_month_10'] = 'Octobre';
