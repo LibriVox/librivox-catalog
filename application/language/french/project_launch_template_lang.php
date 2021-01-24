@@ -1,5 +1,4 @@
 <?php
-
 $lang['project_launch_template_solo_project_template'] = 'Canevas pour projet solo';
 $lang['project_launch_template_summary_by'] = 'Résumé par';
 $lang['project_launch_template_trans_by'] = 'Traduit par';
@@ -32,8 +31,7 @@ $lang['project_launch_template_start_of_recording'] = 'DÉBUT de l\'enregistreme
 $lang['project_launch_template_middle_of_recording'] = 'PENDANT l\'enregistrement (intro)';
 $lang['project_launch_template_after_recording'] = 'APRÈS l\'enregistrement';
 $lang['project_launch_template_chapter_number'] = '"Chapitre [numéro] de %s. Ceci est un enregistrement LibriVox. Tous nos enregistrements appartiennent au domaine public. Pour vous renseigner à notre sujet ou pour participer, rendez-vous sur LibriVox POINT org."';
-$lang['project_launch_template_if_you_wish'] = 'Si vous le souhaitez, dites : 
-';
+$lang['project_launch_template_if_you_wish'] = 'Si vous le souhaitez, dites:';
 $lang['project_launch_template_recording_by'] = '« Enregistré par [votre nom], [ville, blog, podcast, page web] »';
 $lang['project_launch_template_say'] = 'Dites:';
 $lang['project_launch_template_author_intro'] = '"%s, by %s. %s [Chapitre]"';
@@ -45,7 +43,7 @@ $lang['project_launch_template_end_of_recording'] = 'FIN de l\'enregistrement';
 $lang['project_launch_template_end_of_section'] = 'À la fin de la section, dites:';
 $lang['project_launch_template_end_of_chapter'] = '« Fin du [chapitre] »';
 $lang['project_launch_template_end_of_book'] = 'À la fin du livre, dites (en plus):';
-$lang['project_launch_template_end_of_title'] = '"Fin de %s, par %s. %s"';
+$lang['project_launch_template_end_of_title'] = '"Fin de %s, par %s."';
 $lang['project_launch_template_end_silence'] = 'Veuillez laisser ~5 secondes de silence à la fin de l’enregistrement.';
 $lang['project_launch_template_example_filename'] = 'Exemple de nom de fichier (merci de ne pas utiliser d\'accents!)';
 $lang['project_launch_template_example_tags'] = 'Exemple de balises ID3 V2';
@@ -53,8 +51,7 @@ $lang['project_launch_template_title'] = 'Titre:';
 $lang['project_launch_template_artist'] = 'Artiste:';
 $lang['project_launch_template_album'] = 'Album:';
 $lang['project_launch_template_transfer_of_files'] = 'Transfert des fichiers (enregistrements terminés)';
-$lang['project_launch_template_please_post'] = 'Merci de toujours poster une note dans ce fil lorsque vous avez envoyé un fichier. 
-';
+$lang['project_launch_template_please_post'] = 'Merci de toujours poster une note dans ce fil lorsque vous avez envoyé un fichier.';
 $lang['project_launch_template_please_post_length'] = 'Ce faisant, n\'oubliez pas d\'indiquer la durée de l\'enregistrement (mm:ss).';
 $lang['project_launch_template_upload_with_uploader'] = 'Chargez votre fichier sur le télépartageur de LibriVox:';
 $lang['project_launch_template_if_you_have_trouble'] = '(Si vous avez des difficultés pour visualiser cette image, veuillez écrire à un admin).';
@@ -66,8 +63,7 @@ $lang['project_launch_template_how_to_claim_part_2'] = 'Pour trouver un chapitre
 $lang['project_launch_template_new_to_recording'] = 'C\'est votre premier enregistrement?';
 $lang['project_launch_template_please_read_guide'] = 'Merci de lire notre [url=https://wiki.librivox.org/index.php/Guide_pour_les_d%E9butants]Guide pour les débutants[/url]';
 $lang['project_launch_template_is_there_deadline'] = 'Y a-t-il une échéance?';
-$lang['project_launch_template_is_there_deadline_answer'] = 'Nous vous demandons d\'envoyer vos enregistrements dans un délai de 1-2 mois à dater du jour où vous avez demandé une section (ou pour la date d\'échéance du projet, si celle-ci est plus proche). [color=red]Merci de noter que, par souci de justesse envers les lecteurs qui ont terminé leurs sections dans les temps, si vous n\'avez pas envoyé vos enregistrements après deux mois, vos sections seront automatiquement rendues disponibles pour d\'autres lecteurs qui pourront les demander. Ceci à moins que vous n\'ayez demandé un délai supplémentaire en postant une note dans ce fil de discussion. [/color] Le BC (coordinateur du projet) aura la liberté d\'accorder ce délai ou non. 
-Si, pour une raison ou l\'autre, vous ne pouvez pas enregistrer votre section, faites-le moi savoir et je la rendrai de nouveau disponible. Il n\'y a aucune honte à avoir. Nous sommes tous bénévoles et tout peut arriver.';
+$lang['project_launch_template_is_there_deadline_answer'] = 'Nous vous demandons d\'envoyer vos enregistrements dans un délai de 1-2 mois à dater du jour où vous avez demandé une section (ou pour la date d\'échéance du projet, si celle-ci est plus proche). [color=red]Merci de noter que, par souci de justesse envers les lecteurs qui ont terminé leurs sections dans les temps, si vous n\'avez pas envoyé vos enregistrements après deux mois, vos sections seront automatiquement rendues disponibles pour d\'autres lecteurs qui pourront les demander. Ceci à moins que vous n\'ayez demandé un délai supplémentaire en postant une note dans ce fil de discussion. [/color] Le BC (coordinateur du projet) aura la liberté d\'accorder ce délai ou non. Si, pour une raison ou l\'autre, vous ne pouvez pas enregistrer votre section, faites-le moi savoir et je la rendrai de nouveau disponible. Il n\'y a aucune honte à avoir. Nous sommes tous bénévoles et tout peut arriver.';
 $lang['project_launch_template_is_there_deadline_answer_2'] = 'Merci de ne pas demander plus de sections que vous ne pouvez en compléter en deux mois.';
 $lang['project_launch_template_where_is_text'] = 'Où trouver le texte?';
 $lang['project_launch_template_where_is_text_answer'] = 'texte électronique (merci de ne lire qu\'à partir de cette source-ci!):';

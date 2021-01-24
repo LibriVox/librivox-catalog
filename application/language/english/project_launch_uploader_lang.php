@@ -1,10 +1,5 @@
 <?php
-
-$lang['proj_launch_uploader_intro'] = 'When you have finished recording and editing, please use this page to upload your files.
-
-You can only upload .mp3, .wav, .flac, .zip and .txt files. The size limit is 100MB.
-
-The temporary URLs given out by this uploader are for internal LibriVox use ONLY. Please do NOT post them to any site other than the LibriVox forum and do not share them with non-LibriVox people.';
+$lang['proj_launch_uploader_intro'] = 'When you have finished recording and editing, please use this page to upload your files. You can only upload .mp3, .wav, .flac, .zip and .txt files. The size limit is 100MB. The temporary URLs given out by this uploader are for internal LibriVox use ONLY. Please do NOT post them to any site other than the LibriVox forum and do not share them with non-LibriVox people.';
 $lang['proj_launch_uploader_instructions'] = 'Instructions';
 $lang['proj_launch_uploader_instruct_1'] = 'Use the "Add files" button to select the file(s) from your computer. You can upload multiple files at once, as long as they are all for the same project.';
 $lang['proj_launch_uploader_instruct_2'] = 'Choose the MC for your project from the dropdown list.';

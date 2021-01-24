@@ -1,5 +1,4 @@
 <?php
-
 $lang['project_launch_template_solo_project_template'] = 'Vorlage für Solo';
 $lang['project_launch_template_summary_by'] = 'Zusammenfassung von';
 $lang['project_launch_template_trans_by'] = 'Übersetzt von';
@@ -44,7 +43,7 @@ $lang['project_launch_template_end_of_recording'] = 'ENDE der Aufnahme';
 $lang['project_launch_template_end_of_section'] = 'Am Ende jedes Abschnittes sage:';
 $lang['project_launch_template_end_of_chapter'] = '"Ende von Abschnitt [Nummer]"';
 $lang['project_launch_template_end_of_book'] = 'Am Ende des Buches sage (zusätzlich):';
-$lang['project_launch_template_end_of_title'] = '"Ende von %s, von %s. %s"';
+$lang['project_launch_template_end_of_title'] = '"Ende von %s, von %s."';
 $lang['project_launch_template_end_silence'] = 'Lasse am Ende jeder Aufnahme ~5 Sekunden Stille.';
 $lang['project_launch_template_example_filename'] = 'Beispiel für den Dateinamen:';
 $lang['project_launch_template_example_tags'] = 'Beispiel für die ID3 V2 tags:';

@@ -129,7 +129,7 @@
 		echo "\n";
 		echo lang('project_launch_template_new_to_recording'), "\n";
 		echo "\n";
-		echo lang('project_launch_recording_settings'), "\n";
+		echo lang('project_launch_template_recording_settings'), "\n";
 		echo "\n";
 		echo lang('project_launch_template_begin_with_disclaimer'), "\n";
 		echo lang('project_launch_template_seconds_of_silence'), "\n";
@@ -195,7 +195,7 @@
 		echo "\n";
 		echo str_repeat('=', 40), "\n";
 		echo "\n";
-		echo lang('project_launch_recording_settings'), "\n";
+		echo lang('project_launch_template_recording_settings'), "\n";
 	}
 
 	if ($project_type == 'solo' || $project_type == 'collaborative')

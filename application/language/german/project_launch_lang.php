@@ -1,5 +1,4 @@
 <?php
-
 $lang['proj_launch_intro_header'] = 'LIBRIVOX: VORLAGEN GENERATOR FÜR NEUES PROJEKT';
 $lang['proj_launch_intro_1'] = 'WILLKOMMEN zum neuen LibriVox Vorlagen Generator';
 $lang['proj_launch_intro_2'] = 'Bitte gib so viele Informationen wie möglich unten an.';
@@ -125,3 +124,4 @@ $lang['proj_launch_soloist_link_2'] = 'Wenn Du keine URL angibst, wird Deine Kat
 $lang['proj_launch_submit'] = 'Weiter!';
 $lang['proj_launch_submit_2'] = 'Generiere meinen Forum-Code!';
 $lang['proj_launch_clear_form'] = 'Formular zurücksetzen';
+?>

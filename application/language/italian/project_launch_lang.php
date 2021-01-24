@@ -1,5 +1,4 @@
 <?php
-
 $lang['proj_launch_intro_header'] = 'LIBRIVOX: GENERATORE DI MODELLO PER NUOVO PROGETTO';
 $lang['proj_launch_intro_1'] = 'BENVENUTO! nel Generatore di Modello per Nuovo Progetto in LibriVox';
 $lang['proj_launch_intro_2'] = 'Inserisci di seguito il maggior numero di informazioni possibile';

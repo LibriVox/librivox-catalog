@@ -1,5 +1,4 @@
 <?php
-
 $lang['proj_launch_intro_header'] = 'LIBRIVOX: GENERADOR DE PLANTILLA PARA NUEVOS PROYECTOS';
 $lang['proj_launch_intro_1'] = 'BIENVENIDO! al Generador de Plantillas para Nuevos Proyectos de LibriVox';
 $lang['proj_launch_intro_2'] = 'Por favor asegurese de incluir toda la información que tenga.';

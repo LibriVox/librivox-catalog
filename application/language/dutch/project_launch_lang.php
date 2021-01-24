@@ -1,5 +1,4 @@
 <?php
-
 $lang['proj_launch_intro_header'] = 'LIBRIVOX: INVULFORMULIER VOOR NIEUWE PROJECTEN';
 $lang['proj_launch_intro_1'] = 'WELKOM! bij het LibriVox-invulformulier voor nieuwe projecten';
 $lang['proj_launch_intro_2'] = 'Vul a.u.b. hieronder zoveel mogelijk informatie in.';
@@ -35,7 +34,7 @@ $lang['proj_launch_trans_name'] = 'Naam';
 $lang['proj_launch_trans_dob'] = 'Geboortejaar';
 $lang['proj_launch_trans_dod'] = 'Jaar van overlijden';
 $lang['proj_launch_trans_last_name'] = 'Achternaam';
-$lang['proj_launch_brief_summary_1'] = 'Korte samenvatting van het boek ';
+$lang['proj_launch_brief_summary_1'] = 'Korte samenvatting van het boek';
 $lang['proj_launch_brief_summary_2'] = '(geen \'spoilers\'! geen copyright tekst!)';
 $lang['proj_launch_brief_summary_by'] = 'Samenvatting geschreven door';
 $lang['proj_launch_link_to_text_1'] = '<span class="red">*</span> Link naar tekst';
@@ -119,8 +118,7 @@ $lang['proj_launch_genre_westerns'] = 'Westerns';
 $lang['proj_launch_list_keywords_1'] = 'Geef een aantal steekwoorden op, die het boek beschrijven (deze worden gebruikt op de pagina van Archive).';
 $lang['proj_launch_list_keywords_2'] = 'Als je het boek nog niet goed kent, kun je je MC laten weten dat je dit nog zult aanleveren als je het boek ingesproken hebt.';
 $lang['proj_launch_list_keywords_3'] = 'Zet alsjeblieft ieder steekwoord op een nieuwe regel';
-$lang['proj_launch_soloist_name'] = 'Als je een solo wilt gaan doen, en je hebt nog niet eerder een catalogus-naam opgegeven: hoe wil je dat je naam (of pseudoniem) in de catalogus vermeld zal worden?
-';
+$lang['proj_launch_soloist_name'] = 'Als je een solo wilt gaan doen, en je hebt nog niet eerder een catalogus-naam opgegeven: hoe wil je dat je naam (of pseudoniem) in de catalogus vermeld zal worden?';
 $lang['proj_launch_soloist_link_1'] = 'Je kunt ook een url opgeven om je naam naar te linken (persoonlijke blog of website)';
 $lang['proj_launch_soloist_link_2'] = 'Als je geen url opgeeft, zal een link naar je persoonlijke cataloguspagina gebruikt worden.';
 $lang['proj_launch_submit'] = 'Volgende';

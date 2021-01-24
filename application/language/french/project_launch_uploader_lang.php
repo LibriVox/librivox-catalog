@@ -1,10 +1,5 @@
 <?php
-
-$lang['proj_launch_uploader_intro'] = 'Quand vous avez fini l\'enregistrement et l\'édition, merci d\'aller sur cette page pour charger vos fichiers.
-
-Vous ne pouvez charger que des fichiers .mp3, .wav, .flac, .zip et .txt. La taille limite est de 100MB.
-
-Les liens URLs temporaires fournis par l\'uploader sont à utiliser UNIQUEMENT pour usage interne à LibriVox. Veuillez NE PAS les poster sur d\'autre site que le forum de LibriVox et ne pas les partager avec qui que ce soit en dehors de LibriVox.';
+$lang['proj_launch_uploader_intro'] = 'Quand vous avez fini l\'enregistrement et l\'édition, merci d\'aller sur cette page pour charger vos fichiers. Vous ne pouvez charger que des fichiers .mp3, .wav, .flac, .zip et .txt. La taille limite est de 100MB. Les liens URLs temporaires fournis par l\'uploader sont à utiliser UNIQUEMENT pour usage interne à LibriVox. Veuillez NE PAS les poster sur d\'autre site que le forum de LibriVox et ne pas les partager avec qui que ce soit en dehors de LibriVox.';
 $lang['proj_launch_uploader_instructions'] = 'Instructions';
 $lang['proj_launch_uploader_instruct_1'] = 'Utilisez le bouton « Ajouter des fichiers » pour sélectionner un ou des fichiers de votre ordinateur. Vous pouvez charger plusieurs fichiers à la fois, pour autant qu\'ils fassent tous partie du même projet.';
 $lang['proj_launch_uploader_instruct_2'] = 'Choisissez le MC de votre projet dans la liste déroulante.';

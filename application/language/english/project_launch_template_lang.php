@@ -1,5 +1,4 @@
 <?php
-
 $lang['project_launch_template_solo_project_template'] = 'Solo Project Template';
 $lang['project_launch_template_summary_by'] = 'Summary by';
 $lang['project_launch_template_trans_by'] = 'translated by';
@@ -26,7 +25,7 @@ $lang['project_launch_template_name_credit'] = 'If you are a new volunteer, how 
 $lang['project_launch_template_self_url'] = 'Do you have a URL you would like associated with your name?:';
 $lang['project_launch_template_genres'] = 'Genres for the project:';
 $lang['project_launch_template_keywords'] = 'Keywords that describe the book:';
-$lang['project_launch_recording_settings'] = '[b]LibriVox recording settings:[/b] mono (1 channel), 44100 Hz sample rate, 128 kbps constant bit rate MP3. See the [url=https://wiki.librivox.org/index.php?title=Tech_Specs]Tech Specs[/url]';
+$lang['project_launch_template_recording_settings'] = '[b]LibriVox recording settings:[/b] mono (1 channel), 44100 Hz sample rate, 128 kbps constant bit rate MP3. See the [url=https://wiki.librivox.org/index.php?title=Tech_Specs]Tech Specs[/url]';
 $lang['project_launch_template_reader_will_record'] = 'The reader will record the following at the beginning and end of each file:';
 $lang['project_launch_template_seconds_of_silence'] = 'Leave 0.5 to 1 second of silence at the beginning.';
 $lang['project_launch_template_before_recording'] = 'BEFORE recording:';
@@ -48,7 +47,7 @@ $lang['project_launch_template_shortened_intro'] = 'For the second and subsequen
 $lang['project_launch_template_section_of_second'] = '"Section (or Chapter) [i]#[/i] of %s, by %s. This LibriVox recording is in the public domain."  [Optional: "Read by [i]your name[/i]."] "[i]Section Title.[/i]"';
 $lang['project_launch_template_end_of_section'] = '"End of section (or chapter) [i]#[/i]." [Optional, and if not stated in the intro: "Read by [i]your name, city, date[/i]."]';
 $lang['project_launch_template_if_final_section'] = 'If you are recording the final section of the book, add:';
-$lang['project_launch_template_end_of_title'] = '"End of %s, by %s"';
+$lang['project_launch_template_end_of_title'] = '"End of %s, by %s."';
 $lang['project_launch_template_end_silence'] = 'Leave 5 seconds of silence at the end.';
 $lang['project_launch_template_middle_of_recording'] = 'DURING recording';
 $lang['project_launch_template_after_recording'] = 'AFTER recording';
