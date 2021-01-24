@@ -2,7 +2,7 @@
 <head>
 	<title>Librivox Project iFrame</title>
 	<meta charset="utf-8">
-
+	<base target="_blank">
 
 	<style type="text/css">
 
