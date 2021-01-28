@@ -82,7 +82,7 @@
 		<?php endforeach; endif; ?>	
 
 		<?php if (!empty($project->url_project)): ?>
-			<p><a href="<?= $project->url_project ?>">Wikipedia Book - <?= create_full_title($project)?></a></p>
+			<p><a href="<?= $project->url_project ?>">Wikipedia - <?= create_full_title($project)?></a></p>
 		<?php endif; ?>
 
 		<?php if (!empty($project->project_urls)): foreach ($project->project_urls as $project_url): ?>
