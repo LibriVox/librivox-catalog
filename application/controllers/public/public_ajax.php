@@ -8,19 +8,20 @@ class Public_ajax extends Public_Controller
 		$this->lang_select();
 	}
 
-	// project launch autocomplete code
-	function add_project()
+	function autocomplete_author()
 	{
-		// Search term from jQuery
 		$term = $this->input->post('term');
 		$search_field = $this->input->post('search_field');
-
 		$this->load->model('author_model');
+		echo json_encode($this->author_model->autocomplete($term, $search_field));
+	}
 
-		$names = $this->author_model->search_by($term, $search_field);
-
-		// Return data
-		echo json_encode($names);
+	function autocomplete_user()
+	{
+		$term = $this->input->post('term');
+		$search_field = $this->input->post('search_field');
+		$this->load->model('user_model');
+		echo json_encode($this->user_model->autocomplete($term, $search_field));
 	}
 
 	function __add_author()
@@ -56,33 +57,5 @@ class Public_ajax extends Public_Controller
 		$html = $this->load->view('public/project_launch/translator_block', $data, TRUE);
 		$data = array('html' => $html);
 		echo json_encode($data);
-	}
-
-	function search_readers()
-	{
-		// Search term from jQuery
-		$term = $this->input->post('term');
-		$search_field = $this->input->post('search_field');
-
-		$this->load->model('user_model');
-
-		$names = $this->user_model->search_by($term, $search_field);
-
-		// Return data
-		echo json_encode($names);
-	}
-
-	function test_search_readers()
-	{
-		$search_field = 'display_name';
-		$term = 'Caprisha';
-
-		$this->load->model('user_model');
-
-		$names = $this->user_model->search_by($term, $search_field);
-
-		var_dump($names);
-
-		echo $this->db->last_query();
 	}
 }

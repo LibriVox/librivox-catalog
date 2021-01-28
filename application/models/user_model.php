@@ -72,14 +72,24 @@ class User_model extends MY_Model {
 
     }
 
-    public function search_by($term, $search_field)
-    {
-        $query = $this->db->select('*')->order_by($search_field)->like($search_field, $term)->get($this->_table);
-        return $query->result();
-    }
+	public function autocomplete($term, $search_field)
+	{
+		/* Limit output fields and search field to the following fields. Earlier
+		   versions of this code included all fields in the output and allowed
+		   you to search on any field. This was a security bug as anyone could
+		   get things like the password hash for any user via the autocomplete
+		   API! Limiting the fields also makes the response smaller/quicker. */
+		$fields = array('id', 'username');
 
+		if (!in_array($search_field, $fields))
+			return array();
 
-
+		$query = $this->db->select($fields)
+			->order_by($search_field)
+			->like($search_field, $term)
+			->get($this->_table, AUTOCOMPLETE_LIMIT);
+		return $query->result();
+	}
 }
 
 /* End of file person_model.php */

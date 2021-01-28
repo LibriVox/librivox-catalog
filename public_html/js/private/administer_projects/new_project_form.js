@@ -458,8 +458,7 @@ $("#add_translator").on('click', function(){
 
 });
 
-
-function assign_vars(item)
+function autocomplete_assign_vars(item)
 {
 	if (!item.dob) {item.dob = '';}
 	if (!item.dod) {item.dod = '';}
@@ -479,7 +478,7 @@ function assign_vars(item)
     }
 }
 
-function assign_elements(search_area, ui, array_index)
+function autocomplete_assign_elements(search_area, ui, array_index)
 {
 	switch (search_area)
 	{

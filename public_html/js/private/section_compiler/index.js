@@ -528,7 +528,7 @@ function set_reader_names(reader_id, reader_name,assign_section_array)
 	});
 }
 
-function assign_vars(item)
+function autocomplete_assign_vars(item)
 {
 	var name_field;
 	if (item.username == undefined) 
@@ -548,7 +548,7 @@ function assign_vars(item)
     }
 }
 
-function assign_elements(search_area, ui, array_index)
+function autocomplete_assign_elements(search_area, ui, array_index)
 {
 	//array_index unused - just a generic part of the add author & translator code from other screens
 

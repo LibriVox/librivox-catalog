@@ -90,17 +90,7 @@ define('IMG_PATH_RESULTS_LOGIN',	'img/login.jpg');
 //Catalog
 define('CATALOG_RESULT_COUNT',				25);
 
-
-/*
-
-Open
-Assigned
-Ready for PL
-See PL notes
-Ready for spot PL
-PL OK
-
-*/
+define ('AUTOCOMPLETE_LIMIT', 100);
 
 
 /* End of file constants.php */

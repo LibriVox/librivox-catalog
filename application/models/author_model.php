@@ -2,10 +2,18 @@
 
 class Author_model extends MY_Model
 {
-
-	public function search_by($term, $search_field)
+	public function autocomplete($term, $search_field)
 	{
-		$query = $this->db->select('*')->where(array('linked_to'=>'0'))->order_by($search_field)->like($search_field, $term)->get($this->_table);
+		$fields = array('id', 'first_name', 'last_name', 'dob', 'dod', 'author_url');
+
+		if (!in_array($search_field, $fields))
+			return array();
+
+		$query = $this->db->select($fields)
+			->where(array('linked_to'=>'0'))
+			->order_by($search_field)
+			->like($search_field, $term)
+			->get($this->_table, AUTOCOMPLETE_LIMIT);
 		return $query->result();
 	}
 

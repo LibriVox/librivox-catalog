@@ -40,7 +40,7 @@
 			<tr>
 
 				<td><input type="text" id="add_section_title" ></td>
-				<td><input type="text" id="add_section_reader" class="autocomplete" data-assign_reader_id="0" data-search_field="username" data-search_area="section_reader" data-search_func="search_readers" data-array_index="1">
+				<td><input type="text" id="add_section_reader" class="autocomplete" data-assign_reader_id="0" data-search_field="username" data-search_area="section_reader" data-search_func="autocomplete_user" data-array_index="1">
 </td>
 				<td><input type="text" id="add_section_notes" ></td>
 				<td style="vertical-align: top !important;" >
@@ -63,7 +63,7 @@
 		<tbody>
 			<tr>
 				<td><input style="width:40px;" type="text" id="add_to_section_number" ><input type="hidden" id="add_to_section_id" value="0"></td>
-				<td><input style="width:200px;" type="text" id="add_author" class="autocomplete" data-add_author_id="0" data-search_field="last_name" data-search_area="author" data-search_func="add_project" data-array_index="1"></td>
+				<td><input style="width:200px;" type="text" id="add_author" class="autocomplete" data-add_author_id="0" data-search_field="last_name" data-search_area="author" data-search_func="autocomplete_author" data-array_index="1"></td>
 				<td><input style="width:160px;" type="text" id="add_source" ></td>
 				<td><?= $recorded_languages; ?></td>
 				<td><input style="width:80px;" type="text" id="add_playtime" placeholder="00:00:00"></td>
@@ -92,7 +92,7 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td><input type="text" id="assign_reader" class="autocomplete" data-assign_reader_id="0" data-search_field="username" data-search_area="reader" data-search_func="search_readers" data-array_index="1"></td>
+				<td><input type="text" id="assign_reader" class="autocomplete" data-assign_reader_id="0" data-search_field="username" data-search_area="reader" data-search_func="autocomplete_user" data-array_index="1"></td>
 				<td><input type="text" id="assign_section" ></td>
 				<td style="vertical-align: top !important;" >
 					<input type="button" id="assign_reader_btn" class="btn" value="Add" />
