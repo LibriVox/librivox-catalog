@@ -7,7 +7,7 @@ $lang['project_launch_template_poetry_fortnightly_project_template'] = 'Fortnigh
 $lang['project_launch_template_section_number'] = 'where ## is the section number.';
 $lang['project_launch_template_act_number'] = 'where # is the act number.';
 $lang['project_launch_template_summary_by'] = 'Summary by';
-$lang['project_launch_template_copyright_warning'] = '[b]Volunteers outside the USA[/b]: %s died in %s. This person\'s work may still be protected by copyright in countries where copyright duration is determined by the author\'s death date. In Europe this is 70 years; in Canada it is 50 years; and in Australia it is 70 years for authors who died after 1955.';
+$lang['project_launch_template_copyright_warning'] = '[b]Volunteers outside the USA:[/b] %s died in %s. This person\'s work may still be protected by copyright in countries where copyright duration is determined by the author\'s death date. In Europe this is 70 years; in Canada it is 50 years; and in Australia it is 70 years for authors who died after 1955.';
 $lang['project_launch_template_copy_from_here'] = 'COPY FROM HERE TO THE BOTTOM OF THE PAGE';
 $lang['project_launch_template_copy_button'] = 'Copy to Clipboard';
 $lang['project_launch_template_upload_with_uploader'] = '[b]Upload[/b] to the LibriVox Uploader: https://librivox.org/uploader';
@@ -26,7 +26,7 @@ $lang['project_launch_template_claiming_roles'] = '[b]Claiming roles:[/b] Look i
 $lang['project_launch_template_note_public_domain'] = '[b]Please note:[/b] All LibriVox recordings are in the public domain. When you submit your recording, you will be placing your recording in the public domain as well.';
 $lang['project_launch_template_new_to_recording'] = '[b]New to recording?[/b] Please see our [url=https://wiki.librivox.org/index.php/Newbie_Guide_to_Recording]Newbie Guide to Recording[/url] for further instructions. A quick guide to our required technical settings can be found [url=https://wiki.librivox.org/index.php/Tech_Specs]here[/url]. When you post your file, please tell the BC what name you would like to use in our catalog.';
 $lang['project_launch_template_proof_level'] = 'Prooflistening level:';
-$lang['project_launch_template_prospective_pls'] = 'Prospective PLs, please see the [url=https://librivox.org/forum/viewtopic.php?t=17680]Listeners Wanted FAQ[/url].';
+$lang['project_launch_template_prospective_pls'] = 'Prospective PLs, please see the [url=https://wiki.librivox.org/index.php?title=Guide_for_Proof-listeners]Guide for Proof-listeners[/url].';
 $lang['project_launch_template_soloist_note'] = '[b]IMPORTANT - soloist, please note:[/b] in order to limit the number of languishing projects on our server, we ask that you post an update at least once a month in your project thread, even if you haven\'t recorded anything. If we don\'t hear from you for three months, your project may be opened up to a group project if a Book Coordinator is found. Files you have completed will be used in this project. If you haven\'t recorded anything yet, your project will be removed from the forum (contact any admin to see if it can be re-instated).';
 $lang['project_launch_template_each_week_poem_chosen'] = 'Each week a poem is chosen to be recorded by as many LibriVox volunteers as possible!';
 $lang['project_launch_template_this_week_poem'] = 'This week\'s poem can be found [url=%s]here[/url].';
@@ -62,7 +62,7 @@ $lang['project_launch_template_say'] = 'Say:';
 $lang['project_launch_template_section_of_first'] = '"Section (or Chapter) [i]#[/i] of %s. %s" [Optional: "Read by [i]your name[/i]."] "%s, by %s. [i]Section Title[/i]."';
 $lang['project_launch_template_this_is_a_librivox_recording'] = 'This is a LibriVox recording. All LibriVox recordings are in the public domain. For more information or to volunteer, please visit librivox.org.';
 $lang['project_launch_template_shortened_intro'] = 'For the second and subsequent sections, you may use the shortened intro if you wish:';
-$lang['project_launch_template_section_of_second'] = '"Section (or Chapter) [i]#[/i] of %s, by %s. This LibriVox recording is in the public domain."  [Optional: "Read by [i]your name[/i]."] "[i]Section Title.[/i]"';
+$lang['project_launch_template_section_of_second'] = '"Section (or Chapter) [i]#[/i] of %s, by %s. This LibriVox recording is in the public domain." [Optional: "Read by [i]your name[/i]."] "[i]Section Title.[/i]"';
 $lang['project_launch_template_end_of_recording'] = 'End of recording:';
 $lang['project_launch_template_end_of_section'] = '"End of section (or chapter) [i]#[/i]." [Optional, and if not stated in the intro: "Read by [i]your name, city, date[/i]."]';
 $lang['project_launch_template_if_final_section'] = 'If you are recording the final section of the book, add:';
@@ -73,7 +73,7 @@ $lang['project_launch_template_character_read_by'] = '"[i]Character[/i], read by
 $lang['project_launch_template_space_between_lines'] = 'Leave 3-5 seconds of space between your lines (room noise, not generated silence).';
 $lang['project_launch_template_for_narration'] = 'For narration/stage directions:';
 $lang['project_launch_template_act_of'] = '"Act [i]#[/i] of %s, by %s. %s"';
-$lang['project_launch_template_end_of_file'] = 'End of each file say:';
+$lang['project_launch_template_end_of_file'] = 'At the end of each file say:';
 $lang['project_launch_template_end_of_act'] = '"End of Act [i]#[/i]."';
 $lang['project_launch_template_for_final_files'] = 'For final files:';
 $lang['project_launch_template_suggest_poem_weekly'] = 'And remember, anyone can suggest a poem or coordinate an upcoming Weekly Poetry project!';
