@@ -283,7 +283,7 @@ class Librivox_filecheck{
 			//does the counter (adjusted) match the track number?
 			if (($first + $project->has_preface) != $curr_file['track'])
 			{
-				$errors[] = 'Expecting file #'. $first. ' to have track number ' . $first. ' DEBUG:('.$first + $project->has_preface .'::'.$curr_file['track'].')';
+				$errors[] = 'Expecting file #'. $first. ' to have track number ' . $first. ' DEBUG:('.($first + $project->has_preface) .'::'.$curr_file['track'].')';
 			}
 
 			$first++;
