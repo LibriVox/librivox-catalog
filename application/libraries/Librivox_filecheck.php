@@ -206,10 +206,14 @@ class Librivox_filecheck{
 
 	function check_filename(&$file_array)
 	{
-		$pattern = ($this->project_type == 'poem') ? '/^(.+)_.*?\.mp3$/' : '/^(.+)_[\d-]+(.*)\.mp3$/';
+		if ($this->prject_type == 'poem')
+			$pattern = '/^[^_]+_[^_]+_[^_]+_128kb\.mp3$/';
+		else if (!$this->project->is_compilation)
+			$pattern = '/^[^_]+_[0-9-]+_[^_]+_128kb\.mp3$/';
+		else
+			$pattern = '/_128kb\.mp3$/';
 
-		preg_match($pattern, $file_array['file_name'], $matches);  //for poems -
-		return (!empty($matches));
+		return preg_match($pattern, $file_array['file_name']) ? true : false;
 	}
 
 	function check_filename_chapter(&$file_array)
