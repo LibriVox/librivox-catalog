@@ -231,34 +231,22 @@
 
                </fieldset>  
 
-
                <fieldset class="fieldset-margin">
                     <legend><?= lang('proj_launch_additional_info_project'); ?></legend>
                     <div class="control-group">
                          <div class="controls center">
-                              <?= form_label(lang('proj_launch_proof_level'),  'proof_level', array('class'=>'span4')); ?>
+                              <?= form_label(lang('proj_launch_proof_level'),  'proof_level', array('class'=>'span6')); ?>
                               <?= form_dropdown('proof_level', $proof_level, set_value('proof_level'), 'id="proof_level"'); ?>                     
                          </div>
                     </div>
 
                     <div class="control-group">
                          <div class="controls center">
-                              <?= form_label('<span class="red">*</span>' . lang('proj_launch_num_sections'),  'num_sections',
-                                   array('class'=>'span4')); ?>
-                              <?= form_input(array('name'=> 'num_sections', 'id' => 'num_sections', 'class'=>'span1', 'value'=>set_value('num_sections'))); ?>                   
-                         </div>
-                    </div>
-                    
-                    <div class="control-group">
-                         <div class="controls center">
                               <?= form_label(lang('proj_launch_has_preface'),  'has_preface', array('class'=>'span6')); ?>
-                              
-                              
                               <label>
-                                   <?= form_radio(array('name'=> 'has_preface', 'id' => 'has_preface', 'value'=>'1', 'style'=>'margin: 0 0 0 10px !important;', 'checked'=>(set_value('has_preface'))? TRUE: FALSE)); ?>
+                                   <?= form_radio(array('name'=> 'has_preface', 'id' => 'has_preface', 'value'=>'1', 'style'=>'margin: 0 0 0 0px !important;', 'checked'=>(set_value('has_preface'))? TRUE: FALSE)); ?>
                                    <span><?= lang('proj_launch_yes'); ?></span>
                               </label>
-                              
                               <label>
                                    <?= form_radio(array('name'=> 'has_preface', 'id' => 'has_preface', 'value'=>'0', 'style'=>'margin: 0 0 0 10px !important;', 'checked'=>(set_value('has_preface'))? FALSE: TRUE)); ?>
                                    <span><?= lang('proj_launch_no'); ?></span>
@@ -267,7 +255,13 @@
                          </div>
                     </div>
 
-
+                    <div class="control-group">
+                         <div class="controls center">
+                              <?= form_label('<span class="red">*</span> ' . lang('proj_launch_num_sections'),  'num_sections',
+                                   array('class'=>'span6')); ?>
+                              <?= form_input(array('name'=> 'num_sections', 'id' => 'num_sections', 'class'=>'span1', 'value'=>set_value('num_sections'))); ?>
+                         </div>
+                    </div>
                </fieldset>   
 
                <fieldset class="fieldset-margin">
