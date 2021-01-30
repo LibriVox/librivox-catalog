@@ -51,7 +51,8 @@ class Librivox_filecheck{
 
 	public function load_project_map($validation_dir, $map, $project)
 	{
-		if (empty($validation_dir) || empty($map)) return false;
+		// an empty $map is ok and expected when there are no files (which will be flagged in the completeness checks)
+		if (empty($validation_dir) || !is_object($project)) return false;
 
 		$this->validation_dir = $validation_dir;
 
@@ -253,7 +254,8 @@ class Librivox_filecheck{
 
 			if (!isset($file_array[$i]))
 			{
-				$errors[] = 'Expected ' . $project->num_sections .' files: file #'. ($i + $project->has_preface). ' does not appear to exist. Please check all sections are loaded.';
+				$errors[] = 'Expected ' . $project->num_sections .' files: file #'. $first. ' does not appear to exist. Please check all sections are loaded.';
+				$first++;
 				continue;
 			}
 			$curr_file = $file_array[$i];
