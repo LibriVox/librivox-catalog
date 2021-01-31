@@ -6,9 +6,8 @@ $config['languages'] = array(
      'french'=>'Fran&ccedil;ais - French',
      'german'=>'Deutsch - German',
      'italian'=>'Italiano - Italian',
-     //'portuguese'=>'Portugu&ecirc;s - Portuguese',
+     'portuguese'=>'Portugu&ecirc;s - Portuguese',
      'spanish'=>'Espa&ntilde;ol - Spanish',
-
 );
 
 $config['title_remove'] = array(
