@@ -23,19 +23,6 @@
 
 	<a href="<?= $url ?>" class="book-cover"><img src="<?= $image ?>" alt="book-cover-65x65" width="65" height="65" /></a>
 
-	<?php 
-		if (!empty($item['author_list']))
-		{
-			$authors = $item['author_list'];
-		} 
-		else
-		{
-			$authors = '<a href="'. base_url('author/'. $item['author_id']) .' ">'. build_author_name((object) $item) .' <span class="dod-dob">' . build_author_years((object) $item) .'</span></a>';
-		}	
-
-	?>
-
-
 	<div class="result-data">
 		<?php if ( isset($item['source_table']) &&  $item['source_table'] == 'sections'): ?>
 			<h3><?= $item['search_field']?> (in <a href="<?= $url ?>"> <?= create_full_title($item)?></a>)</h3>
@@ -43,7 +30,7 @@
 			<h3><a href="<?= $url ?>"><?= create_full_title($item)?></a></h3>
 		<?php endif; ?>
 
-		<p class="book-author"> <?= $authors ?> </p>
+		<p class="book-author"> <?= $item['author_list'] ?> </p>
 		<p class="book-meta"> <?= str_replace('_', ' ', ucwords($item['status']))?> | <?= ucwords($item['project_type'])?> | <?= $item['language']?></p>
 	</div>	
 

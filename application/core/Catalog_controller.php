@@ -8,6 +8,7 @@ class Catalog_controller extends CI_Controller
 		parent::__construct();
 
 		$this->load->helper('links_helper');
+		$this->load->helper('previewer_helper');
 
 		$this->data = array();
 	}
@@ -70,60 +71,18 @@ class Catalog_controller extends CI_Controller
 
 	function _author_list($project_id)
 	{
-		$author_list = $this->project_model->get_project_authors($project_id);
-
-		if (empty($author_list)) return '';
-
-		foreach ($author_list as $key => $author)
-		{
-			$authors[] = '<a href="' . base_url() . 'author/' . $author->id . '">' . $author->author . ' (' . is_empty($author->dob, '') . ' - ' . is_empty($author->dod, '') . ')</a>';  //('.  is_empty($author->dob , '') . ' - ' is_empty($author->dod , '')  .')
-		}
-
-		return implode(', ', $authors);
+		$authors = $this->project_model->get_project_authors($project_id);
+		return format_authors($authors, FMT_AUTH_YEARS|FMT_AUTH_HTML|FMT_AUTH_LINK, 2);
 	}
 
 	function _authors_string($authors)
 	{
-		foreach ($authors as $key => $author)
-		{
-			$lastname = mb_convert_case(mb_strtolower($author['last_name']), MB_CASE_UPPER, "UTF-8");
-			$string_array[] = '<a href="' . base_url() . 'author/' . $author['id'] . '">' . is_empty($author['first_name'], '') . ' ' . strtoupper(is_empty($lastname, '')) . ' (' . is_empty($author['dob'], '') . ' - ' . is_empty($author['dod'], '') . ')' . '</a>';
-		}
-
-		if (count($string_array) < 3)
-		{
-			$string = implode(' and ', $string_array);
-		}
-		else
-		{
-			$string = 'Various Authors';
-		}
-
-		return $string;
+		return format_authors($authors, FMT_AUTH_YEARS|FMT_AUTH_HTML|FMT_AUTH_LINK, 2);
 	}
 
 	function _authors_string_no_link($authors)
 	{
-		foreach ($authors as $key => $author)
-		{
-			$name = strtoupper(is_empty($author['last_name'], ''));
-			if (!empty($author['first_name']))
-			{
-				$name .= ', ' . is_empty($author['first_name'], '');
-			}
-			$string_array[] = $name;
-		}
-
-		if (count($string_array) < 3)
-		{
-			$string = implode(' and ', $string_array);
-		}
-		else
-		{
-			$string = 'Various Authors';
-		}
-
-		return $string;
+		return format_authors($authors, FMT_AUTH_YEARS, 2);
 	}
 
 	function _get_project($slug)

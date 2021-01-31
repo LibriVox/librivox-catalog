@@ -96,21 +96,13 @@ class Project_launch extends Public_Controller
 			$new_author_list = $this->form_generators_authors_model->get_author_list($fields['new_author_list']);
 		}
 
-		// NOTE! we are now using indexes from the authors table fields
-		$full_author_list = array_merge($author_list, $new_author_list);
-
-		$data['author'] = array();
-		$data['authorall'] = array();
+		$data['author'] = array_merge($author_list, $new_author_list);
 		$data['author_filename'] = array();
-		$data['link_to_auth'] = array();
 		$data['notice'] = array();
 
-		foreach ($full_author_list as $author)
+		foreach ($data['author'] as $author)
 		{
-			$data['author'][] = $author['first_name'] . " " . $author['last_name'];
-			$data['authorall'][] = author_name($author);
 			$data['author_filename'][] = format_filename($author['last_name']);
-			$data['link_to_auth'][] = $author['author_url'];
 			$data['notice'][] = copyright_notice($author);
 		}
 
@@ -131,16 +123,10 @@ class Project_launch extends Public_Controller
 			$new_trans_list = $this->form_generators_authors_model->get_author_list($fields['new_trans_list']);
 		}
 
-		// NOTE! we are now using indexes from the authors table fields
-		$full_trans_list = array_merge($trans_list, $new_trans_list);
+		$data['translator'] = array_merge($trans_list, $new_trans_list);
 
-		$data['translator'] = array();
-		$data['translatorall'] = array();
-
-		foreach ($full_trans_list as $translator)
+		foreach ($data['translator'] as $translator)
 		{
-			$data['translator'][] = $translator['first_name'] . " " . $translator['last_name'];
-			$data['translatorall'][] = author_name($translator);
 			$data['notice'][] = copyright_notice($translator);
 		}
 

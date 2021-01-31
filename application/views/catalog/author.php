@@ -10,7 +10,7 @@
 	<div class="page author-page">
 		<div class="page-header-wrap js-header_section">
 			<div class="content-wrap clearfix">
-				<h1><?= build_author_name((object) $author)?> <span class="dod-dob"><?= build_author_years((object) $author) ?></span></h1>
+				<h1><?= format_author($author, FMT_AUTH_YEARS|FMT_AUTH_HTML)?></h1>
 				
 				<p class="description"><?= $author->blurb ?></p>
 				
@@ -19,7 +19,7 @@
 					<?php 
 						if (!empty($author->author_url))
 						{
-							echo '<p>' .build_author_link($author, 'Wiki - ', $author->author_url) . '</p>';
+							echo '<p>' . format_author($author, FMT_AUTH_WIKI) . '</p>';
 						}	
 					 	
 					 ?>				 

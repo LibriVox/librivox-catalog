@@ -6,7 +6,6 @@ class Page extends Catalog_controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('previewer_helper');
 		$this->load->helper('general_functions_helper');
 	}
 
@@ -122,24 +121,7 @@ class Page extends Catalog_controller
 
 	function _authors_string($authors)
 	{
-		foreach ($authors as $key => $author)
-		{
-			//$lastname = strtoupper(is_empty($author['last_name'], ''));
-			$lastname = mb_convert_case(mb_strtolower($author['last_name']), MB_CASE_UPPER, "UTF-8");
-
-			$string_array[] = '<a href="' . base_url() . 'author/' . $author['id'] . '">' . is_empty($author['first_name'], '') . ' ' . $lastname . ' (' . is_empty($author['dob'], '') . ' - ' . is_empty($author['dod'], '') . ')' . '</a>';
-		}
-
-		if (count($string_array) < 4)
-		{
-			$string = implode(' and ', $string_array);
-		}
-		else
-		{
-			$string = 'Various';
-		}
-
-		return $string;
+		return format_authors($authors, FMT_AUTH_YEARS|FMT_AUTH_HTML|FMT_AUTH_LINK, 2);
 	}
 
 	function _read_by($project)
@@ -184,20 +166,6 @@ class Page extends Catalog_controller
 		}
 
 		return implode(', ', $genres);
-	}
-
-	function _author_list($project_id)
-	{
-		$author_list = $this->project_model->get_project_authors($project_id);
-
-		if (empty($author_list)) return '';
-
-		foreach ($author_list as $key => $author)
-		{
-			$authors[] = '<a href="' . base_url() . 'author/' . $author->id . '">' . $author->author . ' (' . is_empty($author->dob, '') . ' - ' . is_empty($author->dod, '') . ')</a>';  //('.  is_empty($author->dob , '') . ' - ' is_empty($author->dod , '')  .')
-		}
-
-		return implode(', ', $authors);
 	}
 
 	function _language($language_id)

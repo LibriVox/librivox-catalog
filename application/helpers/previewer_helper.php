@@ -10,12 +10,6 @@ function format_filename($string)
 	return $transliterator->transliterate($string);
 }
 
-function author_name($fields)
-{
-	$fields['dob'] = (empty($fields['dob'])) ? '' : $fields['dob'];
-	return $fields['first_name']. " " .$fields['last_name']. " (" . $fields['dob'] . " - " . $fields['dod'] . ")";
-}
-
 function clean_title($title, $retval = 'title')
 {
 
@@ -63,17 +57,14 @@ function clean_summary($project_launch_data)
 
 function copyright_notice($fields)
 {
-	//Copyright notices for death plus 50/70 countries
-    $thisyear = date('Y');
-    $copyauthor = $thisyear - $fields['dod'];
-    $author = $fields['first_name']. " " .$fields['last_name'];
+	// Copyright notices for death plus 50/70 countries
+    $now = date('Y');
+	$dod = (int)$fields['dod'];
 
-	if ($copyauthor < 69) {
-		$notice = sprintf(lang('project_launch_template_copyright_warning'), $author, $fields['dod']);
-	} else {
-		$notice = null;
-	}
-	return $notice;
+	if (($now - $dod) < 69)
+		return sprintf(lang('project_launch_template_copyright_warning'), format_author($fields), $dod);
+	else
+		return null;
 }
 
 function create_array_from_lang($check_string, $lang, $alpha = false)
@@ -139,23 +130,6 @@ function create_title_slug($project)
 
 }
 
-
-// builds link to catalog author's page
-function build_author_link($author, $wiki='', $link='')
-{
-
-	if (empty($author)) return '';
-
-	$link = (empty($link))? base_url().'author/'. $author->id : $link;
-
-	return '<a href="'.$link.'">'. $wiki . build_author_name($author) .'</a>';
-}
-
-function build_author_name($author)
-{
-	return implode(' ', array_filter(array($author->first_name, $author->last_name)));
-}
-
 function get_language_code($language)
 {
 	if (empty($language)) return '';
@@ -164,14 +138,92 @@ function get_language_code($language)
 
 }
 
-function build_author_years($author)
+function format_author_name($author)
 {
-	$author->dob = (empty($author->dob)) ? ' ': $author->dob;
-	$author->dod = (empty($author->dod)) ? ' ': $author->dod;
+	if (isset($author->author))
+		return trim($author->author);
+	else
+		return implode(' ', array_filter(array($author->first_name, $author->last_name)));
+}
 
-	return $author->dob === ' ' && $author->dod === ' '
-		? ""
-		: sprintf("(%s - %s)", $author->dob, $author->dod);
+function format_author_years($author)
+{
+	$dob = empty($author->dob) ? '' : $author->dob;
+	$dod = empty($author->dod) ? '' : $author->dod;
+
+	if (!empty($dod) || !empty($dod))
+		return '(' . $dob . ' - ' . $dod . ')';
+	else
+		return '';
+}
+
+define ('FMT_AUTH_YEARS', 0x01);
+define ('FMT_AUTH_HTML',  0x02);
+define ('FMT_AUTH_LINK',  0x04);
+define ('FMT_AUTH_WIKI',  0x08);
+
+function format_authors($authors, $flags = 0, $max = 0)
+{
+	$flag_years = (bool)($flags & FMT_AUTH_YEARS);
+	$flag_html  = (bool)($flags & FMT_AUTH_HTML);
+	$flag_link  = (bool)($flags & FMT_AUTH_LINK);
+	$flag_wiki  = (bool)($flags & FMT_AUTH_WIKI);
+
+	$list = array();
+	foreach ($authors as $author)
+	{
+		// Some callers pass author as an array instead of an object. Some callers
+		// use "author_id" but most just use "id". The following block of code
+		// normalizes theses differences.
+		if (is_array($author))
+		{
+			if (isset($author['author_id']))
+			{
+				$author['id'] = $author['author_id'];
+				unset($author['author_id']);
+			}
+			$author = (object)$author;
+		}
+
+		$item = format_author_name($author);
+
+		if ($flag_years)
+		{
+			$years = format_author_years($author);
+			if (!empty($years))
+			{
+				if ($flag_html)
+					$item .= ' <span class="dod-dob">' . $years . '</span>';
+				else
+					$item .= ' ' . $years;
+			}
+		}
+
+		if ($flag_wiki)
+			$item = '<a href="' . $author->author_url . '">Wiki - ' . $item . '</a>';
+		else if ($flag_link)
+			$item = '<a href="' . base_url() . 'author/' . $author->id . '">' . $item . '</a>';
+
+		$list[] = $item;
+	}
+
+	$count = count($list);
+	if ($max && $count > $max)
+		return implode(', ', array_slice($list, 0, $max)) . ' et al.';
+	else if ($count > 1)
+	{
+		$last = array_pop($list);
+		return implode(', ', $list) . ' and ' . $last;
+	}
+	else if ($count)
+		return $list[0];
+	else
+		return '';
+}
+
+function format_author($author, $flags = 0)
+{
+	return format_authors(array($author), $flags);
 }
 
 function format_playtime($seconds)
