@@ -215,11 +215,8 @@ function populate_authors(data)
 	    {
 	    	$('#author_block_'+array_index+ ' hr' ).before('<div style="font-weight: bold;margin-left:20px !important;">Author ' + data.authors[array_index].first_name + ' ' + data.authors[array_index].last_name + ' is not in the database. Suggestions include:</div>');
 		    $.each(data.authors[array_index].suggestion, function(suggestion_index, suggestion_value) {
-	    	
-		    	var suggestion = format_suggestion(array_index, suggestion_value); 
+				var suggestion = format_suggestion(array_index, suggestion_value, 'author_suggestion');
 		    	$('#author_block_'+array_index + ' hr' ).before(suggestion);
-
-
 		    });		    	
 	    }	
 
@@ -261,8 +258,7 @@ function populate_translators(data)
 	    {
 	    	$('#translator_block_'+array_index+ ' hr' ).before('<div style="font-weight: bold;margin-left:20px !important;">Translator ' + data.translators[array_index].first_name + ' ' + data.translators[array_index].last_name + ' is not in the database. Suggestions include:</div>');
 		    $.each(data.translators[array_index].suggestion, function(suggestion_index, suggestion_value) {
-	    	
-		    	var suggestion = format_suggestion(array_index, suggestion_value); 
+				var suggestion = format_suggestion(array_index, suggestion_value, 'translator_suggestion');
 		    	$('#translator_block_'+array_index + ' hr' ).before(suggestion);
 		    });		    	
 	    }	
@@ -301,16 +297,19 @@ function match_new_authors(new_authors)
 	});
 }
 
-function format_suggestion(array_index, suggestion_value)
+function format_suggestion(array_index, suggestion_value, div_class)
 {
-	var html = '<div class="author_suggestion alert alert-error span9" style="margin:6px 0 6px 30px !important;cursor:pointer;" '; 
+	var dob = (!suggestion_value.dob || suggestion_value.dob == 0) ? '' : suggestion_value.dob;
+	var dod = (!suggestion_value.dod || suggestion_value.dod == 0) ? '' : suggestion_value.dod;
+	var author_url = (!suggestion_value.author_url) ? '' : suggestion_value.author_url;
+	var html = '<div class="' + div_class +' alert alert-error span9" style="margin:6px 0 6px 30px !important;cursor:pointer;" ';
 	html = html + ' data-array_index = "' + array_index + '"' ;
 	html = html + ' data-auth_id = "' + suggestion_value.id + '"' ;
 	html = html + ' data-auth_first_name = "' + suggestion_value.first_name + '"';
 	html = html + ' data-auth_last_name = "' + suggestion_value.last_name + '"';
-	html = html + ' data-auth_dob = "' + suggestion_value.dob + '"';
-	html = html + ' data-auth_dod = "' + suggestion_value.dod + '"';
-	html = html + ' data-auth_author_url = "' + suggestion_value.author_url + '" >';
+	html = html + ' data-auth_dob = "' + dob + '"';
+	html = html + ' data-auth_dod = "' + dod + '"';
+	html = html + ' data-auth_author_url = "' + author_url + '" >';
 	html = html + author_string(suggestion_value) + '</div>';
 	return html;
 }
@@ -325,10 +324,18 @@ $('.author_suggestion').live('click', function(){
     $('input[id^="auth_yod"][data-array_index="'+array_index+'"]').val($(this).attr('data-auth_dod'));
     $('input[id^="link_to_auth"][data-array_index="'+array_index+'"]').val(decodeURIComponent($(this).attr('data-auth_author_url')));
     $('input[id^="auth_id"][data-array_index="'+array_index+'"]').val($(this).attr('data-auth_id'));
-
 });
 
+$('.translator_suggestion').live('click', function(){
+	var array_index = $(this).attr('data-array_index');
 
+	$('input[id^="trans_first_name"][data-array_index="'+array_index+'"]').val($(this).attr('data-auth_first_name'));
+	$('input[id^="trans_last_name"][data-array_index="'+array_index+'"]').val($(this).attr('data-auth_last_name'));
+	$('input[id^="trans_yob"][data-array_index="'+array_index+'"]').val($(this).attr('data-auth_dob'));
+	$('input[id^="trans_yod"][data-array_index="'+array_index+'"]').val($(this).attr('data-auth_dod'));
+	$('input[id^="link_to_trans"][data-array_index="'+array_index+'"]').val(decodeURIComponent($(this).attr('data-auth_author_url')));
+	$('input[id^="trans_id"][data-array_index="'+array_index+'"]').val($(this).attr('data-auth_id'));
+});
 
 function populate_form_from_project(data)
 {
