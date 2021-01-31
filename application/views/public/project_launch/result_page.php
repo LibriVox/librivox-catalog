@@ -41,22 +41,13 @@
 		}
 	};
 
-	$author_text = $author[0];
-	$author_all_text = $authorall[0];
-	if (count($author) > 1)
-	{
-		$author_text .= ' and others';
-		$author_all_text .= ' and others';
-	}
+	$author_text = format_authors($author, 0, 2);
+	$author_all_text = format_authors($author, FMT_AUTH_YEARS, 2);
 	if ($translator[0])
 	{
-		$author_text .= ', ' . lang('project_launch_template_trans_by') . ' ' . $translator[0];
-		$author_all_text  .= ', ' . lang('project_launch_template_trans_by') . ' ' . $translatorall[0];
-		if (count($translator) > 1)
-		{
-			$author_text .= ' and others';
-			$author_all_text .= ' and others';
-		}
+		$author_text .= ', ' . lang('project_launch_template_trans_by') . ' ' . format_authors($translator, 0, 2);
+		$author_all_text  .= ', ' . lang('project_launch_template_trans_by') . ' ' . format_authors($translator, FMT_AUTH_YEARS, 2);
+
 	}
 
 	echo '[color=indigo][size=150][b]', sprintf(lang('project_launch_template_title_author'), $title, $author_all_text), "[/b][/size][/color]\n";
@@ -133,7 +124,7 @@
 		echo "\n";
 		echo lang('project_launch_template_begin_with_disclaimer'), "\n";
 		echo lang('project_launch_template_seconds_of_silence'), "\n";
-		echo '[quote]', sprintf(lang('project_launch_template_title_author_read_by'), $title, $author[0]), "\n";
+		echo '[quote]', sprintf(lang('project_launch_template_title_author_read_by'), $title, format_author($author[0])), "\n";
 		echo lang('project_launch_template_title_author_read_by_include'), "[/quote]\n";
 		echo "\n";
 		echo '[b]', lang('project_launch_template_read_poem'), "[/b]\n";
@@ -170,12 +161,12 @@
 		echo "[list]\n";
 		echo "[*]Project Code: $project_code\n";
 		$link_to_auth_count = 0;
-		foreach ($link_to_auth as $key => $link_to_auth_single)
+		foreach ($author as $key => $auth_single)
 		{
-			if (!empty($link_to_auth_single))
+			if (!empty($auth_single['author_url']))
 			{
-				echo '[*]', lang('project_launch_template_author_wiki');
-				echo " $link_to_auth_single ($author[$key])\n";
+				echo '[*]', lang('project_launch_template_author_wiki'), ' ';
+				echo $auth_single['author_url'], ' (', format_author($auth_single), ")\n";
 				$link_to_auth_count++;
 			}
 		}

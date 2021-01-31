@@ -65,7 +65,7 @@
 								<td><a href="<?= $section->mp3_64_url ?>" class="play-btn">Play</a> <?= str_pad($section->section_number, 2, "0", STR_PAD_LEFT) ?> </td>
 								<td><a href="<?= $section->mp3_128_url ?>" class="chapter-name"><?= $section->title?></a></td>
 								<?php if ($project->is_compilation):?>
-									<td><?= build_author_link($section->author)?></td>
+									<td><?= format_author($section->author, FMT_AUTH_LINK)?></td>
 									<td><a href="<?= $section->source?>">Etext</a></td>
 								<?php endif; ?>
 

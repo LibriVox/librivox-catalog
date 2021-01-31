@@ -6,7 +6,6 @@ class Reader extends Catalog_controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('previewer_helper');
 		$this->load->helper('general_functions_helper');
 	}
 

@@ -5,7 +5,7 @@
 	<?php endif; ?>
 
 	<div class="result-data">
-		<h3><a href="<?= base_url('author/'. $item['author_id']) ?>"><?= build_author_name((object) $item)?> <span class="dod-dob"><?= build_author_years((object) $item) ?></span></a></h3>
+		<h3><?= format_author($item, FMT_AUTH_YEARS|FMT_AUTH_HTML|FMT_AUTH_LINK) ?></h3>
 		<p class="book-meta">Completed: <span><?= $item['meta_complete']?> books</span> | In progress: <span><?= $item['meta_in_progress']?> books</span></p>
 	</div>	
 	<a href="<?= base_url('author/'. $item['author_id']) ?>" class="more-result">more results</a>		
