@@ -338,4 +338,15 @@ function _create_list_html(title ,array, page)
         }
     });
     return html + '</ul>';
-}  
+}
+
+function author_string(item) {
+	var label = item.first_name ? item.first_name + ' ' + item.last_name : item.last_name;
+	var dob = (!item.dob || item.dob == 0) ? '' : item.dob;
+	var dod = (!item.dod || item.dod == 0) ? '' : item.dod;
+	if (dob || dod) {
+		label += ' (' + dob + ' - ' + dod + ')';
+	}
+
+	return label;
+}

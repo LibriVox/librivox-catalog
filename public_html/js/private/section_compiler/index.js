@@ -531,21 +531,18 @@ function set_reader_names(reader_id, reader_name,assign_section_array)
 function autocomplete_assign_vars(item)
 {
 	var name_field;
-	if (item.username == undefined) 
-	{
-		name_field = item.first_name + ' ' + item.last_name;
-	}	
-	else
-	{
+	if (item.username == undefined) {
+		name_field = author_string(item);
+	} else {
 		name_field = item.username;
-	}	
+	}
 
-    return {
-        label: name_field,
-        value: name_field,
-        source_id: item.id,     
-        source_name: name_field,                             
-    }
+	return {
+		label: name_field,
+		value: name_field,
+		source_id: item.id,
+		source_name: name_field,
+	}
 }
 
 function autocomplete_assign_elements(search_area, ui, array_index)
