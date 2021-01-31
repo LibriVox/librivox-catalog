@@ -311,8 +311,7 @@ function format_suggestion(array_index, suggestion_value)
 	html = html + ' data-auth_dob = "' + suggestion_value.dob + '"';
 	html = html + ' data-auth_dod = "' + suggestion_value.dod + '"';
 	html = html + ' data-auth_author_url = "' + suggestion_value.author_url + '" >';
-	//html = html + '<button type="button" class="close" data-dismiss="alert alert-info">×</button>';
-	html = html + suggestion_value.first_name + ' ' + suggestion_value.last_name  + ' (' + suggestion_value.dob + ' - ' + suggestion_value.dod + ')' + '</div>';
+	html = html + author_string(suggestion_value) + '</div>';
 	return html;
 }
 
@@ -460,14 +459,8 @@ $("#add_translator").on('click', function(){
 
 function autocomplete_assign_vars(item)
 {
-	if (!item.dob) {item.dob = '';}
-	if (!item.dod) {item.dod = '';}
-
-	var lifespan = '';
-	if (item.dob || item.dod){lifespan = '  (' + item.dob + ' - ' + item.dod + ')';}
-
     return {
-        label: item.first_name + ' ' + item.last_name + lifespan,
+        label: author_string(item),
         value: item.first_name,
         first_name: item.first_name,
         last_name: item.last_name,

@@ -211,14 +211,8 @@ $(document).ready(function(){
 
 function autocomplete_assign_vars(item)
 {
-    if (!item.dob) {item.dob = '';}
-    if (!item.dod) {item.dod = '';}
-
-    var lifespan = '';
-    if (item.dob || item.dod){lifespan = '  (' + item.dob + ' - ' + item.dod + ')';}
-
     return {
-        label: item.first_name + ' ' + item.last_name + lifespan,
+        label: author_string(item),
         value: item.first_name,
         first_name: item.first_name,
         last_name: item.last_name,
