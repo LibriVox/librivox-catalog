@@ -212,6 +212,7 @@ class Project_launch extends Public_Controller
 		$this->form_validation->set_rules('trans_last_name[]', 'lang:proj_launch_auth_last_name', 'trim|xss_clean');
 		$this->form_validation->set_rules('trans_yob[]', 'lang:proj_launch_trans_dob', 'trim|xss_clean');
 		$this->form_validation->set_rules('trans_yod[]', 'lang:proj_launch_trans_dod', 'trim|xss_clean');
+		$this->form_validation->set_rules('link_to_trans[]', 'lang:proj_launch_link_to_trans', 'trim|xss_clean');
 
 		$this->form_validation->set_rules('project_type', 'lang:proj_launch_type_of_project', 'trim|xss_clean|alpha_dash');
 		$this->form_validation->set_rules('recorded_language', 'lang:proj_launch_recorded_language', 'trim|xss_clean|numeric');
