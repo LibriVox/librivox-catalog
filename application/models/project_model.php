@@ -253,7 +253,7 @@ class Project_model extends MY_Model
 
         $sql .= '
                 UNION
-                SELECT DISTINCT "section" AS primary_type, s.id AS primary_key, p.id, p.project_type, "", CONCAT(s.title, " (in ", COALESCE(p.title_prefix, "" ), " ", p.title, " )") as title, 
+                SELECT DISTINCT "section" AS primary_type, s.id AS primary_key, p.id, p.project_type, "", CONCAT(s.title, " (in ", COALESCE(p.title_prefix, "" ), " ", p.title, ")") as title,
                 COALESCE(p.date_catalog, "2001-01-01" ), p.url_librivox, p.status, p.coverart_thumbnail, p.zip_url, p.zip_size, l.language , p.url_forum
                 FROM projects p
                 JOIN sections s ON (p.id = s.project_id)
@@ -571,7 +571,7 @@ class Project_model extends MY_Model
 
         $sql .= '
                 UNION
-                SELECT p.id, p.project_type, p.title_prefix, CONCAT(s.title, " (in ", p.title, " )") as title, p.url_librivox, p.status, p.coverart_thumbnail, p.zip_url, p.zip_size, l.two_letter_code 
+                SELECT p.id, p.project_type, p.title_prefix, CONCAT(s.title, " (in ", p.title, ")") as title, p.url_librivox, p.status, p.coverart_thumbnail, p.zip_url, p.zip_size, l.two_letter_code
                 FROM sections s 
                 JOIN authors a ON (a.id = s.author_id)
                 JOIN projects p ON (p.id = s.project_id)
