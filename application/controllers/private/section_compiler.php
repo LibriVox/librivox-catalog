@@ -222,7 +222,7 @@ class Section_compiler extends Private_Controller
 			$section->author_name = $author->first_name . ' ' . $author->last_name;
 		}
 
-		if (!empty($section->playtime)) $section->playtime = gmdate("H:i:s", $section->playtime);
+		if (!empty($section->playtime)) $section->playtime = format_playtime($section->playtime);
 
 		$this->ajax_output(array('section' => $section), TRUE, FALSE);
 	}

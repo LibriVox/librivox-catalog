@@ -137,12 +137,13 @@ class Iarchive_upload extends Private_Controller
 
 	function _update_total_runtime($project)
 	{
+		$this->load->helper('previewer');
 		$this->load->model('section_model');
 		$runtime = $this->section_model->get_total_project_runtime($project->id);
 
 		if (empty($runtime)) $runtime = 0;
 
-		$totaltime = gmdate("H:i:s", $runtime);
+		$totaltime = format_playtime($runtime);
 
 		$this->load->model('project_model');
 		$this->project_model->update($project->id, array('totaltime' => $totaltime));

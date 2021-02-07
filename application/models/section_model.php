@@ -10,6 +10,8 @@ class Section_model extends MY_Model {
 
     function get_full_sections_info($project_id)
     {
+		$this->load->helper('previewer');
+
         $result = $this->db->where(array('project_id'=>$project_id))
         ->order_by('section_number', 'asc')
         ->get($this->_table);
@@ -19,7 +21,7 @@ class Section_model extends MY_Model {
         {
             foreach ($sections as $key => $section) {
                 $sections[$key]->readers = $this->_get_section_reader($section->id);
-                $sections[$key]->time   = gmdate("H:i:s", $section->playtime);
+                $sections[$key]->time = format_playtime($section->playtime);
 
             }
         }  
