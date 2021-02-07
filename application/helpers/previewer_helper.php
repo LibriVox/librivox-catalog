@@ -173,3 +173,13 @@ function build_author_years($author)
 		? ""
 		: sprintf("(%s - %s)", $author->dob, $author->dod);
 }
+
+function format_playtime($seconds)
+{
+	$remainder = $seconds;
+	$seconds   = $remainder % 60;
+	$remainder = ($remainder - $seconds) / 60;
+	$minutes   = $remainder % 60;
+	$hours     = ($remainder - $minutes) / 60;
+	return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+}
