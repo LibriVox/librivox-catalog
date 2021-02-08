@@ -1,10 +1,11 @@
 <?php
+
 /////////////////////////////////////////////////////////////////
 /// getID3() by James Heinrich <info@getid3.org>               //
-//  available at http://getid3.sourceforge.net                 //
-//            or http://www.getid3.org                         //
-/////////////////////////////////////////////////////////////////
-// See readme.txt for more details                             //
+//  available at https://github.com/JamesHeinrich/getID3       //
+//            or https://www.getid3.org                        //
+//            or http://getid3.sourceforge.net                 //
+//  see readme.txt for more details                            //
 /////////////////////////////////////////////////////////////////
 //                                                             //
 // module.audio-video.real.php                                 //
@@ -13,11 +14,16 @@
 //                                                            ///
 /////////////////////////////////////////////////////////////////
 
+if (!defined('GETID3_INCLUDEPATH')) { // prevent path-exposing attacks that access modules directly on public webservers
+	exit;
+}
 getid3_lib::IncludeDependency(GETID3_INCLUDEPATH.'module.audio-video.riff.php', __FILE__, true);
 
 class getid3_real extends getid3_handler
 {
-
+	/**
+	 * @return bool
+	 */
 	public function Analyze() {
 		$info = &$this->getid3->info;
 
@@ -25,15 +31,15 @@ class getid3_real extends getid3_handler
 		$info['bitrate']          = 0;
 		$info['playtime_seconds'] = 0;
 
-		fseek($this->getid3->fp, $info['avdataoffset'], SEEK_SET);
+		$this->fseek($info['avdataoffset']);
 		$ChunkCounter = 0;
-		while (ftell($this->getid3->fp) < $info['avdataend']) {
-			$ChunkData  = fread($this->getid3->fp, 8);
+		while ($this->ftell() < $info['avdataend']) {
+			$ChunkData  = $this->fread(8);
 			$ChunkName  =                           substr($ChunkData, 0, 4);
 			$ChunkSize  = getid3_lib::BigEndian2Int(substr($ChunkData, 4, 4));
 
 			if ($ChunkName == '.ra'."\xFD") {
-				$ChunkData .= fread($this->getid3->fp, $ChunkSize - 8);
+				$ChunkData .= $this->fread($ChunkSize - 8);
 				if ($this->ParseOldRAheader(substr($ChunkData, 0, 128), $info['real']['old_ra_header'])) {
 					$info['audio']['dataformat']      = 'real';
 					$info['audio']['lossless']        = false;
@@ -52,7 +58,7 @@ class getid3_real extends getid3_handler
 					}
 					return true;
 				}
-				$info['error'][] = 'There was a problem parsing this RealAudio file. Please submit it for analysis to info@getid3.org';
+				$this->error('There was a problem parsing this RealAudio file. Please submit it for analysis to info@getid3.org');
 				unset($info['bitrate']);
 				unset($info['playtime_seconds']);
 				return false;
@@ -63,21 +69,21 @@ class getid3_real extends getid3_handler
 			$thisfile_real_chunks_currentchunk = &$info['real']['chunks'][$ChunkCounter];
 
 			$thisfile_real_chunks_currentchunk['name']   = $ChunkName;
-			$thisfile_real_chunks_currentchunk['offset'] = ftell($this->getid3->fp) - 8;
+			$thisfile_real_chunks_currentchunk['offset'] = $this->ftell() - 8;
 			$thisfile_real_chunks_currentchunk['length'] = $ChunkSize;
 			if (($thisfile_real_chunks_currentchunk['offset'] + $thisfile_real_chunks_currentchunk['length']) > $info['avdataend']) {
-				$info['warning'][] = 'Chunk "'.$thisfile_real_chunks_currentchunk['name'].'" at offset '.$thisfile_real_chunks_currentchunk['offset'].' claims to be '.$thisfile_real_chunks_currentchunk['length'].' bytes long, which is beyond end of file';
+				$this->warning('Chunk "'.$thisfile_real_chunks_currentchunk['name'].'" at offset '.$thisfile_real_chunks_currentchunk['offset'].' claims to be '.$thisfile_real_chunks_currentchunk['length'].' bytes long, which is beyond end of file');
 				return false;
 			}
 
 			if ($ChunkSize > ($this->getid3->fread_buffer_size() + 8)) {
 
-				$ChunkData .= fread($this->getid3->fp, $this->getid3->fread_buffer_size() - 8);
-				fseek($this->getid3->fp, $thisfile_real_chunks_currentchunk['offset'] + $ChunkSize, SEEK_SET);
+				$ChunkData .= $this->fread($this->getid3->fread_buffer_size() - 8);
+				$this->fseek($thisfile_real_chunks_currentchunk['offset'] + $ChunkSize);
 
 			} elseif(($ChunkSize - 8) > 0) {
 
-				$ChunkData .= fread($this->getid3->fp, $ChunkSize - 8);
+				$ChunkData .= $this->fread($ChunkSize - 8);
 
 			}
 			$offset = 8;
@@ -97,7 +103,7 @@ class getid3_real extends getid3_handler
 							break;
 
 						default:
-							//$info['warning'][] = 'Expected .RMF-object_version to be "0", actual value is "'.$thisfile_real_chunks_currentchunk['object_version'].'" (should not be a problem)';
+							//$this->warning('Expected .RMF-object_version to be "0", actual value is "'.$thisfile_real_chunks_currentchunk['object_version'].'" (should not be a problem)');
 							break;
 
 					}
@@ -347,13 +353,13 @@ class getid3_real extends getid3_handler
 							break 2;
 						} else {
 							// non-last index chunk, seek to next index chunk (skipping actual index data)
-							fseek($this->getid3->fp, $thisfile_real_chunks_currentchunk['next_index_header'], SEEK_SET);
+							$this->fseek($thisfile_real_chunks_currentchunk['next_index_header']);
 						}
 					}
 					break;
 
 				default:
-					$info['warning'][] = 'Unhandled RealMedia chunk "'.$ChunkName.'" at offset '.$thisfile_real_chunks_currentchunk['offset'];
+					$this->warning('Unhandled RealMedia chunk "'.$ChunkName.'" at offset '.$thisfile_real_chunks_currentchunk['offset']);
 					break;
 			}
 			$ChunkCounter++;
@@ -369,7 +375,12 @@ class getid3_real extends getid3_handler
 		return true;
 	}
 
-
+	/**
+	 * @param string $OldRAheaderData
+	 * @param array  $ParsedArray
+	 *
+	 * @return bool
+	 */
 	public function ParseOldRAheader($OldRAheaderData, &$ParsedArray) {
 		// http://www.freelists.org/archives/matroska-devel/07-2003/msg00010.html
 
@@ -475,8 +486,9 @@ class getid3_real extends getid3_handler
 			$ParsedArray['fourcc'] = $ParsedArray['fourcc3'];
 
 		}
+		/** @var string[]|false[] $value */
 		foreach ($ParsedArray['comments'] as $key => $value) {
-			if ($ParsedArray['comments'][$key][0] === false) {
+			if ($value[0] === false) {
 				$ParsedArray['comments'][$key][0] = '';
 			}
 		}
@@ -484,6 +496,12 @@ class getid3_real extends getid3_handler
 		return true;
 	}
 
+	/**
+	 * @param string $fourcc
+	 * @param int    $bitrate
+	 *
+	 * @return string
+	 */
 	public function RealAudioCodecFourCClookup($fourcc, $bitrate) {
 		static $RealAudioCodecFourCClookup = array();
 		if (empty($RealAudioCodecFourCClookup)) {

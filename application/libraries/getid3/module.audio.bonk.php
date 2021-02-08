@@ -1,10 +1,11 @@
 <?php
+
 /////////////////////////////////////////////////////////////////
 /// getID3() by James Heinrich <info@getid3.org>               //
-//  available at http://getid3.sourceforge.net                 //
-//            or http://www.getid3.org                         //
-/////////////////////////////////////////////////////////////////
-// See readme.txt for more details                             //
+//  available at https://github.com/JamesHeinrich/getID3       //
+//            or https://www.getid3.org                        //
+//            or http://getid3.sourceforge.net                 //
+//  see readme.txt for more details                            //
 /////////////////////////////////////////////////////////////////
 //                                                             //
 // module.audio.la.php                                         //
@@ -13,9 +14,15 @@
 //                                                            ///
 /////////////////////////////////////////////////////////////////
 
+if (!defined('GETID3_INCLUDEPATH')) { // prevent path-exposing attacks that access modules directly on public webservers
+	exit;
+}
 
 class getid3_bonk extends getid3_handler
 {
+	/**
+	 * @return bool
+	 */
 	public function Analyze() {
 		$info = &$this->getid3->info;
 
@@ -28,20 +35,20 @@ class getid3_bonk extends getid3_handler
 
 		if (!getid3_lib::intValueSupported($thisfile_bonk['dataend'])) {
 
-			$info['warning'][] = 'Unable to parse BONK file from end (v0.6+ preferred method) because PHP filesystem functions only support up to '.round(PHP_INT_MAX / 1073741824).'GB';
+			$this->warning('Unable to parse BONK file from end (v0.6+ preferred method) because PHP filesystem functions only support up to '.round(PHP_INT_MAX / 1073741824).'GB');
 
 		} else {
 
 			// scan-from-end method, for v0.6 and higher
-			fseek($this->getid3->fp, $thisfile_bonk['dataend'] - 8, SEEK_SET);
-			$PossibleBonkTag = fread($this->getid3->fp, 8);
+			$this->fseek($thisfile_bonk['dataend'] - 8);
+			$PossibleBonkTag = $this->fread(8);
 			while ($this->BonkIsValidTagName(substr($PossibleBonkTag, 4, 4), true)) {
 				$BonkTagSize = getid3_lib::LittleEndian2Int(substr($PossibleBonkTag, 0, 4));
-				fseek($this->getid3->fp, 0 - $BonkTagSize, SEEK_CUR);
-				$BonkTagOffset = ftell($this->getid3->fp);
-				$TagHeaderTest = fread($this->getid3->fp, 5);
-				if (($TagHeaderTest{0} != "\x00") || (substr($PossibleBonkTag, 4, 4) != strtolower(substr($PossibleBonkTag, 4, 4)))) {
-					$info['error'][] = 'Expecting "'.getid3_lib::PrintHexBytes("\x00".strtoupper(substr($PossibleBonkTag, 4, 4))).'" at offset '.$BonkTagOffset.', found "'.getid3_lib::PrintHexBytes($TagHeaderTest).'"';
+				$this->fseek(0 - $BonkTagSize, SEEK_CUR);
+				$BonkTagOffset = $this->ftell();
+				$TagHeaderTest = $this->fread(5);
+				if (($TagHeaderTest[0] != "\x00") || (substr($PossibleBonkTag, 4, 4) != strtolower(substr($PossibleBonkTag, 4, 4)))) {
+					$this->error('Expecting "'.getid3_lib::PrintHexBytes("\x00".strtoupper(substr($PossibleBonkTag, 4, 4))).'" at offset '.$BonkTagOffset.', found "'.getid3_lib::PrintHexBytes($TagHeaderTest).'"');
 					return false;
 				}
 				$BonkTagName = substr($TagHeaderTest, 1, 4);
@@ -56,17 +63,17 @@ class getid3_bonk extends getid3_handler
 					}
 					return true;
 				}
-				fseek($this->getid3->fp, $NextTagEndOffset, SEEK_SET);
-				$PossibleBonkTag = fread($this->getid3->fp, 8);
+				$this->fseek($NextTagEndOffset);
+				$PossibleBonkTag = $this->fread(8);
 			}
 
 		}
 
 		// seek-from-beginning method for v0.4 and v0.5
 		if (empty($thisfile_bonk['BONK'])) {
-			fseek($this->getid3->fp, $thisfile_bonk['dataoffset'], SEEK_SET);
+			$this->fseek($thisfile_bonk['dataoffset']);
 			do {
-				$TagHeaderTest = fread($this->getid3->fp, 5);
+				$TagHeaderTest = $this->fread(5);
 				switch ($TagHeaderTest) {
 					case "\x00".'BONK':
 						if (empty($info['audio']['encoder'])) {
@@ -91,8 +98,8 @@ class getid3_bonk extends getid3_handler
 
 		// parse META block for v0.6 - v0.8
 		if (empty($thisfile_bonk['INFO']) && isset($thisfile_bonk['META']['tags']['info'])) {
-			fseek($this->getid3->fp, $thisfile_bonk['META']['tags']['info'], SEEK_SET);
-			$TagHeaderTest = fread($this->getid3->fp, 5);
+			$this->fseek($thisfile_bonk['META']['tags']['info']);
+			$TagHeaderTest = $this->fread(5);
 			if ($TagHeaderTest == "\x00".'INFO') {
 				$info['audio']['encoder'] = 'Extended BONK v0.6 - v0.8';
 
@@ -113,6 +120,9 @@ class getid3_bonk extends getid3_handler
 
 	}
 
+	/**
+	 * @param string $BonkTagName
+	 */
 	public function HandleBonkTags($BonkTagName) {
 		$info = &$this->getid3->info;
 		switch ($BonkTagName) {
@@ -120,7 +130,7 @@ class getid3_bonk extends getid3_handler
 				// shortcut
 				$thisfile_bonk_BONK = &$info['bonk']['BONK'];
 
-				$BonkData = "\x00".'BONK'.fread($this->getid3->fp, 17);
+				$BonkData = "\x00".'BONK'.$this->fread(17);
 				$thisfile_bonk_BONK['version']            =        getid3_lib::LittleEndian2Int(substr($BonkData,  5, 1));
 				$thisfile_bonk_BONK['number_samples']     =        getid3_lib::LittleEndian2Int(substr($BonkData,  6, 4));
 				$thisfile_bonk_BONK['sample_rate']        =        getid3_lib::LittleEndian2Int(substr($BonkData, 10, 4));
@@ -154,18 +164,18 @@ class getid3_bonk extends getid3_handler
 				// shortcut
 				$thisfile_bonk_INFO = &$info['bonk']['INFO'];
 
-				$thisfile_bonk_INFO['version'] = getid3_lib::LittleEndian2Int(fread($this->getid3->fp, 1));
+				$thisfile_bonk_INFO['version'] = getid3_lib::LittleEndian2Int($this->fread(1));
 				$thisfile_bonk_INFO['entries_count'] = 0;
-				$NextInfoDataPair = fread($this->getid3->fp, 5);
+				$NextInfoDataPair = $this->fread(5);
 				if (!$this->BonkIsValidTagName(substr($NextInfoDataPair, 1, 4))) {
 					while (!feof($this->getid3->fp)) {
 						//$CurrentSeekInfo['offset']  = getid3_lib::LittleEndian2Int(substr($NextInfoDataPair, 0, 4));
 						//$CurrentSeekInfo['nextbit'] = getid3_lib::LittleEndian2Int(substr($NextInfoDataPair, 4, 1));
 						//$thisfile_bonk_INFO[] = $CurrentSeekInfo;
 
-						$NextInfoDataPair = fread($this->getid3->fp, 5);
+						$NextInfoDataPair = $this->fread(5);
 						if ($this->BonkIsValidTagName(substr($NextInfoDataPair, 1, 4))) {
-							fseek($this->getid3->fp, -5, SEEK_CUR);
+							$this->fseek(-5, SEEK_CUR);
 							break;
 						}
 						$thisfile_bonk_INFO['entries_count']++;
@@ -174,10 +184,10 @@ class getid3_bonk extends getid3_handler
 				break;
 
 			case 'META':
-				$BonkData = "\x00".'META'.fread($this->getid3->fp, $info['bonk']['META']['size'] - 5);
+				$BonkData = "\x00".'META'.$this->fread($info['bonk']['META']['size'] - 5);
 				$info['bonk']['META']['version'] = getid3_lib::LittleEndian2Int(substr($BonkData,  5, 1));
 
-				$MetaTagEntries = floor(((strlen($BonkData) - 8) - 6) / 8); // BonkData - xxxxmeta - ØMETA
+				$MetaTagEntries = floor(((strlen($BonkData) - 8) - 6) / 8); // BonkData - xxxxmeta - Ã˜META
 				$offset = 6;
 				for ($i = 0; $i < $MetaTagEntries; $i++) {
 					$MetaEntryTagName   =                              substr($BonkData, $offset, 4);
@@ -194,7 +204,7 @@ class getid3_bonk extends getid3_handler
 				// ID3v2 checking is optional
 				if (class_exists('getid3_id3v2')) {
 					$getid3_temp = new getID3();
-					$getid3_temp->openfile($this->getid3->filename);
+					$getid3_temp->openfile($this->getid3->filename, $this->getid3->info['filesize'], $this->getid3->fp);
 					$getid3_id3v2 = new getid3_id3v2($getid3_temp);
 					$getid3_id3v2->StartingOffset = $info['bonk'][' ID3']['offset'] + 2;
 					$info['bonk'][' ID3']['valid'] = $getid3_id3v2->Analyze();
@@ -206,12 +216,18 @@ class getid3_bonk extends getid3_handler
 				break;
 
 			default:
-				$info['warning'][] = 'Unexpected Bonk tag "'.$BonkTagName.'" at offset '.$info['bonk'][$BonkTagName]['offset'];
+				$this->warning('Unexpected Bonk tag "'.$BonkTagName.'" at offset '.$info['bonk'][$BonkTagName]['offset']);
 				break;
 
 		}
 	}
 
+	/**
+	 * @param string $PossibleBonkTag
+	 * @param bool   $ignorecase
+	 *
+	 * @return bool
+	 */
 	public static function BonkIsValidTagName($PossibleBonkTag, $ignorecase=false) {
 		static $BonkIsValidTagName = array('BONK', 'INFO', ' ID3', 'META');
 		foreach ($BonkIsValidTagName as $validtagname) {

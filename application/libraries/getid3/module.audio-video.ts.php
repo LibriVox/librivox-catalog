@@ -1,10 +1,11 @@
 <?php
+
 /////////////////////////////////////////////////////////////////
 /// getID3() by James Heinrich <info@getid3.org>               //
-//  available at http://getid3.sourceforge.net                 //
-//            or http://www.getid3.org                         //
-/////////////////////////////////////////////////////////////////
-// See readme.txt for more details                             //
+//  available at https://github.com/JamesHeinrich/getID3       //
+//            or https://www.getid3.org                        //
+//            or http://getid3.sourceforge.net                 //
+//  see readme.txt for more details                            //
 /////////////////////////////////////////////////////////////////
 //                                                             //
 // module.audio-video.ts.php                                   //
@@ -13,18 +14,23 @@
 //                                                            ///
 /////////////////////////////////////////////////////////////////
 
+if (!defined('GETID3_INCLUDEPATH')) { // prevent path-exposing attacks that access modules directly on public webservers
+	exit;
+}
 
 class getid3_ts extends getid3_handler
 {
-
+	/**
+	 * @return bool
+	 */
 	public function Analyze() {
 		$info = &$this->getid3->info;
 
-		fseek($this->getid3->fp, $info['avdataoffset'], SEEK_SET);
-		$TSheader = fread($this->getid3->fp, 19);
+		$this->fseek($info['avdataoffset']);
+		$TSheader = $this->fread(19);
 		$magic = "\x47";
 		if (substr($TSheader, 0, 1) != $magic) {
-			$info['error'][] = 'Expecting "'.getid3_lib::PrintHexBytes($magic).'" at '.$info['avdataoffset'].', found '.getid3_lib::PrintHexBytes(substr($TSheader, 0, 1)).' instead.';
+			$this->error('Expecting "'.getid3_lib::PrintHexBytes($magic).'" at '.$info['avdataoffset'].', found '.getid3_lib::PrintHexBytes(substr($TSheader, 0, 1)).' instead.');
 			return false;
 		}
 		$info['fileformat'] = 'ts';
@@ -65,12 +71,16 @@ class getid3_ts extends getid3_handler
 			}
 		}
 
-$info['error'][] = 'MPEG Transport Stream (.ts) parsing not enabled in this version of getID3() ['.$this->getid3->version().']';
-return false;
+		$this->error('MPEG Transport Stream (.ts) parsing not enabled in this version of getID3() ['.$this->getid3->version().']');
+		return false;
 
 	}
 
-
+	/**
+	 * @param int $raw
+	 *
+	 * @return string
+	 */
 	public function TSscramblingControlLookup($raw) {
 		$TSscramblingControlLookup = array(0x00=>'not scrambled', 0x01=>'reserved', 0x02=>'scrambled, even key', 0x03=>'scrambled, odd key');
 		return (isset($TSscramblingControlLookup[$raw]) ? $TSscramblingControlLookup[$raw] : 'invalid');
