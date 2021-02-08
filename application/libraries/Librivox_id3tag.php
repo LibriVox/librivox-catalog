@@ -170,12 +170,23 @@ class Librivox_id3tag{
 				$file_array['filesize'] 	= number_format($file_data['filesize']);
 				$file_array['playtime'] 	= $file_data['playtime_string'];
 				$file_array['volume'] 		= $mp3gain_default - number_format($mp3gain_result[2], 1);
-				$file_array['bitrate'] 		= ceil($file_data['audio']['bitrate']/ 1000);
 				$file_array['sample'] 		= number_format($file_data['audio']['sample_rate']);
-
 				$file_array['track'] 		= '';
                 $file_array['delete']       = '<i data-file_name="'.$file_data['filename'].'" class="icon-remove delete_file" style="cursor:pointer"></i>';
 
+				if ($file_data['audio']['bitrate_mode'] == 'vbr')
+					$file_array['bitrate'] = 'VBR';
+				else if ($file_data['audio']['bitrate_mode'] == 'cbr')
+				{
+					$bitrate = $file_data['audio']['bitrate'];
+					$rounded = (int)round($bitrate / 1000);
+					if ($rounded * 1000 == $bitrate)
+						$file_array['bitrate'] = $rounded;
+					else
+						$file_array['bitrate'] = '~' . $rounded;
+				}
+				else
+					$file_array['bitrate'] = 0;
 
 				if (!empty($file_data['comments']))
 				{

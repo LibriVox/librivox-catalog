@@ -94,31 +94,24 @@ class Librivox_filecheck{
 	{
 		sort($map);
 
-		foreach ($map as $key=>$file_name)
+		foreach ($map as $key => $file_name)
 		{
-
 			$file_tags = $this->librivox_id3tag->_get_file_tags($this->validation_dir. $file_name);
 
-			//var_dump($file_tags);
-
-			// i think more useful than using the key...?
 			$this->file_array[$key] = array(
-				'file_name'	=> $file_name,
-				'album'		=> $file_tags['comments']['album'][0],
-				'artist'	=> $file_tags['comments']['artist'][0],
-				'chapter' 	=> $file_tags['comments']['title'][0],
-				'track' 	=> $file_tags['comments']['track_number'][0],
-				'length' 	=> $file_tags['playtime_seconds'],
-				'bitrate'   => $file_tags['bitrate'],
-				'sample'    => $file_tags['audio']['sample_rate'],
+				'file_name'    => $file_name,
+				'album'        => $file_tags['comments']['album'][0],
+				'artist'       => $file_tags['comments']['artist'][0],
+				'chapter'      => $file_tags['comments']['title'][0],
+				'track'        => $file_tags['comments']['track_number'][0],
+				'length'       => $file_tags['playtime_seconds'],
+				'bitrate_mode' => $file_tags['audio']['bitrate_mode'],
+				'bitrate'      => $file_tags['audio']['bitrate'],
+				'sample'       => $file_tags['audio']['sample_rate'],
 				'channelmode'  => $file_tags['audio']['channelmode'],
-				'id3v2'		=> array_key_exists('id3v2', $file_tags),
+				'id3v2'        => array_key_exists('id3v2', $file_tags),
 			);
-
-			unset($file_tags);
-			//var_dump($this->file_array[$file_name]);
 		}
-
 	}
 
 	function _set_project_type(&$project_type)
@@ -153,12 +146,12 @@ class Librivox_filecheck{
 
 	function check_bitrate(&$file_array)
 	{
-		return ((int)$file_array['bitrate']  == 128000);
+		return ($file_array['bitrate_mode'] == 'cbr' && $file_array['bitrate'] == 128000);
 	}
 
 	function check_samplerate(&$file_array)
 	{
-		return ((int)$file_array['sample']  == 44100);
+		return ($file_array['sample'] == 44100);
 	}
 
 	//would indicate a bug
