@@ -1,10 +1,11 @@
 <?php
+
 /////////////////////////////////////////////////////////////////
 /// getID3() by James Heinrich <info@getid3.org>               //
-//  available at http://getid3.sourceforge.net                 //
-//            or http://www.getid3.org                         //
-/////////////////////////////////////////////////////////////////
-// See readme.txt for more details                             //
+//  available at https://github.com/JamesHeinrich/getID3       //
+//            or https://www.getid3.org                        //
+//            or http://getid3.sourceforge.net                 //
+//  see readme.txt for more details                            //
 /////////////////////////////////////////////////////////////////
 //                                                             //
 // module.audio.vqf.php                                        //
@@ -13,13 +14,19 @@
 //                                                            ///
 /////////////////////////////////////////////////////////////////
 
+if (!defined('GETID3_INCLUDEPATH')) { // prevent path-exposing attacks that access modules directly on public webservers
+	exit;
+}
 
 class getid3_vqf extends getid3_handler
 {
+	/**
+	 * @return bool
+	 */
 	public function Analyze() {
 		$info = &$this->getid3->info;
 
-		// based loosely on code from TTwinVQ by Jurgen Faul <jfaulØgmx*de>
+		// based loosely on code from TTwinVQ by Jurgen Faul <jfaulÃ˜gmx*de>
 		// http://jfaul.de/atl  or  http://j-faul.virtualave.net/atl/atl.html
 
 		$info['fileformat']            = 'vqf';
@@ -32,14 +39,14 @@ class getid3_vqf extends getid3_handler
 		$thisfile_vqf               = &$info['vqf'];
 		$thisfile_vqf_raw           = &$thisfile_vqf['raw'];
 
-		fseek($this->getid3->fp, $info['avdataoffset'], SEEK_SET);
-		$VQFheaderData = fread($this->getid3->fp, 16);
+		$this->fseek($info['avdataoffset']);
+		$VQFheaderData = $this->fread(16);
 
 		$offset = 0;
 		$thisfile_vqf_raw['header_tag'] = substr($VQFheaderData, $offset, 4);
 		$magic = 'TWIN';
 		if ($thisfile_vqf_raw['header_tag'] != $magic) {
-			$info['error'][] = 'Expecting "'.getid3_lib::PrintHexBytes($magic).'" at offset '.$info['avdataoffset'].', found "'.getid3_lib::PrintHexBytes($thisfile_vqf_raw['header_tag']).'"';
+			$this->error('Expecting "'.getid3_lib::PrintHexBytes($magic).'" at offset '.$info['avdataoffset'].', found "'.getid3_lib::PrintHexBytes($thisfile_vqf_raw['header_tag']).'"');
 			unset($info['vqf']);
 			unset($info['fileformat']);
 			return false;
@@ -50,11 +57,11 @@ class getid3_vqf extends getid3_handler
 		$thisfile_vqf_raw['size']    = getid3_lib::BigEndian2Int(substr($VQFheaderData, $offset, 4));
 		$offset += 4;
 
-		while (ftell($this->getid3->fp) < $info['avdataend']) {
+		while ($this->ftell() < $info['avdataend']) {
 
-			$ChunkBaseOffset = ftell($this->getid3->fp);
+			$ChunkBaseOffset = $this->ftell();
 			$chunkoffset = 0;
-			$ChunkData = fread($this->getid3->fp, 8);
+			$ChunkData = $this->fread(8);
 			$ChunkName = substr($ChunkData, $chunkoffset, 4);
 			if ($ChunkName == 'DATA') {
 				$info['avdataoffset'] = $ChunkBaseOffset;
@@ -63,12 +70,12 @@ class getid3_vqf extends getid3_handler
 			$chunkoffset += 4;
 			$ChunkSize = getid3_lib::BigEndian2Int(substr($ChunkData, $chunkoffset, 4));
 			$chunkoffset += 4;
-			if ($ChunkSize > ($info['avdataend'] - ftell($this->getid3->fp))) {
-				$info['error'][] = 'Invalid chunk size ('.$ChunkSize.') for chunk "'.$ChunkName.'" at offset '.$ChunkBaseOffset;
+			if ($ChunkSize > ($info['avdataend'] - $this->ftell())) {
+				$this->error('Invalid chunk size ('.$ChunkSize.') for chunk "'.$ChunkName.'" at offset '.$ChunkBaseOffset);
 				break;
 			}
 			if ($ChunkSize > 0) {
-				$ChunkData .= fread($this->getid3->fp, $ChunkSize);
+				$ChunkData .= $this->fread($ChunkSize);
 			}
 
 			switch ($ChunkName) {
@@ -92,7 +99,7 @@ class getid3_vqf extends getid3_handler
 					$info['audio']['encoder_options'] = 'CBR' . ceil($info['audio']['bitrate']/1000);
 
 					if ($info['audio']['bitrate'] == 0) {
-						$info['error'][] = 'Corrupt VQF file: bitrate_audio == zero';
+						$this->error('Corrupt VQF file: bitrate_audio == zero');
 						return false;
 					}
 					break;
@@ -111,7 +118,7 @@ class getid3_vqf extends getid3_handler
 					break;
 
 				default:
-					$info['warning'][] = 'Unhandled chunk type "'.$ChunkName.'" at offset '.$ChunkBaseOffset;
+					$this->warning('Unhandled chunk type "'.$ChunkName.'" at offset '.$ChunkBaseOffset);
 					break;
 			}
 		}
@@ -122,12 +129,12 @@ class getid3_vqf extends getid3_handler
 			switch ($thisfile_vqf['DSIZ']) {
 				case 0:
 				case 1:
-					$info['warning'][] = 'Invalid DSIZ value "'.$thisfile_vqf['DSIZ'].'". This is known to happen with VQF files encoded by Ahead Nero, and seems to be its way of saying this is TwinVQF v'.($thisfile_vqf['DSIZ'] + 1).'.0';
+					$this->warning('Invalid DSIZ value "'.$thisfile_vqf['DSIZ'].'". This is known to happen with VQF files encoded by Ahead Nero, and seems to be its way of saying this is TwinVQF v'.($thisfile_vqf['DSIZ'] + 1).'.0');
 					$info['audio']['encoder'] = 'Ahead Nero';
 					break;
 
 				default:
-					$info['warning'][] = 'Probable corrupted file - should be '.$thisfile_vqf['DSIZ'].' bytes, actually '.($info['avdataend'] - $info['avdataoffset'] - strlen('DATA'));
+					$this->warning('Probable corrupted file - should be '.$thisfile_vqf['DSIZ'].' bytes, actually '.($info['avdataend'] - $info['avdataoffset'] - strlen('DATA')));
 					break;
 			}
 		}
@@ -135,6 +142,11 @@ class getid3_vqf extends getid3_handler
 		return true;
 	}
 
+	/**
+	 * @param int $frequencyid
+	 *
+	 * @return int
+	 */
 	public function VQFchannelFrequencyLookup($frequencyid) {
 		static $VQFchannelFrequencyLookup = array(
 			11 => 11025,
@@ -144,6 +156,11 @@ class getid3_vqf extends getid3_handler
 		return (isset($VQFchannelFrequencyLookup[$frequencyid]) ? $VQFchannelFrequencyLookup[$frequencyid] : $frequencyid * 1000);
 	}
 
+	/**
+	 * @param string $shortname
+	 *
+	 * @return string
+	 */
 	public function VQFcommentNiceNameLookup($shortname) {
 		static $VQFcommentNiceNameLookup = array(
 			'NAME' => 'title',

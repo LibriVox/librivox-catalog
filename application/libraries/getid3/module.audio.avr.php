@@ -1,10 +1,11 @@
 <?php
+
 /////////////////////////////////////////////////////////////////
 /// getID3() by James Heinrich <info@getid3.org>               //
-//  available at http://getid3.sourceforge.net                 //
-//            or http://www.getid3.org                         //
-/////////////////////////////////////////////////////////////////
-// See readme.txt for more details                             //
+//  available at https://github.com/JamesHeinrich/getID3       //
+//            or https://www.getid3.org                        //
+//            or http://getid3.sourceforge.net                 //
+//  see readme.txt for more details                            //
 /////////////////////////////////////////////////////////////////
 //                                                             //
 // module.audio.avr.php                                        //
@@ -13,10 +14,15 @@
 //                                                            ///
 /////////////////////////////////////////////////////////////////
 
+if (!defined('GETID3_INCLUDEPATH')) { // prevent path-exposing attacks that access modules directly on public webservers
+	exit;
+}
 
 class getid3_avr extends getid3_handler
 {
-
+	/**
+	 * @return bool
+	 */
 	public function Analyze() {
 		$info = &$this->getid3->info;
 
@@ -62,13 +68,13 @@ class getid3_avr extends getid3_handler
 
 		$info['fileformat'] = 'avr';
 
-		fseek($this->getid3->fp, $info['avdataoffset'], SEEK_SET);
-		$AVRheader = fread($this->getid3->fp, 128);
+		$this->fseek($info['avdataoffset']);
+		$AVRheader = $this->fread(128);
 
 		$info['avr']['raw']['magic'] = substr($AVRheader,  0,  4);
 		$magic = '2BIT';
 		if ($info['avr']['raw']['magic'] != $magic) {
-			$info['error'][] = 'Expecting "'.getid3_lib::PrintHexBytes($magic).'" at offset '.$info['avdataoffset'].', found "'.getid3_lib::PrintHexBytes($info['avr']['raw']['magic']).'"';
+			$this->error('Expecting "'.getid3_lib::PrintHexBytes($magic).'" at offset '.$info['avdataoffset'].', found "'.getid3_lib::PrintHexBytes($info['avr']['raw']['magic']).'"');
 			unset($info['fileformat']);
 			unset($info['avr']);
 			return false;
@@ -105,7 +111,7 @@ class getid3_avr extends getid3_handler
 		}
 
 		if (($info['avdataend'] - $info['avdataoffset']) != ($info['avr']['sample_length'] * (($info['avr']['bits_per_sample'] == 8) ? 1 : 2))) {
-			$info['warning'][] = 'Probable truncated file: expecting '.($info['avr']['sample_length'] * (($info['avr']['bits_per_sample'] == 8) ? 1 : 2)).' bytes of audio data, found '.($info['avdataend'] - $info['avdataoffset']);
+			$this->warning('Probable truncated file: expecting '.($info['avr']['sample_length'] * (($info['avr']['bits_per_sample'] == 8) ? 1 : 2)).' bytes of audio data, found '.($info['avdataend'] - $info['avdataoffset']));
 		}
 
 		$info['audio']['dataformat']      = 'avr';
