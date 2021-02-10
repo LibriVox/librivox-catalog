@@ -17,7 +17,7 @@
 	$upload_msg = function() use ($project_type, $project_img_url)
 	{
 		echo "\n";
-		echo lang('project_launch_template_upload_with_uploader'), "\n";
+		echo lang('project_launch_template_upload_with_uploader'), ' ', base_url(UPLOADER_LINK), "\n";
 
 		if ($project_type != 'solo')
 		{
