@@ -18,7 +18,7 @@
 		<tbody>
 			<?php foreach ($volunteers as $volunteer): ?>
 				<tr id="<?= $volunteer->id ?>">
-					<td id="id-<?= $volunteer->id ?>" class="id"><?= $volunteer->id ?></td>
+					<td id="id-<?= $volunteer->id ?>" class="id"><a href="/projects/<?= $volunteer->id ?>"><?= $volunteer->id ?></a></td>
 					<?php if ($show_edit):?>
 						<td><i class="icon-search user_meta_data" data-volunteer_id="<?= $volunteer->id ?>" style="cursor:pointer;"></i></td>
 					<?php endif; ?>
