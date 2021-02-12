@@ -49,7 +49,7 @@ class Page extends Catalog_controller
 		{
 			$this->data['translators'] = array_slice($this->data['translators'], 0, 20); //only show 20 authors on page
 
-			$this->data['authors_string'] .= ', translated by ' . $this->_authors_string($this->data['translators']);
+			$this->data['authors_string'] .= '<br />Translated by ' . $this->_authors_string($this->data['translators']);
 		}
 
 		//var_dump($this->data['project']);
