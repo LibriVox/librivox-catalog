@@ -1,13 +1,15 @@
 <?php
 
 $config['languages'] = array(
-     'english'=>'English',
-     'dutch'=>'Nederlands - Dutch',
-     'french'=>'Fran&ccedil;ais - French',
-     'german'=>'Deutsch - German',
-     'italian'=>'Italiano - Italian',
-     'portuguese'=>'Portugu&ecirc;s - Portuguese',
-     'spanish'=>'Espa&ntilde;ol - Spanish',
+	'english'    => 'English',
+	'zh_cn'      => '汉语 - Chinese',
+	'dutch'      =>' Nederlands - Dutch',
+	'french'     => 'Français - French',
+	'german'     => 'Deutsch - German',
+	'italian'    => 'Italiano - Italian',
+	'portuguese' => 'Português - Portuguese',
+//	'russian'    => 'русский язык - Russian',
+	'spanish'    => 'Español - Spanish',
 );
 
 $config['title_remove'] = array(
