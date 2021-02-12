@@ -27,14 +27,14 @@
 				
 				<p class="book-page-author"><?= $authors_string ?></p>
 				
-				<div class="description"><?= $project->description ?></div>	<!-- .description -->
+				<p class="description"><?= $project->description ?></p>
 
 				<p class="book-page-genre"><span>Genre(s):</span> <?= $project->genre_list; ?></p>
 
 				<p class="book-page-genre"><span>Language:</span> <?= $project->language; ?></p>
 
 				<?php if(!empty($project->group)):?>
-				<p class="book-page-genre"><span>Group:</span><a href="<?= base_url().'group/'. $project->group->group_id?>"> <?= $project->group->group_name; ?></a></p>
+				<p class="book-page-genre"><span>Group:</span> <a href="<?= base_url().'group/'. $project->group->group_id?>"><?= $project->group->group_name; ?></a></p>
 				<?php endif;?>
 
 				

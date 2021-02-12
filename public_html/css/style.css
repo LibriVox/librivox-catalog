@@ -720,8 +720,9 @@ p.description {
 .book-page h1 {
 	margin-bottom: 5px;
 }
-.book-page-author {
+p.book-page-author {
 	font-size: 1.07em;	 /* 15/14 */
+	margin-bottom: 15px;
 }
 .book-page .description p {
 	margin-bottom: 15px;
