@@ -1,7 +1,7 @@
 <div id="author_pseudonyms_modal" class="modal hide fade" style="width:700px;" tabindex="-1" role="dialog" aria-labelledby="profile_label" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="profile_label">Author Psuedonyms - <span id="pseudonyms_author_name"></span></h3>
+		<h3 id="profile_label">Author Pseudonyms - <span id="pseudonyms_author_name"></span></h3>
 	</div>
 
 	<div class="modal-body">
