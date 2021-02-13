@@ -43,7 +43,7 @@
 
 	$author_text = format_authors($author, 0, 2);
 	$author_all_text = format_authors($author, FMT_AUTH_YEARS, 2);
-	if ($translator[0])
+	if (isset($translator[0]))
 	{
 		$author_text .= ', ' . lang('project_launch_template_trans_by') . ' ' . format_authors($translator, 0, 2);
 		$author_all_text  .= ', ' . lang('project_launch_template_trans_by') . ' ' . format_authors($translator, FMT_AUTH_YEARS, 2);
