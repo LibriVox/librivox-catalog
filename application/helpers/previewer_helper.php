@@ -151,7 +151,7 @@ function format_author_years($author)
 	$dob = empty($author->dob) ? '' : $author->dob;
 	$dod = empty($author->dod) ? '' : $author->dod;
 
-	if (!empty($dod) || !empty($dod))
+	if (!empty($dob) || !empty($dod))
 		return '(' . $dob . ' - ' . $dod . ')';
 	else
 		return '';
