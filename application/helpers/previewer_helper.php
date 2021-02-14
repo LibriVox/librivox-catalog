@@ -30,6 +30,8 @@ function clean_title($title, $retval = 'title')
 	return $prefix;
 }
 
+// WARNING: The create_full_title function is also used by the WordPress theme
+// (also see comment before format_authors).
 function create_full_title($project)
 {
 	if (is_array($project)) $project = (object) $project;
@@ -162,6 +164,9 @@ define ('FMT_AUTH_HTML',  0x02);
 define ('FMT_AUTH_LINK',  0x04);
 define ('FMT_AUTH_WIKI',  0x08);
 
+// WARNING: the format authors function is also used (loaded via a require_once)
+// by the WordPress theme codebase. Make sure if you change this function that
+// you also double check it will not break the WordPress theme!
 function format_authors($authors, $flags = 0, $max = 0)
 {
 	$flag_years = (bool)($flags & FMT_AUTH_YEARS);
