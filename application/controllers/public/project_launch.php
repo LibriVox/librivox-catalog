@@ -198,7 +198,7 @@ class Project_launch extends Public_Controller
 
 	private function _validate_form()
 	{
-		$this->form_validation->set_rules('lang_select', 'Language Selector', 'trim|required|xss_clean|alpha');
+		$this->form_validation->set_rules('lang_select', 'Language Selector', 'trim|required|xss_clean');
 
 		$this->form_validation->set_rules('auth_id[]', 'Author id', 'trim|xss_clean');
 		$this->form_validation->set_rules('auth_first_name[]', 'lang:proj_launch_auth_first_name', 'trim|xss_clean');
