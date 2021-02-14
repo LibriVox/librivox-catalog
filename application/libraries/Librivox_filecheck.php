@@ -200,7 +200,7 @@ class Librivox_filecheck{
 
 	function check_filename(&$file_array)
 	{
-		if ($this->prject_type == 'poem')
+		if ($this->project_type == 'poem')
 			$pattern = '/^[^_]+_[^_]+_[^_]+_128kb\.mp3$/';
 		else if (!$this->project->is_compilation)
 			$pattern = '/^[^_]+_[0-9-]+_[^_]+_128kb\.mp3$/';
