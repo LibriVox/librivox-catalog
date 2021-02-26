@@ -146,7 +146,8 @@ class Librivox_filecheck{
 
 	function check_bitrate(&$file_array)
 	{
-		return ($file_array['bitrate_mode'] == 'cbr' && $file_array['bitrate'] == 128000);
+		// Note: getID3 does not always return exactly 128000 even when every frame in the file is 128k so lets only check to the nearest 1000
+		return ($file_array['bitrate_mode'] == 'cbr' && (int)round($file_array['bitrate'] / 1000) == 128);
 	}
 
 	function check_samplerate(&$file_array)

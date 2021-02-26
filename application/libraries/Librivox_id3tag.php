@@ -177,14 +177,7 @@ class Librivox_id3tag{
 				if ($file_data['audio']['bitrate_mode'] == 'vbr')
 					$file_array['bitrate'] = 'VBR';
 				else if ($file_data['audio']['bitrate_mode'] == 'cbr')
-				{
-					$bitrate = $file_data['audio']['bitrate'];
-					$rounded = (int)round($bitrate / 1000);
-					if ($rounded * 1000 == $bitrate)
-						$file_array['bitrate'] = $rounded;
-					else
-						$file_array['bitrate'] = '~' . $rounded;
-				}
+					$file_array['bitrate'] = (int)round($file_data['audio']['bitrate'] / 1000);
 				else
 					$file_array['bitrate'] = 0;
 
