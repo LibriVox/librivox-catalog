@@ -27,7 +27,7 @@
 
       <p><?= lang('proj_launch_uploader_intro')?></p>
 
-      <div><?= lang('proj_launch_uploader_instructions')?>:
+      <div><?= lang('proj_launch_uploader_instructions')?>
           <ul>
               <li><?= lang('proj_launch_uploader_instruct_1')?></li>
               <li><?= lang('proj_launch_uploader_instruct_2')?></li>
@@ -40,7 +40,7 @@
 
       <br />
 
-      <div><?= lang('proj_launch_uploader_notes')?>:
+      <div><?= lang('proj_launch_uploader_notes')?>
           <ul>
               <li><?= lang('proj_launch_uploader_notes_1')?></li>
               <li><?= lang('proj_launch_uploader_notes_2')?></li>
