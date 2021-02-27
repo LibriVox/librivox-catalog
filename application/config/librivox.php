@@ -8,7 +8,7 @@ $config['languages'] = array(
 	'german'     => 'Deutsch - German',
 	'italian'    => 'Italiano - Italian',
 	'portuguese' => 'Português - Portuguese',
-//	'russian'    => 'русский язык - Russian',
+	'russian'    => 'Русский - Russian',
 	'spanish'    => 'Español - Spanish',
 );
 
