@@ -19,18 +19,18 @@
 
 	var sub_category;
 
-	var advanced_search = <?= (int)$advanced_search ?>;
+	var advanced_search = <?= (int)(isset($advanced_search) ? $advanced_search : 0) ?>;
 
 	var primary_key = <?= (int)$primary_key ?>;
 
-	var search_page = <?= (int)($search_page ?: 1) ?>;
+	var search_page = <?= (int)(isset($search_page) ? $search_page : 1) ?>;
 	set_advanced_form_page(search_page);
 
 	var search_order = 'alpha';
 
 	var project_type = 'either';
 
-	var q = <?= json_encode($search_value ?: '', JSON_HEX_TAG | JSON_HEX_QUOT) ?>;
+	var q = <?= json_encode(isset($search_value) ? $search_value : '', JSON_HEX_TAG | JSON_HEX_QUOT) ?>;
 
 	var spinner = '<div class="loading_img" style="margin-left:300px;margin-top:60px;"><img src="../../img/loading.gif"/></div>';
 
