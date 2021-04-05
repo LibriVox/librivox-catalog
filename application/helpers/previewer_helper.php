@@ -228,7 +228,10 @@ function format_authors($authors, $flags = 0, $max = 0)
 
 function format_author($author, $flags = 0)
 {
-	return format_authors(array($author), $flags);
+	if (isset($author))
+		return format_authors(array($author), $flags);
+	else
+		return '';
 }
 
 function format_playtime($seconds)
