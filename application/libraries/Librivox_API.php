@@ -139,7 +139,7 @@ class Librivox_API{
 			$project['url_project'] 	= $row['url_project'];
 			$project['url_librivox'] 	= $row['url_librivox'];
 
-			$project['url_other'] 		= $row['url_other'];
+			$project['url_other'] 		= isset($row['url_other']) ? $row['url_other'] : '';
 
 			$project['totaltime'] 		= $row['totaltime'];
 			$project['totaltimesecs'] 	= time_string_to_secs($row['totaltime']);
