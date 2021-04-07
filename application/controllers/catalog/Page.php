@@ -14,6 +14,9 @@ class Page extends Catalog_controller
 		$this->load->model('project_model');
 		$this->load->model('user_model');
 
+		$this->data['search_category'] = 'page';
+		$this->data['primary_key'] = 0;
+
 		if (empty($slug))
 		{
 			$this->data['message'] = 'You must include either the Project Id or the Project Slug (i.e., "tom_sawyer_by_mark_twain" , without any other link info)';
@@ -103,9 +106,6 @@ class Page extends Catalog_controller
 				}
 			}
 		}
-
-		$this->data['search_category'] = 'page';
-		$this->data['primary_key'] = 0;
 
 		$this->_render('catalog/page');
 		return;
