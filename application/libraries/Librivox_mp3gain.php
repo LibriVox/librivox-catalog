@@ -68,9 +68,13 @@ class Librivox_mp3gain
 		$command = $this->mp3gain .  ' ' . $this->flag . $dir. $file_name;
 		exec($command, $output);
 
-		$parts = explode("\t", $output[1]);
+        if (count($output) > 1) {
+            $parts = explode("\t", $output[1]);
+            return $parts;
+        } else {
+            return false;
+        }
 
-		return $parts;
 
 	}
 
