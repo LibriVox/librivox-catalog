@@ -161,6 +161,7 @@ class Librivox_id3tag{
 
                 //analyze volume
                 $mp3gain_result = $this->librivox_mp3gain->analyze_file($dir, $file);
+                if (! $mp3gain_result) continue;
 
 				$file_array = $this-> _create_file_array($freeze); //prototype
 
