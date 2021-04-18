@@ -333,14 +333,7 @@ class Librivox_search{
 				AND a.linked_to = 0	';
 		$author_like = "%$author%";
 		$query = $this->db->query($sql, array($author_like, $author_like));
-
-		// why the zero, you ask? makes sure our IN clause always has a value for valid sql
-		$project_ids[0] = 0;
-		foreach ($query->result() as $key => $value) {
-			$project_ids[] = $value->project_id;
-		}
-
-		return $project_ids;
+		return $this->ids($query, 'project_id');
 	}
 
 
@@ -361,14 +354,7 @@ class Librivox_search{
 				AND a.linked_to = 0	';
 		$author_like = "%$author%";
 		$query = $this->db->query($sql, array($author_like, $author_like));
-
-		$project_ids[0] = 0;
-		foreach ($query->result() as $key => $value) {
-			$project_ids[] = $value->source_id;
-		}
-
-		return $project_ids;
-
+		return $this->ids($query, 'source_id');
 	}
 
 
@@ -387,13 +373,7 @@ class Librivox_search{
 				AND a.linked_to = 0	';
 		$author_like = "%$author%";
 		$query = $this->db->query($sql, array($author_like, $author_like));
-
-		$author_ids[0] = 0;
-		foreach ($query->result() as $key => $value) {
-			$author_ids[] = $value->id;
-		}
-
-		return $author_ids;
+		return $this->ids($query);
 	}
 
 	private function _get_reader_ids($reader, $exact_match)
@@ -404,14 +384,7 @@ class Librivox_search{
 				OR u.username LIKE ?';
 		$reader_like =  $exact_match ? $reader : "%$reader%";
 		$query = $this->db->query($sql, array($reader_like, $reader_like));
-
-		$reader_ids[0] = 0;
-		foreach ($query->result() as $key => $value) {
-			$reader_ids[] = $value->id;
-		}
-
-		return $reader_ids;
-
+		return $this->ids($query);
 	}
 
 
@@ -421,14 +394,7 @@ class Librivox_search{
 				FROM search_table st
 				WHERE section_language_id = ? ';
 		$query = $this->db->query($sql, array($language_id));
-
-		$project_ids[0] = 0;
-		foreach ($query->result() as $key => $value) {
-			$project_ids[] = $value->source_id;
-		}
-
-		return $project_ids;
-
+		return $this->ids($query, 'source_id');
 	}
 
 
@@ -440,16 +406,21 @@ class Librivox_search{
 				OR pr.username LIKE ?';
 		$reader_like =  $exact_match ? $reader : "%$reader%";
 		$query = $this->db->query($sql, array($reader_like, $reader_like));
-
-		//echo $this->db->last_query();
-
-		$project_ids[0] = 0;
-		foreach ($query->result() as $key => $value) {
-			$project_ids[] = $value->project_id;
-		}
-
-		return $project_ids;
+		return $this->ids($query, 'project_id');
 	}
 
 
+	private function ids($query, $id_column = 'id')
+	{
+		$ids = [];
+		foreach ($query->result('array') as $key => $value)
+		{
+			$ids[] = $value[$id_column];
+		}
+		if (empty($ids))
+		{
+			$ids[] = 0; // To prevent SQL syntax errors of the form "WHERE id IN ()".
+		}
+		return $ids;
+	}
 }
