@@ -63,7 +63,7 @@ class Librivox_simple_search{
 			// q is in the title, and not in a group. Joins language & author for fields.
 
 			$sql .= '
-					SELECT DISTINCT "title" AS blade, ' . implode(',' , $cols) . '
+					SELECT "title" AS blade, ' . implode(',' , $cols) . '
 
 					FROM search_table st
 
@@ -114,7 +114,7 @@ class Librivox_simple_search{
 
 					UNION
 
-					SELECT DISTINCT "group" AS blade,' . implode(',' , $cols) . '
+					SELECT "group" AS blade,' . implode(',' , $cols) . '
 
 					FROM search_table st
 

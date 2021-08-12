@@ -4,7 +4,7 @@ class Project_reader_model extends MY_Model {
 
 	function get_all_distinct($offset=0, $limit=CATALOG_RESULT_COUNT){
 
-		$sql = "SELECT DISTINCT reader_id, display_name, username, COALESCE(NULLIF(display_name,''), username)
+		$sql = "SELECT reader_id, display_name, username, COALESCE(NULLIF(display_name,''), username)
 				FROM project_readers
 				ORDER BY 4 ASC ";
 
