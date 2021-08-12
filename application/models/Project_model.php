@@ -59,7 +59,7 @@ class Project_model extends MY_Model
                 OR p.person_mc_id        = '.$user_projects.'
                 OR p.person_pl_id        = '.$user_projects.'
                 OR reader_data.reader_id = '.$user_projects.')';
-        }           
+        }
 
         $sql .= ' ORDER BY p.title '. $limit;
 
@@ -70,7 +70,7 @@ class Project_model extends MY_Model
 
     function get_lastest_releases($limit=10)
     {
-        $sql = 'SELECT DISTINCT p.id, p.title_prefix, p.title, p.url_librivox, p.description, p.project_type, p.coverart_thumbnail, p.date_catalog, COALESCE(l.two_letter_code, l.three_letter_code) AS language_code, language
+        $sql = 'SELECT p.id, p.title_prefix, p.title, p.url_librivox, p.description, p.project_type, p.coverart_thumbnail, p.date_catalog, COALESCE(l.two_letter_code, l.three_letter_code) AS language_code, language
                 FROM projects p 
                 JOIN languages l ON (l.id = p.language_id) 
                 WHERE p.status = "complete" 
@@ -154,7 +154,7 @@ class Project_model extends MY_Model
 
     function get_project_readers($project_id)
     {
-        $sql = 'SELECT DISTINCT u.id AS reader_id, u.display_name
+        $sql = 'SELECT u.id AS reader_id, u.display_name
                 FROM users u
                 JOIN section_readers sr ON (sr.reader_id = u.id) 
                 JOIN sections s ON (s.id = sr.section_id) 
@@ -168,7 +168,7 @@ class Project_model extends MY_Model
 
     function create_project_reader_list($project_id)
     {
-        $sql = 'SELECT DISTINCT u.display_name
+        $sql = 'SELECT u.display_name
         FROM users u
         JOIN section_readers sr ON (sr.reader_id = u.id) 
         JOIN sections s ON (s.id = sr.section_id) 
@@ -221,7 +221,7 @@ class Project_model extends MY_Model
 
 
         $sql = '
-                SELECT DISTINCT "project" AS primary_type, p.id AS primary_key, p.id, p.project_type, p.title_prefix, p.title, 
+                SELECT "project" AS primary_type, p.id AS primary_key, p.id, p.project_type, p.title_prefix, p.title, 
                 COALESCE(p.date_catalog, "2001-01-01" ), p.url_librivox, p.status, p.coverart_thumbnail, p.zip_url, p.zip_size, l.language , p.url_forum
                 FROM projects p 
                 JOIN project_authors pa ON (pa.project_id = p.id) 
@@ -253,7 +253,7 @@ class Project_model extends MY_Model
 
         $sql .= '
                 UNION
-                SELECT DISTINCT "section" AS primary_type, s.id AS primary_key, p.id, p.project_type, "", CONCAT(s.title, " (in ", COALESCE(p.title_prefix, "" ), " ", p.title, ")") as title,
+                SELECT "section" AS primary_type, s.id AS primary_key, p.id, p.project_type, "", CONCAT(s.title, " (in ", COALESCE(p.title_prefix, "" ), " ", p.title, ")") as title,
                 COALESCE(p.date_catalog, "2001-01-01" ), p.url_librivox, p.status, p.coverart_thumbnail, p.zip_url, p.zip_size, l.language , p.url_forum
                 FROM projects p
                 JOIN sections s ON (p.id = s.project_id)
@@ -318,7 +318,7 @@ class Project_model extends MY_Model
         }
 
         $sql = '
-                SELECT DISTINCT "project" AS primary_type, p.id AS primary_key, p.id, p.project_type, p.title_prefix, p.title, 
+                SELECT "project" AS primary_type, p.id AS primary_key, p.id, p.project_type, p.title_prefix, p.title, 
                 COALESCE(p.date_catalog, "2001-01-01" ), p.url_librivox, p.status, p.coverart_thumbnail, p.zip_url, p.zip_size, l.language, p.url_forum
 
                 FROM projects p
@@ -351,7 +351,7 @@ class Project_model extends MY_Model
 
     function get_projects_by_reader($params)
     {
-        $sql = 'SELECT DISTINCT p.id, p.project_type, p.title_prefix, p.title, p.date_catalog, p.url_librivox, p.status, p.coverart_thumbnail, p.zip_url, p.zip_size,
+        $sql = 'SELECT p.id, p.project_type, p.title_prefix, p.title, p.date_catalog, p.url_librivox, p.status, p.coverart_thumbnail, p.zip_url, p.zip_size,
                     l.two_letter_code, l.language , p.url_forum
                 FROM projects p
                 JOIN project_readers pr ON (pr.project_id = p.id)
@@ -388,7 +388,7 @@ class Project_model extends MY_Model
     function get_projects_by_group($params)
     {
 
-        $sql = 'SELECT DISTINCT p.id, p.project_type, p.title_prefix, p.title, p.url_librivox, p.status, p.coverart_thumbnail, p.zip_url, p.zip_size, 
+        $sql = 'SELECT p.id, p.project_type, p.title_prefix, p.title, p.url_librivox, p.status, p.coverart_thumbnail, p.zip_url, p.zip_size, 
                      l.two_letter_code, l.language, p.url_forum
                 FROM projects p 
                 JOIN group_projects gp ON (gp.project_id = p.id) 

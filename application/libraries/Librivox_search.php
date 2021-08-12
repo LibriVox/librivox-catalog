@@ -183,7 +183,7 @@ class Librivox_search{
 
 				$sql .= '
 
-				SELECT DISTINCT "title" AS blade, ' . implode(',' , $cols) . '
+				SELECT "title" AS blade, ' . implode(',' , $cols) . '
 
 				FROM search_table st
 
@@ -227,7 +227,7 @@ class Librivox_search{
 				$sql .= '
 					UNION
 
-				SELECT DISTINCT "title" AS blade, ' . implode(',' , $cols) . '
+				SELECT "title" AS blade, ' . implode(',' , $cols) . '
 
 				FROM search_table st
 
@@ -272,7 +272,7 @@ class Librivox_search{
 				$sql .= '
 					UNION
 
-					SELECT DISTINCT "group" AS blade,' . implode(',' , $cols) . '
+					SELECT "group" AS blade,' . implode(',' , $cols) . '
 
 					FROM search_table st
 

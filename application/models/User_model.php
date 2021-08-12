@@ -12,11 +12,19 @@ class User_model extends MY_Model {
         //$limit = 'LIMIT 0, 500';
         $limit = '';
 
-        $sql = 'SELECT DISTINCT u.* 
-        FROM ' . $this->_table . ' u
-        LEFT OUTER JOIN users_groups ug ON (ug.user_id = u.id)
-        LEFT OUTER JOIN roles r ON (ug.group_id = r.id)
-        WHERE u.id NOT IN (1,2) AND u.active = 1 '; //set these to constants
+        if (!empty($params['user_type']) and $params['user_type'] != 'all')
+        {   
+            $sql = 'SELECT DISTINCT u.id, u.username, u.display_name, u.email, u.website
+            FROM ' . $this->_table . ' u
+            LEFT OUTER JOIN users_groups ug ON (ug.user_id = u.id)
+            LEFT OUTER JOIN roles r ON (ug.group_id = r.id)
+            WHERE u.id NOT IN (1,2) AND u.active = 1
+            AND r.name = '. $this->db->escape($params['user_type']) .' ';
+        }  else {
+            $sql = 'SELECT u.id, u.username, u.display_name, u.email, u.website
+            FROM ' . $this->_table . ' u
+            WHERE u.id NOT IN (1,2) AND u.active = 1 '; //set these to constants
+        }
 
         if (!empty($params['user_search']))
         {
@@ -24,15 +32,9 @@ class User_model extends MY_Model {
             $sql .= ' AND (u.username LIKE ' . $user_like . ' OR u.email LIKE ' . $user_like . ') ' ;
         }   
 
-        if (!empty($params['user_type']))
-        {   
-            if ($params['user_type'] == 'all') 
-                $limit = '';
-            else
-                $sql .= ' AND r.name = '. $this->db->escape($params['user_type']) .' ';
-        } 
-
         $sql .= ' ORDER BY u.username '. $limit;
+
+        log_message('error', $sql);
 
         $query = $this->db->query($sql);
         return $query->result();
