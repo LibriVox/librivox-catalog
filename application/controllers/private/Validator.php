@@ -304,6 +304,13 @@ class Validator extends Private_Controller
 
 			$file_name = trim($file_name);
 
+            $file_path = $copy_to_dir . '/' . $file_name;
+            $file_data = $this->librivox_id3tag->_get_file_tags($file_path);
+            if (isset($file_data['error'])) {
+                unlink($file_path);
+                $this->ajax_output(array('message' => 'File ' . $file_name . ' is not a valid MP3 file.'), FALSE);
+            }
+
 			$section->author = $this->_get_author_by_section_or_project($section);
 
 			$tag_data = $this->librivox_id3tag->_build_tags($project, $section);
