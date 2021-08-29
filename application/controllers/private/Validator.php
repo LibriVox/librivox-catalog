@@ -303,8 +303,9 @@ class Validator extends Private_Controller
 			if (!$file_name) continue;
 
 			$file_name = trim($file_name);
-
             $file_path = $copy_to_dir . '/' . $file_name;
+            chmod($file_path, 0664);
+
             $file_data = $this->librivox_id3tag->_get_file_tags($file_path);
             if (isset($file_data['error'])) {
                 unlink($file_path);
@@ -521,7 +522,6 @@ class Validator extends Private_Controller
 		$file_array = explode('/', $local_file);
 		$file_name = trim(end($file_array));
 		$copied = copy($local_file, $copy_to_dir . '/' . $file_name);
-		chmod($copy_to_dir . '/' . $file_name, 0664);
 		return ($copied) ? $file_name : false;
 	}
 
