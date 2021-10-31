@@ -69,7 +69,7 @@ class Iarchive_upload extends Private_Controller
 
 		//update the project
 		$update['url_iarchive'] = $config['iarchive_project_page'] . '/' . $params['project_slug'];
-		$update['zip_url'] = 'http://www.archive.org/download/' . '/' . $params['project_slug'] . '/' . $params['project_slug'] . '_64kb_mp3.zip';
+		$update['zip_url'] = 'https://www.archive.org/download/' . $params['project_slug'] . '/' . $params['project_slug'] . '_64kb_mp3.zip';
 
 		$this->project_model->update($project->id, $update);
 
@@ -123,7 +123,7 @@ class Iarchive_upload extends Private_Controller
 		// http://www.archive.org/download/archiveuploadname/filename_64kb.mp3
 		// http://www.archive.org/download/archiveuploadname/filename_128kb.mp3
 
-		$iarchive_url = 'http://www.archive.org/download/' . $params['project_slug'] . '/';
+		$iarchive_url = 'https://www.archive.org/download/' . $params['project_slug'] . '/';
 
 		$this->load->model('section_model');
 		return $this->section_model->update_iarchive_urls($project->id, $iarchive_url);
