@@ -6,11 +6,11 @@ import re
 
 
 MYSQL_USER = 'catalog'
-MYSQL_PASS = 'changme'
+MYSQL_PASS = 'changeme'
 MYSQL_DB = 'librivox_catalog'
 
 
-def replace_http(replace=False):
+def replace_http(column, replace=False):
     HTTP_REGEX= re.compile(r'^http://')
 
     conn = pymysql.connect(user=MYSQL_USER, password=MYSQL_PASS,
@@ -19,20 +19,20 @@ def replace_http(replace=False):
                            cursorclass=pymysql.cursors.DictCursor)
 
     with conn.cursor() as cursor:
-        cursor.execute('SELECT id,zip_url FROM projects')
+        cursor.execute('SELECT id,%s FROM projects' % column)
         # NOTE(artom) We could be smarter about this, but we only have ~16500
         # projects.
         projects = cursor.fetchall()
         for project in projects:
-            url = project['zip_url'].strip('\"\'')
+            url = project[column]
             if url.startswith('http://'):
                 new_url = HTTP_REGEX.sub('https://', url)
                 print('Will replace %s with %s... ' % (url, new_url),
                       end='', flush=True)
+                update = ('UPDATE projects '
+                          'SET ' + column + '=%(url)s '
+                          'WHERE id=%(id)s')
                 if replace:
-                    update = ('UPDATE projects '
-                              'SET zip_url=%(url)s '
-                              'WHERE id=%(id)s')
                     cursor.execute(update, {'id': project['id'], 'url': new_url})
                     print('Done.')
                 else:
@@ -46,4 +46,8 @@ if __name__ == '__main__':
                         default=False)
     args = parser.parse_args()
 
-    replace_http(replace=args.replace)
+    for column in [
+        'url_librivox', 'url_forum', 'coverart_pdf', 'coverart_jpg',
+        'coverart_thumbnail', 'url_text_source', 'url_project'
+    ]:
+        replace_http(column, replace=args.replace)
