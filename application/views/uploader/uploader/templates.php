@@ -39,7 +39,7 @@
         {% if (file.error) { %}
             <td></td>
             <td class="name"><span>{%=file.name%}</span></td>
-            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+            <td class="size"><span>{%=o.formatFileSize(file.size*1024)%}</span></td>
             <td class="error" colspan="2"><span class="label label-important">Error</span> {%=file.error%}</td>
         {% } else { %}
 
@@ -47,7 +47,7 @@
             <!-- Changed template from file.name to file.delete_url to allow copy/paste-->
                 <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.delete_url%}</a>
             </td>
-            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+            <td class="size"><span>{%=o.formatFileSize(file.size*1024)%}</span></td>
             <td colspan="2"></td>
         {% } %}
         <td class="delete">
