@@ -39,7 +39,7 @@
         {% if (file.error) { %}
             <td></td>
             <td class="name"><span>{%=file.name%}</span></td>
-            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+            <td class="size"><span>{%=o.formatFileSize(file.size*1024)%}</span></td>
             <td class="error" colspan="2"><span class="label label-important">Error</span> {%=file.error%}</td>
         {% } else { %}
 
