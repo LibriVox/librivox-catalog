@@ -25,7 +25,7 @@
              <div class="control-group">
                  <div class="controls ">
                         <label for="display_name" ><span class="span2"><span class="red" style="margin-right:4px;">*</span> Display Name</span>
-                        <input type="text" class="no-margin span3" name="display_name" id="display_name">                        
+                        <input type="text" class="no-margin span3" name="display_name" id="display_name" <?= $disabled ?>>                        
                         </label>
                  </div>
              </div>
@@ -41,7 +41,7 @@
              <div class="control-group">
                  <div class="controls ">
                         <label for="website"><span class="span2" ><span class="red" style="margin-right:8px;">&nbsp;</span>Website</span>
-                        <input type="text" class="no-margin span3" name="website" id="website">                        
+                        <input type="text" class="no-margin span3" name="website" id="website" <?= $disabled ?>>                        
                         </label>
                  </div>
              </div>
@@ -49,7 +49,7 @@
              <div class="control-group">
                  <div class="controls ">
                         <label for="max_projects"><span class="span2"><span class="red" style="margin-right:4px;">*</span> Max Project Count</span>
-                        <input type="text" class="no-margin span3" name="max_projects" id="max_projects">                        
+                        <input type="text" class="no-margin span3" name="max_projects" id="max_projects" <?= $disabled ?>>                        
                         </label>
                  </div>
              </div>
