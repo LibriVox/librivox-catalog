@@ -10,6 +10,7 @@ $config['languages'] = array(
 	'portuguese' => 'Português - Portuguese',
 	'russian'    => 'Русский - Russian',
 	'spanish'    => 'Español - Spanish',
+	'ukrainian'  => 'Українська - Ukrainian',
 );
 
 $config['title_remove'] = array(
