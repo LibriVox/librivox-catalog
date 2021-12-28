@@ -23,7 +23,7 @@ $lang['project_launch_template_target_completion_date'] = 'Zieldatum für die Fe
 $lang['project_launch_template_deadline'] = '[b]Deadline:[/b] Du hast zwei Monate Zeit, Deine Aufnahme hochzuladen. Wenn Du innerhalb dieser Zeit nicht fertig wirst, können diese Abschnitte am Ende der Deadline wieder freigegeben werden. Bitte poste in diesem Thread um Deine Abschnitte zurückzugeben oder wenn Du eine Verlängerung brauchst. Verlängerungen liegen im Ermessen des BC.';
 $lang['project_launch_template_claiming_sections'] = '[b]Wie Du einen Abschnitt "claimst":[/b] Das Magic Window unten zeigt Dir die freien Abschnitte. Suche Dir einen (oder mehrere) aus und poste im Thread die Abschnittsnummern, die Du aufnehmen möchtest.';
 $lang['project_launch_template_claiming_roles'] = '[b]Wie Du eine Rolle "claimst":[/b] Das Magic Window unten zeigt die freien Rollen. Suche Dir eine aus und poste im Thread welche Rolle Du lesen möchtest.';
-$lang['project_launch_template_note_public_domain'] = '[b]Bitte beachte:[/b] Alle LibriVox Aufnahmen sind gemeinfrei/in der Public Domain. Mit dem Hochladen Deiner Aufnahme stellst Du sie ebenfalls in die Public Domain.';
+$lang['project_launch_template_note_public_domain'] = '[b]Bitte beachte:[/b] Alle LibriVox Aufnahmen sind gemeinfrei/in der Public Domain. Mit dem Hochladen Deiner Aufnahme wird diese ebenfalls gemeinfrei/Teil der Public Domain.';
 $lang['project_launch_template_new_to_recording'] = '[b]Deine erste Aufnahme?[/b] Lies Dir unsere [url=https://wiki.librivox.org/index.php?title=Anleitung_zum_Aufnehmen]Anleitung zum Aufnehmen[/url] genau durch. Eine kurze Einführung zu unseren Software Einstellungen gibt es [url=https://wiki.librivox.org/index.php/Tech_Specs]hier[/url]. Wenn Du Deine erste Aufnahme hochgeladen hast, sage Deinem BC mit welchem Namen Du im Katalog stehen möchtest.';
 $lang['project_launch_template_proof_level'] = 'Korrekturhören-Level:';
 $lang['project_launch_template_prospective_pls'] = 'Wenn Du hier korrekturhören möchtest, sieh Dir zuerst den [url=https://wiki.librivox.org/index.php?title=Guide_for_Proof-listeners]Guide for Proof-listeners[/url] an.';
@@ -40,7 +40,7 @@ $lang['project_launch_template_title_author_read_by_include'] = '[Wenn Du magst,
 $lang['project_launch_template_read_poem'] = 'Dann lies das Gedicht:';
 $lang['project_launch_template_insert_poem_text'] = 'FÜGE DEN TEXT DES GEDICHTS HIER EIN';
 $lang['project_launch_template_at_end_of_reading'] = 'Mache am Ende der Lesung eine kurze Pause und sage dann:';
-$lang['project_launch_template_end_of_poem'] = 'Ende des Gedichts. Diese Aufnahme ist in der Public Domain.';
+$lang['project_launch_template_end_of_poem'] = 'Ende des Gedichts. Diese Aufnahme ist gemeinfrei und in der Public Domain.';
 $lang['project_launch_template_end_silence'] = 'Lasse am Ende jeder Aufnahme 5 Sekunden Stille.';
 $lang['project_launch_template_filename'] = 'Dateiname:';
 $lang['project_launch_template_check_back'] = '[b]Schau in ein, zwei Tagen noch einmal vorbei[/b] ob es Feedback bzgl. Deiner Aufnahme gibt.';
