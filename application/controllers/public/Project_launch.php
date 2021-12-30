@@ -189,6 +189,12 @@ class Project_launch extends Public_Controller
 	{
 		$data['url'] = $data['title_filename'] . "_" . $data['author_filename'][0] . '_[i]your initials in lowercase[/i]_128kb.mp3 (e.g. ' .
 			$data['title_filename'] . '_' . $data['author_filename'][0] . '_klh_128kb.mp3)';
+
+		// Note: The following code would ideally generate the date based on the
+		// currently selected language. However this is not a simple task and
+		// currently the poetry templates are only being used for English anyway.
+		$data['date'] = concat_date($data['expected_completion_year'], $data['expected_completion_month'],
+			$data['expected_completion_day'], 'l, F jS') ?: '[date]';
 	}
 
 	public function poetry_fortnightly_work(&$data)
