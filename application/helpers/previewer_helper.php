@@ -45,11 +45,12 @@ function summary_author($fields)
 	return '(' . lang('project_launch_template_summary_by') . ' ' . $fields['brief_summary_by'] . ')';
 }
 
-function concat_date($year, $month, $day)
+function concat_date($year, $month, $day, $fmt = 'Y-m-d')
 {
-	$month = date( 'm', mktime(0, 0, 0, $month) );
-	$day = str_pad($day, 2, 0, STR_PAD_LEFT);
-	return $year . "-" . $month . "-" . $day;
+	if ($year == 0 || $month == 0 || $day == 0)
+		return '';
+	else
+		return date($fmt, mktime(0, 0, 0, $month, $day, $year));
 }
 
 function clean_summary($project_launch_data)

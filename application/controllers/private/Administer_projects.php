@@ -147,13 +147,7 @@ class Administer_projects extends Private_Controller
 				$prototype['firstsection'] = ($project_launch_data->has_preface) ? 0 : 1;
 				$prototype['begindate'] = date('Y-m-d');
 				$prototype['status'] = 'open';
-
 				$prototype['targetdate'] = concat_date($project_launch_data->expected_completion_year, $project_launch_data->expected_completion_month, $project_launch_data->expected_completion_day);
-				if ($project_launch_data->expected_completion_year == 0 || $project_launch_data->expected_completion_month == 0 || $project_launch_data->expected_completion_day == 0)
-				{
-					$prototype['targetdate'] = '';
-				}
-
 				$prototype['project_type'] = $project_launch_data->project_type;
 				$prototype['copyrightyear'] = $project_launch_data->edition_year;
 				$prototype['copyrightcheck'] = false;
