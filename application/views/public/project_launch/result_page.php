@@ -142,7 +142,7 @@
 		echo "\n";
 		echo lang('project_launch_template_check_back'), "\n";
 		echo "\n";
-		echo lang('project_launch_template_deadline_poetry'), "\n";
+		echo sprintf(lang('project_launch_template_deadline_poetry'), $date), "\n";
 	}
 
 	echo "\n";
