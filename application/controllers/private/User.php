@@ -11,6 +11,7 @@ class User extends Private_Controller
 		$fields = $this->input->post(null, true);
 		$user_id = (empty($fields['user_id'])) ? $this->data['user_id'] : $fields['user_id'];
 
+		$is_admin = $this->librivox_auth->has_permission(array(PERMISSIONS_ADMIN), $this->data['user_id']);
 		$is_mc = $this->librivox_auth->has_permission(array(PERMISSIONS_ADMIN, PERMISSIONS_MCS), $this->data['user_id']);
 
 		// check permissions
@@ -24,22 +25,16 @@ class User extends Private_Controller
 			(array)$this->user_model->get($user_id)
 		);
 
+		$user['user_groups'] = $this->librivox_auth->get_users_groups($user_id)->result_array();
+
 		// you can only change your own password here, not via
-		$user['show_password'] = false;
-		if (($this->data['user_id'] == $user_id))
-		{
-			$user['show_password'] = true;
-		}
+		$user['show_password'] = ($this->data['user_id'] == $user_id);
 
-		$user['show_groups'] = false;
-		if ($is_mc)
-		{
-			$user['user_groups'] = $this->librivox_auth->get_users_groups($user_id)->result_array();
-			$user['show_groups'] = true;
-		}
+		// permissions used by form to hide/disable certain fields
+		$user['is_admin'] = $is_admin;
+		$user['is_mc'] = $is_mc;
 
-		$retval = array('user' => $user);
-		$this->ajax_output($retval, true);
+		$this->ajax_output(array('user' => $user), true);
 	}
 
 	public function update_profile()
