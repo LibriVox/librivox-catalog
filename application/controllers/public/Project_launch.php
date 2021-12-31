@@ -228,7 +228,7 @@ class Project_launch extends Public_Controller
 		$this->form_validation->set_rules('expected_completion_month', 'lang:proj_launch_expected_completion', 'trim|xss_clean');
 		$this->form_validation->set_rules('expected_completion_day', 'lang:proj_launch_expected_completion', 'trim|xss_clean');
 
-		$this->form_validation->set_rules('proof_level', 'lang:proj_launch_proof_level', 'trim|xss_clean|alpha_dash_space');
+		$this->form_validation->set_rules('proof_level', 'lang:proj_launch_proof_level', 'trim|xss_clean|alpha_dash');
 		$this->form_validation->set_rules('num_sections', 'lang:proj_launch_num_sections', 'trim|xss_clean');
 
 		$this->form_validation->set_rules('has_preface', 'lang:proj_launch_has_preface', 'trim|xss_clean|exact_length[1]');
