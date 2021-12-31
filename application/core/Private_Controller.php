@@ -49,18 +49,30 @@ class Private_Controller extends MY_Controller
 		//need to add only role specific checkboxes
 		$roles = $this->config->item('roles');
 
-		$this->roles['roles'][PERMISSIONS_READERS] = array('label' => 'Add to Readers', 'value' => $roles[PERMISSIONS_READERS], 'checked' => (in_array($roles[PERMISSIONS_READERS], $this->data['user_groups'])));
-		$this->roles['roles'][PERMISSIONS_PLS] = array('label' => 'Add to PLs', 'value' => $roles[PERMISSIONS_PLS], 'checked' => (in_array($roles[PERMISSIONS_PLS], $this->data['user_groups'])));
-
-		if ($this->librivox_auth->is_admin())
-		{
-			$this->roles['roles'][PERMISSIONS_MCS] = array('label' => 'Add to MCs', 'value' => $roles[PERMISSIONS_MCS], 'checked' => (in_array($roles[PERMISSIONS_MCS], $this->data['user_groups'])));
-		}
-
-		if ($this->librivox_auth->in_group(array(PERMISSIONS_ADMIN, PERMISSIONS_MCS), $this->librivox_auth->get_user_id()))
-		{
-			$this->roles['roles'][PERMISSIONS_BCS] = array('label' => 'Add to BCs', 'value' => $roles[PERMISSIONS_BCS], 'checked' => (in_array($roles[PERMISSIONS_BCS], $this->data['user_groups'])));
-		}
+		$this->roles['roles'][PERMISSIONS_READERS] = array(
+			'label' => 'Reader',
+			'value' => $roles[PERMISSIONS_READERS],
+			'checked' => (in_array($roles[PERMISSIONS_READERS], $this->data['user_groups'])),
+			'disabled' => !$this->librivox_auth->in_group(array(PERMISSIONS_ADMIN, PERMISSIONS_MCS, PERMISSIONS_BCS)),
+		);
+		$this->roles['roles'][PERMISSIONS_PLS] = array(
+			'label' => 'PL',
+			'value' => $roles[PERMISSIONS_PLS],
+			'checked' => (in_array($roles[PERMISSIONS_PLS], $this->data['user_groups'])),
+			'disabled' => !$this->librivox_auth->in_group(array(PERMISSIONS_ADMIN, PERMISSIONS_MCS)),
+		);
+		$this->roles['roles'][PERMISSIONS_BCS] = array(
+			'label' => 'BC',
+			'value' => $roles[PERMISSIONS_BCS],
+			'checked' => (in_array($roles[PERMISSIONS_BCS], $this->data['user_groups'])),
+			'disabled' => !$this->librivox_auth->in_group(array(PERMISSIONS_ADMIN, PERMISSIONS_MCS)),
+		);
+		$this->roles['roles'][PERMISSIONS_MCS] = array(
+			'label' => 'MC',
+			'value' => $roles[PERMISSIONS_MCS],
+			'checked' => (in_array($roles[PERMISSIONS_MCS], $this->data['user_groups'])),
+			'disabled' => !$this->librivox_auth->is_admin(),
+		);
 
 		$this->data['profile_modal'] = $this->load->view('private/common/profile_modal', $this->roles, true);
 	}
