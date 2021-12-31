@@ -103,6 +103,7 @@ class Uploader extends Public_Controller
 			if (!is_dir($config['upload_path']))
 			{
 				mkdir($config['upload_path'], 0775);
+                chmod($config['upload_path'], 0775);
 			}
 
 			//Load the upload library

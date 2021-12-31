@@ -178,7 +178,9 @@ class Validator extends Private_Controller
 
 		if (is_dir($path)) return false;
 
-		return mkdir($path, 0775, TRUE);
+		$r = mkdir($path, 0775, TRUE);
+        chmod($path, 0775);
+        return $r;
 		//return true;
 	}
 
@@ -217,6 +219,7 @@ class Validator extends Private_Controller
 			if (!is_dir($config['upload_path']))
 			{
 				mkdir($config['upload_path'], 0775);
+                chmod($config['upload_path'], 0775);
 			}
 
 			//Load the upload library
