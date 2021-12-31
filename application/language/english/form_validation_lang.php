@@ -23,5 +23,4 @@ $lang['form_validation_is_natural_no_zero'] = 'The %s field must contain a numbe
 $lang['form_validation_decimal'] = 'The %s field must contain a decimal number.';
 $lang['form_validation_less_than'] = 'The %s field must contain a number less than %s.';
 $lang['form_validation_greater_than'] = 'The %s field must contain a number greater than %s.';
-$lang['form_validation_alpha_dash_space']   = "The %s field may only contain alpha-numeric characters, underscores, spaces and dashes.";
 ?>
