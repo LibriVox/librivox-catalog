@@ -218,7 +218,7 @@ class Project_launch extends Public_Controller
 		$this->form_validation->set_rules('recorded_language', 'lang:proj_launch_recorded_language', 'trim|xss_clean|numeric');
 		$this->form_validation->set_rules('title', 'lang:proj_launch_title', 'trim|xss_clean|required');
 		$this->form_validation->set_rules('brief_summary', 'Brief Summary', 'trim|xss_clean');
-		$this->form_validation->set_rules('brief_summary_by', 'Brief Summary By', 'trim|xss_clean|alpha_dash_space');
+		$this->form_validation->set_rules('brief_summary_by', 'Brief Summary By', 'trim|xss_clean');
 		$this->form_validation->set_rules('link_to_text', 'lang:proj_launch_link_to_text_1', 'trim|xss_clean|prep_url');
 
 		$this->form_validation->set_rules('link_to_book', 'lang:proj_launch_link_to_book', 'trim|xss_clean|prep_url');
