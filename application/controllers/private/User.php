@@ -5,33 +5,37 @@ class User extends Private_Controller
 
 	public function get_profile()
 	{
-		$fields = $this->input->post(null, true);
-
+		$this->load->helper('array');
 		$this->load->model('user_model');
 
+		$fields = $this->input->post(null, true);
 		$user_id = (empty($fields['user_id'])) ? $this->data['user_id'] : $fields['user_id'];
 
-		//check permissions
-		$allowed_groups = array(PERMISSIONS_ADMIN, PERMISSIONS_MCS);
-		if (!$this->librivox_auth->has_permission($allowed_groups, $this->data['user_id']) && ($this->data['user_id'] != $user_id))
-		{
-			$this->ajax_output(array('message' => 'No access to this user record'), false);
-		}
+		$is_mc = $this->librivox_auth->has_permission(array(PERMISSIONS_ADMIN, PERMISSIONS_MCS), $this->data['user_id']);
 
-		$user = $this->user_model->get($user_id);
+		// check permissions
+		if (!$is_mc && ($this->data['user_id'] != $user_id))
+			$this->ajax_output(array('message' => 'No access to this user record'), false);
+
+		// get user record using field whitelist so we do not send un-needed items or things
+		// like the password hash which are a security risk
+		$user = elements(
+			array('id', 'username', 'email', 'max_projects', 'display_name', 'website'),
+			(array)$this->user_model->get($user_id)
+		);
 
 		// you can only change your own password here, not via
-		$user->show_password = false;
+		$user['show_password'] = false;
 		if (($this->data['user_id'] == $user_id))
 		{
-			$user->show_password = true;
+			$user['show_password'] = true;
 		}
 
-		$user->show_groups = false;
-		if ($this->librivox_auth->has_permission($allowed_groups, $this->data['user_id']))
+		$user['show_groups'] = false;
+		if ($is_mc)
 		{
-			$user->user_groups = $this->librivox_auth->get_users_groups($user_id)->result_array();
-			$user->show_groups = true;
+			$user['user_groups'] = $this->librivox_auth->get_users_groups($user_id)->result_array();
+			$user['show_groups'] = true;
 		}
 
 		$retval = array('user' => $user);
