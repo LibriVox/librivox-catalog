@@ -44,40 +44,55 @@ class User extends Private_Controller
 
 	public function update_profile()
 	{
+		$this->load->helper('array');
+
 		$fields = $this->input->post(null, true);
 		$user_id = (empty($fields['user_id'])) ? $this->data['user_id'] : $fields['user_id'];
 
-		$allowed_groups = array(PERMISSIONS_ADMIN, PERMISSIONS_MCS);
-		if (!$this->librivox_auth->has_permission($allowed_groups, $this->data['user_id']) && ($this->data['user_id'] != $user_id))
-		{
+		$is_admin = $this->librivox_auth->has_permission(array(PERMISSIONS_ADMIN), $this->data['user_id']);
+		$is_mc = $this->librivox_auth->has_permission(array(PERMISSIONS_ADMIN, PERMISSIONS_MCS), $this->data['user_id']);
+
+		if (!$is_mc && ($this->data['user_id'] != $user_id))
 			$this->ajax_output(array('message' => 'No permissions for this action'), false);
+
+		// fields anyone can update
+		$allowed_fields = array('email');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
+
+		// fields only MCs (or admins) can update
+		if ($is_mc)
+		{
+			array_push($allowed_fields, 'display_name', 'website', 'max_projects');
+			$this->form_validation->set_rules('display_name', 'Display Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('website', 'Website', 'trim|xss_clean');
+			$this->form_validation->set_rules('max_projects', 'Max Project Count', 'trim|required|xss_clean|is_natural');
 		}
 
-		//we want to reuse this for the profile, but also just changing active status
-		if (!isset($fields['active']))
+		// fields only admins can update
+		if ($is_admin)
 		{
-			$this->form_validation->set_rules('display_name', 'Display Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('max_projects', 'Max Project Count', 'trim|required|xss_clean|is_natural');
+			$allowed_fields[] = 'username';
+			$this->form_validation->set_rules('username', 'User Name', 'trim|required|xss_clean|alpha_dash');
+		}
 
+		// fields which the user can only update for themselves
+		if ($this->data['user_id'] == $user_id)
+		{
 			if (!empty($fields['password']))
 			{
+				$allowed_fields[] = 'password';
 				$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[8]');
 				$this->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|xss_clean|required|matches[password]|min_length[8]');
 			}
-
-			if (!$this->form_validation->run()) $this->ajax_output(array('message' => validation_errors('<div class="alert alert-error">', '</div>')), false);
 		}
 
-		//allowable updates
-		$this->load->helper('array');
-		$update = elements(array('display_name', 'email', 'website', 'max_projects', 'password'), $fields, NULL);
+		if (!$this->form_validation->run())
+			$this->ajax_output(array('message' => validation_errors('<div class="alert alert-error">', '</div>')), false);
 
-		//admins can update usernames
-		if ($this->librivox_auth->has_permission(array(PERMISSIONS_ADMIN), $this->data['user_id']))
-		{
-			$update['username'] = $fields['username'];
-		}
+		// need to get fields again as validation may have changed them
+		$fields = $this->input->post(null, true);
+
+		$update = elements($allowed_fields, $fields);
 
 		//let's simplify - only Admins & MCs can change groups
 		$allowed_groups = array(PERMISSIONS_ADMIN, PERMISSIONS_MCS);
