@@ -55,6 +55,9 @@ class User extends Private_Controller
 		if (!$is_mc && ($this->data['user_id'] != $user_id))
 			$this->ajax_output(array('message' => 'No permissions for this action'), false);
 
+		if (!isset($fields['groups']) || !is_array($fields['groups']))
+			$this->ajax_output(array('message' => 'groups array is required'), false);
+
 		// fields anyone can update
 		$allowed_fields = array('email');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
@@ -93,34 +96,10 @@ class User extends Private_Controller
 		$fields = $this->input->post(null, true);
 
 		$update = elements($allowed_fields, $fields);
-
-		//let's simplify - only Admins & MCs can change groups
-		$allowed_groups = array(PERMISSIONS_ADMIN, PERMISSIONS_MCS);
-		$group_ids = array();
-		if ($this->librivox_auth->has_permission($allowed_groups, $this->data['user_id']))
-		{
-			//vet groups post to only add users to roles logged in user has permissions for
-
-			if (!empty($fields['groups']))
-			{
-				$group_ids = $this->_vet_roles($fields['groups'], $user_id);
-
-				if (!empty($group_ids))
-				{
-					//remove from groups, then rebuild
-					$this->librivox_auth->remove_from_group(false, $user_id);
-
-					foreach ($group_ids as $key => $group_id)
-					{
-						$this->librivox_auth->add_to_group($group_id, $user_id);
-					}
-				}
-			}
-		}
-
 		$this->ion_auth->update($user_id, $update);
+		$this->_update_groups($fields['groups'], $user_id);
 
-		$this->ajax_output(array('message' => 'Updated', 'group_ids' => $group_ids), true);
+		$this->ajax_output(array('message' => 'Updated'), true);
 	}
 
 	public function add_profile()
@@ -135,7 +114,11 @@ class User extends Private_Controller
 		$fields = $this->input->post(null, true);
 
 		//validate - username, displayname required
-		if (empty($fields['username']) || empty($fields['display_name'])) $this->ajax_output(array('message' => 'Username and Display name are required'), false);
+		if (empty($fields['username']) || empty($fields['display_name']))
+			$this->ajax_output(array('message' => 'Username and Display name are required'), false);
+
+		if (!isset($fields['groups']) || !is_array($fields['groups']))
+			$this->ajax_output(array('message' => 'groups array is required'), false);
 
 		$this->load->helper('string');
 
@@ -153,68 +136,77 @@ class User extends Private_Controller
 		$email = $forum_user->user_email;
 
 		$additional_data['display_name'] = $fields['display_name'];
-		$additional_data['website'] = $fields['website'];
+		if (!empty($fields['website']))
+			$additional_data['website'] = $fields['website'];
 
-		$group_name = array();
+		$groups = $this->_update_groups($fields['groups']);
 
-		//vet groups post to only add users to roles logged in user has permissions for
-		if (!empty($fields['groups']))
-		{
-			$group_name = $this->_vet_roles($fields['groups'], 0);
-		}
+		$this->librivox_auth->register($username, $password, $email, $additional_data, $groups);
 
-		$this->librivox_auth->register($username, $password, $email, $additional_data, $group_name);
-
-		$retval = array('message' => 'User Added');
-		$this->ajax_output($retval, true);
+		$this->ajax_output(array('message' => 'User Added'), true);
 	}
 
-	function _vet_roles($groups, $user_id = 0)
+	// This function filters the passed in groups based on permissions of the current
+	// user and returns the filtered list. If user_id is set this function will also
+	// update the groups in the database but will leave groups you do not have permissions
+	// to change untouched (even if they are missing from the passed in groups).
+	function _update_groups($groups, $user_id = 0)
 	{
 		//the docs lie - only group ids are accepted, not names (unless the code library has been updated?)
 		$roles = $this->config->item('roles');
+		$allowed_groups = array();
 
-		$valid_array = array($roles[PERMISSIONS_READERS], $roles[PERMISSIONS_PLS], $roles[PERMISSIONS_MEMBERS]);
-
-		//only an admin can add an MC; NO ONE can add an admin here!
-		if ($this->librivox_auth->is_admin())
+		if ($this->librivox_auth->in_group(array(PERMISSIONS_ADMIN, PERMISSIONS_MCS, PERMISSIONS_BCS)))
 		{
-			array_push($valid_array, $roles[PERMISSIONS_MCS]);
+			$allowed_groups[] = $roles[PERMISSIONS_MEMBERS];
+			$allowed_groups[] = $roles[PERMISSIONS_READERS];
 		}
 
-		if ($this->librivox_auth->in_group(array(PERMISSIONS_ADMIN, PERMISSIONS_MCS), $this->librivox_auth->get_user_id()))
+		if ($this->librivox_auth->in_group(array(PERMISSIONS_ADMIN, PERMISSIONS_MCS)))
 		{
-			array_push($valid_array, $roles[PERMISSIONS_BCS]);
+			$allowed_groups[] = $roles[PERMISSIONS_PLS];
+			$allowed_groups[] = $roles[PERMISSIONS_BCS];
+		}
+
+		if ($this->librivox_auth->is_admin())
+		{
+			$allowed_groups[] = $roles[PERMISSIONS_MCS];
 		}
 
 		//always add this
 		array_push($groups, $roles[PERMISSIONS_MEMBERS]);
 
 		//we only want the intersection of valid roles & requested groups
-		$valid_array = array_intersect($valid_array, $groups);
+		$groups = array_intersect($allowed_groups, $groups);
 
-		//if this is your own account, re-add admin && mc roles
-		if ($this->librivox_auth->get_user_id() == $user_id)
+		// update groups in database if user_id was set
+		if ($user_id)
 		{
-			if ($this->librivox_auth->in_group(array(PERMISSIONS_ADMIN), $this->librivox_auth->get_user_id()))
+			foreach ($allowed_groups as $key => $group_id)
 			{
-				array_push($valid_array, $roles[PERMISSIONS_ADMIN]);
-			}
-			if ($this->librivox_auth->in_group(array(PERMISSIONS_MCS), $this->librivox_auth->get_user_id()))
-			{
-				array_push($valid_array, $roles[PERMISSIONS_MCS]);
+				$requested = in_array($group_id, $groups);
+				if ($this->librivox_auth->in_group($group_id, $user_id))
+				{
+					if (!$requested)
+						$this->librivox_auth->remove_from_group($group_id, $user_id);
+				}
+				else
+				{
+					if ($requested)
+						$this->librivox_auth->add_to_group($group_id, $user_id);
+				}
 			}
 		}
 
-		return $valid_array;
+		return $groups;
 	}
 
 	///////  TESTING /////
 
-	function test_vet_roles()
+	function test_update_groups()
 	{
 		$groups = array(3, 1, 4, 5);
-		$array = $this->_vet_roles($groups, 7482);
+		$array = $this->_update_groups($groups);
 		var_dump($array);
 	}
 
