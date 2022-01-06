@@ -258,14 +258,14 @@ $(document).ready(function() {
 		//two ways to enter - by dropdown, or ids list
 		var reader_name = $('#assign_reader').val();
 		var reader_id = $('#assign_reader').attr( 'data-assign_reader_id');
+		var reader_array;
 
 		//when we select a reader from dropdown, it sets the reader_id; otherwise, its default is zero
 		if (reader_id == 0 && reader_name.length > 0)
 		{
-			reader_id = JSON.stringify(parse_list_to_array(reader_name));
+			reader_array = parse_list_to_array(reader_name);
 			by_reader_id = 1;
-
-		}	
+		}
 		else
 		{
 			if (isNaN(parseInt(reader_id))) {
@@ -274,14 +274,13 @@ $(document).ready(function() {
 			};
 
 			// make the id an array element here to stay consistent for backend
-			reader_id = JSON.stringify(parse_list_to_array(reader_id));
-
-		}	
+			reader_array = parse_list_to_array(reader_id);
+		}
 
 		$.ajax({
 	        url: CI_ROOT + "private/section_compiler/add_reader_sections",
 	        type: 'post',
-	        data: {'project_id': project_id,'reader_id': reader_id, 'section_list': JSON.stringify(assign_section_array) },
+	        data: {'project_id': project_id,'reader_id': JSON.stringify(reader_array), 'section_list': JSON.stringify(assign_section_array) },
 	        complete: function(r){
 				var response_obj = jQuery.parseJSON(r.responseText);
 
@@ -297,7 +296,7 @@ $(document).ready(function() {
 					}	
 
 					//label the readers in the table
-					set_reader_names(reader_id, reader_name, assign_section_array);
+					set_reader_names(reader_array[0], reader_name, assign_section_array);
 
 					//reset
 					$('#assign_reader').val('');
