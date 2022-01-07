@@ -2,6 +2,11 @@
 
 class User extends Private_Controller
 {
+	private function ajax_output_ion_auth_errors()
+	{
+		$this->ion_auth->set_error_delimiters('<div class="alert alert-error">', '</div>');
+		$this->ajax_output(array('message' => $this->ion_auth->errors()), false);
+	}
 
 	public function get_profile()
 	{
@@ -91,7 +96,8 @@ class User extends Private_Controller
 		$fields = $this->input->post(null, true);
 
 		$update = elements($allowed_fields, $fields);
-		$this->ion_auth->update($user_id, $update);
+		if (!$this->ion_auth->update($user_id, $update))
+			$this->ajax_output_ion_auth_errors();
 		$this->_update_groups($fields['groups'], $user_id);
 
 		$this->ajax_output(array('message' => 'Updated', 'user_id' => $user_id, 'update' => $update), true);
@@ -102,18 +108,23 @@ class User extends Private_Controller
 		//check permissions
 		$allowed_groups = array(PERMISSIONS_ADMIN, PERMISSIONS_MCS, PERMISSIONS_BCS);
 		if (!$this->librivox_auth->has_permission($allowed_groups, $this->data['user_id']))
-		{
 			$this->ajax_output(array('message' => 'No permissions for this action'), false);
-		}
 
 		$fields = $this->input->post(null, true);
 
-		//validate - username, displayname required
-		if (empty($fields['username']) || empty($fields['display_name']))
-			$this->ajax_output(array('message' => 'Username and Display name are required'), false);
-
 		if (!isset($fields['groups']) || !is_array($fields['groups']))
 			$this->ajax_output(array('message' => 'groups array is required'), false);
+
+		$this->form_validation->set_rules('username', 'User Name', 'trim|required|xss_clean|alpha_dash');
+		$this->form_validation->set_rules('display_name', 'Display Name', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('website', 'Website', 'trim|xss_clean');
+		$this->form_validation->set_rules('max_projects', 'Max Project Count', 'trim|required|xss_clean|is_natural');
+
+		if (!$this->form_validation->run())
+			$this->ajax_output(array('message' => validation_errors('<div class="alert alert-error">', '</div>')), false);
+
+		// need to get fields again as validation may have changed them
+		$fields = $this->input->post(null, true);
 
 		$this->load->helper('string');
 
@@ -127,7 +138,8 @@ class User extends Private_Controller
 		//reset db connection
 		$this->db = $this->load->database('default', TRUE);
 
-		if (!$forum_user) $this->ajax_output(array('message' => 'Forum user email not found'), false);
+		if (!$forum_user)
+			$this->ajax_output(array('message' => '<div class="alert alert-error">Forum user email not found.</div>'), false);
 		$email = $forum_user->user_email;
 
 		$additional_data['display_name'] = $fields['display_name'];
@@ -136,7 +148,8 @@ class User extends Private_Controller
 
 		$groups = $this->_update_groups($fields['groups']);
 
-		$this->librivox_auth->register($username, $password, $email, $additional_data, $groups);
+		if (!$this->librivox_auth->register($username, $password, $email, $additional_data, $groups))
+			$this->ajax_output_ion_auth_errors();
 
 		$this->ajax_output(array('message' => 'User Added'), true);
 	}
@@ -145,7 +158,7 @@ class User extends Private_Controller
 	// user and returns the filtered list. If user_id is set this function will also
 	// update the groups in the database but will leave groups you do not have permissions
 	// to change untouched (even if they are missing from the passed in groups).
-	function _update_groups($groups, $user_id = 0)
+	private function _update_groups($groups, $user_id = 0)
 	{
 		//the docs lie - only group ids are accepted, not names (unless the code library has been updated?)
 		$roles = $this->config->item('roles');
