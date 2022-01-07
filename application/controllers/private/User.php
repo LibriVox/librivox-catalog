@@ -94,7 +94,7 @@ class User extends Private_Controller
 		$this->ion_auth->update($user_id, $update);
 		$this->_update_groups($fields['groups'], $user_id);
 
-		$this->ajax_output(array('message' => 'Updated'), true);
+		$this->ajax_output(array('message' => 'Updated', 'user_id' => $user_id, 'update' => $update), true);
 	}
 
 	public function add_profile()
