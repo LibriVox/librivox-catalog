@@ -125,10 +125,26 @@ function edit_profile() {
 		complete: function(r) {
 			var response_obj = jQuery.parseJSON(r.responseText);
 
-			if (response_obj.status == 'SUCCESS')
+			if (response_obj.status == 'SUCCESS') {
+				// if update and volunteers_table exists try to update the cells that may have changed
+				if (action == 'update' && $('#volunteers_table').length) {
+					var user_id = response_obj.data.user_id;
+					var update = response_obj.data.update;
+
+					if ('username' in update)
+						$('#name-' + user_id).html('<a href="reader/' + user_id + '">' + update.username + '</a>');
+					if ('display_name' in update)
+						$('#display_name-' + user_id).html(update.display_name);
+					if ('email' in update)
+						$('#email-' + user_id).html('<a href="mailto:' + update.email + '">' + update.email + '</a>');
+					if ('website' in update)
+						$('#website-' + user_id).html(update.website);
+				}
+
 				$('#profile_modal').modal('hide');
-			else
+			} else {
 				$('#response_message').html(response_obj.data.message).show();
+			}
 		},
 	});
 };
