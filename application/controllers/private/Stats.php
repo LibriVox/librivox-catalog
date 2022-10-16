@@ -22,10 +22,6 @@ class Stats extends Private_Controller
 
 		$this->load->model('project_model');
 
-		// This will not fully run - queries need re-write
-		//$this->data['active_stats'] = $this->project_model->get_projects_summary($user_id);
-		//$this->data['inactive_stats'] = $this->project_model->get_projects_summary($user_id, 'inactive');
-
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 

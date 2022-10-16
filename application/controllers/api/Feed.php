@@ -86,10 +86,10 @@ class Feed extends REST_Controller
 		}
 	}
 
-	public function lastest_releases_get()
+	public function latest_releases_get()
 	{
 		$this->load->model('project_model');
-		$projects = $this->project_model->get_lastest_releases(10);
+		$projects = $this->project_model->get_latest_releases(10);
 
 		if ($projects)
 		{

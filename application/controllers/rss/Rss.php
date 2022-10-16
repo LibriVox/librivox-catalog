@@ -82,7 +82,7 @@ class Rss extends Catalog_controller
 	function latest_releases()
 	{
 		$this->load->model('project_model');
-		$this->data['projects'] = $this->project_model->get_lastest_releases(10);
+		$this->data['projects'] = $this->project_model->get_latest_releases(10);
 
 		if ($this->data['projects'])
 		{
