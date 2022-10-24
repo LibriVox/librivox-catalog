@@ -2,7 +2,7 @@
 	<div class="result-data">
 		<h3><a href="#" class="js-sublink" data-sub_category="language" data-primary_key="<?= $item['id'] ?>"><?= $item['language']?></a></h3>
 
-		<?php if (strtolower($item['native']) != 'english'): ?>
+		<?php if ($item['native'] && strtolower($item['native']) != 'english'): ?>
 			<p class="native-lang"><?= $item['native']?></p>
 		<?php endif; ?>
 
