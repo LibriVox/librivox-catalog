@@ -52,17 +52,32 @@ class Catalog_item {
 	}
 
 
+    public function _prep_date($date_string)
+    {
+        // 0000-00-00 appears to break DateTime::createFromFormat (it returns
+        // -0001-110-30), special case it.
+        if ($date_string == '0000-00-00') {
+            return $date_string;
+        }
+        $d = DateTime::createFromFormat('Y-m-d', $date_string);
+        if ($d) {
+            return $d->format('Y-m-d');
+        }
+        return '0000-00-00';
+    }
+
+
 	public function _prep_project_data($data)
 	{
 		//project table
 		$project_info['id'] 			= $data['project_id'];
 
-		$project_info['language_id'] 	= $data['recorded_language'];
+		$project_info['language_id'] 	= $data['recorded_language'] ? $data['recorded_language'] : 0;
 		$project_info['title_prefix'] 	= $data['title_prefix'];
    		$project_info['title'] 			= $data['projectname'];
 		$project_info['description'] 	= $data['projectdescription'];
 		//$project_info['project_type'] 	= $data['project_type'];    // add to form
-		$project_info['num_sections'] 	= $data['nsections'];
+		$project_info['num_sections'] 	= $data['nsections'] ? $data['nsections'] : 0;
 		$project_info['has_preface'] 	= empty($data['firstsection']) ? 1 : 0;
 		$data['totaltime'] 				= $data['totaltime'];
 
@@ -73,11 +88,11 @@ class Catalog_item {
 		$project_info['zip_size']		= $data['zip_size'];
 
 
-		$project_info['date_begin']		= (empty($data['begindate']))? '0000-00-00' : DateTime::createFromFormat('Y-m-d', $data['begindate'])->format('Y-m-d'); 
-		$project_info['date_catalog']	= $data['catalogdate'];
-		$project_info['date_target']	= (empty($data['targetdate']))? '0000-00-00' : DateTime::createFromFormat('Y-m-d', $data['targetdate'])->format('Y-m-d'); 
+        $project_info['date_begin']		= $this->_prep_date($data['begindate']);
+        $project_info['date_catalog']	= $this->_prep_date($data['catalogdate']);
+        $project_info['date_target']	= $this->_prep_date($data['targetdate']);
 
-		$project_info['copyright_year']	= $data['copyrightyear'];   
+		$project_info['copyright_year']	= $data['copyrightyear'] ? $data['copyrightyear'] : NULL;
 		$project_info['copyright_check']= (empty($data['copyrightcheck']))? 0: 1;;
 
 		$project_info['url_librivox']	= $data['librivoxurl'];
@@ -88,10 +103,10 @@ class Catalog_item {
 		$project_info['zip_url']		= $data['zip_url']; 
 
 		//volunteers
-		$project_info['person_bc_id']		= $data['person_bc_id'];
-		$project_info['person_altbc_id']	= $data['person_altbc_id'];
-		$project_info['person_mc_id']		= $data['person_mc_id'];
-		$project_info['person_pl_id']		= $data['person_pl_id'];
+		$project_info['person_bc_id']		= $data['person_bc_id'] ? $data['person_bc_id'] : 0;
+		$project_info['person_altbc_id']	= empty($data['person_altbc_id']) ? 0 : $data['person_altbc_id'];
+		$project_info['person_mc_id']		= $data['person_mc_id'] ? $data['person_mc_id'] : 0;
+		$project_info['person_pl_id']		= $data['person_pl_id'] ? $data['person_pl_id'] : 0;
 		
 		$project_info['notes']		 	= $data['notes'];
 
@@ -190,7 +205,11 @@ class Catalog_item {
 
 		$keyword_ids = explode(',', $keyword_ids);
 		foreach ($keyword_ids as $keyword_id) {
-			$this->ci->project_keyword_model->insert(array('project_id'=>$project_id, 'keyword_id'=>$keyword_id));
+            if ($keyword_id) {
+                $this->ci->project_keyword_model->insert(array('project_id'=>$project_id, 'keyword_id'=>$keyword_id));
+            } else {
+                $this->ci->project_keyword_model->insert(array('project_id'=>$project_id));
+            }
 		}
 
 	}
@@ -205,7 +224,11 @@ class Catalog_item {
 
 		$genre_id_array = explode(',',$genre_ids);
 		foreach ($genre_id_array as $genre_id) {
-			$this->ci->project_genre_model->insert(array('project_id'=>$project_id, 'genre_id'=>$genre_id));
+            if ($genre_id) {
+                $this->ci->project_genre_model->insert(array('project_id'=>$project_id, 'genre_id'=>$genre_id));
+            } else {
+                $this->ci->project_genre_model->insert(array('project_id'=>$project_id));
+            }
 		}
 
 	}
@@ -379,4 +402,4 @@ class Catalog_item {
 		return $data;
    }
 
-}	
+}

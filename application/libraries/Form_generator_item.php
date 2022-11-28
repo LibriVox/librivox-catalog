@@ -57,6 +57,8 @@ class Form_generator_item {
 		}
 
 		$fields['list_keywords'] = $this->_process_keywords( $fields['list_keywords']);
+        $fields['edition_year'] = $fields['edition_year'] ? $fields['edition_year'] : NULL;
+        $fields['pub_year'] = $fields['pub_year'] ? $fields['pub_year'] : NULL;
 
 		
 
@@ -109,8 +111,8 @@ class Form_generator_item {
 				$author['auth_id'] 			= $author_array['auth_id'][$i];
 				$author['auth_first_name'] 	= $author_array['auth_first_name'][$i];
 				$author['auth_last_name'] 	= $author_array['auth_last_name'][$i];
-				$author['auth_yob']	 		= $author_array['auth_yob'][$i];
-				$author['auth_yod']	 		= $author_array['auth_yod'][$i];
+				$author['auth_yob']	 		= $author_array['auth_yob'][$i] ? $author_array['auth_yob'][$i] : NULL;
+				$author['auth_yod']	 		= $author_array['auth_yod'][$i] ? $author_array['auth_yod'][$i] : NULL;
 				$author['link_to_auth']	 	= $author_array['link_to_auth'][$i];
 
 				if (!empty($author['auth_first_name']) || !empty($author['auth_last_name']))
@@ -172,4 +174,4 @@ class Form_generator_item {
 		return $this->ci->form_generators_authors_model->insert($author);
 	}
 
-}	
+}
