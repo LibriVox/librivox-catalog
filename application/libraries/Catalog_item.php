@@ -275,6 +275,13 @@ class Catalog_item {
 			{
 				//create author then link
 
+                // Reset $author to empty array. Looks like there's scope
+                // persistency weirdness going on, wherein the 'auth_id'
+                // field that we set below on L293 persists in subsequent
+                // iterations of the loop. As 'auth_id' is not a valid DB
+                // field, the insert() on L290 will fail if it's present in the
+                // $author array.
+                $author = array();
 				$author['first_name']	= $author_array['first_name'][$i];
 				$author['last_name'] 	= $author_array['last_name'][$i] ;
 				$author['dob'] 			= $author_array['dob'] [$i]		;
