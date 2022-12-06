@@ -46,7 +46,7 @@ class Template {
    var $parser = 'parser';
    var $parser_method = 'parse';
    var $parse_template = FALSE;
-   
+
    /**
    * Constructor
    *
@@ -58,6 +58,8 @@ class Template {
    
    function __construct()
    {
+      define('EXT', '.php');
+
       // Copy an instance of CI so we can use the entire framework.
       $this->CI =& get_instance();
       
