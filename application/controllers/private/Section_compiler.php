@@ -232,6 +232,7 @@ class Section_compiler extends Private_Controller
 		$fields = $this->input->post(null, true);
 
 		$fields['playtime'] = time_string_to_secs($fields['playtime']);
+        $fields['language_id'] = $fields['language_id'] ? $fields['language_id'] : NULL;
 
 		$this->load->model('section_model');
 		$this->section_model->update($fields['id'], $fields);
