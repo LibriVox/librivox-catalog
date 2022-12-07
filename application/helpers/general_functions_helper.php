@@ -181,6 +181,10 @@ function time_string_to_secs($time_string)
             $mins   = 0;
             $secs   = 0;                
     }
+    // We may have ended up with some empty string values, convert to 0 here.
+    $hours = $hours ? $hours : 0;
+    $mins = $mins ? $mins : 0;
+    $secs = $secs ? $secs : 0;
 
     return ($hours * 3600 ) + ($mins * 60 ) + $secs;
      
