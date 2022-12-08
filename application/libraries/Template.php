@@ -58,7 +58,7 @@ class Template {
    
    function __construct()
    {
-      define('EXT', '.php');
+      if (!defined('EXT')) define('EXT', '.php');
 
       // Copy an instance of CI so we can use the entire framework.
       $this->CI =& get_instance();
