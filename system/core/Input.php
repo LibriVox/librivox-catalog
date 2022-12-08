@@ -568,7 +568,7 @@ class CI_Input {
 				$which = NULL;
 				break;
 		}
-
+        $which = $which ? $which : 0;
 		return (bool) filter_var($ip, FILTER_VALIDATE_IP, $which);
 	}
 
