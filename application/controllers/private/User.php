@@ -75,7 +75,12 @@ class User extends Private_Controller
 		if ($is_admin)
 		{
 			$allowed_fields[] = 'username';
-			$this->form_validation->set_rules('username', 'User Name', 'trim|required|xss_clean|alpha_dash');
+
+			// Note: When adding a new user the validation includes alpha_dash. However there
+			// are already existing user names that violate this requirement so we do no include
+			// alpha_dash here otherwise editing a user (even just changing other fields) could
+			// fail.
+			$this->form_validation->set_rules('username', 'User Name', 'trim|required|xss_clean');
 		}
 
 		// fields which the user can only update for themselves
