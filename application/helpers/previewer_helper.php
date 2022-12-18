@@ -60,11 +60,22 @@ function clean_summary($project_launch_data)
 
 function copyright_notice($fields)
 {
-	// Copyright notices for death plus 50/70 countries
-    $now = date('Y');
+	// In many countries a copyright lasts for the lifetime of the author plus
+	// 70 years after the calendar year in which the author dies. This function
+	// returns a copyright notice based on this rule.
+	//
+	// We want to show the notice if the current year minus year of death is
+	// less than or equal to 70.
+	//
+	// For example, if an author died in 2000 the work will go into the public
+	// domain in 2071.  In 2070 (or prior) we will show the notice
+	// (2070 – 2000 = 70 is <= 70). In 2071 (or after) we will no longer show
+	// the notice (2071 – 2000 = 71 is not <= 70).
+
+	$now = date('Y');
 	$dod = (int)$fields['dod'];
 
-	if (($now - $dod) < 69)
+	if (($now - $dod) <= 70)
 		return sprintf(lang('project_launch_template_copyright_warning'), format_author($fields), $dod);
 	else
 		return null;
