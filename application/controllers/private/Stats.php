@@ -219,8 +219,10 @@ class Stats extends Private_Controller
 			$project->complete = $this->section_model->get_count_by_status($project->id, array("PL OK"));
 			$project->assigned = $this->section_model->get_count_by_status($project->id, array("Assigned", "Ready for PL", "See PL notes", "Ready for spot PL", "PL OK"));
 
-			$project->assigned_pct = number_format($project->assigned / $project->num_sections, 2) * 100;
-			$project->complete_pct = number_format($project->complete / $project->num_sections, 2) * 100;
+            $assigned = $project->num_sections ? $project->assigned / $project->num_sections : 0;
+            $complete = $project->num_sections ? $project->complete / $project->num_sections : 0;
+            $project->assigned_pct = number_format($assigned, 2) * 100;
+            $project->complete_pct = number_format($complete, 2) * 100;
 		}
 
 		$this->insertMethodCSS();
