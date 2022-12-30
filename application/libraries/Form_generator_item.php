@@ -115,7 +115,6 @@ class Form_generator_item {
 			else
 			{
 				//insert record & add to new_author_list
-				$author['auth_id'] 			= $author_array['auth_id'][$i];
 				$author['auth_first_name'] 	= $author_array['auth_first_name'][$i];
 				$author['auth_last_name'] 	= $author_array['auth_last_name'][$i];
 				$author['auth_yob']	 		= $author_array['auth_yob'][$i] ? $author_array['auth_yob'][$i] : NULL;
