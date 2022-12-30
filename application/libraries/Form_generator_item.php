@@ -64,13 +64,6 @@ class Form_generator_item {
 
 
 		////insert - (no updating for now, but that could change)
-        // We're not quite sure how, but we sometimes hit a situation wherein
-        // $fieds['auth_id'] is the empty string. The database will refuse this
-        // as an invalid integer, so we unset it here first.
-        if (array_key_exists('auth_id', $fields) and ! $fields['auth_id'])
-        {
-            unset($fields['auth_id']);
-        }
 		$this->ci->form_generator_model->insert($fields);
 
 		return $fields;
