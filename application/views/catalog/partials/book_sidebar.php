@@ -1,8 +1,6 @@
 <div class="sidebar book-page">
 
 
-	<a href="<?= base_url(); ?>pages/donate-to-librivox/" class="donate">Donate to LibriVox</a>
-
 	<a href="<?= base_url(); ?>pages/thank-a-reader/" class="thank-reader">Thank a reader</a>
 
 
