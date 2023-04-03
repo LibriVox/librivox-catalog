@@ -63,13 +63,14 @@ class Iarchive_uploader
 		$headers[] = 'x-archive-meta-title:' . $title;
 
 		//additional info
-		$headers[] = 'x-archive-meta-creator:'.$params['creator'] ;
+		$headers[] = 'x-archive-meta-creator:'.$params['creator'];
 		$headers[] = 'x-archive-meta-description:'.$params['description'];
-		$headers[] = 'x-archive-meta-date:'.$params['date'] ;
-		$headers[] = 'x-archive-meta-subject:'.$params['subject'] ;
+		$headers[] = 'x-archive-meta-language:'.$params['language'];
+		$headers[] = 'x-archive-meta-date:'.$params['date'];
+		$headers[] = 'x-archive-meta-subject:'.$params['subject'];
 		$headers[] = 'x-archive-meta-licenseurl:'.$params['licenseurl'];
 
-	    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);  
+	    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
 	    curl_setopt($ch, CURLOPT_VERBOSE, 1);
 	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
