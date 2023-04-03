@@ -48,7 +48,7 @@ class Iarchive_upload extends Private_Controller
 
 		$description = $this->_get_full_description($params, $project);
 		$params['description'] = trim(preg_replace('/\s+/', ' ', $description));  //trims all newlines before placing in header
-		$params['language'] = $this->data['language'];
+		$params['language'] = $this->data['language_code'];
 
 		// Close db connection before uploading to avoid hogging connections
 		$this->db->close();
@@ -109,6 +109,7 @@ class Iarchive_upload extends Private_Controller
 		$language = $this->language_model->get($project->language_id);
 
 		$this->data['language'] = empty($language) ? 'English' : $language->language;
+		$this->data['language_code'] = empty($language) ? 'eng' : $language->three_letter_code;
 
 		$this->load->model('project_model');
 		$this->data['readers'] = $this->project_model->create_project_reader_list($project->id);
