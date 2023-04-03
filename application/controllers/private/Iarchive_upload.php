@@ -48,6 +48,7 @@ class Iarchive_upload extends Private_Controller
 
 		$description = $this->_get_full_description($params, $project);
 		$params['description'] = trim(preg_replace('/\s+/', ' ', $description));  //trims all newlines before placing in header
+		$params['language'] = $this->data['language'];
 
 		// Close db connection before uploading to avoid hogging connections
 		$this->db->close();
