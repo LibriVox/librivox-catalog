@@ -76,6 +76,15 @@ class Librivox_API{
 		$limit = (!empty($params['limit'])) ? $params['limit'] : 50;
 		$offset = (!empty($params['offset'])) ? $params['offset'] : 0;
 
+		$sort_fields = array('id', 'title', 'copyright_year', 'date_catalog');
+		$sort_field  = (!empty($params['sort_field']) && in_array($params['sort_field'], $sort_fields, true))
+			? $params['sort_field']
+			: $sort_fields[0];
+
+		$sort_order = (!empty($params['sort_order']) && ($params['sort_order'] === 'desc'))
+			? $params['sort_order']
+			: 'asc';
+
 		/*
 
 			*** Searching ***
@@ -118,6 +127,7 @@ class Librivox_API{
 
 		$result =  $this->db->select('p.*, l.language', false)
 			->join('languages l', 'p.language_id=l.id')
+			->order_by(('p.' . $sort_field), $sort_order)
 			->limit($limit, $offset)
 			->get('projects p')
 			->result_array();

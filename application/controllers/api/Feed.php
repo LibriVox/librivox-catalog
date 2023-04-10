@@ -16,6 +16,8 @@ class Feed extends REST_Controller
 	{
 		$params['offset'] = $this->get('offset');
 		$params['limit'] = $this->get('limit');
+		$params['sort_field'] = $this->get('sort_field');
+		$params['sort_order'] = $this->get('sort_order');
 		$params['id'] = $this->get('id');
 
 		$params['since'] = $this->get('since');
