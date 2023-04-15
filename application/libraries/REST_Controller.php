@@ -823,14 +823,18 @@ abstract class REST_Controller extends CI_Controller
 	/**
 	 * Parse GET
 	 */
-	protected function _parse_get()
-	{
-		// Grab proper GET variables
-		parse_str(parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY), $get);
+    protected function _parse_get()
+    {
+        // Grab proper GET variables
+        $get = array();
+        $query = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
+        if ($query) {
+            parse_str($query, $get);
+        }
 
-		// Merge both the URI segments and GET params
-		$this->_get_args = array_merge($this->_get_args, $get);
-	}
+        // Merge both the URI segments and GET params
+        $this->_get_args = array_merge($this->_get_args, $get);
+    }
 
 	/**
 	 * Parse POST
