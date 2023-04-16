@@ -18,6 +18,11 @@
   <itunes:category text="Arts">
     <itunes:category text="Literature" />
   </itunes:category>
+  <?php
+  if ($project->coverart_jpg) {
+    echo sprintf('<itunes:image href="%s" />', $project->coverart_jpg);
+  }
+  ?>
   <!-- file loop -->
   <?php foreach($sections as $section): ?>
   <item>
