@@ -76,7 +76,13 @@ class Librivox_API{
 		$limit = (!empty($params['limit'])) ? $params['limit'] : 50;
 		$offset = (!empty($params['offset'])) ? $params['offset'] : 0;
 
-		$sort_fields = array('id', 'title', 'copyright_year', 'date_catalog');
+        // TODO(artom/warren-bank) For now we can only sort by id because
+        // that's what the initial use case is, and because that's the only
+        // field where we have an index. Other fields can be added later, but
+        // there are performance considerations, and the table schema might
+        // need to change.
+		// $sort_fields = array('id', 'title', 'copyright_year', 'date_catalog');
+		$sort_fields = array('id');
 		$sort_field  = (!empty($params['sort_field']) && in_array($params['sort_field'], $sort_fields, true))
 			? $params['sort_field']
 			: $sort_fields[0];
