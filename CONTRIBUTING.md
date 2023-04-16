@@ -1,8 +1,5 @@
 Submit a pull request!
 
-Issues are currently listed ("tracked" would be too generous) in a [Google
-doc](https://docs.google.com/spreadsheets/u/1/d/1LTMEmwxH1vKLwNXN4U3wop69ElWFjnmqWyV5Jxbl9qc/). Issue #15 has been opened to convert these to GitHub issues.
-
 # Development environment
 
 The [librivox-ansible](https://github.com/LibriVox/librivox-ansible) playbooks
