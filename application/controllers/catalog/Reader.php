@@ -51,7 +51,7 @@ class Reader extends Catalog_controller
 
 		//pagination
 		$page_count = (count($full_set) > CATALOG_RESULT_COUNT) ? ceil(count($full_set) / CATALOG_RESULT_COUNT) : 0;
-		$retval['pagination'] = (empty($page_count)) ? '' : $this->_format_pagination($input['search_page'], $page_count);   // $first_page, $page_count
+		$retval['pagination'] = (empty($page_count)) ? '' : $this->_format_pagination($input['search_page'], $page_count);
 
 		$retval['status'] = 'SUCCESS';
 

@@ -197,7 +197,7 @@ class Search extends Catalog_controller
 			$page_count = (count($full_set) > CATALOG_RESULT_COUNT) ? ceil(count($full_set) / CATALOG_RESULT_COUNT) : 0;
 		}
 
-		$retval['pagination'] = (empty($page_count)) ? '' : $this->_format_pagination($input['search_page'], $page_count, 'get_advanced_results');   // $first_page, $page_count
+		$retval['pagination'] = (empty($page_count)) ? '' : $this->_format_pagination($input['search_page'], $page_count, 'get_advanced_results');
 
 		$retval['search_page'] = $input['search_page'];
 
@@ -297,7 +297,7 @@ class Search extends Catalog_controller
 
 			//pagination
 			$page_count = (count($full_set) > CATALOG_RESULT_COUNT) ? ceil(count($full_set) / CATALOG_RESULT_COUNT) : 0;
-			$retval['pagination'] = (empty($page_count)) ? '' : $this->_format_pagination($input['search_page'], $page_count, 'get_results');   // $first_page, $page_count
+			$retval['pagination'] = (empty($page_count)) ? '' : $this->_format_pagination($input['search_page'], $page_count, 'get_results');
 		}
 
 		$retval['status'] = 'SUCCESS';
