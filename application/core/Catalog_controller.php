@@ -24,32 +24,76 @@ class Catalog_controller extends CI_Controller
 		$this->load->view($file, $this->data);
 	}
 
-	function _format_pagination($first_page, $page_count, $call_function = 'get_results')
+	function _format_pagination($current_page, $page_count, $call_function = 'get_results')
 	{
-		$pages = $this->_build_pagination_array($first_page, $page_count);
+        $page_count = intval($page_count); // It's a float, but we want ints. (Causes problems when generating ranges.)
 
-		$html = '<a class="page-number first" data-page_number="1" href="#" data-call_function="' . $call_function . '">&laquo;</a>';
+        // If it's less than ten pages, just render everything, otherwise, three either side will do
+        $num_links_either_side = $page_count < 10 ? 10 : 3;
+		$pages = $this->_build_pagination_array($current_page, $page_count, $num_links_either_side);
 
-		foreach ($pages as $key => $page)
+        $html = '';
+
+        // Print the link to the first page
+        $html .= $this->_format_pagination_link(1, $current_page, $call_function);
+        $distance_to_first_page = $pages[0] - 1;
+        if ($distance_to_first_page === 2)
+        {
+            // If we're only one hop away, just print the link rather than the '...'
+            $html .= $this->_format_pagination_link(2, $current_page, $call_function);
+        }
+        else if ($distance_to_first_page > 2)
+        {
+            $html .= ' ... ';
+        }
+
+        // Print the pages either side of the selected page, but not the first or last pages
+		foreach ($pages as $page)
 		{
-			//$page_number_active = ($page == $first_page)? 'style="background-color:#FFF;"' : '';
-			$active = ($page == $first_page) ? 'active' : '';
-			$html .= '<a class="page-number ' . $active . '"  data-page_number="' . $page . '" href="#" data-call_function="' . $call_function . '">' . $page . '</a>';
+            if ($page === 1 || $page === $page_count)
+            {
+                continue;
+            }
+            else
+            {
+                $html .= $this->_format_pagination_link($page, $current_page, $call_function);
+            }
 		}
 
-		$html .= '<a class="page-number last" data-page_number="' . $page_count . '" data-call_function="' . $call_function . '" href="#">&raquo;</a>';
+        // Print the link to the last page
+        $last_page_to_show = $pages[count($pages) - 1];
+        $distance_to_last_page = $page_count - $last_page_to_show;
+        if ($distance_to_last_page === 2)
+        {
+            // If we're only one hop away, just print the link rather than the '...'
+            $html .= $this->_format_pagination_link($page_count - 1, $current_page, $call_function);
+        }
+        else if ($distance_to_last_page > 2) {
+            $html .= ' ... ';
+        }
+        $html .= $this->_format_pagination_link($page_count, $current_page, $call_function);
 
 		return $html;
 	}
 
-	function _build_pagination_array($first_page, $page_count)
+	function _build_pagination_array($first_page, $page_count, $num_links)
 	{
-		//need an array of 4 + $first_page + 4
-		$num_links = 4;
+		//need an array of (n links) + $first_page + (n links)
 		$start = max(($first_page - $num_links), 1);
 		$end = min(($first_page + $num_links), max($page_count, 1));
 		return range($start, $end);
 	}
+
+    function _format_pagination_link($page, $current_page, $call_function)
+    {
+        $active = ($page == $current_page) ? 'active' : '';
+        return '<a
+                  class="page-number ' . $active . '"
+                  data-page_number="' . $page . '"
+                  href="#"
+                  data-call_function="' . $call_function . '"
+                  >' . $page . '</a>';
+    }
 
 	function _format_results($results, $view = 'author')
 	{
