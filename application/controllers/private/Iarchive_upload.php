@@ -33,6 +33,7 @@ class Iarchive_upload extends Private_Controller
 		//I think we need to load these files one by one; I will investigate doing a single upload,
 		//but am worried about several technical issues
 
+		$params['project_id'] = $project->id;
 		$params['project_slug'] = $fields['upload_name'];
 		$params['title'] = $fields['upload_title'];
 		$params['file_location'] = $dir;
