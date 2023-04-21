@@ -69,6 +69,8 @@ class Iarchive_uploader
 		$headers[] = 'x-archive-meta-date:'.$params['date'];
 		$headers[] = 'x-archive-meta-subject:'.$params['subject'];
 		$headers[] = 'x-archive-meta-licenseurl:'.$params['licenseurl'];
+		$headers[] = 'x-archive-meta-call--number:'.$params['project_id'];
+
 
 	    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
