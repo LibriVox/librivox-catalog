@@ -69,6 +69,12 @@ class Rss extends Catalog_controller
 		{
 			$this->data['project']->title_bar .= ' by ' . $this->data['authors_string'];
 		}
+
+        $language_id = $this->data['project']->language_id;
+        if (!empty($language_id)) {
+            $this->load->model('language_model');
+            $this->data['language'] = $this->language_model->get($language_id);
+        }
 	}
 
 	function _build_sections()

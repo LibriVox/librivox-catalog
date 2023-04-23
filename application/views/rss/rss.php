@@ -7,7 +7,13 @@
   <atom:link rel="self" href="https://librivox.org/rss/<?= $project->id ?>" />
   <description><![CDATA[<?= strip_tags($project->description) ?>]]></description>
   <!--<genre>project element=Genre</genre>-->
-  <!--<language>project element=lang.code</language>-->
+  <?php
+    if ($language->three_letter_code) { // Docs say two-letter, but three seems to validate
+      echo "<language>";
+      echo sprintf("<![CDATA[%s]]>", $language->three_letter_code);
+      echo "</language>";
+    }
+  ?>
   <itunes:type>serial</itunes:type>
   <itunes:author>LibriVox</itunes:author>
   <itunes:summary><![CDATA[<?= strip_tags($project->description) ?>]]></itunes:summary>
@@ -42,7 +48,9 @@
       <enclosure url="<?= $section->mp3_64_url?>" length="0" type="audio/mpeg" />
   <itunes:explicit>No</itunes:explicit>
   <itunes:block>No</itunes:block>
-  <itunes:duration><![CDATA[<?= $section->migrated_time?>]]></itunes:duration>
+  <itunes:duration>
+    <![CDATA[<?= $section->time ?>]]>
+  </itunes:duration>
   <!--<pubDate>file element=rss.pubDate</pubDate>-->
   <media:content url="<?= $section->mp3_64_url?>" type="audio/mpeg" />
  </item>
