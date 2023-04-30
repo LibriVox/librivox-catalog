@@ -8,10 +8,10 @@
   <description><![CDATA[<?= strip_tags($project->description) ?>]]></description>
   <!--<genre>project element=Genre</genre>-->
   <?php
-    if ($language->three_letter_code) { // Docs say two-letter, but three seems to validate
+    if (isset($language) && $language->three_letter_code) { // Docs say two-letter, but three seems to validate
       echo "<language>";
       echo sprintf("<![CDATA[%s]]>", $language->three_letter_code);
-      echo "</language>";
+      echo "</language>\n";
     }
   ?>
   <itunes:type>serial</itunes:type>
