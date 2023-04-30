@@ -15,6 +15,25 @@
 
 <script type="text/javascript">
 
+	function get_search_page_from_url() {
+		var query_string = window.location.href.slice(
+			window.location.href.indexOf('?')
+		);
+
+		if (typeof URLSearchParams !== 'function') {
+			// Manual parsing is annoying and most browsers support URLSearchParams
+			return 1;
+		}
+
+		var query_params = new URLSearchParams(query_string);
+		var search_page_param = parseInt(query_params.get('search_page'));
+		if (typeof search_page_param === 'number' && search_page_param > 0) {
+			return search_page_param;
+		} else {
+			return 1;
+		}
+	}
+
 	var search_category = <?= json_encode($search_category, JSON_HEX_TAG | JSON_HEX_QUOT); ?>;
 
 	var sub_category;
@@ -23,7 +42,7 @@
 
 	var primary_key = <?= (int)$primary_key ?>;
 
-	var search_page = <?= (int)(isset($search_page) ? $search_page : 1) ?>;
+	var search_page = get_search_page_from_url();
 	set_advanced_form_page(search_page);
 
 	var search_order = 'alpha';
@@ -360,6 +379,7 @@
 			return;
 		}
 
+		set_advanced_form_page(1); // This is a new search, so reset
 		librivox_search();
 
 		$('#sidebar_wrapper').show();
@@ -370,8 +390,6 @@
 
 	function librivox_search()
 	{
-		set_advanced_form_page(1); //this is a new search, so reset
-
 		search_order = 'alpha';
 
 		$('#advanced_search_form #sort_order').val('alpha'); // the code eventually serializes the form, so we need to set it to alpha here
