@@ -223,19 +223,20 @@ class Project_launch extends Public_Controller
 		$this->form_validation->set_rules('project_type', 'lang:proj_launch_type_of_project', 'trim|xss_clean|alpha_dash');
 		$this->form_validation->set_rules('recorded_language', 'lang:proj_launch_recorded_language', 'trim|xss_clean|numeric');
 		$this->form_validation->set_rules('title', 'lang:proj_launch_title', 'trim|xss_clean|required');
+		$this->form_validation->set_rules('edition_year', 'lang:proj_launch_edition_year', 'trim|xss_clean|numeric');
 		$this->form_validation->set_rules('brief_summary', 'Brief Summary', 'trim|xss_clean');
 		$this->form_validation->set_rules('brief_summary_by', 'Brief Summary By', 'trim|xss_clean');
 		$this->form_validation->set_rules('link_to_text', 'lang:proj_launch_link_to_text_1', 'trim|xss_clean|prep_url');
 
 		$this->form_validation->set_rules('link_to_book', 'lang:proj_launch_link_to_book', 'trim|xss_clean|prep_url');
-		$this->form_validation->set_rules('pub_year', 'lang:proj_launch_pub_year', 'trim|xss_clean');
+		$this->form_validation->set_rules('pub_year', 'lang:proj_launch_pub_year', 'trim|xss_clean|numeric');
 
-		$this->form_validation->set_rules('expected_completion_year', 'lang:proj_launch_expected_completion', 'trim|xss_clean');
-		$this->form_validation->set_rules('expected_completion_month', 'lang:proj_launch_expected_completion', 'trim|xss_clean');
-		$this->form_validation->set_rules('expected_completion_day', 'lang:proj_launch_expected_completion', 'trim|xss_clean');
+		$this->form_validation->set_rules('expected_completion_year', 'lang:proj_launch_expected_completion', 'trim|xss_clean|numeric');
+		$this->form_validation->set_rules('expected_completion_month', 'lang:proj_launch_expected_completion', 'trim|xss_clean|numeric');
+		$this->form_validation->set_rules('expected_completion_day', 'lang:proj_launch_expected_completion', 'trim|xss_clean|numeric');
 
 		$this->form_validation->set_rules('proof_level', 'lang:proj_launch_proof_level', 'trim|xss_clean|alpha_dash');
-		$this->form_validation->set_rules('num_sections', 'lang:proj_launch_num_sections', 'trim|xss_clean');
+		$this->form_validation->set_rules('num_sections', 'lang:proj_launch_num_sections', 'trim|xss_clean|numeric');
 
 		$this->form_validation->set_rules('has_preface', 'lang:proj_launch_has_preface', 'trim|xss_clean|exact_length[1]');
 
