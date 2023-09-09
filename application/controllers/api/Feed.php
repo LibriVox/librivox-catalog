@@ -86,6 +86,14 @@ class Feed extends REST_Controller
 		}
 	}
 
+    // This is a shim to preserve the public endpoint URL of
+    // `lastest_releases`, which had been out in the wild before we noticed
+    // and fixed the typo.
+    public function lastest_releases_get()
+    {
+        return $this->latest_releases_get();
+    }
+
 	public function latest_releases_get()
 	{
 		$this->load->model('project_model');
