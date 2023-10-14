@@ -141,17 +141,10 @@ class Catalog_controller extends CI_Controller
 			//our data is all hard-coded...
 			$url = 'https://librivox.org/' . $slug;
 
-			$sql = "SELECT * FROM (`projects`) WHERE `url_librivox` = '" . rtrim($url, "/") . "' OR `url_librivox` = '" . rtrim($url) . "/'";
+			$sql = "SELECT * FROM (`projects`) WHERE `url_librivox` = ? OR `url_librivox` = ?";
+			$bindings = array(rtrim($url, "/"), rtrim($url) . '/');
 
-			$project = $this->db->query($sql)->row();
-
-			// this is a crutch because the url domains are all hard-coded into the db values - we'll need to remove this before production!
-			if (base_url() == 'http://dev.librivox.org/' && empty($project))
-			{
-				$url = 'http://dev.librivox.org/' . $slug;
-				$sql = "SELECT * FROM (`projects`) WHERE `url_librivox` = '" . rtrim($url, "/") . "' OR `url_librivox` = '" . rtrim($url) . "/'";
-				$project = $this->db->query($sql)->row();
-			}
+			$project = $this->db->query($sql, $bindings)->row();
 
 			// There is a bug(?) causing _ in slug to be backslashed when using like() -- just write the query above
 			//$project = $this->db->like('url_librivox', rtrim($slug,"/"), 'after')->get('projects')->row();
