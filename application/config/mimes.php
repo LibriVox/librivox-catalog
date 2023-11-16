@@ -148,7 +148,7 @@ return array(
 	'wmv'   =>	array('video/x-ms-wmv', 'video/x-ms-asf'),
 	'au'    =>	'audio/x-au',
 	'ac3'   =>	'audio/ac3',
-	'flac'  =>	'audio/x-flac',
+	'flac'  =>	array('audio/x-flac', 'audio/flac'),
 	'ogg'   =>	array('audio/ogg', 'video/ogg', 'application/ogg'),
 	'kmz'	=>	array('application/vnd.google-earth.kmz', 'application/zip', 'application/x-zip'),
 	'kml'	=>	array('application/vnd.google-earth.kml+xml', 'application/xml', 'text/xml'),
