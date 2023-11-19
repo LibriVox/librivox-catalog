@@ -11,11 +11,9 @@ $(function () {
             {
                 alert('Please select an MC before uploading');
                 return false;
-            } 
-        }, // .bind('fileuploadsubmit', func);
-        done: function (e, data){
-            // there is a lot of binding & re-tagging of files, so a full refresh is much safer for the moment
-
+            }
+        },
+        finishedAll: function () {
             window.location.reload();
         }   
     });
