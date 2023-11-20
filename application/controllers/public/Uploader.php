@@ -18,8 +18,26 @@ class Uploader extends Public_Controller
 		ini_set('memory_limit', '128M');
 
 		$allowed_groups = array(PERMISSIONS_ADMIN, PERMISSIONS_BCS, PERMISSIONS_MCS, PERMISSIONS_UPLOADER, PERMISSIONS_PLS, PERMISSIONS_READERS);
-		if (!$this->librivox_auth->has_permission($allowed_groups, $this->data['user_id']))
+		$has_group_permission = $this->librivox_auth->has_permission($allowed_groups, $this->data['user_id']);
+		if (!$has_group_permission)
 		{
+			if (!$this->ion_auth->logged_in())
+			{
+				if (IS_AJAX)
+				{
+					$error = array('error' => 'Your session has been expired. Please login again.');
+					echo json_encode(array($error));
+					die();
+				}
+				redirect('auth/login');
+			}
+
+			if (IS_AJAX)
+			{
+				$error = array('error' => 'You don\'t have permissions for this area.');
+				echo json_encode(array($error));
+				die();
+			}
 			redirect('auth/error_no_permission');
 		}
 
