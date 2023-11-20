@@ -18,10 +18,42 @@ class Uploader extends Public_Controller
 		ini_set('memory_limit', '128M');
 
 		$allowed_groups = array(PERMISSIONS_ADMIN, PERMISSIONS_BCS, PERMISSIONS_MCS, PERMISSIONS_UPLOADER, PERMISSIONS_PLS, PERMISSIONS_READERS);
-		if (!$this->librivox_auth->has_permission($allowed_groups, $this->data['user_id']))
-		{
-			redirect('auth/error_no_permission');
-		}
+		$has_group_permission = $this->librivox_auth->has_permission($allowed_groups, $this->data['user_id']);
+        
+        $ajax_error = NULL;
+        $redirect_url = NULL;
+        # First determine the error condition, if any.
+        if (!$this->ion_auth->logged_in())
+        {
+            $ajax_error = "Your session has expired, please login again.";
+            $redirect_url = "auth/login";
+        }
+        else if (!$has_group_permission)
+        {
+            $ajax_error = "You don't have permissions for this area.";
+            $redirect_url = "auth/error_no_permission";
+        }
+
+        # Then, based on the presence of an error condition and whether we're being called by AJAX or not,
+        # echo or redirect.
+        if (IS_AJAX and $ajax_error)
+        {
+            echo json_encode(
+                array(
+                    array(
+                        'error' => $ajax_error,
+                        'name' => '',
+                        'size' => 0,
+                    )
+                )
+            );
+            die();
+        }
+
+        if ($redirect_url)
+        {
+            redirect($redirect_url);
+        }
 
 		$this->load->helper(array('form', 'url'));
 
