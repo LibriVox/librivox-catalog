@@ -26,7 +26,7 @@
             </button>
             <input type="checkbox" class="toggle">
         </div>
-       
+
         <div class="span5">
 
         <!-- The global progress bar -->
@@ -40,6 +40,10 @@
 
     <!-- The loading indicator is shown during image processing -->
     <div class="fileupload-loading"></div>
+    <div id="validator-upload-dialog" class="hidden">
+        <div>Upload completed with some errors:</div>
+        <dl class="error-list"></dl>
+    </div>
     <br>
 
         <!-- The table listing the files available for upload/download -->

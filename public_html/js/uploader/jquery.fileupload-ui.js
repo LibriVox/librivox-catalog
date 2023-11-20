@@ -269,9 +269,6 @@
                         'width',
                         progress + '%'
                     );
-                if (progress === 100) {
-                    $(this).data('fileupload')._trigger('finishedAll');
-                }
             },
             // Callback for uploads start, equivalent to the global ajaxStart event:
             start: function (e) {

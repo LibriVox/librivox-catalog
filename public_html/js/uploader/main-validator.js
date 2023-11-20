@@ -2,6 +2,7 @@
 $(function () {
     'use strict';
 
+    const errorData = [];
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
         submit: function (e, data) {
@@ -13,11 +14,46 @@ $(function () {
                 return false;
             }
         },
-        finishedAll: function () {
+        always: function (e, data) {
+            let error = data.result.error;
+            if (Array.isArray(data.result) && data.result.length) {
+                error = data.result[0].error;
+            }
+            if (error) {
+                errorData.push(data);
+            }
+        },
+        stop: function () {
+            if (errorData.length) {
+                const dialogEl = $('#validator-upload-dialog');
+                dialogEl.dialog({
+                    title: 'Upload Result',
+                    autoOpen: false,
+                    modal: true,
+                    width: '560px',
+                    buttons: [{
+                        text: 'OK',
+                        click: () => dialogEl.dialog('close')
+                    }],
+                    close: () => window.location.reload()
+                });
+
+                for (let data of errorData) {
+                    const error = data.result[0].error;
+                    const file = data.files.length && data.files.at(0);
+                    $('dl', dialogEl).append(`
+                        <dt>${file.name}</dt>
+                        <dd>${error}</dd>
+                    `);
+                }
+                dialogEl.removeClass('hidden');
+                dialogEl.dialog('open');
+                return;
+            }
             window.location.reload();
-        }   
+        }
     });
-    
+
     // Enable iframe cross-domain access via redirect option:
     $('#fileupload').fileupload(
         'option',
@@ -35,24 +71,24 @@ $(function () {
         if ($.ajaxSettings.xhr().withCredentials !== undefined) {
             $.ajax({
                 url: 'upload/get_files',
-                dataType: 'json', 
-                
-                success : function(data) {  
+                dataType: 'json',
 
-                    var fu = $('#fileupload').data('fileupload'), 
+                success : function(data) {
+
+                    var fu = $('#fileupload').data('fileupload'),
                     template;
                     fu._adjustMaxNumberOfFiles(-data.length);
                     template = fu._renderDownload(data)
                     .appendTo($('#fileupload .files'));
-                    
+
                     // Force reflow:
                     fu._reflow = fu._transition && template.length &&
                     template[0].offsetWidth;
                     template.addClass('in');
                     $('#loading').remove();
-                }  
-         
-                
+                }
+
+
             }).fail(function () {
                 $('<span class="alert alert-error"/>')
                 .text('Upload server currently unavailable - ' +
@@ -60,7 +96,7 @@ $(function () {
                 .appendTo('#fileupload');
             });
         }
-    } 
+    }
     /*
     else {
         // Load existing files:
