@@ -26,7 +26,86 @@ class Author_manager extends Private_Controller
 		$this->data['author_pseudonyms_modal'] = $this->load->view('admin/author_manager/author_pseudonyms_modal', $this->data, TRUE);
 		$this->data['author_new_modal'] = $this->load->view('admin/author_manager/author_new_modal', $this->data, TRUE);
 
-		$this->data['authors'] = $this->author_model->order_by('id', 'asc')->get_many_by(array('linked_to' => '0')); //limit(100)->
+		$page = $_GET['page'] ?? 1;
+		$length = $_GET['length'] ?? 10;
+		$confirmed = $_GET['confirmed'] ?? null;
+		$linked = $_GET['linked'] ?? null;
+		$searchTerm = $_GET['s'] ?? null;
+		$sort = $_GET['sort'] ?? 'id';
+		$dir = $_GET['dir'] ?? 'asc';
+		$start = max($page - 1, 0) * $length;
+
+		$conditions = array();
+		if (!empty($confirmed) || $confirmed === 0 || $confirmed === '0')
+		{
+			$conditions[] = "confirmed = $confirmed";
+		}
+		if ($linked === 0 || $linked === '0')
+		{
+			$conditions[] = "linked_to = $linked";
+		}
+		if (!empty($linked) && $linked !== 0 && $linked !== '0')
+		{
+			$conditions[] = "linked_to != '0'";
+		}
+
+		$where = join(" AND ", $conditions);
+		if ($searchTerm)
+		{
+			$searchTerm = strtolower($searchTerm);
+			$where .= empty($conditions) ? " ( " : " AND (";
+			$where .= " lower(first_name) like '%$searchTerm%'";
+			$where .= " OR lower(last_name) like '%$searchTerm%'";
+			$where .= " OR lower(psuedo_first_name) like '%$searchTerm%'";
+			$where .= " OR lower(psuedo_last_name) like '%$searchTerm%'";
+			$where .= " OR lower(author_url) like '%$searchTerm%'";
+			$where .= " OR lower(other_url) like '%$searchTerm%'";
+			$where .= " OR lower(image_url) like '%$searchTerm%'";
+			$where .= " OR lower(dob) like '%$searchTerm%'";
+			$where .= " OR lower(dod) like '%$searchTerm%'";
+			$where .= " OR lower(linked_to) like '%$searchTerm%'";
+			$where .= " OR lower(blurb) like '%$searchTerm%'";
+			$where .= ")";
+		}
+
+		if (!empty($where))
+		{
+			$this->data['authors'] = $this->author_model
+				->limit($length, $start)
+				->order_by($sort, $dir)
+				->get_many_by($where);
+		}
+		else
+		{
+			$this->data['authors'] = $this->author_model
+				->limit($length, $start)
+				->order_by($sort, $dir)
+				->get_all();
+		}
+
+		$filtered_count = 0;
+		if (!empty($where))
+		{
+			$filtered_count = $this->author_model->count_by($where);
+		}
+		else
+		{
+			$filtered_count = $this->author_model->count_all();
+		}
+
+		$total_count = $this->author_model->count_all();
+		$page_count = max(floor($filtered_count / $length), 1);
+		$pages = range(max($page - 2, 1), min($page + 2, $page_count));
+
+		$this->data['confirmed'] = $confirmed;
+		$this->data['linked'] = $linked;
+		$this->data['page'] = $page;
+		$this->data['length'] = $length;
+		$this->data['filtered_count'] = $filtered_count;
+		$this->data['total_count'] = $total_count;
+		$this->data['page_count'] = $page_count;
+		$this->data['pages'] = $pages;
+		$this->data['searchTerm'] = $searchTerm;
 
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
