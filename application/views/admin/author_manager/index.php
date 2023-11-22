@@ -60,26 +60,13 @@
 		<div class="span6">
 			<label for="author_confirmed_dropdown">
 				Authors
-				<select id="author_confirmed_dropdown" class="span2">
+			<select id="author_confirmed_dropdown" class="span2">
 					<option value=""></option>
 					<option value="1" <?php if ($confirmed === '1' || $confirmed === 1): ?>selected<?php endif; ?>>
 						Confirmed
 					</option>
 					<option value="0" <?php if ($confirmed === '0' || $confirmed === 0): ?>selected<?php endif; ?>>
 						Unconfirmed
-					</option>
-				</select>
-			</label>
-
-			<label for="author_linked_dropdown">
-				Linked
-				<select id="author_linked_dropdown" class="span2">
-					<option value=""></option>
-					<option value="1" <?php if ($linked === '1' || $linked === 1): ?>selected<?php endif; ?>>
-						Linked
-					</option>
-					<option value="0" <?php if ($linked === '0' || $linked === 0): ?>selected<?php endif; ?>>
-						Not Linked
 					</option>
 				</select>
 			</label>

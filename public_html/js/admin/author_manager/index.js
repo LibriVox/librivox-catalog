@@ -72,10 +72,6 @@ $(document).ready(function () {
         $('select#author_confirmed_dropdown').on('change', function (e) {
             updateParams({confirmed: e.target.value});
         });
-        $('select#author_linked_dropdown').on('change', function (e) {
-            console.log('e.target.value', e.target.value);
-            updateParams({linked: e.target.value});
-        });
         $('select#authors_table_length_dropdown').on('change', function (e) {
             updateParams({length: e.target.value});
         });
@@ -92,7 +88,6 @@ $(document).ready(function () {
         const page = values['page'] || 1;
         const length = values['length'] || 10;
         const confirmed = values['confirmed'] || 0;
-        const linked = values['linked'] || 0;
         const searchTerm = values['s'];
         const sort = values['sort'];
         const dir = values['dir'];
@@ -100,7 +95,6 @@ $(document).ready(function () {
         location.search = `?page=${page}&length=${length}`
             + (searchTerm && `&s=${searchTerm}` || '')
             + (confirmed && `&confirmed=${confirmed}` || '')
-            + (linked && `&linked=${linked}` || '')
             + (sort && `&sort=${sort}&dir=${dir || 'asc'}` || '');
     }
 
