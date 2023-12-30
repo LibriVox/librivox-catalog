@@ -45,7 +45,7 @@
 	var search_page = get_search_page_from_url();
 	set_advanced_form_page(search_page);
 
-	var search_order = 'alpha';
+	var search_order = $('.js-sort-menu').val() || 'alpha';
 
 	var project_type = 'either';
 
@@ -239,7 +239,7 @@
 				if (history.pushState) {
 					history.pushState(null, location.textContent, location.href);
 
-					history.replaceState(null, null, "?primary_key=" + primary_key + '&search_category=' + search_category + '&search_page=' + search_page + '&search_form=get_results');	
+					history.replaceState(null, null, "?primary_key=" + primary_key + '&search_category=' + search_category + '&search_page=' + search_page + '&search_form=get_results&search_order=' + search_order);
 					
 				}
 

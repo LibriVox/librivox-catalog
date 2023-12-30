@@ -25,8 +25,8 @@
 			<div class="sort-menu" id="sort_menu" style="display:none;">
 				<p>Order by</p>
 				<select class="js-sort-menu">
-					  <option value="alpha">Alphabetically</option>
-					  <option value="catalog_date">Release date</option>
+					<option value="alpha" <?= $search_order === 'alpha' ? 'selected' : '' ?>>Alphabetically</option>
+					<option value="catalog_date" <?= $search_order === 'catalog_date' ? 'selected' : '' ?>>Release date</option>
 				 </select> 
 			</div><!-- end .sort-menu -->
 		</div><!-- end . page-header -->
