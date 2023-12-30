@@ -24,7 +24,27 @@ class Catalog_controller extends CI_Controller
 		$this->load->view($file, $this->data);
 	}
 
-	function _format_pagination($current_page, $page_count, $call_function = 'get_results')
+	/**
+	 * Format pagination links as HTML to display in the browser.
+	 *
+	 * The links use '#' as the URL by default, but you can customize this by
+	 * passing in a $link_url_builder. E.g.:
+	 *
+	 *   $this->_format_pagination(
+	 *     1,
+	 *     10,
+	 *     'example_search_function',
+	 *     function ($page) {
+	 *       return '/path/to/thing/' . $page;
+	 *     },
+	 *   )
+	 *
+	 * @param int $current_page	The page the user is currently on, starts at 1
+	 * @param float $page_count The total number of pages
+	 * @param string $call_function The name of the function that's calling this, gets attached to the links for some reason?
+	 * @param callable $link_url_builder A function to render the pagination URL given a page number, just uses '#' by default
+	 */
+	function _format_pagination($current_page, $page_count, $call_function = 'get_results', $link_url_builder = null)
 	{
         $page_count = intval($page_count); // It's a float, but we want ints. (Causes problems when generating ranges.)
 
@@ -35,12 +55,12 @@ class Catalog_controller extends CI_Controller
         $html = '';
 
         // Print the link to the first page
-        $html .= $this->_format_pagination_link(1, $current_page, $call_function);
+        $html .= $this->_format_pagination_link(1, $current_page, $call_function, $link_url_builder);
         $distance_to_first_page = $pages[0] - 1;
         if ($distance_to_first_page === 2)
         {
             // If we're only one hop away, just print the link rather than the '...'
-            $html .= $this->_format_pagination_link(2, $current_page, $call_function);
+            $html .= $this->_format_pagination_link(2, $current_page, $call_function, $link_url_builder);
         }
         else if ($distance_to_first_page > 2)
         {
@@ -56,7 +76,7 @@ class Catalog_controller extends CI_Controller
             }
             else
             {
-                $html .= $this->_format_pagination_link($page, $current_page, $call_function);
+                $html .= $this->_format_pagination_link($page, $current_page, $call_function, $link_url_builder);
             }
 		}
 
@@ -66,12 +86,12 @@ class Catalog_controller extends CI_Controller
         if ($distance_to_last_page === 2)
         {
             // If we're only one hop away, just print the link rather than the '...'
-            $html .= $this->_format_pagination_link($page_count - 1, $current_page, $call_function);
+            $html .= $this->_format_pagination_link($page_count - 1, $current_page, $call_function, $link_url_builder);
         }
         else if ($distance_to_last_page > 2) {
             $html .= ' ... ';
         }
-        $html .= $this->_format_pagination_link($page_count, $current_page, $call_function);
+        $html .= $this->_format_pagination_link($page_count, $current_page, $call_function, $link_url_builder);
 
 		return $html;
 	}
@@ -84,13 +104,16 @@ class Catalog_controller extends CI_Controller
 		return range($start, $end);
 	}
 
-    function _format_pagination_link($page, $current_page, $call_function)
+    function _format_pagination_link($page, $current_page, $call_function, $link_url_builder)
     {
         $active = ($page == $current_page) ? 'active' : '';
+		$href = !empty($link_url_builder)
+			  ? $link_url_builder($page)
+			  : '#';
         return '<a
                   class="page-number ' . $active . '"
                   data-page_number="' . $page . '"
-                  href="#"
+                  href="' . $href . '"
                   data-call_function="' . $call_function . '"
                   >' . $page . '</a>';
     }

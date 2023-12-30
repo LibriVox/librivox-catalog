@@ -25,6 +25,8 @@ class Group extends Catalog_controller
 		$matches = $this->_get_all_group_projects($group_id, 0, 1000000);
 		$this->data['matches'] = count($matches);
 
+		$this->data['search_order'] = $this->input->get('search_order');
+
 		$this->_render('catalog/group');
 		return;
 	}
@@ -53,7 +55,19 @@ class Group extends Catalog_controller
 
 		//pagination
 		$page_count = (count($full_set) > CATALOG_RESULT_COUNT) ? ceil(count($full_set) / CATALOG_RESULT_COUNT) : 0;
-		$retval['pagination'] = (empty($page_count)) ? '' : $this->_format_pagination($input['search_page'], $page_count);
+		$retval['pagination'] = (empty($page_count))
+							  ? ''
+							  : $this->_format_pagination(
+								  $input['search_page'],
+								  $page_count,
+								  'get_results',
+								  function ($page) use ($group_id) {
+									  $query_string = http_build_query(array(
+										  'search_page' => $page,
+									  ));
+									  return '/group/' . $group_id . '/?' . $query_string;
+								  },
+							  );
 
 		$retval['status'] = 'SUCCESS';
 
