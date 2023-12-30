@@ -106,20 +106,7 @@ class Keywords {
 	 */
 	public function add($keyword)
 	{
-		return $this->ci->keyword_m->insert(array('value' => self::prep($keyword)));
-	}
-
-	/**
-	 * Prepare Keyword
-	 *
-	 * Gets a keyword ready to be saved
-	 *
-	 * @param	string	$keyword
-	 * @return	bool
-	 */
-	public function prep($keyword)
-	{
-		return strtolower(trim($keyword));
+		return $this->ci->keyword_m->insert(array('value' => trim($keyword)));
 	}
 
 	/**
@@ -143,7 +130,7 @@ class Keywords {
 		$keywords = explode(',', $keywords);
 		foreach ($keywords as &$keyword)
 		{
-			$keyword = self::prep($keyword);
+			$keyword = trim($keyword);
 			// Keyword already exists
 			if (($row = $this->ci->db->where('value', $keyword)->get('keywords')->row()))
 			{
