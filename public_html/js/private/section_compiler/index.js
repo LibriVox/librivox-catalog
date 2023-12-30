@@ -180,20 +180,25 @@ $(document).ready(function() {
 		var btn = $(this);
 		var section_id 	= btn.attr('data-section_id');
 
-		$.ajax({
-	        url: CI_ROOT + "private/section_compiler/delete_section",
-	        type: 'post',
-	        data: {'section_id': section_id},
-	        complete: function(r){
-	        	var deleted_row = btn.closest('tr').get(0);
 
-	  			oTable.fnDeleteRow(
-					oTable.fnGetPosition(
-						deleted_row
-					)
-				);	
-	        }	
-	    });
+                jConfirm('Can you confirm this?', 'Confirmation Dialog', function(r) {
+                        if (r) {
+				$.ajax({
+			        url: CI_ROOT + "private/section_compiler/delete_section",
+			        type: 'post',
+			        data: {'section_id': section_id},
+			        complete: function(r){
+			        	var deleted_row = btn.closest('tr').get(0);
+
+			  			oTable.fnDeleteRow(
+							oTable.fnGetPosition(
+								deleted_row
+							)
+						);
+			        }
+			    });
+			}
+		});
 
 	});
 

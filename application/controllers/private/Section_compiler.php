@@ -11,6 +11,9 @@ class Section_compiler extends Private_Controller
 		$this->template->add_js('js/libs/jquery.dataTables.js');
 		$this->template->add_js('js/libs/jquery.jeditable.js');
 
+		$this->template->add_css('css/libs/jquery.alerts.css');
+		$this->template->add_js('js/libs/jquery.alerts.js');
+
 		$this->load->helper('previewer_helper');
 
 		$this->load->model('section_model');
