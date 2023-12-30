@@ -56,7 +56,7 @@ class Validator extends Private_Controller
 		if (empty($this->data['project'])) redirect(base_url() . 'private/validator/select_project');
 
 		$this->data['project']->full_title = create_full_title($this->data['project']);
-		$this->data['project']->suggested_title = url_title(replace_accents($this->data['project']->full_title), '_', true);
+		$this->data['project']->suggested_title = substr(url_title(replace_accents($this->data['project']->full_title), '', true), 0, 21);
 		$this->data['project']->author_full_name = $this->_get_author_by_project($project_id);
 		$this->data['project']->author_last_name = $this->_get_author_by_project($project_id, 'last');
 
