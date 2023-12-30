@@ -18,8 +18,6 @@
                <a href="<?= base_url()?>workflow" class="menu_link">LibriVox Dashboard</a>
                <a href="https://forum.librivox.org" class="menu_link">LibriVox Forum</a>
                <a href="<?= base_url()?>pages/workflow-help" class="menu_link">Help</a>
-               <br />
-               <?= form_dropdown('lang_select', $languages, $current_lang , 'id="lang_select" style="float:right;margin-top:20px;"'); ?>
           </div>
      </div>
 
@@ -30,6 +28,15 @@
 
                <?= validation_errors('<div class="alert alert-error">', '</div>'); ?>
                <div id="showErrors"></div>
+
+               <fieldset class="fieldset-margin">
+                    <legend><?= lang('proj_launch_choose_lang'); ?></legend>
+                    <div class="control-group">
+                         <div class="controls center">
+                              <?= form_dropdown('lang_select', $languages, $current_lang , 'id="lang_select"'); ?>
+                         </div>
+                    </div>
+               </fieldset>
 
                <fieldset class="fieldset-margin">  
                     <legend><?= lang('proj_launch_project'); ?></legend> 
@@ -303,4 +310,4 @@
      </div>
 </div>
 
-</form>    
+</form>
