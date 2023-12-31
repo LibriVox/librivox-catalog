@@ -175,30 +175,40 @@ $(document).ready(function() {
 
 	});
 
+
+	var successful_deletions = 0;
+
 	$('.delete_section').live('click', function(){
 
 		var btn = $(this);
 		var section_id 	= btn.attr('data-section_id');
 
-
-                jConfirm('Can you confirm this?', 'Confirmation Dialog', function(r) {
-                        if (r) {
-				$.ajax({
+		function _delete_row()
+		{
+			$.ajax({
 			        url: CI_ROOT + "private/section_compiler/delete_section",
-			        type: 'post',
-			        data: {'section_id': section_id},
-			        complete: function(r){
-			        	var deleted_row = btn.closest('tr').get(0);
+				type: 'post',
+				data: {'section_id': section_id},
+				complete: function(r){
+					var deleted_row = btn.closest('tr').get(0);
 
-			  			oTable.fnDeleteRow(
-							oTable.fnGetPosition(
-								deleted_row
-							)
-						);
-			        }
-			    });
-			}
-		});
+					oTable.fnDeleteRow(
+						oTable.fnGetPosition(
+							deleted_row
+						)
+					);
+				}
+			});
+			successful_deletions += 1;
+		}
+
+		if (successful_deletions < 2) {
+	                jConfirm('Can you confirm this?', 'Confirmation Dialog', _delete_row);
+		}
+		else
+		{
+			_delete_row();
+		}
 
 	});
 
@@ -360,6 +370,14 @@ $(document).ready(function() {
 		$('.toggle_div').hide(300);
 		$('.add_btn').show(300);
 	});
+
+	// Show the 'Assign reader sections' button by default, if the project status is 'open'
+	var project_status = $('#status').val();
+	if (project_status == 'open')
+	{
+		$('#assign_reader_toggle').hide();
+		$('#assign_reader_div').show();
+	}
 
 
 });
