@@ -203,7 +203,7 @@ $(document).ready(function() {
 		}
 
 		if (successful_deletions < 2) {
-	                jConfirm('Can you confirm this?', 'Confirmation Dialog', _delete_row);
+	                jConfirm('Do you want to delete this section?<br>After deleting 2 sections, you will no longer be prompted.', 'Confirmation Dialog', _delete_row);
 		}
 		else
 		{
