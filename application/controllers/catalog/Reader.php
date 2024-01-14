@@ -11,6 +11,10 @@ class Reader extends Catalog_controller
 
 	public function index($reader_id)
 	{
+		if (empty($reader_id)) {
+			show_404();
+		}
+
 		$this->load->model('user_model');
 		$this->data['reader'] = $this->user_model->as_array()->get($reader_id);
 
@@ -36,14 +40,19 @@ class Reader extends Catalog_controller
 	{
 		//collect - search_category, sub_category, page_number, sort_order
 		$input = $this->input->get(null, true);
+		$reader_id = $input['primary_key'];
+
+		if (empty($reader_id)) {
+			show_error('A primary_key (reader ID) must be supplied', 400);
+		}
 
 		//format offset
 		$offset = ($input['search_page'] - 1) * CATALOG_RESULT_COUNT;
 
 		// go get results
-		$results = $this->_get_all_reader($input['primary_key'], $offset, CATALOG_RESULT_COUNT, $input['search_order'], $input['project_type']);
+		$results = $this->_get_all_reader($reader_id, $offset, CATALOG_RESULT_COUNT, $input['search_order'], $input['project_type']);
 
-		$full_set = $this->_get_all_reader($input['primary_key'], 0, 1000000, 'alpha', $input['project_type']);
+		$full_set = $this->_get_all_reader($reader_id, 0, 1000000, 'alpha', $input['project_type']);
 		//$retval['sql'] = $this->db->last_query();
 
 		// go format results

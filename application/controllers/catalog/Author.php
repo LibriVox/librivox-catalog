@@ -11,6 +11,10 @@ class Author extends Catalog_controller
 
 	public function index($author_id)
 	{
+		if (empty($author_id)) {
+			show_404();
+		}
+
 		$this->load->model('author_model');
 		$this->data['author'] = $this->author_model->get($author_id);
 
@@ -29,14 +33,19 @@ class Author extends Catalog_controller
 	{
 		//collect - search_category, sub_category, page_number, sort_order
 		$input = $this->input->get(null, true);
+		$author_id = $input['primary_key'];
+
+		if (empty($author_id)) {
+			show_error('A primary_key (author ID) must be supplied', 400);
+		}
 
 		//format offset
 		$offset = ($input['search_page'] - 1) * CATALOG_RESULT_COUNT;
 
 		// go get results
-		$results = $this->_get_all_author($input['primary_key'], $offset, CATALOG_RESULT_COUNT, $input['search_order'], $input['project_type']);
+		$results = $this->_get_all_author($author_id, $offset, CATALOG_RESULT_COUNT, $input['search_order'], $input['project_type']);
 
-		$full_set = $this->_get_all_author($input['primary_key'], 0, 1000000, 'alpha', $input['project_type']);
+		$full_set = $this->_get_all_author($author_id, 0, 1000000, 'alpha', $input['project_type']);
 		//$retval['sql'] = $this->db->last_query();
 
 		// go format results
