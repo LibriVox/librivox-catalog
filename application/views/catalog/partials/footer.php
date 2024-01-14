@@ -120,6 +120,7 @@
 		if (current_page !== 'search')
 		{
 			window.location.href = CI_ROOT + 'search/' + search_category;
+			return;
 		}	
 
 		e.preventDefault();
