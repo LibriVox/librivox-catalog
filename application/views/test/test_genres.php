@@ -119,10 +119,10 @@ Genres:
 						<?php $class = (empty($child['children']))? '': 'dropdown-submenu' ; ?>
 
 						<li class="<?= $class ?>  level-2"><a class="genre_item" data-id="<?= $child['id'];?>" data-level="2"  data-name="<?= $child['name'];?>"><?= $child['name'];?></a></li>
-					<? endforeach; ?>			
+					<?php endforeach; ?>
 				</ul>
 			<?php endif ?>
 		</li>
-	<? endforeach; ?>
+	<?php endforeach; ?>
 	</ul>
 </div>
