@@ -81,6 +81,9 @@ class Page extends Catalog_controller
 		//$this->data['sections'] = $this->section_model->as_array()->get_many_by(array('project_id'=>$this->data['project']->id));
 		$this->data['sections'] = $this->section_model->get_full_sections_info($this->data['project']->id);
 
+		$this->load->helper('description_html_render');
+		$this->data['project']->description = _normalize_and_deduplicate_newlines_in_html($this->data['project']->description);
+
 		//var_dump($this->data['sections']);
 		if (!empty($this->data['sections']))
 		{
