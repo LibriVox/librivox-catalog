@@ -1,0 +1,9 @@
+name: Deploy localdev
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  deploy-localdev:
+    uses: LibriVox/librivox-ansible/.github/workflows/localdev.yml@master
+    with:
+      catalog_git_branch: ${{ github.ref }}
