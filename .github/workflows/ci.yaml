@@ -4,6 +4,6 @@ on:
   workflow_dispatch:
 jobs:
   deploy-localdev:
-    uses: LibriVox/librivox-ansible/.github/workflows/localdev.yml@master
+    uses: LibriVox/librivox-ansible/.github/workflows/localdev.yaml@master
     with:
       catalog_git_branch: ${{ github.ref }}
