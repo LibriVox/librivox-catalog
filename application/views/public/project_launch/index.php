@@ -199,16 +199,16 @@
                                                                            <?php $class = (empty($grandchild['children']))? '': 'dropdown-submenu' ; ?>
 
                                                                            <li class="<?= $class ?>  level-3"><a class="genre_item" data-id="<?= $grandchild['id'];?>" data-level="3"  data-name="<?= $grandchild['name'];?>"><?= $grandchild['name'];?></a></li>
-                                                                      <? endforeach; ?>             
+                                                                      <?php endforeach; ?>
                                                                  </ul>
                                                             <?php endif ?>
                                                             </li>
 
-                                                       <? endforeach; ?>             
+                                                       <?php endforeach; ?>
                                                   </ul>
                                              <?php endif ?>
                                         </li>
-                                   <? endforeach; ?>
+                                   <?php endforeach; ?>
                                    </ul>
                               </div>                 
                          </div>
