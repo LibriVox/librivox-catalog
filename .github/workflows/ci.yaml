@@ -2,11 +2,14 @@ name: Deploy localdev
 on:
   pull_request:
   workflow_dispatch:
+    inputs:
+      catalog_git_refspec: master
+      catalog_git_version: HEAD
 jobs:
   deploy-localdev:
     uses: LibriVox/librivox-ansible/.github/workflows/localdev.yaml@master
     with:
-      catalog_git_refspec: ${{ github.ref }}
-      catalog_git_version: ${{ github.sha }}
+      catalog_git_refspec: ${{ github.event.pull_request.head.ref }}
+      catalog_git_version: ${{ github.event.pull_request.head.sha }}
       playbooks_repo: LibriVox/librivox-ansible
       playbooks_repo_ref: master
