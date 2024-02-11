@@ -1,10 +1,6 @@
-name: Deploy localdev
+name: Deploy localdev (PR)
 on:
   pull_request:
-  workflow_dispatch:
-    inputs:
-      catalog_git_refspec: master
-      catalog_git_version: HEAD
 jobs:
   deploy-localdev:
     uses: LibriVox/librivox-ansible/.github/workflows/localdev.yaml@master
