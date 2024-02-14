@@ -207,11 +207,11 @@ class Project_launch extends Public_Controller
 		$this->form_validation->set_rules('lang_select', 'Language Selector', 'trim|required|xss_clean');
 
 		$this->form_validation->set_rules('auth_id[]', 'Author id', 'trim|xss_clean');
-		$this->form_validation->set_rules('auth_first_name[]', 'lang:proj_launch_auth_first_name', 'trim|xss_clean');
-		$this->form_validation->set_rules('auth_last_name[]', 'lang:proj_launch_auth_last_name', 'trim|xss_clean');
-		$this->form_validation->set_rules('auth_yob[]', 'lang:proj_launch_auth_dob', 'trim|xss_clean');
-		$this->form_validation->set_rules('auth_yod[]', 'lang:proj_launch_auth_dod', 'trim|xss_clean');
-		$this->form_validation->set_rules('link_to_auth[]', 'lang:proj_launch_link_to_auth', 'trim|xss_clean|prep_url');
+		$this->form_validation->set_rules('auth_first_name[]', 'lang:proj_launch_auth_first_name', 'trim|xss_clean|max_length[255]');
+		$this->form_validation->set_rules('auth_last_name[]', 'lang:proj_launch_auth_last_name', 'trim|xss_clean|max_length[255]');
+		$this->form_validation->set_rules('auth_yob[]', 'lang:proj_launch_auth_dob', 'trim|xss_clean|max_length[255]');
+		$this->form_validation->set_rules('auth_yod[]', 'lang:proj_launch_auth_dod', 'trim|xss_clean|max_length[255]');
+		$this->form_validation->set_rules('link_to_auth[]', 'lang:proj_launch_link_to_auth', 'trim|xss_clean|prep_url|max_length[255]');
 
 		$this->form_validation->set_rules('trans_id[]', 'Translator id', 'trim|xss_clean|numeric');
 		$this->form_validation->set_rules('trans_first_name[]', 'lang:proj_launch_auth_first_name', 'trim|xss_clean');
