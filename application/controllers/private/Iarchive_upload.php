@@ -41,6 +41,7 @@ class Iarchive_upload extends Private_Controller
 		//additional params
 		$this->load->model('author_model');
 		$this->load->model('keyword_model');
+		$this->load->helper('description_html_render');
 
 		$params['creator'] = $this->author_model->create_author_list($project->id, 'author');
 		$params['date'] = date('Y-m-d');
@@ -48,7 +49,7 @@ class Iarchive_upload extends Private_Controller
 		$params['licenseurl'] = LICENSE_LINK;
 
 		$description = $this->_get_full_description($params, $project);
-		$params['description'] = trim(preg_replace('/\s+/', ' ', $description));  //trims all newlines before placing in header
+		$params['description'] = _normalize_and_deduplicate_newlines_in_html($description);  //Standardizes whitespace, replacing newlines with <br /> tags
 		$params['language'] = $this->data['language_code'];
 
 		// Close db connection before uploading to avoid hogging connections
