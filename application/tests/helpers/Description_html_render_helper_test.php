@@ -48,6 +48,10 @@ class Description_html_render_helper_test extends TestCase
 			array("a<br>\n\r\n<br />b",   "a<br /><br />b"),
 			array("a\n<br />\r\n<br />b", "a<br /><br />b"),
 			array("a\n\r\n<br />b",       "a<br /><br />b"),
+
+			// Case sensitivity, and deduplicating newlines following tags
+			array("a<BR>\r\n<BR />\r\nb", "a<br /><br />b"),
+			array("a<bR>\n<Br/>\rb",      "a<br /><br />b"),
 		);
 	}
 }

@@ -12,8 +12,8 @@
  */
 function _normalize_and_deduplicate_newlines_in_html($description) {
 	// Normalise everything to '\n' characters
-	$description = str_replace(
-		array("<br>", "<br />", "\r\n"),
+	$description = preg_replace(
+		array("/<br ?\/?>\r?\n?/i", "/\r\n?/"),
 		"\n",
 		$description
 	);
