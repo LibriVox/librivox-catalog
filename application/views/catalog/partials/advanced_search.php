@@ -101,6 +101,10 @@
 	         </div>
 	       </div>
 
+               <h5>Still can't find what you're looking for? Try searching <a rel="noopener" target="_blank" href="https://archive.org/details/librivoxaudio">Internet Archive's LibriVox Audiobook Collection</a>
+                 by title, author, reader, key terms, or terms appearing in book descriptions.
+               </h5>
+
 	       <input type="hidden" name="search_page" id="search_page" value="1">
 	       <input type="hidden" name="search_form" id="search_form" value="advanced">
 
