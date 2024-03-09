@@ -101,7 +101,7 @@
 	         </div>
 	       </div>
 
-               <h5>Still can't find what you're looking for? Try searching <a rel="noopener" target="_blank" href="https://archive.org/details/librivoxaudio">Internet Archive's LibriVox Audiobook Collection</a>
+               <h5>Still can't find what you're looking for? Try searching <a href="https://archive.org/details/librivoxaudio">Internet Archive's LibriVox Audiobook Collection</a>
                  by title, author, reader, key terms, or terms appearing in book descriptions.
                </h5>
 
