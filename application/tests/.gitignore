@@ -1,0 +1,4 @@
+_ci_phpunit_test/tmp/
+.phpunit.cache
+.phpunit.result.cache
+build

@@ -11,6 +11,10 @@ class Reader extends Catalog_controller
 
 	public function index($reader_id)
 	{
+		if (empty($reader_id)) {
+			show_404();
+		}
+
 		$this->load->model('user_model');
 		$this->data['reader'] = $this->user_model->as_array()->get($reader_id);
 
@@ -40,6 +44,10 @@ class Reader extends Catalog_controller
 		$input = $this->input->get(null, true);
 		$reader_id = $input['primary_key'];
 		$search_order = $input['search_order'];
+
+		if (empty($reader_id)) {
+			show_error('A primary_key (reader ID) must be supplied', 400);
+		}
 
 		//format offset
 		$offset = ($input['search_page'] - 1) * CATALOG_RESULT_COUNT;

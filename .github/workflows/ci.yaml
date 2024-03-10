@@ -1,0 +1,12 @@
+name: Deploy localdev (PR)
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  deploy-localdev:
+    uses: LibriVox/librivox-ansible/.github/workflows/localdev.yaml@master
+    with:
+      catalog_git_refspec: ${{ github.ref }}
+      catalog_git_version: FETCH_HEAD
+      playbooks_repo: LibriVox/librivox-ansible
+      playbooks_repo_ref: master

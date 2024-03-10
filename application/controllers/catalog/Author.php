@@ -11,6 +11,10 @@ class Author extends Catalog_controller
 
 	public function index($author_id)
 	{
+		if (empty($author_id)) {
+			show_404();
+		}
+
 		$this->load->model('author_model');
 		$this->data['author'] = $this->author_model->get($author_id);
 
@@ -33,6 +37,10 @@ class Author extends Catalog_controller
 		$input = $this->input->get(null, true);
 		$author_id = $input['primary_key'];
 		$search_order = $input['search_order'];
+
+		if (empty($author_id)) {
+			show_error('A primary_key (author ID) must be supplied', 400);
+		}
 
 		//format offset
 		$offset = ($input['search_page'] - 1) * CATALOG_RESULT_COUNT;
