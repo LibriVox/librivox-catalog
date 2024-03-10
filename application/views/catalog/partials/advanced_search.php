@@ -100,9 +100,11 @@
 	              </button>
 	         </div>
 	       </div>
-		
-		<h4>Couldn't find what you're looking for?</h4>
-		<h5>You can also try searching for Librivox audiobooks by title, author, reader, key terms, or terms appearing in book descriptions at <A href="https://archive.org/details/librivoxaudio?tab=collection" target="_blank">Internet Archive Librivox Free Audiobook Collection.</A> </h5>
+
+		<h4>Still can't find what you're looking for?</h4>
+		<h5>Try searching 
+			<a href="https://archive.org/details/librivoxaudio">Internet Archive's LibriVox Audiobook Collection</a>
+		by title, author, reader, key terms, or terms appearing in book descriptions.</h5>
 
 	       <input type="hidden" name="search_page" id="search_page" value="1">
 	       <input type="hidden" name="search_form" id="search_form" value="advanced">
