@@ -1,4 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+f <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Page extends Catalog_controller
 {
@@ -67,6 +67,8 @@ class Page extends Catalog_controller
 		$this->data['project']->read_by = $this->_read_by($this->data['project']);
 
 		$this->data['project']->genre_list = $this->_genre_list($this->data['project']->id);
+		
+		$this->data['project']->keywords_list = $this->_keywords_list($this->data['project']->id);
 
 		$this->data['project']->group = $this->_project_group($this->data['project']->id);
 
@@ -169,6 +171,19 @@ class Page extends Catalog_controller
 		}
 
 		return implode(', ', $genres);
+	}
+	
+	function _keywords_list($project_id)
+	/** 	Maintaining here, for the sake of consistency, the unfortunate nomenclature used in many places 
+		in this application that implies that a so-called 'keyword' will always be a single word. 
+		In fact, however, a single 'keyword' may comprise several words separated by spaces, eg 'psychological fiction'
+	*/ 
+	{
+		$keywords_string = $this->project_model->get_keywords_by_project($project_id);
+
+		if (empty($keywords_string)) return '';
+		
+		return $keywords_string;
 	}
 
 	function _language($language_id)

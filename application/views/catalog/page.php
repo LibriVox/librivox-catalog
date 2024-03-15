@@ -32,6 +32,10 @@
 				<p class="book-page-genre"><span>Genre(s):</span> <?= $project->genre_list; ?></p>
 
 				<p class="book-page-genre"><span>Language:</span> <?= $project->language; ?></p>
+							
+				<p class="book-page-genre"><span>Keywords:</span> <?= $project->keywords_list; ?></p>
+	
+				
 
 				<?php if(!empty($project->group)):?>
 				<p class="book-page-genre"><span>Group:</span> <a href="<?= base_url().'group/'. $project->group->group_id?>"><?= $project->group->group_name; ?></a></p>
