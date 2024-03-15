@@ -153,6 +153,8 @@ class Librivox_search{
 
 				$cols = array();
 
+				$sql .= 'WITH results AS (';
+
 				$cols[] = 'st.source_table';
 				$cols[] = 'st.search_field';
 				$cols[] = 'p.title';
@@ -287,6 +289,8 @@ class Librivox_search{
 
 
 				//***** finalize query parts *****//
+
+				$sql .= ") SELECT *, COUNT(*) OVER() as full_count FROM results";
 
 				$sql .= ($params['sort_order'] == 'catalog_date') ? ' ORDER BY 5 DESC ' : ' ORDER BY 4 ASC ';
 

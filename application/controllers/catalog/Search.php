@@ -177,24 +177,12 @@ class Search extends Catalog_controller
 
 		if (count($this->data['results']) > 0)
 		{
-			// TODO: rewrite this to only return count, not full dataset
-
 			$retval['results'] = $this->_manage_result_set($this->data['results']);
 
 			//pagination
-			$input['offset'] = 0;
-			$input['limit'] = 1000000;
+			$full_count = $this->data['results'][0]['full_count'];
 
-			if (!empty($input['q']))
-			{
-				$full_set = $this->librivox_simple_search->simple_search($input);
-			}
-			else
-			{
-				$full_set = $this->librivox_search->advanced_title_search($input);
-			}
-
-			$page_count = (count($full_set) > CATALOG_RESULT_COUNT) ? ceil(count($full_set) / CATALOG_RESULT_COUNT) : 0;
+			$page_count = ($full_count > CATALOG_RESULT_COUNT) ? ceil($full_count / CATALOG_RESULT_COUNT) : 0;
 		}
 
 		$retval['pagination'] = (empty($page_count)) ? '' : $this->_format_pagination($input['search_page'], $page_count, 'get_advanced_results');
