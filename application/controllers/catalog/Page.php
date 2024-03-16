@@ -183,9 +183,20 @@ class Page extends Catalog_controller
 		{
 			foreach ($keywords_array as $key => $row)
 			{
-				$return_value .= $row['value'] . ' (' . $row['keyword_count'] . ') ID: ' . $row['id'] . ', ';
+			// Add hyperlink only if at least two projects use this keyword
+				if ((int)$row['keyword_count'] > 1) 
+				{
+					$return_value = '<a href="' . base_url() . 'keywords/' . $row['id'] . '">';
+				} 
+				$return_value .= $row['value'];
+				if ((int)$row['keyword_count'] > 1)
+				{
+					$return_value .= '</a>';
+				} 
+				$return_value .= ' (' . $row['keyword_count'] . '), ';
 			}
-		} else 
+		} 
+		else 
 		{
 			return $return_value;
 		}
