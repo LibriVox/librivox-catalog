@@ -25,7 +25,9 @@ class Librivox_simple_search{
 		$offset = (int)$params['offset'];
 		$limit = (int)$params['limit'];
 
-		$sql = '';
+
+		 // Combine all of our results as a sub-query, so we can count the results in one place.
+		$sql = 'WITH results AS (';
 
 
 		//***** Titles, Sections from compilations *****//
@@ -323,6 +325,8 @@ class Librivox_simple_search{
 
 
 		//***** finalize query parts *****//
+
+			$sql .= ") SELECT *, COUNT(*) OVER() as full_count FROM results";
 
 			$sql .= ($sort_order == 'catalog_date')
 				? ' ORDER BY FIELD(blade, "title", "group", "reader", "author") , 6 DESC '

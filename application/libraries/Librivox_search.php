@@ -149,11 +149,14 @@ class Librivox_search{
 		// ======================================================================================================================================
 
 
+
+		// Combine all of our results as a sub-query, so we can count the results in one place.
+		$sql .= 'WITH results AS (';
+
+
 			//***** Projects from compilations *****//
 
 				$cols = array();
-
-				$sql .= 'WITH results AS (';
 
 				$cols[] = 'st.source_table';
 				$cols[] = 'st.search_field';
