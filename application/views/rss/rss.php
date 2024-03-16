@@ -5,7 +5,7 @@
   <title><![CDATA[<?= $project->title_bar ?>]]></title>
   <link><![CDATA[<?= $project->url_librivox ?>]]></link>
   <atom:link rel="self" href="https://librivox.org/rss/<?= $project->id ?>" />
-  <description><![CDATA[<?= strip_tags($project->description) ?>]]></description>
+  <description><![CDATA[<?= $project->description ?>]]></description>
   <!--<genre>project element=Genre</genre>-->
   <?php
     if (isset($language) && $language->three_letter_code) { // Docs say two-letter, but three seems to validate
@@ -16,7 +16,7 @@
   ?>
   <itunes:type>serial</itunes:type>
   <itunes:author>LibriVox</itunes:author>
-  <itunes:summary><![CDATA[<?= strip_tags($project->description) ?>]]></itunes:summary>
+  <itunes:summary><![CDATA[<?= $project->description ?>]]></itunes:summary>
   <itunes:owner>
     <itunes:name>LibriVox</itunes:name>
     <itunes:email>info@librivox.org</itunes:email>
