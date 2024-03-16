@@ -457,6 +457,28 @@ class Project_model extends MY_Model
         }
         return '';
     }
+    
+    public function get_keywords_and_statistics_by_project($project_id)
+    {        
+        $sql = '
+        SELECT keywords.id, keywords.value, sub.keyword_count
+	FROM keywords
+		JOIN project_keywords 
+		ON keywords.id = project_keywords.keyword_id
+		JOIN (SELECT keyword_id,
+          		COUNT(project_id) AS keyword_count
+           		FROM project_keywords
+          		GROUP BY 1
+		) sub
+		ON keywords.id = sub.keyword_id
+		WHERE project_keywords.project_id = ?
+		ORDER BY sub.keyword_count DESC' ;
+
+        $query = $this->db->query($sql, array(array($project_id)));
+
+        if ($query->num_rows() > 0) return $query->result_array();
+        return '';
+    }
 
     public function get_genres_by_project($project_id, $return = 'name', $return_type = 'parsed_array')
     {

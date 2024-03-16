@@ -61,14 +61,15 @@ class Page extends Catalog_controller
 		$this->data['volunteers']->bc = $this->user_model->get($this->data['project']->person_bc_id);
 		$this->data['volunteers']->mc = $this->user_model->get($this->data['project']->person_mc_id);
 		$this->data['volunteers']->pl = $this->user_model->get($this->data['project']->person_pl_id);
+		
+		// **** KEYWORDS ****//
+		$this->data['project']->formatted_keywords_string = $this->_formatted_keywords_string($this->data['project']->id);	
 
 		// **** MISC ****//
 		$this->data['project']->project_type = (trim($this->data['project']->project_type) == 'solo') ? 'solo' : 'group'; //keep on top - other values dependent on solo/group
 		$this->data['project']->read_by = $this->_read_by($this->data['project']);
 
 		$this->data['project']->genre_list = $this->_genre_list($this->data['project']->id);
-		
-		$this->data['project']->keywords_list = $this->_keywords_list($this->data['project']->id);
 
 		$this->data['project']->group = $this->_project_group($this->data['project']->id);
 
@@ -172,19 +173,22 @@ class Page extends Catalog_controller
 
 		return implode(', ', $genres);
 	}
-	
-	function _keywords_list($project_id)
-	/** 	Maintaining here, for the sake of consistency, the unfortunate nomenclature used in many places 
-		in this application that implies that a so-called 'keyword' will always be a single word. 
-		In fact, however, a single 'keyword' may comprise several words separated by spaces, eg 'psychological fiction'
-	*/ 
-	{
-		$keywords_string = $this->project_model->get_keywords_by_project($project_id);
 
-		if (empty($keywords_string)) return '';
-		
-		return $keywords_string;
+	
+	function _formatted_keywords_string($project_id) 
+	{
+		$return_value = '';
+		$keywords_array = $this->project_model->get_keywords_and_statistics_by_project($project_id);
+		foreach ($keywords_array as $key => $row)
+		{
+			$return_value .= $row['value'] . ' (' . $row['keyword_count'] . ') ID: ' . $row['id'] . ', ';
+		}
+		// trim off final comma and trailing space (if there's a string there to trim)
+		$return_value = !empty($return_value) ? substr($return_value, 0, -2) : $return_value;
+		return $return_value;	
 	}
+	
+
 
 	function _language($language_id)
 	{
