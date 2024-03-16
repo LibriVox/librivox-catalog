@@ -179,12 +179,18 @@ class Page extends Catalog_controller
 	{
 		$return_value = '';
 		$keywords_array = $this->project_model->get_keywords_and_statistics_by_project($project_id);
-		foreach ($keywords_array as $key => $row)
+		if (is_array($keywords_array))
 		{
-			$return_value .= $row['value'] . ' (' . $row['keyword_count'] . ') ID: ' . $row['id'] . ', ';
+			foreach ($keywords_array as $key => $row)
+			{
+				$return_value .= $row['value'] . ' (' . $row['keyword_count'] . ') ID: ' . $row['id'] . ', ';
+			}
+		} else 
+		{
+			return $return_value;
 		}
-		// trim off final comma and trailing space (if there's a string there to trim)
-		$return_value = !empty($return_value) ? substr($return_value, 0, -2) : $return_value;
+		// trim off final comma and trailing space 
+		$return_value = substr($return_value, 0, -2);
 		return $return_value;	
 	}
 	
