@@ -42,6 +42,9 @@ class Rss extends Catalog_controller
 
 		$this->_build_sections();
 
+		$this->load->helper('description_html_render_helper');
+		$this->data['project']->description = _normalize_and_deduplicate_newlines_in_html($this->data['project']->description);
+
 		$this->load->view('rss/rss', $this->data, FALSE);
 	}
 
@@ -118,6 +121,9 @@ class Rss extends Catalog_controller
 					$this->data['projects'][$key]->title_bar .= ' by ' . $this->data['projects'][$key]->authors_string;
 				}
 				//$this->data['projects'][$key]->authors = $this->project_model->get_project_authors($project->id);
+
+				$this->load->helper('description_html_render_helper');
+				$this->data['projects'][$key]->description = _normalize_and_deduplicate_newlines_in_html($this->data['projects'][$key]->description);
 			}
 		}
 
