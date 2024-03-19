@@ -34,7 +34,7 @@
 				<p class="book-page-genre"><span>Language:</span> <?= $project->language; ?></p>
 			
 				<?php if(!empty($project->formatted_keywords_string)): ?>
-				<p class="book-page-genre"><span>Keyword(s):</span> <?= $project->formatted_keywords_string; ?></p>
+				<p class="book-page-genre"><span>Keyterm(s):</span> <?= $project->formatted_keywords_string; ?></p>
 				<?php endif;?>
 
 
