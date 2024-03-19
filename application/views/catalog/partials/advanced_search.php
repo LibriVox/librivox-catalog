@@ -46,7 +46,7 @@
 
 			<div class="control-group">
 			     <div class="controls center">
-			     	<label for="keywords" ><span class="span2">Keywords:</span>
+			     	<label for="keywords" ><span class="span2">Keyterms:</span>
 					<input type="text" class="span4" id="keywords" name="keywords" value="<?= htmlspecialchars($advanced_search_form['keywords']) ?>"/>
 					</label>
 			     </div>
