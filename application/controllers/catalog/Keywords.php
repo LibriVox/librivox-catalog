@@ -34,15 +34,10 @@ When passed a keywords_id, display a list of projects that have that keyword
 	function get_results()
 	{
 
-		//collect - search_category, sub_category, page_number, sort_order
-		$input = $this->input->get(null, true);
-		
-		error_log("PJD " . "near start of get_results() for Keywords Controller");
-		$backtrace = (new Exception)->getTraceAsString();
-		error_log($backtrace);
-		$encoded = json_encode($input);
-		error_log("PJD The following is content of input: " . $encoded);
-		
+		// collect - search_category, sub_category, page_number, sort_order 
+		// and (sometimes) information about contents of project_type 
+		$input = $this->input->get(null, true);	
+			
 		$params['keywords_id'] = $input['primary_key'];
 
 		if (empty($params['keywords_id'])) {
@@ -54,6 +49,19 @@ When passed a keywords_id, display a list of projects that have that keyword
 		
 		// format limit
 		$params['limit'] = CATALOG_RESULT_COUNT;
+		
+
+		
+		// format project_type_description. Note that values appearing here are not
+		// necessarily a match to values that appear in the projects.project_type column
+		// in the database - so we'll need to massage them later (in Project model->get_projects_by_keywords_id()).
+		if (array_key_exists('project_type', $input))
+		{
+			$params['project_type_description'] = $input['project_type'];
+		} else 
+		{
+			$params['project_type_description'] = 'either';
+		}
 
 		// go get results
 		$results = $this->_get_projects_by_keywords_id($params);
@@ -61,6 +69,7 @@ When passed a keywords_id, display a list of projects that have that keyword
 		// get full set by calling same function with different parameters
 		$params['offset'] = 0;
 		$params['limit'] = 1000000;
+		$params['project_type_description'] = 'either';
 
 		$full_set = $this->_get_projects_by_keywords_id($params);
 

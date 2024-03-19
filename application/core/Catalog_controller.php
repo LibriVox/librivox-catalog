@@ -22,10 +22,6 @@ class Catalog_controller extends CI_Controller
 		$this->data['advanced_search'] = $this->load->view('catalog/partials/advanced_search', $this->data, true);
 
 		$this->load->view($file, $this->data);
-		
-		error_log("PJD at " . "end of _render(file) method in Catalog controller");
-		error_log("PJD: this is what's in file variable:  " . $file);
-		error_log("PJD: this is contents of data: " . json_encode($this->data));
 
 	}
 

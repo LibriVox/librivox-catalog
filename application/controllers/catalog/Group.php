@@ -30,13 +30,6 @@ class Group extends Catalog_controller
 
 		//collect - search_category, sub_category, page_number, sort_order
 		$input = $this->input->get(null, true);
-		
-		error_log("PJD " . "near start of get_results() for Group Controller");
-		$backtrace = (new Exception)->getTraceAsString();
-		error_log($backtrace);
-		$encoded = json_encode($input);
-		error_log("PJD The following is content of input: " . $encoded);
-		
 		$group_id = $input['primary_key'];
 
 		if (empty($group_id)) {

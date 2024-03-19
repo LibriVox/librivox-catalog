@@ -372,22 +372,35 @@ class Project_model extends MY_Model
     
     function get_projects_by_keywords_id($params)
     {
-
-        $sql = 'select p.id, p.project_type, p.title_prefix, p.title, p.url_librivox, p.status, p.coverart_thumbnail, 
-        p.zip_url, p.zip_size, l.two_letter_code, l.language, p.url_forum 
+	// If calls to this function do not pass a project_type_description parameter,
+	// provide a sensible default
+	
+	// It is likely that either $params['project_type_description'] will not exist as a key at all,
+	// or that if it does exist, it will contain the values of 'either','solo' or 'group', matching values passed
+	// from Javascript embedded in the search page footer. Of these values, only 'solo' matches a value actually to be
+	// found in the projects.project_type field.
+	if ((!array_key_exists('project_type_description', $params)) ||  ($params['project_type_description'] == 'either'))
+	{
+		$params['project_type_description'] = "%" ; 
+	}
+	if ($params['project_type_description'] == 'group')
+	{
+		$params['project_type_description'] = 'collaborative'; 
+	}
+	
+        $offset = 0 + $params['offset'];
+        $limit = 0 + $params['limit'];      
+        
+        $sql = 'select p.id, p.title_prefix, p.title, p.url_librivox, p.status, p.coverart_thumbnail, 
+        p.zip_url, p.zip_size, l.two_letter_code, l.language, p.url_forum, p.project_type
 	FROM keywords k
 	JOIN project_keywords pk ON (k.id = pk.keyword_id)
 	JOIN projects p on (pk.project_id = p.id)
 	JOIN languages l ON (l.id = p.language_id) ';
-
-	$keywords_id = $params['keywords_id'];
-	$sql .= 'WHERE k.id = ' . $keywords_id;	
+	$sql .= 'WHERE k.id = ' . $params['keywords_id'] . ' ';	
+	$sql .= 'AND p.project_type LIKE "' . $params['project_type_description'] . '"';	
         $sql .= ' ORDER BY p.title ASC ';
-
-        $offset = 0 + $params['offset'];
-        $limit = 0 + $params['limit'];
         $sql .= ' LIMIT ' . $offset . ', ' . $limit;
-
 
         $query = $this->db->query($sql, array($params));
 
@@ -406,6 +419,28 @@ class Project_model extends MY_Model
 
         return $query->result();
 
+    }
+    
+    
+    public function get_keywords_and_statistics_by_project($project_id)
+    {        
+        $sql = '
+        SELECT keywords.id, keywords.value, sub.keyword_count
+	FROM keywords
+		JOIN project_keywords 
+		ON keywords.id = project_keywords.keyword_id
+		JOIN (SELECT keyword_id,
+          		COUNT(project_id) AS keyword_count
+           		FROM project_keywords
+          		GROUP BY 1
+		) sub
+		ON keywords.id = sub.keyword_id
+		WHERE project_keywords.project_id = ?
+		ORDER BY sub.keyword_count DESC' ;
+
+        $query = $this->db->query($sql, array($project_id));
+        if ($query->num_rows() > 0) return $query->result_array();
+        return '';
     }
 
 
@@ -483,26 +518,7 @@ class Project_model extends MY_Model
         return '';
     }
     
-    public function get_keywords_and_statistics_by_project($project_id)
-    {        
-        $sql = '
-        SELECT keywords.id, keywords.value, sub.keyword_count
-	FROM keywords
-		JOIN project_keywords 
-		ON keywords.id = project_keywords.keyword_id
-		JOIN (SELECT keyword_id,
-          		COUNT(project_id) AS keyword_count
-           		FROM project_keywords
-          		GROUP BY 1
-		) sub
-		ON keywords.id = sub.keyword_id
-		WHERE project_keywords.project_id = ?
-		ORDER BY sub.keyword_count DESC' ;
 
-        $query = $this->db->query($sql, array($project_id));
-        if ($query->num_rows() > 0) return $query->result_array();
-        return '';
-    }
 
     public function get_genres_by_project($project_id, $return = 'name', $return_type = 'parsed_array')
     {
