@@ -31,7 +31,20 @@ class Keyword_model extends MY_Model {
 		}
 		//archive needs a ;
 		return implode('; ', $keyword_list);	
-	}	    
+	}
+/**
+	function get_all_keyword_projects($params)
+	{
+		$sql = 'SELECT pk.project_id
+		FROM project_keywords pk
+		JOIN keywords k ON (pk.keyword_id = k.id)
+		WHERE k.id = ?
+		LIMIT ? OFFSET ?';
+		
+		$query = $this->db->query($sql, $params));
+		return $query->result_array();	
+	}
+*/	    
 
 }
 

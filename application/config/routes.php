@@ -121,6 +121,8 @@ $route['reader/get_results'] 	= "catalog/reader/get_results";
 $route['group/(:num)'] 			= "catalog/group/index/$1";
 $route['group/get_results'] 	= "catalog/group/get_results";
 
+$route['keywords/(:num)'] 			= "catalog/keywords/index/$1";
+$route['keywords/get_results'] 	= "catalog/keywords/get_results";
 
 $route['sections/readers/(:num)']		= 'catalog/sections/readers/$1';
 

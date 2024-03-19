@@ -10,6 +10,9 @@ class Group_model extends MY_Model {
 		->join('projects p', 'gp.project_id = p.id')
 		->where('gp.group_id', $group_id)
 		->get('group_projects gp');
+		
+		error_log("PJD at " . "Group_model get_group_details() ");
+		$backtrace = (new Exception)->getTraceAsString();
 
 		return $query->result_array();
 	}
@@ -21,6 +24,9 @@ class Group_model extends MY_Model {
 		->join('group_projects gp', 'gp.group_id = g.id')
 		->where('gp.project_id', $project_id)
 		->get('groups g');
+		
+		error_log("PJD at " . "Group_model get_group_by_prject() ");
+		$backtrace = (new Exception)->getTraceAsString();
 
 		if ($query->num_rows() != 1) return false;
 

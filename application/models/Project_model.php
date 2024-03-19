@@ -369,6 +369,31 @@ class Project_model extends MY_Model
         return $query->result_array();
 
     }
+    
+    function get_projects_by_keywords_id($params)
+    {
+
+        $sql = 'select p.id, p.project_type, p.title_prefix, p.title, p.url_librivox, p.status, p.coverart_thumbnail, 
+        p.zip_url, p.zip_size, l.two_letter_code, l.language, p.url_forum 
+	FROM keywords k
+	JOIN project_keywords pk ON (k.id = pk.keyword_id)
+	JOIN projects p on (pk.project_id = p.id)
+	JOIN languages l ON (l.id = p.language_id) ';
+
+	$keywords_id = $params['keywords_id'];
+	$sql .= 'WHERE k.id = ' . $keywords_id;	
+        $sql .= ' ORDER BY p.title ASC ';
+
+        $offset = 0 + $params['offset'];
+        $limit = 0 + $params['limit'];
+        $sql .= ' LIMIT ' . $offset . ', ' . $limit;
+
+
+        $query = $this->db->query($sql, array($params));
+
+        return $query->result_array();
+
+    }
 
 
     function get_frozen_projects()
@@ -474,8 +499,7 @@ class Project_model extends MY_Model
 		WHERE project_keywords.project_id = ?
 		ORDER BY sub.keyword_count DESC' ;
 
-        $query = $this->db->query($sql, array(array($project_id)));
-
+        $query = $this->db->query($sql, array($project_id));
         if ($query->num_rows() > 0) return $query->result_array();
         return '';
     }

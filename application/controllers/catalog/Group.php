@@ -14,27 +14,29 @@ class Group extends Catalog_controller
 		if (empty($group_id)) {
 			show_404();
 		}
-
 		$this->load->model('group_model');
 		$this->data['group'] = $this->group_model->get($group_id);
-
 		$this->data['search_category'] = 'group';
-
 		$this->data['primary_key'] = $group_id;
-
-		$matches = $this->_get_all_group_projects($group_id, 0, 1000000);
+		$matches = $this->_get_all_group_projects($group_id, 0, 1000000);		
 		$this->data['matches'] = count($matches);
-
 		$this->data['search_order'] = $this->input->get('search_order');
-
 		$this->_render('catalog/group');
 		return;
 	}
 
 	function get_results()
 	{
+
 		//collect - search_category, sub_category, page_number, sort_order
 		$input = $this->input->get(null, true);
+		
+		error_log("PJD " . "near start of get_results() for Group Controller");
+		$backtrace = (new Exception)->getTraceAsString();
+		error_log($backtrace);
+		$encoded = json_encode($input);
+		error_log("PJD The following is content of input: " . $encoded);
+		
 		$group_id = $input['primary_key'];
 
 		if (empty($group_id)) {
@@ -73,7 +75,7 @@ class Group extends Catalog_controller
 
 		//return - results, pagination
 		if ($this->input->is_ajax_request())
-		{
+		{	
 			header('Content-Type: application/json;charset=utf-8');
 			echo json_encode($retval);
 			return;

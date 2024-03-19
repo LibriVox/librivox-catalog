@@ -77,6 +77,7 @@
 	{
 		//may be able to combine with below
 		$('.advanced-search-inner').hide();
+		console.log("Around line 80");
 		get_results(search_category, search_page, sub_category, primary_key);
 	}
 	else
@@ -87,8 +88,9 @@
 			var item = $('.js-menu_item[data-menu_item="'+search_category+'"]');
 			load_search_data(item, search_category);
 		}
-		else if (jQuery.inArray(current_page, ['author', 'reader', 'group']) > -1)
+		else if (jQuery.inArray(current_page, ['author', 'reader', 'group', 'keywords']) > -1)
 		{
+			console.log("Around line 93");
 			get_results(current_page, search_page, sub_category, primary_key);
 		}
 
@@ -149,12 +151,13 @@
 		project_type = $(this).attr('data-submenu');
 
 		set_advanced_form_page(1); //this is a new search, so reset
-
+		console.log("Around line 155");
 		get_results(search_category, search_page, sub_category, primary_key);
 	});
 
 	$('.js-sort-menu').on('change', function(){
 		search_order = $(this).val();
+		console.log("Around line 161");
 		get_results(search_category, search_page, sub_category, primary_key);
 
 	});
@@ -175,8 +178,8 @@
 			search_order = 'catalog_date';
 		}
 
-		$('.js-sort-menu').val(search_order);		
-
+		$('.js-sort-menu').val(search_order);
+		console.log("Around line 182");		
 		get_results(search_category, 1);
 
 		set_browse_header(label);
@@ -417,6 +420,7 @@
 		}
 		else
 		{
+			console.log("Around line 424");
 			get_results(search_category, search_page, sub_category, primary_key);
 		}	
 		
@@ -439,7 +443,7 @@
 		var label = $(this).text();
 
 		set_browse_header(label);
-
+		console.log("Around line 446");
 		get_results(search_category, search_page, sub_category, primary_key);
 
 		return false;

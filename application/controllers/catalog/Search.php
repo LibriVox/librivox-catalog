@@ -93,6 +93,7 @@ class Search extends Catalog_controller
 			//this is for the "browsing searches"
 			if (isset($query['search_category']) && isset($query['search_form']) && $query['search_form'] == 'get_results')
 			{
+				log_error("In Search.php. " . $query['search_category']);
 				if ($query['search_category'] == 'genre') $query['genre_id'] = $query['primary_key'];
 
 				if ($query['search_category'] == 'language') $query['recorded_language'] = $query['primary_key'];

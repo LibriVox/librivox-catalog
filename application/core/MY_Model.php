@@ -112,6 +112,7 @@ class MY_Model extends CI_Model
 	 */
 	public function get($primary_value)
 	{
+		
 		$this->trigger('before_get');
 
 		if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE)

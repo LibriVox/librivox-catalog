@@ -179,21 +179,31 @@ class Page extends Catalog_controller
 	{
 		$return_value = '';
 		$keywords_array = $this->project_model->get_keywords_and_statistics_by_project($project_id);
-		if (is_array($keywords_array))
+		error_log("PJD at " . "line 182 in Page.php. Contents of keywords_array follow: ");
+		error_log(json_encode($keywords_array));
+
+		if (!empty($keywords_array))
 		{
+			error_log("PJD at " . "line 185 in Page.php return_value = " . $return_value);
 			foreach ($keywords_array as $key => $row)
 			{
 			// Add hyperlink only if at least two projects use this keyword
+				error_log("PJD at " . "line 191 in Page.php. return_value = " . $return_value);
 				if ((int)$row['keyword_count'] > 1) 
 				{
-					$return_value = '<a href="' . base_url() . 'keywords/' . $row['id'] . '">';
+					error_log("PJD at " . "line 194 in Page.php.  return_value = " . $return_value);
+					$return_value .= '<a href="' . base_url() . 'keywords/' . $row['id'] . '">';
 				} 
+				error_log("PJD at line 197 in Page.php.  return_value = " . $return_value);
 				$return_value .= $row['value'];
+				error_log("PJD at line 199 in Page.php.  return_value = " . $return_value);
 				if ((int)$row['keyword_count'] > 1)
 				{
 					$return_value .= '</a>';
+					error_log("PJD at line 203 in Page.php.  return_value = " . $return_value);
 				} 
 				$return_value .= ' (' . $row['keyword_count'] . '), ';
+				error_log("PJD at line 206 in Page.php.  return_value = " . $return_value);
 			}
 		} 
 		else 
@@ -202,6 +212,7 @@ class Page extends Catalog_controller
 		}
 		// trim off final comma and trailing space 
 		$return_value = substr($return_value, 0, -2);
+		error_log("PJD at line 215 in Page.php, about to return this string: " . $return_value);
 		return $return_value;	
 	}
 	
