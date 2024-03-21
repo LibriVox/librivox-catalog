@@ -149,7 +149,7 @@
 		project_type = $(this).attr('data-submenu');
 
 		set_advanced_form_page(1); //this is a new search, so reset
-		get_results(search_category, search_page, sub_category, primary_key, project_type);
+		get_results(search_category, search_page, sub_category, primary_key);
 	});
 
 	$('.js-sort-menu').on('change', function(){
@@ -238,7 +238,9 @@
 				if (history.pushState) {
 					history.pushState(null, location.textContent, location.href);
 
+
 					history.replaceState(null, null, "?primary_key=" + primary_key + '&search_category=' + search_category + '&search_page=' + search_page + '&search_form=get_results&search_order=' + search_order);
+
 
 					
 				}
