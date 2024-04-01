@@ -2,7 +2,25 @@
 
 class Project_keyword_model extends MY_Model {
 
-    
+   public function set_keywords_statistics_by_project($project_id)
+    {        
+        $sql = '
+ 	UPDATE keywords k
+	JOIN
+		(SELECT pk.keyword_id as keyword_id, COUNT(pk.project_id) AS count
+        	FROM project_keywords pk
+		GROUP BY 1
+		) as sub
+	ON k.id = sub.keyword_id
+	SET k.instances = sub.count 
+	WHERE k.id IN
+		(SELECT keyword_id 
+        	FROM project_keywords
+        	WHERE project_id = 15474 ) ';
+
+
+        $query = $this->db->query($sql, array($project_id));
+    } 
 
 }
 
