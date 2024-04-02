@@ -20,3 +20,4 @@ class Migration_Add_keywords_instances_field extends CI_Migration {
         }
 }
 
+
