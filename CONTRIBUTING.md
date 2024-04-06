@@ -9,7 +9,7 @@ you can navigate to https://librivox.org/search to view the catalog. (It uses a
 self-signed cert locally, so you should expect a safety warning.)
 
 [librivox-ansible]: https://github.com/LibriVox/librivox-ansible
-[database snapshot]: https://github.com/LibriVox/librivox-ansible/blob/master/resources/librivox_catalog_scrubbed.sql.bz2
+[database snapshot]: https://github.com/LibriVox/librivox-ansible/blob/master/roles/db_import/files/librivox_catalog_scrubbed.sql.bz2
 [database-scrub-script]: https://github.com/LibriVox/librivox-ansible/blob/master/dbscrub.py
 
 
