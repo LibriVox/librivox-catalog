@@ -4,9 +4,10 @@ The [librivox-ansible] playbooks can be used to set up a local development
 server. They come with a [database snapshot] that has been
 [scrubbed][database-scrub-script] of all personal information.
 
-Please follow the instructions in that repo for getting set up locally, and then
-you can navigate to https://librivox.org/search to view the catalog. (It uses a
-self-signed cert locally, so you should expect a safety warning.)
+Please follow the instructions in that repo for getting set up locally and
+configuring your hosts file, and then you can navigate to
+https://librivox.org/search to view the catalog. (It uses a self-signed cert
+locally, so you should expect a safety warning.)
 
 [librivox-ansible]: https://github.com/LibriVox/librivox-ansible
 [database snapshot]: https://github.com/LibriVox/librivox-ansible/blob/master/roles/db_import/files/librivox_catalog_scrubbed.sql.bz2
@@ -19,8 +20,7 @@ If you set up the development environment using the ansible playbooks above,
 then all of the code will be living under `/librivox/www/librivox.org/catalog`.
 
 librivox-catalog is a PHP app built on top of [CodeIgniter 3]. If you haven't
-used CodeIgniter before, or it's been a little while, then I'd particularly
-recommend reading these:
+used CodeIgniter before, then it's worth starting with these links:
 
  - [Application Flow Chart](https://codeigniter.com/userguide3/overview/appflow.html)
  - [Tutorial](https://codeigniter.com/userguide3/tutorial/index.html)
@@ -50,8 +50,8 @@ $ XDEBUG_MODE=coverage ./vendor/bin/phpunit -c application/tests/
 # Logging in to the admin dashboard locally
 
 All of the tools for managing users, projects, authors, etc. live on the
-management dashboards, most of which you need a username/password to log in
-with. If you're using the default localdev setup, then you can log in using
+management dashboards, most of which you need a username/password to log in with
+to use. If you're using the default localdev setup, then you can log in using
 these:
 
 ```
