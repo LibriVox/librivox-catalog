@@ -139,7 +139,13 @@ class Format {
 			else
 			{
 				// add single node.
-				$value = htmlspecialchars(html_entity_decode($value, ENT_QUOTES, 'UTF-8'), ENT_QUOTES, "UTF-8");
+				if ($value != null) {
+					$value = htmlspecialchars(html_entity_decode($value, ENT_QUOTES, 'UTF-8'), ENT_QUOTES, "UTF-8");
+				}
+				else
+				{
+					$value = '';
+				}
 
 				$structure->addChild($key, $value);
 			}
