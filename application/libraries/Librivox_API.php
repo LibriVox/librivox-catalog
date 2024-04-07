@@ -240,7 +240,7 @@ class Librivox_API{
 
 	function _get_sections($project_id)
 	{
-		$result =  $this->db->select('s.id, s.section_number, s.title, s.listen_url, COALESCE(l.language, "English") AS language, COALESCE(s.playtime, 0) AS playtime, s.file_name', false)
+		$result =  $this->db->select('s.id, s.section_number, s.title, s.mp3_64_url as listen_url, COALESCE(l.language, "English") AS language, COALESCE(s.playtime, 0) AS playtime, s.file_name', false)
 		->join('languages l', 'l.id=s.language_id', 'left outer')
 		->where('s.project_id', $project_id)
 		->get('sections s')
@@ -251,7 +251,7 @@ class Librivox_API{
 
 	function _get_section($id)
 	{
-		$result =  $this->db->select('s.id, s.section_number, s.title, s.listen_url, COALESCE(l.language, "English") AS language, COALESCE(s.playtime, 0) AS playtime, s.file_name', false)
+		$result =  $this->db->select('s.id, s.section_number, s.title, s.mp3_64_url as listen_url, COALESCE(l.language, "English") AS language, COALESCE(s.playtime, 0) AS playtime, s.file_name', false)
 		->join('languages l', 'l.id=s.language_id', 'left outer')
 		->where('s.id', $id)
 		->get('sections s')
