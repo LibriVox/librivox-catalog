@@ -113,8 +113,16 @@ class Iarchive_upload extends Private_Controller
 		$this->data['language'] = empty($language) ? 'English' : $language->language;
 		$this->data['language_code'] = empty($language) ? 'eng' : $language->three_letter_code;
 
-		$this->load->model('project_model');
-		$this->data['readers'] = $this->project_model->create_project_reader_list($project->id);
+		if ($project->project_type == 'solo')
+		{
+			$this->load->model('project_model');
+			$readerstub = $this->project_model->get_solo_reader($project->id);
+			$this->data['reader_name'] = isset($readerstub) ? $readerstub['display_name'] : "Solo";
+		}
+		else
+		{
+			$this->data['reader_name'] = 'LibriVox Volunteers';
+		}
 
 		$this->data['description'] = $project->description;
 		$this->data['catalog_url'] = $project->url_librivox;

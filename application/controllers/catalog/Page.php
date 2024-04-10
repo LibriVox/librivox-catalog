@@ -131,9 +131,9 @@ class Page extends Catalog_controller
 	{
 		if (strtolower($project->project_type) == 'group') return 'LibriVox Volunteers';
 
-		$readers = $this->project_model->get_project_readers($project->id);
+		$readerstub = $this->project_model->get_solo_reader($project->id);
 
-		if ($readers) return '<a href="' . base_url() . 'reader/' . $readers[0]['reader_id'] . '">' . $readers[0]['display_name'] . '</a>';
+		if (isset($readerstub)) return '<a href="' . base_url() . 'reader/' . $readerstub['reader_id'] . '">' . $readerstub['display_name'] . '</a>';
 
 		return 'Solo';
 	}

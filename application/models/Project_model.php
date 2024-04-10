@@ -111,41 +111,22 @@ class Project_model extends MY_Model
 
     }
 
-    function get_project_readers($project_id)
+
+    // For catalog and Archive pages of solo projects.
+    //   Not every solo project has exactly one reader, and the solo reader is not always the BC.  We don't have a `person_soloreader_id` column.
+    //   Given that, MCs are comfortable with this 'pick first result' heuristic, which is how the catalog pages have functioned up to now.
+    function get_solo_reader($project_id)
     {
         $sql = 'SELECT u.id AS reader_id, u.display_name
-                FROM users u
-                JOIN section_readers sr ON (sr.reader_id = u.id)
-                JOIN sections s ON (s.id = sr.section_id)
-                WHERE s.project_id = ? ';
-
-        $query = $this->db->query($sql, array($project_id));
-
-        return $query->result_array();
-    }
-
-
-    function create_project_reader_list($project_id)
-    {
-        $sql = 'SELECT u.display_name
         FROM users u
         JOIN section_readers sr ON (sr.reader_id = u.id)
         JOIN sections s ON (s.id = sr.section_id)
-        WHERE s.project_id = ? ';
+        WHERE s.project_id = ?
+        LIMIT 1';
 
         $query = $this->db->query($sql, array($project_id));
 
-        $reader_list = array();
-
-        if ($query->num_rows())
-        {
-            foreach ($query->result() as $reader)
-            {
-                $reader_list[] = $reader->display_name;
-            }
-        }
-
-        return implode('; ', $reader_list);
+        return $query->row_array();
 
     }
 
