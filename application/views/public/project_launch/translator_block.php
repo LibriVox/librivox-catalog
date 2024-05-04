@@ -5,10 +5,10 @@
      <div class="controls center">
         <input type="hidden" name="trans_id[<?= $counter ?>]" id="trans_id[<?= $counter ?>]" value="<?= set_value('trans_id[]', 0)?>"  data-array_index="<?= $counter ?>"/>
         <?= form_label(lang('proj_launch_trans_last_name'),  'trans_last_name', array('class'=>'span2')); ?>
-        <?= form_input(array('name'=> 'trans_last_name[' . $counter . ']', 'value' => '' ,'id' => 'trans_last_name[' . $counter . ']',  'class'=>'autocomplete', 'data-search_func'=>'autocomplete_author', 'data-search_field'=>'last_name', 'data-search_area'=>'translator', 'data-array_index'=>$counter )); ?>
+        <?= form_input(array('name'=> 'trans_last_name[' . $counter . ']', 'value' => '' ,'id' => 'trans_last_name[' . $counter . ']',  'class'=>'autocomplete', 'data-search_func'=>'autocomplete_author', 'data-search_field'=>'last_name', 'data-filter_element'=>'trans_first_name[' . $counter . ']', 'data-search_area'=>'translator', 'data-array_index'=>$counter )); ?>
 
         <?= form_label(lang('proj_launch_auth_first_name'),  'trans_first_name', array('style'=>'margin-left:30px;width:140px')); ?>
-        <?= form_input(array('name'=> 'trans_first_name[' . $counter . ']', 'value' => '' ,'id' => 'trans_first_name[' . $counter . ']',  'class'=>'autocomplete', 'data-search_func'=>'autocomplete_author', 'data-search_field'=>'first_name' , 'data-search_area'=>'translator' , 'data-array_index'=>$counter)); ?>
+        <?= form_input(array('name'=> 'trans_first_name[' . $counter . ']', 'value' => '' ,'id' => 'trans_first_name[' . $counter . ']',  'class'=>'autocomplete', 'data-search_func'=>'autocomplete_author', 'data-search_field'=>'first_name' , 'data-filter_element'=>'trans_last_name[' . $counter . ']', 'data-search_area'=>'translator' , 'data-array_index'=>$counter)); ?>
      </div>
 </div>
 

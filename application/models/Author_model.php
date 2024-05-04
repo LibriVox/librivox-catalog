@@ -2,7 +2,7 @@
 
 class Author_model extends MY_Model
 {
-	public function autocomplete($term, $search_field)
+	public function autocomplete($term, $search_field, $filter_term, $filter_field)
 	{
 
 		if (!preg_match("/[\w]/", $term))
@@ -82,6 +82,25 @@ class Author_model extends MY_Model
 				}
 				break;
 		}
+
+
+		// An additional option, which we have on the Template Generator but not Section Compiler, is filtering the results of one box by what's in the other.
+		switch ($filter_field)
+		{
+			case 'first_name':
+				$name_clause .= '
+					AND (match_table.first_name LIKE ?
+						OR (match_table.first_name = "" AND match_table.last_name LIKE ?) )';
+				$bindings =  array_merge($bindings, array('%'. $filter_term .'%', '%'. $filter_term .'%'));
+				break;
+
+			case 'last_name':
+				$name_clause .= '
+						AND match_table.last_name LIKE ?';
+				$bindings =  array_merge($bindings, array('%'. $filter_term .'%'));
+				break;
+		}
+
 
 		$sql = 'SELECT id, first_name, last_name, dob, dod, author_url
 			FROM authors match_table

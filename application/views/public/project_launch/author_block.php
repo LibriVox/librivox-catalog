@@ -5,10 +5,10 @@
      <div class="controls center">
         <input type="hidden" name="auth_id[<?= $counter ?>]" id="auth_id[<?= $counter ?>]" value="<?= set_value('auth_id[]', 0)?>"  data-array_index="<?= $counter ?>"/>
         <?= form_label(lang('proj_launch_auth_last_name'),  'auth_last_name', array('class'=>'span2')); ?>
-        <?= form_input(array('name'=> 'auth_last_name[' . $counter . ']', 'value' => '' ,'id' => 'auth_last_name[' . $counter . ']',  'class'=>'autocomplete', 'data-search_func'=>'autocomplete_author', 'data-search_field'=>'last_name', 'data-search_area'=>'author', 'data-array_index'=>$counter )); ?>
+        <?= form_input(array('name'=> 'auth_last_name[' . $counter . ']', 'value' => '' ,'id' => 'auth_last_name[' . $counter . ']',  'class'=>'autocomplete', 'data-search_func'=>'autocomplete_author', 'data-search_field'=>'last_name', 'data-filter_element'=>'auth_first_name[' . $counter . ']', 'data-search_area'=>'author', 'data-array_index'=>$counter )); ?>
 
         <?= form_label(lang('proj_launch_auth_first_name'),  'auth_first_name', array('style'=>'margin-left:30px;width:140px')); ?>
-        <?= form_input(array('name'=> 'auth_first_name[' . $counter . ']', 'value' => '' ,'id' => 'auth_first_name[' . $counter . ']',  'class'=>'autocomplete', 'data-search_func'=>'autocomplete_author', 'data-search_field'=>'first_name' , 'data-search_area'=>'author' , 'data-array_index'=>$counter)); ?>
+        <?= form_input(array('name'=> 'auth_first_name[' . $counter . ']', 'value' => '' ,'id' => 'auth_first_name[' . $counter . ']',  'class'=>'autocomplete', 'data-search_func'=>'autocomplete_author', 'data-search_field'=>'first_name', 'data-filter_element'=>'auth_last_name[' . $counter . ']', 'data-search_area'=>'author' , 'data-array_index'=>$counter)); ?>
      </div>
 </div>   
 

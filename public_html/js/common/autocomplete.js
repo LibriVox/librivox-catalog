@@ -13,8 +13,16 @@ function set_autocomplete() {
             array_index = element.attr('data-array_index');
 			search_area = element.attr('data-search_area');
 
+            var filter_element_id = element.attr('data-filter_element');
+            if (filter_element_id) {
+                var filter_element_obj = $('input[id^="' + filter_element_id + '"]')[0];
+                var filter_field = filter_element_obj.attributes['data-search_field'].value;
+                var filter_term = filter_element_obj.value;
+            }
+
             $.ajax({ url: CI_ROOT + 'public/public_ajax/' + search_func,
-                data: { 'term': element.val(), 'search_field': search_field},
+                data: { 'term': element.val(), 'search_field': search_field,
+                    'filter_field': filter_field, 'filter_term':  filter_term},
                 dataType: "json",
                 type: "POST",
 				global: false, // prevent modal loader dialog
