@@ -58,12 +58,12 @@
 
 	<table>
 		<thead>
-			<tr><th>Section</th><th>Author <span style="font-size:10px;">(last name search)</span></th><th>Source</th><th>Language</th><th>Duration</th><th></th></tr>
+			<tr><th>Section</th><th>Author <span style="font-size:10px;">(full name search)</span></th><th>Source</th><th>Language</th><th>Duration</th><th></th></tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td><input style="width:40px;" type="text" id="add_to_section_number" ><input type="hidden" id="add_to_section_id" value="0"></td>
-				<td><input style="width:200px;" type="text" id="add_author" class="autocomplete" data-add_author_id="0" data-search_field="last_name" data-search_area="author" data-search_func="autocomplete_author" data-array_index="1"></td>
+				<td><input style="width:200px;" type="text" id="add_author" class="autocomplete" data-add_author_id="0" data-search_field="full_name" data-search_area="author" data-search_func="autocomplete_author" data-array_index="1"></td>
 				<td><input style="width:160px;" type="text" id="add_source" ></td>
 				<td><?= $recorded_languages; ?></td>
 				<td><input style="width:80px;" type="text" id="add_playtime" placeholder="00:00:00"></td>
