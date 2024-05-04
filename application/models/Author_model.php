@@ -101,9 +101,17 @@ class Author_model extends MY_Model
 				break;
 		}
 
+		// Since we use the name-matching clause once for authors and once for pseudonyms, we need the bindings for it twice.
+		$bindings = array_merge($bindings, $bindings);
 
-		$sql = 'SELECT id, first_name, last_name, dob, dod, author_url
+		$sql = 'SELECT id, first_name, last_name, dob, dod, author_url, NULL AS pseudo_first, NULL AS pseudo_last
 			FROM authors match_table
+			WHERE linked_to = 0
+			'. $name_clause .'
+			UNION
+			SELECT a.id, a.first_name, a.last_name, dob, dod, author_url, match_table.first_name AS pseudo_first, match_table.last_name AS pseudo_last
+			FROM author_pseudonyms match_table
+			JOIN authors a ON (a.id = match_table.author_id)
 			WHERE linked_to = 0
 			'. $name_clause .'
 			ORDER BY '. $sort_order .'
