@@ -12,8 +12,10 @@ class Public_ajax extends Public_Controller
 	{
 		$term = $this->input->post('term');
 		$search_field = $this->input->post('search_field');
+		$filter_term = $this->input->post('filter_term');
+		$filter_field = $this->input->post('filter_field');
 		$this->load->model('author_model');
-		echo json_encode($this->author_model->autocomplete($term, $search_field));
+		echo json_encode($this->author_model->autocomplete($term, $search_field, $filter_term, $filter_field));
 	}
 
 	function autocomplete_user()
