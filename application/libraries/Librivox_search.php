@@ -154,11 +154,16 @@ class Librivox_search{
 		}
 
 		$reader_clause = '';
+		$section_reader_clause = '';
 		if (!empty($params['reader']))
 		{
 			$exact_match = (isset($params['exact_match'])) ? true: false;
+
 			$project_ids = $this->_get_projects_by_reader($params['reader'], $exact_match);
 			$reader_clause = ' AND p.id IN (' . implode(',', $project_ids) . ') ';
+
+			$reader_ids = $this->_get_reader_ids($params['reader'], $exact_match);
+			$section_reader_clause = ' AND st.section_reader_id in (' . implode(',', $reader_ids) . ')';
 		}
 
 		// ======================================================================================================================================
@@ -253,7 +258,7 @@ class Librivox_search{
 				' . $project_type . '
 				' . $title . '
 				' . $section_author_clause . '
-				' . $reader_clause . '
+				' . $section_reader_clause . '
 				' . $section_language_clause . ' ';
 
 
