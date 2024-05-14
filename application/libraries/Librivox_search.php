@@ -77,16 +77,31 @@ class Librivox_search{
 		$recorded_language = (int)$params['recorded_language'];
 		if ($recorded_language !== 0)
 		{
-			//$language = ' AND p.language_id = ' . $params['recorded_language'] ;
+			if (empty($params['title']) and empty($params['author']) and empty($params['reader']))
+			{
+				// If we're just browsing, we can remove some redundant entries to make the results more compact.
 
-			// Projects having at least one section in that language.
-			$section_project_ids = $this->_get_projects_by_section_language($recorded_language);
-			//$language_clause = ' AND p.id IN (' . implode(',', $section_project_ids) . ') ';
+				// Projects: only listed if they are primarily in this language.
+				$language_clause = ' AND p.language_id = ' . $recorded_language;
 
-			$language_clause = ' AND ( p.language_id = ' . $recorded_language . ' OR p.id IN (' . implode(',', $section_project_ids) . ') ) ';
-			$section_language_clause = '
-				AND ( p.language_id = ' . $recorded_language . '
-					OR st.section_language_id = ' . $recorded_language . ') ';
+				// Sections: only (individually) listed if they are in this language, but from a project we wouldn't list above.
+				$section_language_clause = '
+					AND p.language_id <> ' . $recorded_language . '
+					AND st.section_language_id = ' . $recorded_language;
+			}
+			else
+			{
+				// If we're searching by specifics, we should cast a wide net for potential matches.
+
+				// Projects: search among all that have any sections in this language.
+				$section_project_ids = $this->_get_projects_by_section_language($recorded_language);
+				$language_clause = ' AND ( p.language_id = ' . $recorded_language . ' OR p.id IN (' . implode(',', $section_project_ids) . ') ) ';
+
+				// Sections: search among all in this language, whether from multi-lingual or mono-lingual compilation projects.
+				$section_language_clause = '
+					AND ( st.section_language_id = ' . $recorded_language . '
+						OR ( st.section_language_id IS NULL AND p.language_id = ' . $recorded_language . ') ) ';
+			}
 		}
 
 
@@ -139,11 +154,16 @@ class Librivox_search{
 		}
 
 		$reader_clause = '';
+		$section_reader_clause = '';
 		if (!empty($params['reader']))
 		{
 			$exact_match = (isset($params['exact_match'])) ? true: false;
+
 			$project_ids = $this->_get_projects_by_reader($params['reader'], $exact_match);
 			$reader_clause = ' AND p.id IN (' . implode(',', $project_ids) . ') ';
+
+			$reader_ids = $this->_get_reader_ids($params['reader'], $exact_match);
+			$section_reader_clause = ' AND st.section_reader_id in (' . implode(',', $reader_ids) . ')';
 		}
 
 		// ======================================================================================================================================
@@ -238,7 +258,7 @@ class Librivox_search{
 				' . $project_type . '
 				' . $title . '
 				' . $section_author_clause . '
-				' . $reader_clause . '
+				' . $section_reader_clause . '
 				' . $section_language_clause . ' ';
 
 
