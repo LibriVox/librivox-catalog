@@ -32,11 +32,18 @@
 				<p class="book-page-genre"><span>Genre(s):</span> <?= $project->genre_list; ?></p>
 
 				<p class="book-page-genre"><span>Language:</span> <?= $project->language; ?></p>
+				
+				<?php if(!empty($project->formatted_keywords_string_primary)): ?>
+				<p class="book-page-genre primary_keywords_string"><span>Keyword(s):</span> <?= $project->formatted_keywords_string_primary; ?></p>
+				<?php endif;?>
+				<?php if(!empty($project->formatted_keywords_string_secondary)): ?>
+				<p class="book-page-genre secondary_keywords_string" style="display:none;"><span>Keyword(s):</span> <?= $project->formatted_keywords_string_secondary; ?></p>
+				<?php endif;?>
 
 				<?php if(!empty($project->group)):?>
 				<p class="book-page-genre"><span>Group:</span> <a href="<?= base_url().'group/'. $project->group->group_id?>"><?= $project->group->group_name; ?></a></p>
 				<?php endif;?>
-
+				</p>
 				
 			</div> 	<!-- end .content-wrap --> 
 		
