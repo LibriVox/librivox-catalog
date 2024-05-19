@@ -118,6 +118,12 @@ class Librivox_id3tag{
 
     	$title = $this->_build_chapter_title($project, $section);
 
+      $sectionreaders = [];
+      foreach ($section->readers as $reader){
+        array_push($sectionreaders, $reader->reader_id);
+        // or: array_push($sectionreaders, "https://librivox.org/reader/" . $reader->reader_id);
+      }
+
 		// populate data array
 		return $tag_data = array(
 		    'title'   => array($title),  //title is for chapter
@@ -127,6 +133,9 @@ class Librivox_id3tag{
 		    'genre'   => array('speech'),
 		    'playtime_string' => array('0:00'),
 		    'track'   => array($track),
+		    'comment'	=> array($sectionreaders),
+        // or
+        // 'url_artist'	=> array($sectionreaders), // This plugs into "WOAR" according to the getid3 parser
 		    //language??
 		);
 
