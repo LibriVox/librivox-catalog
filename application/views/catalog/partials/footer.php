@@ -87,7 +87,7 @@
 			var item = $('.js-menu_item[data-menu_item="'+search_category+'"]');
 			load_search_data(item, search_category);
 		}
-		else if (jQuery.inArray(current_page, ['author', 'reader', 'group']) > -1)
+		else if (jQuery.inArray(current_page, ['author', 'reader', 'group', 'keywords']) > -1)
 		{
 			get_results(current_page, search_page, sub_category, primary_key);
 		}
@@ -333,6 +333,15 @@
 	}	
 
 
+	$('.js-truncated-keywords').on('click', function(e){
+
+		e.preventDefault();
+		$('.secondary_keywords_string').show();
+		$('.primary_keywords_string').hide();
+		return false;	
+
+	});
+
 	$('.js-advanced-search').on('click', function(e){
 
 		// TODO: make toggle
@@ -348,6 +357,7 @@
 		return false;	
 
 	});
+	
 
 	function advanced_search_actions()
 	{
