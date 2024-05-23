@@ -87,7 +87,7 @@
 			var item = $('.js-menu_item[data-menu_item="'+search_category+'"]');
 			load_search_data(item, search_category);
 		}
-		else if (jQuery.inArray(current_page, ['author', 'reader', 'group']) > -1)
+		else if (jQuery.inArray(current_page, ['author', 'reader', 'group', 'keywords']) > -1)
 		{
 			get_results(current_page, search_page, sub_category, primary_key);
 		}
