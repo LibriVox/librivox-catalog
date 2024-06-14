@@ -140,7 +140,7 @@ class Librivox_search{
 		$keyword_clause = '';
 		if (!empty($params['keywords']))
 		{
-			$keywords = explode(' ', $params['keywords']); //maybe preg_match if extra spaces cause trouble - thinnk we're ok
+			$keywords = array($params['keywords']);
 			$keywords = array_map('trim', $keywords);  // clean it up
 
 			$escaped_keywords = [];
