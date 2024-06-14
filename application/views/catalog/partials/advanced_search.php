@@ -1,5 +1,7 @@
 
 	<?php $display = ($advanced_search)? 'display:block;' : 'display:none;'; ?>
+	
+	<link type="text/css" rel="stylesheet" href="https://librivox.org/css/ui-lightness/jquery-ui-1.8.24.custom.css?v=1670239344" />
 
 	<div class="advanced-search-inner" style="<?= $display ?>">
 		
@@ -47,7 +49,7 @@
 			<div class="control-group">
 			     <div class="controls center">
 			     	<label for="keywords" ><span class="span2">Keywords:</span>
-					<input type="text" class="span4" id="keywords" name="keywords" value="<?= htmlspecialchars($advanced_search_form['keywords']) ?>"/>
+				<input type="text" name="keywords" value="" id="keywords" class="autocomplete" data-search_func="autocomplete_keywords" data-search_field="keywords" data-search_area="keywords" data-array_index="0"   />
 					</label>
 			     </div>
 			</div> 
@@ -111,4 +113,26 @@
 
 
 		</form>	
-	</div> <!-- end .advanced-search-inner	-->
+	</div> 
+	
+	<script type="text/javascript">
+	function autocomplete_assign_vars(item) {
+		return item.value;
+	}
+
+	function autocomplete_assign_elements(search_area, ui, array_index) {
+		switch (search_area) {
+			case 'keywords':
+				document.getElementById("keywords").value = ui.item.label;
+				break;
+		}
+	}
+	</script>
+
+	<script type="text/javascript" src="https://librivox.org/js/libs/jquery-1.8.2.js?v=1710057521"></script>
+	<script type="text/javascript" src="https://librivox.org/js/libs/jquery.validate.js?v=1710057521"></script>
+	<script type="text/javascript" src="https://librivox.org/js/libs/jquery-ui-1.8.24.custom.min.js?v=1710057521"></script>
+	<script type="text/javascript" src="https://librivox.org/js/common/autocomplete.js?v=1710057521"></script>
+	<script type="text/javascript" src="https://librivox.org/js/common/jquery.tagsinput.min.js?v=1710057521"></script>
+	
+	<!-- end .advanced-search-inner	-->
