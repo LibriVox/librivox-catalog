@@ -18,6 +18,7 @@ class Author_model extends MY_Model
 				return array();
 
 			case 'first_name':
+			// New Project Template Generator
 				$name_parts = preg_split('/ /', $term, 2, PREG_SPLIT_NO_EMPTY); // Split by first space
 
 				// Search first word as first name
@@ -33,13 +34,11 @@ class Author_model extends MY_Model
 						AND CONCAT(match_table.first_name, " ", match_table.last_name) LIKE ?';
 					$bindings =  array_merge($bindings, array('%'. $term .'%'));
 				}
-				else
-				{
-					$search_order = 'first_name';
-				}
+				$sort_order = "first_name, pseudo_first, last_name, pseudo_last";
 				break;
 
 			case 'last_name':
+			// New Project Template Generator
 				$name_parts = preg_split('/, ?/', $term, 2, PREG_SPLIT_NO_EMPTY); // Split by first comma
 
 				// Search before the comma as last name
@@ -54,12 +53,12 @@ class Author_model extends MY_Model
 						AND (match_table.first_name LIKE ?
 							OR (match_table.first_name = "" AND match_table.last_name LIKE ?) )';
 					$bindings =  array_merge($bindings, array('%'. $name_parts[1] .'%', '%'. $name_parts[1] .'%'));
-
-					$sort_order = 'first_name';
 				}
+				$sort_order = 'last_name, pseudo_last, first_name, pseudo_first';
 				break;
 
 			case 'full_name':
+			// Section compiler
 				$name_parts = preg_split('/, ?/', $term, 2, PREG_SPLIT_NO_EMPTY); // Split by first comma
 
 				if (empty($name_parts[1]))
@@ -78,8 +77,8 @@ class Author_model extends MY_Model
 							OR (match_table.first_name = "" AND match_table.last_name LIKE ?) )';
 					$bindings =  array_merge($bindings, array('%'. $name_parts[0] .'%', '%'. $name_parts[1] .'%', '%'. $name_parts[1] .'%'));
 
-					$sort_order = 'first_name';
 				}
+				$sort_order = 'last_name, pseudo_last, first_name, pseudo_first';
 				break;
 		}
 
@@ -104,12 +103,12 @@ class Author_model extends MY_Model
 		// Since we use the name-matching clause once for authors and once for pseudonyms, we need the bindings for it twice.
 		$bindings = array_merge($bindings, $bindings);
 
-		$sql = 'SELECT id, first_name, last_name, dob, dod, author_url, NULL AS pseudo_first, NULL AS pseudo_last
+		$sql = 'SELECT id, trim(first_name) as first_name, trim(last_name) as last_name, dob, dod, author_url, NULL AS pseudo_first, NULL AS pseudo_last
 			FROM authors match_table
 			WHERE linked_to = 0
 			'. $name_clause .'
 			UNION
-			SELECT a.id, a.first_name, a.last_name, dob, dod, author_url, match_table.first_name AS pseudo_first, match_table.last_name AS pseudo_last
+			SELECT a.id, trim(a.first_name) as first_name, trim(a.last_name) as last_name, dob, dod, author_url, match_table.first_name AS pseudo_first, match_table.last_name AS pseudo_last
 			FROM author_pseudonyms match_table
 			JOIN authors a ON (a.id = match_table.author_id)
 			WHERE linked_to = 0
