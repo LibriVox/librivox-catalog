@@ -356,14 +356,6 @@ $(document).ready(function() {
 		$('.add_btn').show(300);
 	});
 
-	// Show the 'Assign reader sections' button by default, if the project status is 'open'
-	var project_status = $('#status').val();
-	if (project_status == 'open')
-	{
-		$('#assign_reader_toggle').hide();
-		$('#assign_reader_div').show();
-	}
-
 
 });
 
