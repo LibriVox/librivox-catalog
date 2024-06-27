@@ -7,6 +7,7 @@ class Page extends Catalog_controller
 	{
 		parent::__construct();
 		$this->load->helper('general_functions_helper');
+		$this->load->library('Librivox_auth');
 	}
 
 	public function index($slug)
@@ -32,6 +33,9 @@ class Page extends Catalog_controller
 			$this->_render('catalog/not_found');
 			return;
 		}
+		
+		//create link to project editing page for logged in user with appropriate permissions
+		$this->data['project']->edit_link = $this->_get_edit_link($this->data['project']->id);
 
 		// **** AUTHORS ****//
 		$this->data['authors_string'] = '';
@@ -112,6 +116,33 @@ class Page extends Catalog_controller
 
 		$this->_render('catalog/page');
 		return;
+	}
+	
+	
+	function _get_edit_link($project_id)
+	{
+		$link = '';
+		$auth_checker = new Librivox_auth();
+		
+		if (empty($project_id))
+		{
+			return $link;
+		}
+		
+		$user_id = $auth_checker->get_user_id();
+		if ($user_id < 1) {
+			return $link;
+		}
+		
+		//check permissions
+		$allowed_groups = array(PERMISSIONS_ADMIN, PERMISSIONS_MCS);		
+		if ($auth_checker->has_permission($allowed_groups, $user_id))
+		{
+			$link = base_url() . 'add_catalog_item/' . $project_id ;
+			return $link;
+		}
+		
+		return $link;
 	}
 
 	function _project_group($project_id = 0)
