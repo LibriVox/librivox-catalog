@@ -61,6 +61,10 @@ class Page extends Catalog_controller
 		$this->data['volunteers']->bc = $this->user_model->get($this->data['project']->person_bc_id);
 		$this->data['volunteers']->mc = $this->user_model->get($this->data['project']->person_mc_id);
 		$this->data['volunteers']->pl = $this->user_model->get($this->data['project']->person_pl_id);
+		
+		// **** KEYWORDS ****//
+		$this->data['project']->formatted_keywords_string = $this->_formatted_keywords_string($this->data['project']->id);
+
 
 		// **** MISC ****//
 		$this->data['project']->project_type = (trim($this->data['project']->project_type) == 'solo') ? 'solo' : 'group'; //keep on top - other values dependent on solo/group
@@ -170,6 +174,39 @@ class Page extends Catalog_controller
 
 		return implode(', ', $genres);
 	}
+	
+	
+	function _formatted_keywords_string($project_id) 
+	{
+		$return_value = '';
+		$keywords_array = $this->project_model->get_keywords_and_statistics_by_project($project_id);
+
+		if (!empty($keywords_array))
+		{
+			foreach ($keywords_array as $key => $row)
+			{
+			// Add hyperlink only if at least two projects use this keyword
+				if ((int)$row['keyword_count'] > 1) 
+				{
+					$return_value .= '<a href="' . base_url() . 'keywords/' . $row['id'] . '">';
+				} 
+				$return_value .= $row['value'];
+				if ((int)$row['keyword_count'] > 1)
+				{
+					$return_value .= '</a>';
+				} 
+				$return_value .= ' (' . $row['keyword_count'] . '), ';
+			}
+		} 
+		else 
+		{
+			return $return_value;
+		}
+		// trim off final comma and trailing space 
+		$return_value = substr($return_value, 0, -2);
+		return $return_value;	
+	}
+
 
 	function _language($language_id)
 	{
