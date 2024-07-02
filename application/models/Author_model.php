@@ -10,7 +10,7 @@ class Author_model extends MY_Model
 
 		$name_clause = '';
 		$bindings = array();
-		$sort_order = 'last_name';
+		$sort_order = 'TRIM(COALESCE(pseudo_first, first_name)), TRIM(COALESCE(pseudo_last, last_name))';
 
 		switch ($search_field)
 		{
@@ -33,9 +33,9 @@ class Author_model extends MY_Model
 						AND CONCAT(match_table.first_name, " ", match_table.last_name) LIKE ?';
 					$bindings =  array_merge($bindings, array('%'. $term .'%'));
 				}
-				else
+				elseif (empty($filter_term))
 				{
-					$search_order = 'first_name';
+					$sort_order = 'TRIM(COALESCE(pseudo_last, last_name)), TRIM(COALESCE(pseudo_first, first_name))';
 				}
 				break;
 
@@ -54,8 +54,6 @@ class Author_model extends MY_Model
 						AND (match_table.first_name LIKE ?
 							OR (match_table.first_name = "" AND match_table.last_name LIKE ?) )';
 					$bindings =  array_merge($bindings, array('%'. $name_parts[1] .'%', '%'. $name_parts[1] .'%'));
-
-					$sort_order = 'first_name';
 				}
 				break;
 
@@ -77,8 +75,6 @@ class Author_model extends MY_Model
 						AND (match_table.first_name LIKE ?
 							OR (match_table.first_name = "" AND match_table.last_name LIKE ?) )';
 					$bindings =  array_merge($bindings, array('%'. $name_parts[0] .'%', '%'. $name_parts[1] .'%', '%'. $name_parts[1] .'%'));
-
-					$sort_order = 'first_name';
 				}
 				break;
 		}
