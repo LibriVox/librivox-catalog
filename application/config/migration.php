@@ -2,5 +2,5 @@
 
 $config['migration_enabled'] = TRUE;
 $config['migration_type'] = 'timestamp';
-$config['migration_version'] = 20240516002600;
+$config['migration_version'] = 20240705003100;
 $config['migration_path'] = APPPATH . 'migrations/';

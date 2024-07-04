@@ -3,7 +3,6 @@
 class Project_keyword_model extends MY_Model {
 
     
-
 }
 
 /* End of file project_keyword.php */
