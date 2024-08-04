@@ -88,6 +88,10 @@
 		<?php if (!empty($project->project_urls)): foreach ($project->project_urls as $project_url): ?>
 			<p><a href="<?= $project_url->url ?>"><?= $project_url->label?></a></p>
 		<?php endforeach; endif; ?>
+		
+		<?php if (!empty($project->edit_link)): ?>
+			<p><a href="<?= $project->edit_link ?>">Edit this page</a></p>
+		<?php endif; ?>
 
 	</div>
 				
