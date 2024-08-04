@@ -282,13 +282,18 @@ class CI_Migration {
 			include_once($file);
 			$class = 'Migration_'.ucfirst(strtolower($this->_get_migration_name(basename($file, '.php'))));
 
+			// Add the following line as part of change to allow compatibility with PHP 8
+			$instance = new $class;
+
 			// Validate the migration file structure
 			if ( ! class_exists($class, FALSE))
 			{
 				$this->_error_string = sprintf($this->lang->line('migration_class_doesnt_exist'), $class);
 				return FALSE;
 			}
-			elseif ( ! is_callable(array($class, $method)))
+
+			// The following modification is required for PHP 8
+			elseif ( ! is_callable(array($instance, $method)))
 			{
 				$this->_error_string = sprintf($this->lang->line('migration_missing_'.$method.'_method'), $class);
 				return FALSE;
