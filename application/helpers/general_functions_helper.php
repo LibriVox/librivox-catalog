@@ -116,7 +116,7 @@ function alphabet()
 }
 
 
-function full_languages_dropdown($id='', $selected_id=''  )
+function full_languages_dropdown($id='', $selected_id='', $show_all_except_english=false)
 {
     $ci = &get_instance();
 
@@ -135,6 +135,13 @@ function full_languages_dropdown($id='', $selected_id=''  )
         //separator
         $selected = ($selected_id == '')? ' selected ': '';
         $html .= '<option value="" '. $selected .' > ------ </option>';
+    }
+
+    if ($show_all_except_english)
+    {
+        $selected = ($selected_id == ALL_EXCEPT_ENGLISH) ? ' selected ': '';
+        $html .= '<option value="'. ALL_EXCEPT_ENGLISH .'" '. $selected .' >All Except English</option>';
+        $html .= '<option value=""> ------ </option>';
     }
 
     if (!empty($languages))

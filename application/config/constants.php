@@ -92,6 +92,8 @@ define('CATALOG_RESULT_COUNT',				25);
 
 define ('AUTOCOMPLETE_LIMIT', 100);
 
+define ('ALL_EXCEPT_ENGLISH', -1);
+
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
