@@ -123,7 +123,7 @@ class Search extends Catalog_controller
 		$this->data['languages'] = $this->config->item('languages');
 
 		$this->load->model('language_model');
-		$this->data['recorded_languages'] = full_languages_dropdown('recorded_language', $this->data['advanced_search_form']['recorded_language']);
+		$this->data['recorded_languages'] = full_languages_dropdown('recorded_language', $this->data['advanced_search_form']['recorded_language'], true);
 
 		$this->load->model('genre_model', 'model');
 		$genres = $this->model->order_by('lineage', 'asc')->as_array()->get_all();

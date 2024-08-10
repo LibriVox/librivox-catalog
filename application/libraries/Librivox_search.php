@@ -75,7 +75,7 @@ class Librivox_search{
 		$language_clause = ' ';
 		$section_language_clause = ' ';
 		$recorded_language = (int)$params['recorded_language'];
-		if ($recorded_language !== 0)
+		if ($recorded_language > 0)
 		{
 			if (empty($params['title']) and empty($params['author']) and empty($params['reader']))
 			{
@@ -101,6 +101,24 @@ class Librivox_search{
 				$section_language_clause = '
 					AND ( st.section_language_id = ' . $recorded_language . '
 						OR ( st.section_language_id IS NULL AND p.language_id = ' . $recorded_language . ') ) ';
+			}
+		}
+		elseif ($recorded_language === ALL_EXCEPT_ENGLISH)
+		{
+			// "All Except English" query
+
+			$language_clause = ' AND p.language_id <> 1';
+
+			// Again, only show individual sections if we're searching, rather than browsing
+			if (empty($params['title']) and empty($params['author']) and empty($params['reader']))
+			{
+				$section_language_clause = ' AND FALSE ';
+			}
+			else
+			{
+				$section_language_clause = '
+					AND st.section_language_id <> 1
+					AND p.language_id <> 1';
 			}
 		}
 
