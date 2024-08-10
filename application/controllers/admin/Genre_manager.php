@@ -17,12 +17,13 @@ class Genre_manager extends Private_Controller
 	{
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
-		$this->data['genres'] = $this->mahana_hierarchy->get();
+		$this->data['genres'] = $this->mahana_hierarchy->get_sorted_children();
 
 		$this->data['genre_dropdown'][0] = 'Top Level';
 		foreach ($this->data['genres'] as $genre)
 		{
-			$this->data['genre_dropdown'][$genre['id']] = $genre['name'];
+			$depth_mark = $genre['deep'] ? str_repeat('&nbsp;&nbsp;&nbsp;', $genre['deep']) : '';
+			$this->data['genre_dropdown'][$genre['id']] = $depth_mark . $genre['name'];
 		}
 
 		$this->load->helper('form');
@@ -39,6 +40,19 @@ class Genre_manager extends Private_Controller
 
 		if ($fields['id'])
 		{
+
+			// In case we're changing our `parent_id`, be sure we don't become our own ancestor!
+			$ancestors = $this->mahana_hierarchy->get_ancestors($fields['parent_id']);
+			foreach ($ancestors as $ancestor)
+			{
+				if ($ancestor['id'] == $fields['id'])
+				{
+					$this->ajax_output(array('message' => 'Cannot set item as its own ancestor'), FALSE, FALSE);
+					return;
+				}
+			}
+			unset($ancestors);
+
 			$this->genre_model->update($fields['id'], $fields);
 		}
 		else

@@ -25,8 +25,9 @@ CREATE TABLE `hierarchy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(55) NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
-  `lineage` text,
+  `lineage` text DEFAULT '',
   `deep` int(3) NOT NULL,
+  `sort_order` int(11) DEFAULT 20,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -52,6 +53,10 @@ class Mahana_hierarchy {
     protected $lineage = 'lineage';
 
     protected $deep = 'deep';   
+
+    protected $sort_number = 'sort_order';
+
+    protected $sort_alpha = 'name';
 
 
     public function __construct($config= null)
@@ -167,6 +172,17 @@ class Mahana_hierarchy {
         return $grouped_result;
     }
 
+    // Fetch all descendent records based on the parent id, do a recursive sort to flatten each sub-menu in the hierarchy
+    // param - integer - parent id of descendent records (optional)
+    // Returns result_array
+    public function get_sorted_children($top_id=0)
+    {
+        $result = array();
+        $nodeList = $this->get($top_id);
+        $this->_recurseSort($nodeList, $top_id, $result);
+        return $result;
+    }
+
     //chainable where clause
     public function where($params)
     {
@@ -274,19 +290,40 @@ class Mahana_hierarchy {
 
     }
 
+    function _sort_compare($a, $b) {
+        $order_diff = $a[$this->sort_number] - $b[$this->sort_number];
+        return $order_diff ? $order_diff : strcmp(strtolower($a[$this->sort_alpha]), strtolower($b[$this->sort_alpha]));
+    }
 
     // Thank you, http://stackoverflow.com/users/427328/elusive
     function _findChildren(&$nodeList, $parentId = 0) {
         $nodes = array();
 
-        foreach ($nodeList as $node) {
+        foreach ($nodeList as $key => &$node) {
             if ($node[$this->parent_id] == $parentId) {
                 $node['children'] = $this->_findChildren($nodeList, $node[$this->primary_key]);
                 $nodes[] = $node;
+                unset($nodeList[$key]);
             }
         }
-
+        usort($nodes, 'Mahana_hierarchy::_sort_compare');
         return $nodes;
+    }
+
+    function _recurseSort(&$nodeList, $parentId = 0, &$result = array()) {
+        $children = array();
+        foreach ($nodeList as $key => &$node) {
+            if ($node[$this->parent_id] == $parentId) {
+                $children[] = $node;
+                unset($nodeList[$key]);
+            }
+        }
+        usort($children, 'Mahana_hierarchy::_sort_compare');
+        foreach ($children as $child) {
+            $result[] = $child;
+            $this->_recurseSort($nodeList, $child[$this->primary_key], $result);
+        }
+        return $result;
     }
 
 
