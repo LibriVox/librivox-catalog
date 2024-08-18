@@ -185,13 +185,9 @@ $(document).ready(function() {
 	        type: 'post',
 	        data: {'section_id': section_id},
 	        complete: function(r){
-	        	var deleted_row = btn.closest('tr').get(0);
-
-	  			oTable.fnDeleteRow(
-					oTable.fnGetPosition(
-						deleted_row
-					)
-				);	
+	            btn.closest('tr').remove();
+	            order_sections();
+	            relabel_section_numbers();
 	        }	
 	    });
 
