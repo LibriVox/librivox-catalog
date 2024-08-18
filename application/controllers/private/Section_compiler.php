@@ -125,6 +125,10 @@ class Section_compiler extends Private_Controller
 		$value = $this->input->post('value', true);
 
 		list($field, $section_number) = explode('-', $id);
+		if ($field == 'title')
+		{
+			$value = strip_tags($value);
+		}
 
 		$this->section_model->update($section_number, array($field => trim($value)));
 
@@ -137,6 +141,11 @@ class Section_compiler extends Private_Controller
 	public function add_section()
 	{
 		$fields = $this->input->post(null, true);
+		$fields['title'] = strip_tags($fields['title']);
+		foreach ($fields as $field => $value)
+		{
+			$fields[$field] = trim($value);
+		}
 
 		$max_section_number = $this->section_model->get_max_section_number($fields['project_id']);
 
@@ -230,6 +239,11 @@ class Section_compiler extends Private_Controller
 	public function add_meta_data()
 	{
 		$fields = $this->input->post(null, true);
+
+		foreach ($fields as $field => $value)
+		{
+			$fields[$field] = trim($value);
+		}
 
 		$fields['playtime'] = time_string_to_secs($fields['playtime']);
         $fields['language_id'] = $fields['language_id'] ? $fields['language_id'] : NULL;
