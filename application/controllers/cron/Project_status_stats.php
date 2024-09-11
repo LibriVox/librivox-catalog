@@ -22,6 +22,14 @@ class Project_status_stats extends CI_Controller
 
 	public function author()
 	{
+		// Reset completion and in-progress counts for all authors
+		// This avoids an edge-case in the later queries: if there are no projects with the given author or status, they leave meta_complete
+		//  and meta_in_progress untouched, resulting in 'phantom' project counts.
+		$this->db->query('
+			UPDATE authors
+			SET meta_complete = 0,
+				meta_in_progress = 0');
+
 		$sql = '
 			UPDATE authors
 			JOIN 
