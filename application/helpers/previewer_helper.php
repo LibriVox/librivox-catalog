@@ -255,3 +255,9 @@ function format_playtime($seconds)
 	$hours     = ($remainder - $minutes) / 60;
 	return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
 }
+
+/** Example: translate_plural("%d book", "%d books", $n) => "1 book" or "13 books" */
+function translate_plural($one, $other, $n)
+{
+	return sprintf(ngettext($one, $other, $n), $n);
+}
