@@ -78,6 +78,8 @@ class Sections extends Catalog_controller
 		$matches = $this->_get_all_reader($user_id);
 		$this->data['matches'] = count($matches);
 
+		$this->data['page_title'] = 'Section details for ' . $this->data['reader']->display_name;
+
 		$this->_render('catalog/sections');
 		return;
 	}

@@ -25,6 +25,8 @@ class Group extends Catalog_controller
 		$matches = $this->_get_all_group_projects($group_id, 0, 1000000);
 		$this->data['matches'] = count($matches);
 
+		$this->data['page_title'] = 'Works in "' . $this->data['group']->name . '"';
+
 		$this->data['search_order'] = $this->input->get('search_order');
 
 		$this->_render('catalog/group');

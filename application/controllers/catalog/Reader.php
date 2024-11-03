@@ -32,6 +32,8 @@ class Reader extends Catalog_controller
 		$matches = $this->_get_all_reader($reader_id);
 		$this->data['matches'] = count($matches);
 
+		$this->data['page_title'] = 'Works read by '. $this->data['reader']['display_name'];
+
 		$this->data['search_order'] = $this->input->get('search_order');
 
 		$this->_render('catalog/reader');
