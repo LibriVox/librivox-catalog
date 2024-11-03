@@ -33,6 +33,10 @@ class Page extends Catalog_controller
 			return;
 		}
 
+		// **** TITLE ****//
+		// Used for HTML page title, and also views/catalog/page.php
+		$this->data['page_title'] = create_full_title($this->data['project']);
+
 		// **** AUTHORS ****//
 		$this->data['authors_string'] = '';
 

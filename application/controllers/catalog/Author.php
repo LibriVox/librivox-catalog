@@ -25,6 +25,8 @@ class Author extends Catalog_controller
 		$matches = $this->_get_all_author($author_id);
 		$this->data['matches'] = count($matches);
 
+		$this->data['page_title'] = 'Works by '. format_author($this->data['author']);
+
 		$this->data['search_order'] = $this->input->get('search_order');
 
 		$this->_render('catalog/author');

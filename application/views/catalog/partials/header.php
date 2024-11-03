@@ -13,7 +13,7 @@
 <head>
   <meta content="text/html; charset=utf-8" http-equiv="content-type">
 
-  <title>LibriVox</title>
+  <title><?= (isset($page_title) ? $page_title : 'Browse catalog') . ' | LibriVox' ?></title>
   <meta name="description" content="LibriVox" />
   <meta name="author" content="LibriVox" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
