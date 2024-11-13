@@ -168,6 +168,10 @@ class Librivox_API{
 			if ($extended)
 			{
 				$project['url_iarchive'] 	= $row['url_iarchive'];
+				
+				$project['coverart_jpg'] = !empty($row['coverart_jpg']) ? $row['coverart_jpg'] : null;
+				$project['coverart_pdf'] = !empty($row['coverart_pdf']) ? $row['coverart_pdf'] : null;
+				$project['coverart_thumbnail'] = !empty($row['coverart_thumbnail']) ? $row['coverart_thumbnail'] : null;
 
 				//get sections
 				$project['sections']		= $this->_get_sections($row['id']);
