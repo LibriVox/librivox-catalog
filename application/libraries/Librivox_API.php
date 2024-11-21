@@ -72,6 +72,7 @@ class Librivox_API{
 		//return $params;
 
 		$extended = (empty($params['extended'])) ? 0 : 1;
+		$show_cover_art = (empty($params['coverart'])) ? 0 : 1;
 
 		$limit = (!empty($params['limit'])) ? $params['limit'] : 50;
 		$offset = (!empty($params['offset'])) ? $params['offset'] : 0;
@@ -164,14 +165,18 @@ class Librivox_API{
 			// get authors
 			$project['authors']			= $this->_get_authors($row['id'], 'author');
 
+			if ($show_cover_art)
+			{
+				$project['coverart_jpg'] = !empty($row['coverart_jpg']) ? $row['coverart_jpg'] : null;
+				$project['coverart_pdf'] = !empty($row['coverart_pdf']) ? $row['coverart_pdf'] : null;
+				$project['coverart_thumbnail'] = !empty($row['coverart_thumbnail']) ? $row['coverart_thumbnail'] : null;
+			}
 
 			if ($extended)
 			{
 				$project['url_iarchive'] 	= $row['url_iarchive'];
-				
-				$project['coverart_jpg'] = !empty($row['coverart_jpg']) ? $row['coverart_jpg'] : null;
-				$project['coverart_pdf'] = !empty($row['coverart_pdf']) ? $row['coverart_pdf'] : null;
-				$project['coverart_thumbnail'] = !empty($row['coverart_thumbnail']) ? $row['coverart_thumbnail'] : null;
+
+
 
 				//get sections
 				$project['sections']		= $this->_get_sections($row['id']);

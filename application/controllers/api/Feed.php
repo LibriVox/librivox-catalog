@@ -22,6 +22,7 @@ class Feed extends REST_Controller
 
 		$params['since'] = $this->get('since');
 		$params['extended'] = $this->get('extended');
+		$params['coverart'] = $this->get('coverart');
 		//$params['simple'] 	= $this->get('simple');
 		$params['genre'] = $this->get('genre');
 		$params['title'] = $this->get('title');

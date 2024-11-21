@@ -19,6 +19,7 @@
 		<li>title - all matching titles</li>
 		<li>genre - all projects of the matching genre</li>
 		<li>extended - =1 will return the full set of data about the project</li>
+		<li>coverart - =1 will return links to cover art (if available) for each audiobook</li>
 	</ul>
 
 </p>
@@ -135,10 +136,12 @@
 		<li>totaltime</li>
 		<li>totaltimesecs</li>
 		<li>authors</li>
+		<li>coverart_jpg</li>
+		<li>coverart_pdf</li>
+		<li>coverart_thumbnail</li>
 		<li>sections</li>
 		<li>genres</li>
 		<li>translators</li>
-
 	</ul>
 </p>
 
