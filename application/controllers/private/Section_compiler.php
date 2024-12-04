@@ -35,6 +35,8 @@ class Section_compiler extends Private_Controller
 		$this->load->model('project_model');
 		$this->data['project'] = $this->project_model->get($project_id);
 
+		$this->data['page_title'] = create_full_title($this->data['project']) .' | Section Compiler';
+
 		$this->data['admin_mc'] = 0;
 
 		$allowed_groups = array(PERMISSIONS_ADMIN, PERMISSIONS_MCS);
@@ -73,12 +75,14 @@ class Section_compiler extends Private_Controller
 
 		$this->template->add_js('js/common/autocomplete.js');
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}
 
 	public function select_project()
 	{
+		$this->data['page_title'] = 'Select a project | Section Compiler';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		$this->data['statuses'] = $this->config->item('project_statuses');
@@ -90,6 +94,7 @@ class Section_compiler extends Private_Controller
 		$this->template->add_css('css/private/administer_projects/new_project_form.css'); //reuse results styling
 		$this->insertMethodJS();
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}

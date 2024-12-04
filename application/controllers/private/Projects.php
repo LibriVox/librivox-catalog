@@ -21,6 +21,7 @@ class Projects extends Private_Controller
 
 		$this->data['project_search'] = empty($params['project_search']) ? '' : $params['project_search'];
 
+		$this->data['page_title'] = $user_projects ? 'My Projects' : 'Search Projects';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		//load volunteers AFTER the menu_header
@@ -59,6 +60,7 @@ class Projects extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}

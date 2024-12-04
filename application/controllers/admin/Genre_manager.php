@@ -15,6 +15,7 @@ class Genre_manager extends Private_Controller
 
 	public function index()
 	{
+		$this->data['page_title'] = 'Genre Manager';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		$this->data['genres'] = $this->mahana_hierarchy->get_sorted_children();
@@ -30,6 +31,7 @@ class Genre_manager extends Private_Controller
 
 		$this->insertMethodJS();
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}

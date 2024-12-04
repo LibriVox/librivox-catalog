@@ -44,6 +44,8 @@ class Project_launch extends Public_Controller
 		$this->load->config('librivox');
 		$this->data['languages'] = $this->config->item('languages');
 
+		$this->data['page_title'] = 'Project template generator';
+
 		$this->load->model('language_model');
 		$this->data['recorded_languages'] = full_languages_dropdown('recorded_language');
 		//$this->data['recorded_languages'] = $this->language_model->dropdown('id', 'language');   //as_array()->get_all();
@@ -71,6 +73,7 @@ class Project_launch extends Public_Controller
 		$this->template->add_js('js/common/jquery.tagsinput.min.js');
 		$this->template->add_css('css/common/jquery.tagsinput.css');
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}
@@ -147,7 +150,7 @@ class Project_launch extends Public_Controller
 
 		$data['project_img_url'] = IMG_PATH_RESULTS_LOGIN;
 
-		$data['page_title'] = lang('project_launch_template_' . $fields['project_type'] . '_project_template');
+		$data['page_title'] = 'Template results page';
 
 		$data['has_preface'] = ($fields['has_preface']) ? lang('proj_launch_yes') : lang('proj_launch_no');
 
@@ -158,7 +161,7 @@ class Project_launch extends Public_Controller
 
 		$this->{$fields['project_type'] . '_work'}($data);
 
-		//return $this->load->view($this->base_path.'/'.build_view_path(__METHOD__), $data, true);
+		$this->template->write_view('head', 'common/workflow_head.php', $data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $data);
 		$this->template->render();
 	}

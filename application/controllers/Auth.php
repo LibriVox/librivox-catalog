@@ -63,6 +63,7 @@ class Auth extends MY_Controller
 		}
 
 		$this->data['title'] = "Login";
+		$this->data['page_title'] = "Login";
 
 		//validate form input
 		$this->form_validation->set_rules('identity', 'Identity', 'required');
@@ -116,6 +117,7 @@ class Auth extends MY_Controller
 			$this->data['redirect_url'] = $redirect_url;
 
 			//$this->load->view('auth/login', $this->data);
+			$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 			$this->template->write_view('content_left', build_view_path(__METHOD__), $this->data);
 			$this->template->render();
 		}

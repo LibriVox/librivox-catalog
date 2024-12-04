@@ -18,6 +18,7 @@ class Stats extends Private_Controller
 	{
 		$user_id = ($user_id) ? $user_id : $this->librivox_auth->get_user_id();
 
+		$this->data['page_title'] = 'Stats';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		$this->load->model('project_model');
@@ -25,6 +26,7 @@ class Stats extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}
@@ -39,6 +41,7 @@ class Stats extends Private_Controller
 		}
 
 		//https://catalog.librivox.org/MCstats.php
+		$this->data['page_title'] = 'MC Stats';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		$this->data['volunteers'] = $this->stats_model->mc_stats();
@@ -46,6 +49,7 @@ class Stats extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}
@@ -53,6 +57,7 @@ class Stats extends Private_Controller
 	public function monthly_stats()
 	{
 		//https://catalog.librivox.org/monthly.php
+		$this->data['page_title'] = 'Monthly Stats';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		$this->data['monthly_stats'] = $this->stats_model->monthly_stats();
@@ -61,6 +66,7 @@ class Stats extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}
@@ -68,6 +74,7 @@ class Stats extends Private_Controller
 	public function general_stats()
 	{
 		//https://catalog.librivox.org/stats.php -- general stats page
+		$this->data['page_title'] = 'General Stats';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		//$this->data['stats'] = $this->stats_model->monthly_stats();
@@ -83,6 +90,7 @@ class Stats extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}
@@ -92,11 +100,13 @@ class Stats extends Private_Controller
 		$user_id = ($user_id) ? $user_id : $this->librivox_auth->get_user_id();
 
 		//https://catalog.librivox.org/chapters_count.php
+		$this->data['page_title'] = 'Chapters Count';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}
@@ -106,6 +116,7 @@ class Stats extends Private_Controller
 		$user_id = ($user_id) ? $user_id : $this->librivox_auth->get_user_id();
 
 		//https://catalog.librivox.org/chapters_count.php
+		$this->data['page_title'] = 'Sections';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		$this->load->model('section_model');
@@ -164,6 +175,7 @@ class Stats extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}
@@ -191,6 +203,7 @@ class Stats extends Private_Controller
 			redirect(base_url() . '/auth/error_no_permission');
 		}
 
+		$this->data['page_title'] = 'Active Projects';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		$this->data['projects'] = $this->stats_model->active_projects();
@@ -224,6 +237,7 @@ class Stats extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}

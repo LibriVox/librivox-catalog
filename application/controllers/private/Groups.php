@@ -5,6 +5,7 @@ class Groups extends Private_Controller
 
 	public function index()
 	{
+		$this->data['page_title'] = 'Group Manager';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		$this->load->model('group_model');
@@ -18,6 +19,7 @@ class Groups extends Private_Controller
 
 		$this->insertMethodJS();
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}

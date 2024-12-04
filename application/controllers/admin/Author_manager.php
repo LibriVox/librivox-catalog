@@ -20,6 +20,7 @@ class Author_manager extends Private_Controller
 	{
 		ini_set('memory_limit', '-1'); //we need to see about chunking this
 
+		$this->data['page_title'] = 'Author Manager';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 		$this->data['author_blurb_modal'] = $this->load->view('admin/author_manager/author_blurb_modal', $this->data, TRUE);
 		$this->data['author_projects_modal'] = $this->load->view('admin/author_manager/author_projects_modal', $this->data, TRUE);
@@ -31,6 +32,7 @@ class Author_manager extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}

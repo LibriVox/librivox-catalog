@@ -60,6 +60,8 @@ class Validator extends Private_Controller
 		$this->data['project']->author_full_name = $this->_get_author_by_project($project_id);
 		$this->data['project']->author_last_name = $this->_get_author_by_project($project_id, 'last');
 
+		$this->data['page_title'] = $this->data['project']->full_title .' | Validator';
+
 		//section info
 		$this->load->model('section_model');
 		$sections = $this->section_model->as_array()->get_many_by(array('project_id' => $project_id));
@@ -114,12 +116,14 @@ class Validator extends Private_Controller
 		$this->template->add_js('js/uploader/jquery.fileupload-ui.js');
 		$this->template->add_js('js/uploader/main-validator.js');
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}
 
 	public function select_project()
 	{
+		$this->data['page_title'] = 'Select a project | Validator';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		$this->data['statuses'] = $this->config->item('project_statuses');
@@ -131,6 +135,7 @@ class Validator extends Private_Controller
 		$this->template->add_css('css/private/administer_projects/new_project_form.css'); //reuse results styling
 		$this->insertMethodJS();
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}

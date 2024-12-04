@@ -23,6 +23,7 @@ class Volunteers extends Private_Controller
 
 		$this->data['search_term'] = empty($params['user_search']) ? '' : $params['user_search'];
 
+		$this->data['page_title'] = 'Search Users';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		//load volunteers AFTER the menu_header
@@ -39,6 +40,7 @@ class Volunteers extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}

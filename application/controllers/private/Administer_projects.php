@@ -41,6 +41,7 @@ class Administer_projects extends Private_Controller
 		$prototype['usage'] = is_numeric($project_id) ? 'project_id' : $project_id;
 		$prototype['project_id'] = is_numeric($project_id) ? $project_id : 0;
 
+		$this->data['page_title'] = 'Project Screen';
 		$prototype['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		// to add extra urls - this should not be on the project_launch form
@@ -60,6 +61,8 @@ class Administer_projects extends Private_Controller
 		{
 			$this->load->model('project_model');
 			$project = $this->project_model->get($project_id);
+
+			if (!is_null($project)) $this->data['page_title'] = create_full_title($project) .' | '. $this->data['page_title'];
 
 			$volunteers = array('bc', 'altbc', 'mc', 'pl');
 
@@ -114,6 +117,7 @@ class Administer_projects extends Private_Controller
 		$this->template->add_css('css/private/administer_projects/new_project_form.css');
 		$this->template->add_js('js/private/administer_projects/new_project_form.js');
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $prototype);
 		$this->template->render();
 	}
