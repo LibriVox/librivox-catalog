@@ -31,7 +31,7 @@
 			<tr> <th>Status</th> <th>Id</th> <th>First name</th> <th>Last name</th> <th>Pseudonyms</th> 
 				<th>Url</th> <th>Blurb</th> <th>DOB</th> <th>DOD</th> 
 				<th  class="data_filter" data-filter="status_filter">Confirm</th> 
-				<th>Link to</th> <th>Wiki</th> <th>Image URL</th></tr>
+				<th>Link to</th> <th>Wiki</th></tr>
 		</thead>
 
 		<tbody>
@@ -96,10 +96,7 @@
 
 					?>
 
-
-					<td><a href="<?= $url?>" target = "_blank"><i class="icon-edit"></i></a></td>
-
-					<td  id="image_url-<?= $author->id ?>"  class="edit" ><?= $author->image_url;?></td>					
+					<td><a href="<?= $url?>" target = "_blank"><i class="icon-edit"></i></a></td>		
 				</tr>
 
 			<?php endforeach; ?>
