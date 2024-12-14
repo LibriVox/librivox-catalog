@@ -211,6 +211,9 @@ class Catalog_item {
                 $this->ci->project_keyword_model->insert(array('project_id'=>$project_id));
             }
 		}
+		// For keywords used in this project, update 'instances' field of 'keywords' table now,
+                // so correct keyword instances stats can be shown on catalog page even before keywords cron stats job runs. 
+                $this->ci->project_keyword_model->set_keywords_statistics_by_project($project_id);
 
 	}
 

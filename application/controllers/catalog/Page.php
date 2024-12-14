@@ -65,6 +65,20 @@ class Page extends Catalog_controller
 		$this->data['volunteers']->bc = $this->user_model->get($this->data['project']->person_bc_id);
 		$this->data['volunteers']->mc = $this->user_model->get($this->data['project']->person_mc_id);
 		$this->data['volunteers']->pl = $this->user_model->get($this->data['project']->person_pl_id);
+	
+		
+		// **** KEYWORDS ****//
+		$MAX_KEYWORDS_TO_DISPLAY_INITIALLY = 10;
+		$this->data['keywords_array'] = $this->project_model->get_keywords_and_statistics_by_project($this->data['project']->id);
+		$this->data['project']->has_long_keywords_list = $this->_has_long_keywords_list($this->data['project']->id, $MAX_KEYWORDS_TO_DISPLAY_INITIALLY);
+		$this->data['project']->formatted_keywords_string_primary = $this->_formatted_keywords_string($this->data['project']->id, 
+													$this->data['project']->has_long_keywords_list, 
+													$MAX_KEYWORDS_TO_DISPLAY_INITIALLY, 
+													"primary_list");
+		$this->data['project']->formatted_keywords_string_secondary = $this->_formatted_keywords_string($this->data['project']->id, 
+													$this->data['project']->has_long_keywords_list, 
+													$MAX_KEYWORDS_TO_DISPLAY_INITIALLY, 
+													"secondary_list");
 
 		// **** MISC ****//
 		$this->data['project']->project_type = (trim($this->data['project']->project_type) == 'solo') ? 'solo' : 'group'; //keep on top - other values dependent on solo/group
@@ -201,7 +215,123 @@ class Page extends Catalog_controller
 
 		return implode(', ', $genres);
 	}
-
+	
+	function _formatted_keywords_string($project_id, $project_has_long_keywords_list, 
+						$max_keywords_to_display_initially, $list_variant)
+	{
+	/** 	The catalog page will contain one, or possibly two lists of keywords.
+		It will always contain a primary list.
+		If the project has more keywords than can conveniently be fitted in the primary list:
+		(a) We truncate this primary list
+		(b) We also output to the page a secondary list, iniitially hidden, that includes all the keywords for the project
+		(c) We add to the primary list a "Show full list" link which, if clicked, hides the primary list 
+		and shows the secondary list
+		*/
+		
+		$return_value = "";
+		
+		switch ($list_variant) {
+  			case "primary_list":
+  				if ($project_has_long_keywords_list)
+  				{
+  					$return_value =	$this->_formatted_truncated_keywords_string($project_id, $max_keywords_to_display_initially);
+  				} 
+  				else
+  				{
+  					$return_value =	$this->_formatted_full_keywords_string($project_id); 
+  				}
+    				break;
+  			case "secondary_list";
+    				if ($project_has_long_keywords_list)
+  				{
+  					$return_value =	$this->_formatted_full_keywords_string($project_id);
+  				} 
+    				break;
+  			default:
+    				$return_value = "";
+		}
+		return $return_value;
+	}
+	
+	
+	function _formatted_full_keywords_string($project_id) 
+	{
+		$return_value = '';
+		$keywords_array = $this->data['keywords_array'];
+		if (!empty($keywords_array))
+		{
+			foreach ($keywords_array as $key => $row)
+			{
+			// Add hyperlink only if at least two projects use this keyword
+				if ((int)$row['keyword_count'] > 1) 
+				{
+					$return_value .= '<a href="' . base_url() . 'keywords/' . $row['id'] . '">';
+				} 
+				$return_value .= $row['value'];
+				if ((int)$row['keyword_count'] > 1)
+				{
+					$return_value .= '</a>';
+				} 
+				$return_value .= ' (' . $row['keyword_count'] . '), ';
+			}
+		} 
+		else 
+		{
+			return $return_value;
+		}
+		// trim off final comma and trailing space 
+		$return_value = substr($return_value, 0, -2);
+		return $return_value;	
+	}
+	
+	function _formatted_truncated_keywords_string($project_id, $max_keywords_to_display_initially) 
+	{
+		$return_value = '';
+		$keywords_array = $this->data['keywords_array'];
+		if (!empty($keywords_array))
+		{
+			$i = 0;
+			foreach ($keywords_array as $key => $row)
+			{
+				
+			// Add hyperlink only if at least two projects use this keyword
+				if ((int)$row['keyword_count'] > 1) 
+				{
+					$return_value .= '<a href="' . base_url() . 'keywords/' . $row['id'] . '">';
+				} 
+				$return_value .= $row['value'];
+				if ((int)$row['keyword_count'] > 1)
+				{
+					$return_value .= '</a>';
+				} 
+				$return_value .= ' (' . $row['keyword_count'] . '), ';
+				$i++;
+				if ($i == $max_keywords_to_display_initially)
+				{
+					break;
+				}
+			}
+		} 
+		else 
+		{
+			return $return_value;
+		}
+		// trim off final comma and trailing space 
+		$return_value = substr($return_value, 0, -2);
+		
+		// Add "Show full list" link
+		$return_value .= " ... <a href='#' class='truncated-keywords js-truncated-keywords'>[Show full list]</a>";
+		
+		return $return_value;	
+	}
+	
+	function _has_long_keywords_list($project_id, $max_keywords_to_display_initially)
+	{
+		$keywords_number = $this->project_model->get_keywords_count_by_project($project_id)->keywords_number;
+		return $keywords_number > $max_keywords_to_display_initially;
+	}
+	
+		
 	function _language($language_id)
 	{
 		$this->load->model('language_model');
