@@ -22,7 +22,7 @@
 <div class="" >
 	<div class="pull-left">
 
-	<h4>Totals: Active: <?= $active_count; ?> / Max: <?= $total_count; ?> = <?= round(($active_count/$total_count) * 100, 1); ?>%</h4>
+	<h4>Totals: Active: <?= $active_count; ?> / Max: <?= $total_count; ?> = <?= round(safe_divide($active_count, $total_count) * 100, 1); ?>%</h4>
 
 	<table class="table table-bordered">
 		<thead>
