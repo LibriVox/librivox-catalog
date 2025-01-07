@@ -324,7 +324,7 @@ class Validator extends Private_Controller
 			$this->librivox_id3tag->_update_section($section->id, array('file_name' => $file_name, 'playtime' => $playtime));
 		}
 
-		$this->ajax_output(array('message' => 'Files copied.', 'tags' => $tag_data, 'full_tags' => $fullid3_tags), TRUE);
+		$this->ajax_output(array('message' => 'Files copied.'), TRUE);
 	}
 
 	function get_file_tags()
