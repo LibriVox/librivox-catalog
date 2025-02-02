@@ -17,6 +17,15 @@ class Public_ajax extends Public_Controller
 		$this->load->model('author_model');
 		echo json_encode($this->author_model->autocomplete($term, $search_field, $filter_term, $filter_field));
 	}
+	
+	function autocomplete_keywords()
+	{
+		$term = $this->input->post('term');		
+		$this->load->model('keyword_model');
+		$data = json_encode($this->keyword_model->autocomplete($term));
+		echo $data;
+
+	}
 
 	function autocomplete_user()
 	{
