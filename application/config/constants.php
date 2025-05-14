@@ -97,7 +97,6 @@ define ('ALL_EXCEPT_ENGLISH', -1);
 //Cache for autocompleting Keywords field in Catalog Advanced Search
 define('CACHE_DIR', '../application/cache/');
 define('KEYWORDS_CACHE_FILENAME', 'keywords_cache.txt');
-define('KEYWORDS_CACHE_KEY_APCU', 'keywords_cache');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
