@@ -72,7 +72,7 @@ class Iarchive_upload extends Private_Controller
 
 		//update the project
 		$update['url_iarchive'] = $config['iarchive_project_page'] . '/' . $params['project_slug'];
-		$update['zip_url'] = 'https://www.archive.org/download/' . $params['project_slug'] . '/' . $params['project_slug'] . '_64kb_mp3.zip';
+		$update['zip_url'] = 'https://archive.org/compress/' . $params['project_slug'] . '/formats=64KBPS MP3&file=/' . $params['project_slug'] . '.zip';
 
 		$this->project_model->update($project->id, $update);
 
