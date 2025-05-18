@@ -31,6 +31,7 @@ class Page extends Catalog_controller
 		{
 			$this->data['message'] = 'We weren\'t able to find that project. You must include either the Project Id or the Project Slug (i.e., "tom_sawyer_by_mark_twain" , without any other link info)';
 			$this->_render('catalog/not_found');
+			$this->output->set_status_header(404);
 			return;
 		}
 		
