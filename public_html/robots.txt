@@ -2,3 +2,7 @@
 # http://code.google.com/web/controlcrawlindex/
 
 User-agent: *
+Disallow: /uploads/
+Disallow: /librivox-validator-books/
+Disallow: /public_readers_iframe/
+Disallow: /auth/
