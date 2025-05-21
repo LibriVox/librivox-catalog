@@ -298,12 +298,8 @@ class Validator extends Private_Controller
 			{
 				$file_name = $this->_copy_file($local_file, $copy_to_dir);
 			}
-			else
-			{
-				$file_name = $this->_get_file($section->listen_url, $copy_to_dir);
-			}
 
-			if (!$file_name) continue;
+			if (!$local_file or !$file_name) continue;
 
 			$file_name = trim($file_name);
             $file_path = $copy_to_dir . '/' . $file_name;
@@ -526,38 +522,6 @@ class Validator extends Private_Controller
 		$file_name = trim(end($file_array));
 		$copied = copy($local_file, $copy_to_dir . '/' . $file_name);
 		return ($copied) ? $file_name : false;
-	}
-
-	function _get_file($file_url, $copy_to_dir)
-	{
-		set_time_limit(0);
-
-		$file_name = $this->_get_file_name_from_url($file_url);
-
-		$fp = fopen($copy_to_dir . '/' . $file_name, 'w');
-
-		$ch = curl_init($file_url);
-
-		curl_setopt_array($ch, array(
-			CURLOPT_URL => $file_url,
-			CURLOPT_RETURNTRANSFER => 1,
-			//CURLOPT_FILE           => $fp,
-			CURLOPT_TIMEOUT => 50
-
-		));
-
-		$results = curl_exec($ch);
-		if (curl_errno($ch))
-		{
-			return false;
-		}
-
-		curl_close($ch);
-
-		fwrite($fp, $results); //old style, let me debug something. TODO: update
-		fclose($fp);
-
-		return $file_name;
 	}
 
 	function _get_file_name_from_url($url)
@@ -851,15 +815,6 @@ class Validator extends Private_Controller
 		echo $copied;
 	}
 
-	function test_copy_remote_file()
-	{
-		$listen_url = 'http://upload.librivox.org/share/uploads/rg/aristopia_00_holford.mp3';
-		$listen_url = 'https://librivox.local/librivox-validator-books/the_secret_garden_1308/aristopia_00_holford.mp3';
-		$copy_to_dir = 'C:/test_files/';
-
-		$this->_get_file($listen_url, $copy_to_dir);
-	}
-
 	function test_get_file()
 	{
 		//echo 'TEST';
@@ -897,12 +852,8 @@ class Validator extends Private_Controller
 		{
 			$file_name = $this->_copy_file($local_file, $copy_to_dir);
 		}
-		else
-		{
-			$file_name = $this->_get_file($section->listen_url, $copy_to_dir);
-		}
 
-		if (!$file_name)
+		if (!$local_file or !$file_name)
 		{
 			echo 'No file name';
 			return;
