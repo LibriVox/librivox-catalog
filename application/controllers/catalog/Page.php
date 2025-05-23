@@ -38,6 +38,10 @@ class Page extends Catalog_controller
 		//create link to project editing page for logged in user with appropriate permissions
 		$this->data['project']->edit_link = $this->_get_edit_link($this->data['project']->id);
 
+		// **** TITLE ****//
+		// Used for HTML page title, and also views/catalog/page.php
+		$this->data['page_title'] = create_full_title($this->data['project']);
+
 		// **** AUTHORS ****//
 		$this->data['authors_string'] = '';
 

@@ -23,7 +23,7 @@
 
 				</div>
 				
-				<h1><?= create_full_title($project)?></h1>
+				<h1><?= $project->full_title ?></h1>
 				
 				<p class="book-page-author"><?= $authors_string ?></p>
 				
