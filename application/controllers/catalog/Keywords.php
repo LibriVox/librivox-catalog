@@ -29,6 +29,7 @@ When passed a keywords_id, display a list of projects that have that keyword
 		$params['search_order'] = $this->input->get('search_order');
 		$matches = $this->_get_projects_by_keywords_id($params);
 		$this->data['matches'] = count($matches);		
+		$this->data['page_title'] = 'Works tagged with "' . $this->data['keywords']->value . '"';
 		$this->_render('catalog/keywords');
 		return;
 	}
