@@ -40,6 +40,25 @@ class Author_manager extends Private_Controller
 			ini_set('memory_limit', '-1'); // Still a hack
 			$this->data['authors'] = $this->author_model->order_by('id', 'asc')->get_many_by(array('linked_to' => '0'));
 		}
+		elseif ($route == 'project')
+		{
+			// Authors and translators by project ID
+			$this->data['authors'] = array();
+			$results_to_cast = array();
+			$this->load->model('project_model');
+
+			$project_authors = $this->project_model->get_authors_by_project($id, 'author', include_sections: true);
+			if ($project_authors) $results_to_cast = array_merge($results_to_cast, $project_authors);
+
+			$project_translators = $this->project_model->get_authors_by_project($id, 'translator');
+				if ($project_translators) $results_to_cast = array_merge($results_to_cast, $project_translators);
+
+			// Hack: get_authors_by_project returns an array of *arrays*.
+			// We need to cast them as objects, to match types with the db->get*() results
+			foreach ($results_to_cast as $person) {
+				$this->data['authors'][] = (object) $person;
+			}
+		}
 
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
