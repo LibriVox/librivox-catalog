@@ -56,6 +56,24 @@ function set_message(element, message, addClass)
 
 }
 
+// safe messaging, given a (possibly faulty) JSON response from the server
+function json_set_message(element, responseText, intro_success, intro_fail)
+{
+    var message, success;
+    try {
+        var response_obj = jQuery.parseJSON(responseText);
+        if (response_obj.status == "SUCCESS") {
+            message = (intro_success ? intro_success : '') + (response_obj.data.message ? response_obj.data.message : '');
+            success = true;
+        } else {
+            message = (intro_fail ? intro_fail : '') + (response_obj.data.message ? response_obj.data.message : '');
+        }
+    } catch {
+        message = (intro_fail ? intro_fail : '') + 'No message';
+    }
+    return set_message(element, message, success ? 'alert-success' : 'alert-error')
+}
+
 
 //toggle forms
 $('.toggle_form_btn').live('click', function(){
