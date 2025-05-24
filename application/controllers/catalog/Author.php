@@ -17,6 +17,7 @@ class Author extends Catalog_controller
 
 		$this->load->model('author_model');
 		$this->data['author'] = $this->author_model->get($author_id);
+		$this->data['edit_link'] = $this->_get_edit_link($author_id);
 
 		$this->data['search_category'] = 'author';
 
@@ -142,5 +143,31 @@ class Author extends Catalog_controller
 		}
 
 		return $projects;
+	}
+
+	function _get_edit_link($author_id)
+	{
+		$link = '';
+		$auth_checker = new Librivox_auth();
+
+		if (empty($author_id))
+		{
+			return $link;
+		}
+
+		$user_id = $auth_checker->get_user_id();
+		if ($user_id < 1) {
+			return $link;
+		}
+
+		//check permissions
+		$allowed_groups = array(PERMISSIONS_ADMIN, PERMISSIONS_MCS);		
+		if ($auth_checker->has_permission($allowed_groups, $user_id))
+		{
+			$link = base_url() . 'admin/author_manager/' . $author_id ;
+			return $link;
+		}
+
+		return $link;
 	}
 }

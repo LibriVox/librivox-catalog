@@ -15,13 +15,16 @@
 				<p class="description"><?= $author->blurb ?></p>
 				
 				<div class="page-header-half">
-					<p><span>External Links</span></p>
+					<p><span>Links</span></p>
 					<?php 
 						if (!empty($author->author_url))
 						{
 							echo '<p>' . format_author($author, FMT_AUTH_WIKI) . '</p>';
 						}	
-					 	
+						if (!empty($edit_link))
+						{
+							echo '<p><a href="' . $edit_link . '">Edit this page</a></p>';
+						}
 					 ?>				 
 				</div>
 				
