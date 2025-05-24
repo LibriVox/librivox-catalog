@@ -16,17 +16,49 @@ class Author_manager extends Private_Controller
 		$this->template->add_js('js/libs/jquery.jeditable.js');
 	}
 
-	public function index()
+	public function index($route = 'unconfirmed', $id = 0)
 	{
-		ini_set('memory_limit', '-1'); //we need to see about chunking this
-
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 		$this->data['author_blurb_modal'] = $this->load->view('admin/author_manager/author_blurb_modal', $this->data, TRUE);
 		$this->data['author_projects_modal'] = $this->load->view('admin/author_manager/author_projects_modal', $this->data, TRUE);
 		$this->data['author_pseudonyms_modal'] = $this->load->view('admin/author_manager/author_pseudonyms_modal', $this->data, TRUE);
 		$this->data['author_new_modal'] = $this->load->view('admin/author_manager/author_new_modal', $this->data, TRUE);
 
-		$this->data['authors'] = $this->author_model->order_by('id', 'asc')->get_many_by(array('linked_to' => '0')); //limit(100)->
+		if ($route == 'unconfirmed')
+		{
+			// Default: view unconfirmed authors
+			$this->data['authors'] = $this->author_model->order_by('id', 'asc')->get_many_by(array('linked_to' => '0', 'confirmed' => '0'));
+		}
+		elseif ($route == 'id')
+		{
+			// Individual: view author by ID
+			$this->data['authors'] = array($this->author_model->get($id));
+		}
+		elseif ($route == 'all')
+		{
+			// Old way: view all non-duplicate authors (very slow!)
+			ini_set('memory_limit', '-1'); // Still a hack
+			$this->data['authors'] = $this->author_model->order_by('id', 'asc')->get_many_by(array('linked_to' => '0'));
+		}
+		elseif ($route == 'project')
+		{
+			// Authors and translators by project ID
+			$this->data['authors'] = array();
+			$results_to_cast = array();
+			$this->load->model('project_model');
+
+			$project_authors = $this->project_model->get_authors_by_project($id, 'author', include_sections: true);
+			if ($project_authors) $results_to_cast = array_merge($results_to_cast, $project_authors);
+
+			$project_translators = $this->project_model->get_authors_by_project($id, 'translator');
+				if ($project_translators) $results_to_cast = array_merge($results_to_cast, $project_translators);
+
+			// Hack: get_authors_by_project returns an array of *arrays*.
+			// We need to cast them as objects, to match types with the db->get*() results
+			foreach ($results_to_cast as $person) {
+				$this->data['authors'][] = (object) $person;
+			}
+		}
 
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
@@ -142,7 +174,7 @@ class Author_manager extends Private_Controller
 			$message = 'Deleted';
 		}
 
-		$this->ajax_output(array('message' => $message), TRUE, FALSE);
+		$this->ajax_output(array('message' => $message), (bool)$fields['id'], FALSE);
 	}
 
 	public function add_new_author()
@@ -159,7 +191,7 @@ class Author_manager extends Private_Controller
 			$message = 'Added';
 		}
 
-		$this->ajax_output(array('message' => $message), TRUE, FALSE);
+		$this->ajax_output(array('message' => $message), (bool)$insert_id, FALSE);
 	}
 
 	//// ********* TESTING ************/////

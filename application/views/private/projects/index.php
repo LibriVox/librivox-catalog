@@ -43,7 +43,12 @@
 					<?php endif;?>
 
 					<td id="title-<?= $project->id ?>" ><?= $project->title ?></td>
-					<td id="author-<?= $project->id ?>" ><?= $project->author ?></td>
+					<td id="author-<?= $project->id ?>" >
+						<?php if ($view_author_manager):?>
+							<a href="<?= base_url().'admin/author_manager/project/'.$project->id ?>"><i class="icon-search meta_data"></i></a>
+						<?php endif;?>
+						<?= $project->author ?>
+					</td>
 					<td id="status-<?= $project->id ?>" ><?= $project_statuses[$project->status] ?></td>
 					<td id="url_forum-<?= $project->id ?>" ><a href="<?= $project->url_forum ?>">link</a></td>
 					<td id="url_librivox-<?= $project->id ?>" ><a href="<?= $project->url_librivox ?>">link</a></td>

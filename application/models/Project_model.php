@@ -482,7 +482,7 @@ class Project_model extends MY_Model
     }
 
 
-    public function get_authors_by_project($project_id, $type= 'author')
+    public function get_authors_by_project($project_id, $type= 'author', $include_sections = false)
     {
         $sql = '
         SELECT a.*
@@ -490,8 +490,20 @@ class Project_model extends MY_Model
         JOIN authors a ON (pa.author_id = a.id)
         WHERE pa.project_id = ?
         AND pa.type = ? ';
+        $bind = array($project_id, $type);
 
-        $query = $this->db->query($sql, array($project_id, $type));
+        if ($include_sections and $this->get($project_id)->is_compilation) {
+            $sql .= '
+            UNION
+            SELECT a.*
+            FROM sections s
+            JOIN authors a ON (s.author_id = a.id)
+            WHERE s.project_id = ?';
+
+            $bind[] = $project_id;
+        }
+
+        $query = $this->db->query($sql, $bind);
 
         if ($query->num_rows() > 0) return $query->result_array();
 

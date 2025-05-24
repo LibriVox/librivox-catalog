@@ -30,10 +30,12 @@ class Projects extends Private_Controller
 		$this->data['project_statuses'] = $this->config->item('project_statuses');
 
 		$this->data['view_validator'] = false;
+		$this->data['view_author_manager'] = false;
 		$allowed_groups = array(PERMISSIONS_ADMIN, PERMISSIONS_MCS);
 		if ($this->librivox_auth->has_permission($allowed_groups, $this->data['user_id']))
 		{
 			$this->data['view_validator'] = true;
+			$this->data['view_author_manager'] = true;
 		}
 
 		if (!empty($this->data['projects']))

@@ -24,8 +24,10 @@ $(document).ready(function() {
 
     bind_edit();
 
+    var table_size = $('#authors_table').find('tr').length;
+
     $.extend( $.fn.dataTable.defaults, {
-        "bFilter": true,
+        "bFilter": table_size > 10 + 1, // Header row counts!
         "bPaginate" : true,
         "bInfo" : true,
         "sPaginationType": "full_numbers",
@@ -39,29 +41,6 @@ $(document).ready(function() {
     var oTable = $('#authors_table').dataTable();
 
     oTable.fnSort([[1, 'asc']]);
-    
-
-    //default  -only unconfirmed
-    // need to make this check which radio button is checked
-    var checked_radio = $('input[class=status_group]:checked').val();    
-    apply_filter(checked_radio);  
-
-    $('.status_group').live('click', function(){   
-        apply_filter( $(this).val());
-    }) ; 
-
-    function apply_filter(filter_value)
-    {
-        if (filter_value == '1') 
-        {
-            oTable.fnFilter( 0, 0 );
-        }
-        else
-        {
-            oTable.fnFilter('', 0);
-            //oTable.fnFilter( '' );
-        }   
-    }
 
     function bind_edit()
     {
@@ -126,11 +105,6 @@ $(document).ready(function() {
                 var row_id = oTable.fnGetPosition(row);
 
                 update_author_status(value, row_id);
-
-                //the one from above was static
-                var sub_checked_radio = $('input[class=status_group]:checked').val();
-                apply_filter(sub_checked_radio);
-     
               },
         });   
 
@@ -148,11 +122,12 @@ $(document).ready(function() {
               type: 'post',
               data: $('#add_new_author_form').serialize(),
               complete: function(r){
-                //var response_obj = jQuery.parseJSON(r.responseText);
-
-                alert('You will need to refresh the page in order to see your newly added author. This can be slow, so we let you do it manually when you are ready.')
                 $('#author_new_modal').modal('hide');
-     
+                json_set_message(
+                    'response_message_authormanager', r.responseText,
+                    'Author added!  Click "Load unconfirmed" or load the author by name to view.<br>Message from server: ',
+                    'The author may not have been added.  Click "Load unconfirmed" or search by name to verify.<br>Message from server: '
+                );
               },
         }); 
     });
@@ -274,11 +249,9 @@ $(document).ready(function() {
               url: CI_ROOT + 'admin/author_manager/update_add_pseudonym',
               type: 'post',
               data: {'id' : id, 'author_id' : author_id, 'first_name': first_name, 'last_name': last_name },
-              complete: function(r){
-                var response_obj = jQuery.parseJSON(r.responseText);
-                
+              complete: function(r){               
                 $('#author_pseudonyms_modal').modal('hide');
-                alert(response_obj.data.message);
+                json_set_message('response_message_authormanager', r.responseText);
               },
         });   
 
@@ -294,10 +267,8 @@ $(document).ready(function() {
               type: 'post',
               data: {'id' : id },
               complete: function(r){
-                var response_obj = jQuery.parseJSON(r.responseText);
-                
                 $('#author_pseudonyms_modal').modal('hide');
-                alert(response_obj.data.message);
+                json_set_message('response_message_authormanager', r.responseText);
               },
         });   
 
@@ -337,3 +308,28 @@ $(document).ready(function() {
     });
 
 });
+
+
+// Autocomplete the "Load author by name" search
+
+function autocomplete_assign_vars(item)
+{
+    var name_field;
+    if (item.username == undefined) {
+        name_field = author_string(item);
+    } else {
+        name_field = item.username;
+    }
+
+    return {
+        label: name_field,
+        value: name_field,
+        source_id: item.id,
+        source_name: name_field,
+    }
+}
+
+function autocomplete_assign_elements(search_area, ui)
+{
+    window.location.href = CI_ROOT + 'admin/author_manager/' + ui.item.source_id
+}
