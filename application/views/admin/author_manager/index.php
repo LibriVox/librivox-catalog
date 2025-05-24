@@ -21,6 +21,8 @@
 
 	<h4>Author Manager</h4>
 
+	<div id="response_message_authormanager" class="alert" style="display:none;"></div>
+
 	<div class="controls center" style="float:left;">
 		<a style="display:inline;margin-right:10px;" class="btn" role="button" href="/admin/author_manager/unconfirmed">Load unconfirmed</a>
 		<a style="display:inline;margin-right:10px;" class="btn" role="button" href="/admin/author_manager/all">Load all</a>

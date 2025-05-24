@@ -122,11 +122,12 @@ $(document).ready(function() {
               type: 'post',
               data: $('#add_new_author_form').serialize(),
               complete: function(r){
-                //var response_obj = jQuery.parseJSON(r.responseText);
-
-                alert('You will need to refresh the page in order to see your newly added author. This can be slow, so we let you do it manually when you are ready.')
                 $('#author_new_modal').modal('hide');
-     
+                json_set_message(
+                    'response_message_authormanager', r.responseText,
+                    'Author added!  Click "Load unconfirmed" or load the author by name to view.<br>Message from server: ',
+                    'The author may not have been added.  Click "Load unconfirmed" or search by name to verify.<br>Message from server: '
+                );
               },
         }); 
     });
@@ -248,11 +249,9 @@ $(document).ready(function() {
               url: CI_ROOT + 'admin/author_manager/update_add_pseudonym',
               type: 'post',
               data: {'id' : id, 'author_id' : author_id, 'first_name': first_name, 'last_name': last_name },
-              complete: function(r){
-                var response_obj = jQuery.parseJSON(r.responseText);
-                
+              complete: function(r){               
                 $('#author_pseudonyms_modal').modal('hide');
-                alert(response_obj.data.message);
+                json_set_message('response_message_authormanager', r.responseText);
               },
         });   
 
@@ -268,10 +267,8 @@ $(document).ready(function() {
               type: 'post',
               data: {'id' : id },
               complete: function(r){
-                var response_obj = jQuery.parseJSON(r.responseText);
-                
                 $('#author_pseudonyms_modal').modal('hide');
-                alert(response_obj.data.message);
+                json_set_message('response_message_authormanager', r.responseText);
               },
         });   
 

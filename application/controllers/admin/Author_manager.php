@@ -174,7 +174,7 @@ class Author_manager extends Private_Controller
 			$message = 'Deleted';
 		}
 
-		$this->ajax_output(array('message' => $message), TRUE, FALSE);
+		$this->ajax_output(array('message' => $message), (bool)$fields['id'], FALSE);
 	}
 
 	public function add_new_author()
@@ -191,7 +191,7 @@ class Author_manager extends Private_Controller
 			$message = 'Added';
 		}
 
-		$this->ajax_output(array('message' => $message), TRUE, FALSE);
+		$this->ajax_output(array('message' => $message), (bool)$insert_id, FALSE);
 	}
 
 	//// ********* TESTING ************/////
