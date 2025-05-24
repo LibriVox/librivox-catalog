@@ -80,6 +80,9 @@ $route['validator']				= 'private/validator/index';
 $route['validator/(:num)']		= 'private/validator/index/$1';
 $route['validator/adjust_file_volume/(:num)']		= 'private/validator/adjust_file_volume/$1';
 
+$route['admin/author_manager/(:num)']   = 'admin/author_manager/index/id/$1';
+$route['admin/author_manager/(all|unconfirmed)']   = 'admin/author_manager/index/$1';
+
 $route['volunteers']			= 'private/volunteers/index';
 $route['volunteers/(:any)']		= 'private/volunteers/index/$1';
 

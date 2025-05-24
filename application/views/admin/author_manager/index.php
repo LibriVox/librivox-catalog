@@ -8,6 +8,11 @@
     white-space: nowrap;
     overflow: hidden;
 }
+/* Tweak dataTables "Show X entries" control, so that it lines up with other buttons */
+.dataTables_length {
+	float: none;
+	display: inline;
+}
 
 </style>
 
@@ -16,13 +21,12 @@
 
 	<h4>Author Manager</h4>
 
-	<div data-filter="status_filter" id="status_filter" style="margin-bottom: 20px;">	
-		<span style="vertical-align:middle;" >Show only unconfirmed authors: </span>
-		<input style="margin-left:10px;vertical-align:middle;" class="status_group" name="status_group[]" type="radio" id="active_status" value="1" checked> 
-		<span style="margin-left:10px;vertical-align:middle;" >Show all authors: </span>
-		<input style="margin-left:10px;vertical-align:middle;" class="status_group"  name="status_group[]" type="radio" id="all_status" value="all" > 	
-
-		<input style="margin-left:20px;vertical-align:middle;" class="btn"  name="new_author_modal_btn" type="button" id="new_author_modal_btn" value="New Author" >
+	<div class="controls center" style="float:left;">
+		<a style="display:inline;margin-right:10px;" class="btn" role="button" href="/admin/author_manager/unconfirmed">Load unconfirmed</a>
+		<a style="display:inline;margin-right:10px;" class="btn" role="button" href="/admin/author_manager/all">Load all</a>
+		<input style="display:inline;margin-right:10px;" class="btn" name="new_author_modal_btn" type="button" role="button" id="new_author_modal_btn" value="Add author" >
+		<label style="display:inline;margin-right:5px;" for="author_search">Load author by name:</label>
+		<input style="width:200px;display:inline;margin-right:10px;vertical-align:top;" type="text" id="search_author" class="autocomplete" data-search_field="full_name" data-search_area="author" data-search_func="autocomplete_author">
 	</div>
 
 

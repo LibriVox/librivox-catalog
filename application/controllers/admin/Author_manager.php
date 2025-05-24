@@ -16,17 +16,30 @@ class Author_manager extends Private_Controller
 		$this->template->add_js('js/libs/jquery.jeditable.js');
 	}
 
-	public function index()
+	public function index($route = 'unconfirmed', $id = 0)
 	{
-		ini_set('memory_limit', '-1'); //we need to see about chunking this
-
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 		$this->data['author_blurb_modal'] = $this->load->view('admin/author_manager/author_blurb_modal', $this->data, TRUE);
 		$this->data['author_projects_modal'] = $this->load->view('admin/author_manager/author_projects_modal', $this->data, TRUE);
 		$this->data['author_pseudonyms_modal'] = $this->load->view('admin/author_manager/author_pseudonyms_modal', $this->data, TRUE);
 		$this->data['author_new_modal'] = $this->load->view('admin/author_manager/author_new_modal', $this->data, TRUE);
 
-		$this->data['authors'] = $this->author_model->order_by('id', 'asc')->get_many_by(array('linked_to' => '0')); //limit(100)->
+		if ($route == 'unconfirmed')
+		{
+			// Default: view unconfirmed authors
+			$this->data['authors'] = $this->author_model->order_by('id', 'asc')->get_many_by(array('linked_to' => '0', 'confirmed' => '0'));
+		}
+		elseif ($route == 'id')
+		{
+			// Individual: view author by ID
+			$this->data['authors'] = array($this->author_model->get($id));
+		}
+		elseif ($route == 'all')
+		{
+			// Old way: view all non-duplicate authors (very slow!)
+			ini_set('memory_limit', '-1'); // Still a hack
+			$this->data['authors'] = $this->author_model->order_by('id', 'asc')->get_many_by(array('linked_to' => '0'));
+		}
 
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
