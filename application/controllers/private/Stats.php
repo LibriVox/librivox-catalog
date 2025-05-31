@@ -25,8 +25,7 @@ class Stats extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
-		$this->template->render();
+		$this->_render($this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 	}
 
 	public function mc_stats()
@@ -46,8 +45,7 @@ class Stats extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
-		$this->template->render();
+		$this->_render($this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 	}
 
 	public function monthly_stats()
@@ -61,8 +59,7 @@ class Stats extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
-		$this->template->render();
+		$this->_render($this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 	}
 
 	public function general_stats()
@@ -83,8 +80,7 @@ class Stats extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
-		$this->template->render();
+		$this->_render($this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 	}
 
 	public function chapters_count($user_id = 0)
@@ -97,8 +93,7 @@ class Stats extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
-		$this->template->render();
+		$this->_render($this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 	}
 
 	public function sections($user_id = 0)
@@ -164,8 +159,7 @@ class Stats extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
-		$this->template->render();
+		$this->_render($this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 	}
 
 	//updates stats
@@ -224,8 +218,7 @@ class Stats extends Private_Controller
 		$this->insertMethodCSS();
 		$this->insertMethodJS();
 
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
-		$this->template->render();
+		$this->_render($this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 	}
 
 }

@@ -28,8 +28,7 @@ class Administer_projects extends Private_Controller
 	{
 		$prototype['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $prototype);
-		$this->template->render();
+		$this->_render($this->base_path . '/' . build_view_path(__METHOD__), $prototype);
 	}
 
 	public function add_catalog_item($project_id = 0)
@@ -114,8 +113,7 @@ class Administer_projects extends Private_Controller
 		$this->template->add_css('css/private/administer_projects/new_project_form.css');
 		$this->template->add_js('js/private/administer_projects/new_project_form.js');
 
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $prototype);
-		$this->template->render();
+		$this->_render($this->base_path . '/' . build_view_path(__METHOD__), $prototype);
 	}
 
 	public function ajax_lookup_project_code()

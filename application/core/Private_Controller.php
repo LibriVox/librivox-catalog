@@ -76,4 +76,10 @@ class Private_Controller extends MY_Controller
 
 		$this->data['profile_modal'] = $this->load->view('private/common/profile_modal', $this->roles, true);
 	}
+
+	public function _render($view, $data)
+	{
+		$this->template->write_view('content_left', $view, $data);
+		$this->template->render();
+	}
 }
