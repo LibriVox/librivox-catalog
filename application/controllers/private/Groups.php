@@ -18,8 +18,7 @@ class Groups extends Private_Controller
 
 		$this->insertMethodJS();
 
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
-		$this->template->render();
+		$this->_render($this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 	}
 
 	public function update_group()

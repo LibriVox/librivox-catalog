@@ -114,8 +114,7 @@ class Validator extends Private_Controller
 		$this->template->add_js('js/uploader/jquery.fileupload-ui.js');
 		$this->template->add_js('js/uploader/main-validator.js');
 
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
-		$this->template->render();
+		$this->_render($this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 	}
 
 	public function select_project()
@@ -131,8 +130,7 @@ class Validator extends Private_Controller
 		$this->template->add_css('css/private/administer_projects/new_project_form.css'); //reuse results styling
 		$this->insertMethodJS();
 
-		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
-		$this->template->render();
+		$this->_render($this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 	}
 
 
