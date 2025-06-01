@@ -18,6 +18,8 @@ class Author_manager extends Private_Controller
 
 	public function index($route = 'unconfirmed', $id = 0)
 	{
+		$this->load->helper('previewer_helper');
+		$this->data['page_title'] = 'Author Manager';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 		$this->data['author_blurb_modal'] = $this->load->view('admin/author_manager/author_blurb_modal', $this->data, TRUE);
 		$this->data['author_projects_modal'] = $this->load->view('admin/author_manager/author_projects_modal', $this->data, TRUE);
@@ -28,17 +30,21 @@ class Author_manager extends Private_Controller
 		{
 			// Default: view unconfirmed authors
 			$this->data['authors'] = $this->author_model->order_by('id', 'asc')->get_many_by(array('linked_to' => '0', 'confirmed' => '0'));
+			$this->data['page_title'] = 'Unconfirmed Authors | '. $this->data['page_title'];
 		}
 		elseif ($route == 'id')
 		{
 			// Individual: view author by ID
 			$this->data['authors'] = array($this->author_model->get($id));
+			$author = $this->data['authors'][0];
+			if ($author) $this->data['page_title'] = format_author_name($author) .' | '. $this->data['page_title'];
 		}
 		elseif ($route == 'all')
 		{
 			// Old way: view all non-duplicate authors (very slow!)
 			ini_set('memory_limit', '-1'); // Still a hack
 			$this->data['authors'] = $this->author_model->order_by('id', 'asc')->get_many_by(array('linked_to' => '0'));
+			$this->data['page_title'] = 'All Authors | '. $this->data['page_title'];
 		}
 		elseif ($route == 'project')
 		{
@@ -47,11 +53,14 @@ class Author_manager extends Private_Controller
 			$results_to_cast = array();
 			$this->load->model('project_model');
 
+			$project = $this->project_model->get($id);
+			if ($project) $this->data['page_title'] = create_full_title($project) .' | '. $this->data['page_title'];
+
 			$project_authors = $this->project_model->get_authors_by_project($id, 'author', include_sections: true);
 			if ($project_authors) $results_to_cast = array_merge($results_to_cast, $project_authors);
 
 			$project_translators = $this->project_model->get_authors_by_project($id, 'translator');
-				if ($project_translators) $results_to_cast = array_merge($results_to_cast, $project_translators);
+			if ($project_translators) $results_to_cast = array_merge($results_to_cast, $project_translators);
 
 			// Hack: get_authors_by_project returns an array of *arrays*.
 			// We need to cast them as objects, to match types with the db->get*() results

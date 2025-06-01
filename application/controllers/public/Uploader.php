@@ -74,6 +74,7 @@ class Uploader extends Public_Controller
 	public function index()
 	{
 		$this->load->config('librivox');
+		$this->data['page_title'] = "Uploader";
 		$this->data['languages'] = $this->config->item('languages');
 
 		$this->data['current_lang'] = $this->session->userdata('lang_code');
@@ -101,6 +102,7 @@ class Uploader extends Public_Controller
 		$this->template->add_js('js/uploader/jquery.fileupload-ui.js');
 		$this->template->add_js('js/uploader/main.js');
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}

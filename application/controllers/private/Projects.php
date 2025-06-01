@@ -21,6 +21,7 @@ class Projects extends Private_Controller
 
 		$this->data['project_search'] = empty($params['project_search']) ? '' : $params['project_search'];
 
+		$this->data['page_title'] = 'Projects';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		//load volunteers AFTER the menu_header

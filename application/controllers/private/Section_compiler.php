@@ -35,6 +35,8 @@ class Section_compiler extends Private_Controller
 		$this->load->model('project_model');
 		$this->data['project'] = $this->project_model->get($project_id);
 
+		$this->data['page_title'] = create_full_title($this->data['project']) .' | Section Compiler';
+
 		$this->data['admin_mc'] = 0;
 
 		$allowed_groups = array(PERMISSIONS_ADMIN, PERMISSIONS_MCS);
@@ -78,6 +80,7 @@ class Section_compiler extends Private_Controller
 
 	public function select_project()
 	{
+		$this->data['page_title'] = 'Search Projects | Section Compiler';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		$this->data['statuses'] = $this->config->item('project_statuses');
