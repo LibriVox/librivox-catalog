@@ -23,6 +23,7 @@ class Volunteers extends Private_Controller
 
 		$this->data['search_term'] = empty($params['user_search']) ? '' : $params['user_search'];
 
+		$this->data['page_title'] = 'Search People';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		//load volunteers AFTER the menu_header

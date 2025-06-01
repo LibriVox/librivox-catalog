@@ -5,6 +5,7 @@ class Groups extends Private_Controller
 
 	public function index()
 	{
+		$this->data['page_title'] = 'Group Manager';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		$this->load->model('group_model');

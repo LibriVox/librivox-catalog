@@ -44,6 +44,8 @@ class Project_launch extends Public_Controller
 		$this->load->config('librivox');
 		$this->data['languages'] = $this->config->item('languages');
 
+		$this->data['page_title'] = 'Project Template Generator';
+
 		$this->load->model('language_model');
 		$this->data['recorded_languages'] = full_languages_dropdown('recorded_language');
 		//$this->data['recorded_languages'] = $this->language_model->dropdown('id', 'language');   //as_array()->get_all();
@@ -71,6 +73,7 @@ class Project_launch extends Public_Controller
 		$this->template->add_js('js/common/jquery.tagsinput.min.js');
 		$this->template->add_css('css/common/jquery.tagsinput.css');
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}
@@ -135,6 +138,7 @@ class Project_launch extends Public_Controller
 		$data['summaryauthor'] = summary_author($fields);
 
 		$data['titlelc'] = clean_title($fields['title']);
+		$data['page_title'] = $data['titlelc'];
 		$data['title_filename'] = format_filename($data['titlelc']);
 
 		$data['date'] = concat_date($fields['expected_completion_year'], $fields['expected_completion_month'], $fields['expected_completion_day']);
@@ -158,7 +162,7 @@ class Project_launch extends Public_Controller
 
 		$this->{$fields['project_type'] . '_work'}($data);
 
-		//return $this->load->view($this->base_path.'/'.build_view_path(__METHOD__), $data, true);
+		$this->template->write_view('head', 'common/workflow_head.php', $data);
 		$this->template->write_view('content_left', $this->base_path . '/' . build_view_path(__METHOD__), $data);
 		$this->template->render();
 	}

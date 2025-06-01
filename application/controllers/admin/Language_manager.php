@@ -20,6 +20,7 @@ class Language_manager extends Private_Controller
 	{
 		ini_set('memory_limit', '-1'); //we need to see about chunking this
 
+		$this->data['page_title'] = 'Language Manager';
 		$this->data['menu_header'] = $this->load->view('private/common/menu_header', $this->data, TRUE);
 
 		$this->data['languages'] = $this->language_model->order_by('common', 'desc')->order_by('language', 'asc')->get_all(); //

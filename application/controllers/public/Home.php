@@ -7,7 +7,9 @@ class Home extends Public_Controller
 	{
 		$this->template->set_template('single_column');
 		$this->loadGenericAssets();
+		$this->data['page_title'] = "Workflow Tool";
 
+		$this->template->write_view('head', 'common/workflow_head.php', $this->data);
 		$this->template->write_view('content', $this->base_path . '/' . build_view_path(__METHOD__), $this->data);
 		$this->template->render();
 	}

@@ -79,6 +79,7 @@ class Private_Controller extends MY_Controller
 
 	public function _render($view, $data)
 	{
+		$this->template->write_view('head', 'common/workflow_head.php', $data);
 		$this->template->write_view('content_left', $view, $data);
 		$this->template->render();
 	}

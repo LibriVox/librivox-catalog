@@ -34,6 +34,10 @@ class Administer_projects extends Private_Controller
 	public function add_catalog_item($project_id = 0)
 	{
 		//We might be new here, we might be looking up the project launch data, or we might be submitting our new data
+		// Set titles that match the link we took to this page:
+		$this->data['page_title'] = 'Project Screen';
+		if ($project_id == 'new') $this->data['page_title'] = 'Add New Project | '. $this->data['page_title'];
+		elseif ($project_id == 'search') $this->data['page_title'] = 'Search Projects | '. $this->data['page_title'];
 
 		$prototype = $this->catalog_item->get_prototype();
 
@@ -59,6 +63,8 @@ class Administer_projects extends Private_Controller
 		{
 			$this->load->model('project_model');
 			$project = $this->project_model->get($project_id);
+
+			if ($project) $this->data['page_title'] = create_full_title($project) .' | '. $this->data['page_title'];
 
 			$volunteers = array('bc', 'altbc', 'mc', 'pl');
 
