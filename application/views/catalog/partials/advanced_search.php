@@ -1,5 +1,5 @@
 
-	<?php $display = ($advanced_search)? 'display:block;' : 'display:none;'; ?>
+	<?php $display = (isset($advanced_search) and $advanced_search) ? 'display:block;' : 'display:none;'; ?>
 	
 	<link type="text/css" rel="stylesheet" href="https://librivox.org/css/ui-lightness/jquery-ui-1.8.24.custom.css?v=1670239344" />
 
@@ -17,7 +17,7 @@
 			<div class="control-group">
 			     <div class="controls center">
 			     	<label for="title" ><span class="span2">Title:</span>
-					<input type="text" class="span4" id="title" name="title" value="<?= htmlspecialchars($advanced_search_form['title']) ?>"/>
+					<input type="text" class="span4" id="title" name="title" value="<?= htmlspecialchars(isset($advanced_search_form['title']) ? $advanced_search_form['title'] : '') ?>"/>
 					</label>
 			     </div>
 			</div>   
@@ -25,7 +25,7 @@
 			<div class="control-group">
 			     <div class="controls center">
 			     	<label for="author" ><span class="span2">Author:</span>
-					<input type="text" class="span4" id="author" name="author" value="<?= htmlspecialchars($advanced_search_form['author']) ?>"/>
+					<input type="text" class="span4" id="author" name="author" value="<?= htmlspecialchars(isset($advanced_search_form['author']) ? $advanced_search_form['author'] : '') ?>"/>
 					</label>
 			     </div>
 			</div>   
@@ -33,7 +33,7 @@
 			<div class="control-group">
 			     <div class="controls center">
 			     	<label for="reader" ><span class="span2">Reader:</span>
-					<input type="text" class="span4" id="reader" name="reader" value="<?= htmlspecialchars($advanced_search_form['reader']) ?>"/>
+					<input type="text" class="span4" id="reader" name="reader" value="<?= htmlspecialchars(isset($advanced_search_form['reader']) ? $advanced_search_form['reader'] : '') ?>"/>
 					</label>
 			     </div>
 
@@ -58,7 +58,7 @@
 			<div class="control-group">
 			     <div class="controls center">
 			     	<label for="genre_id" ><span class="span2">Category/Genre:</span>
-					<?= form_dropdown('genre_id', $genres, $advanced_search_form['genre_id'], 'id="genre_id"');?>	
+					<?= form_dropdown('genre_id', isset($genres) ? $genres : '', isset($advanced_search_form['genre_id']) ? $advanced_search_form['genre_id'] : '', 'id="genre_id"');?>	
 					</label>
 			     </div>
 			</div>   
@@ -66,7 +66,7 @@
 			<div class="control-group">
 			     <div class="controls center">
 			     	<label for="status" ><span class="span2">Status:</span>
-						<?= form_dropdown('status', $statuses, $advanced_search_form['status'], 'id="status"');?>			
+						<?= form_dropdown('status', isset($statuses) ? $statuses : '', isset($advanced_search_form['status']) ? $advanced_search_form['status'] : '', 'id="status"');?>			
 					</label>
 			     </div>
 			</div>   
@@ -74,7 +74,7 @@
 			<div class="control-group">
 			     <div class="controls center">
 			     	<label for="project_type" ><span class="span2">Solo/ Group:</span>
-						<?= form_dropdown('project_type', $project_type, $advanced_search_form['project_type'], 'id="project_type"');?>				
+						<?= form_dropdown('project_type', isset($project_type) ? $project_type : '', isset($advanced_search_form['project_type']) ? $advanced_search_form['project_type'] : '', 'id="project_type"');?>				
 					</label>
 			     </div>
 			</div>   
@@ -82,7 +82,7 @@
 			<div class="control-group">
 			     <div class="controls center">
 			     	<label for="recorded_language" ><span class="span2">Language:</span>
-					<?= $recorded_languages ;?>			
+					<?= isset($recorded_languages) ? $recorded_languages : '' ;?>			
 				</label>
 			     </div>
 			</div>   	
@@ -90,7 +90,7 @@
 			<div class="control-group">
 			     <div class="controls center">
 			     	<label for="sort_order"><span class="span2">Sort by:</span>
-						<?= form_dropdown('sort_order', $sort_order, $advanced_search_form['sort_order'], 'id="sort_order"');?>		
+						<?= form_dropdown('sort_order', isset($sort_order) ? $sort_order : '', isset($advanced_search_form['sort_order']) ? $advanced_search_form['sort_order'] : '', 'id="sort_order"');?>		
 					</label>
 			     </div>
 			</div>   
