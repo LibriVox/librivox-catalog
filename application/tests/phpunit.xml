@@ -14,6 +14,8 @@
   </coverage>
   <logging>
     <junit outputFile="build/logs/junit.xml"/>
+    <testdoxText outputFile="build/logs/testdox.log"/>
+    <testdoxHtml outputFile="build/logs/testdox.html"/>
   </logging>
   <source>
     <include>
