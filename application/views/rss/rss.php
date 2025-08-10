@@ -8,9 +8,9 @@
   <description><![CDATA[<?= $project->description ?>]]></description>
   <!--<genre>project element=Genre</genre>-->
   <?php
-    if (isset($language) && $language->three_letter_code) { // Docs say two-letter, but three seems to validate
+    if (isset($language) && ($language->two_letter_code or $language->three_letter_code)) { // Docs say two-letter, so we use that where available
       echo "<language>";
-      echo sprintf("<![CDATA[%s]]>", $language->three_letter_code);
+      echo sprintf("<![CDATA[%s]]>", $language->two_letter_code ? $language->two_letter_code : $language->three_letter_code);
       echo "</language>\n";
     }
   ?>
