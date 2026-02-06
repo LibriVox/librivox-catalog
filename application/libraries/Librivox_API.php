@@ -63,6 +63,7 @@ class Librivox_API{
 		$params['genre'] 	= $this->get('genre');  -- checked
 		$params['title'] 	= $this->get('title');
 		$params['author'] 	= $this->get('author');  -- checked
+		$params['language'] = $this->get('language'); -- checked
 
 		$params['extended'] = $this->get('extended');
 
@@ -127,6 +128,11 @@ class Librivox_API{
 		{
 			$project_id_list = $this->_build_genre_project_id_list($params['genre']);
 			$this->db->where_in('p.id', $project_id_list);
+		}
+
+		if (!empty($params['language']))
+		{
+			$this->db->where('LOWER(l.three_letter_code)', strtolower($params['language']));
 		}
 
 

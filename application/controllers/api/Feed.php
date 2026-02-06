@@ -27,6 +27,7 @@ class Feed extends REST_Controller
 		$params['genre'] = $this->get('genre');
 		$params['title'] = $this->get('title');
 		$params['author'] = $this->get('author');
+		$params['language'] = $this->get('language');
 
 		$params['fields'] = $this->get('fields');
 
