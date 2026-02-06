@@ -18,6 +18,7 @@
 		<li>author - all records by that author last name</li>
 		<li>title - all matching titles</li>
 		<li>genre - all projects of the matching genre</li>
+		<li>language - all projects in the matching language by ISO 639-2 three-letter code (e.g. fre, deu, spa)</li>
 		<li>extended - =1 will return the full set of data about the project</li>
 		<li>coverart - =1 will return links to cover art (if available) for each audiobook</li>
 	</ul>
