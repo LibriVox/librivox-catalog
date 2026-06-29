@@ -219,7 +219,7 @@ class Librivox_simple_search{
 
 					AND a.linked_to = 0	';
 
-			// Also do pseudonyms - psuedonym name, where either psuedonym or real author name matches search
+			// Also do pseudonyms - pseudonym name, where either pseudonym or real author name matches search
 
 			unset($cols);
 

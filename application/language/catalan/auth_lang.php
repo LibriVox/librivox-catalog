@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
-* Name:  Auth Lang - English
+* Name:  Auth Lang - Catalan
 *
 * Author: Ben Edmunds
 * 		    ben.edmunds@gmail.com
@@ -13,7 +13,7 @@
 *
 * Created:  03.09.2013
 *
-* Description:  English language file for Ion Auth example views
+* Description:  Catalan language file for Ion Auth example views
 *
 */
 
@@ -82,7 +82,7 @@ $lang['edit_user_company_label']                     = 'Nom de l\'empresa:';
 $lang['edit_user_email_label']                       = 'Correu-e:';
 $lang['edit_user_phone_label']                       = 'Telèfon:';
 $lang['edit_user_password_label']                    = 'Contrasenya: (si es canvia la contrasenya)';
-$lang['edit_user_password_confirm_label']            = 'Confirm Contrasenya: (si es canvia la contrasenya)';
+$lang['edit_user_password_confirm_label']            = 'Confirma Contrasenya: (si es canvia la contrasenya)';
 $lang['edit_user_groups_heading']                    = 'Membre dels grups';
 $lang['edit_user_submit_btn']                        = 'Desar Usuari';
 $lang['edit_user_validation_fname_label']            = 'Nom';
@@ -134,7 +134,7 @@ $lang['forgot_password_validation_email_label'] = 'Adreça de Correu-e';
 $lang['forgot_password_identity_label']         = 'Usuari';
 $lang['forgot_password_email_identity_label']   = 'Correu-e';
 $lang['forgot_password_email_not_found']        = 'No hi ha registre d\'aquesta adreça de correu electrònic.';
-$lang['forgot_password_identity_not_found']         = 'No record of that username address.';
+$lang['forgot_password_identity_not_found']         = 'No hi ha registre d\'aquest nom d\'usuari.';
 
 // Reset Password
 $lang['reset_password_heading']                               = 'Canvia Contrasenya';

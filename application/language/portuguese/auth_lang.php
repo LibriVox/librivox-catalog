@@ -109,7 +109,7 @@ $lang['create_group_validation_desc_label']  = 'Descrição';
 // Edit Group
 $lang['edit_group_title']                  = 'Editar Grupo';
 $lang['edit_group_saved']                  = 'Grupo Salvo';
-$lang['edit_group_heading']                = 'Editar Group';
+$lang['edit_group_heading']                = 'Editar Grupo';
 $lang['edit_group_subheading']             = 'Por favor informe os dados sobre o grupo abaixo.';
 $lang['edit_group_name_label']             = 'Nome:';
 $lang['edit_group_desc_label']             = 'Descrição:';
@@ -129,14 +129,14 @@ $lang['change_password_validation_new_password_confirm_label'] = 'Confirme sua N
 
 // Forgot Password
 $lang['forgot_password_heading']                 = 'Esqueceu a Senha';
-$lang['forgot_password_subheading']              = 'Por favor, informe seu %s para que possamos enviar para você uma mensagem para recuparar sua senha.';
+$lang['forgot_password_subheading']              = 'Por favor, informe seu %s para que possamos enviar para você uma mensagem para recuperar sua senha.';
 $lang['forgot_password_email_label']             = '%s:';
 $lang['forgot_password_submit_btn']              = 'Enviar';
 $lang['forgot_password_validation_email_label']  = 'Email';
 $lang['forgot_password_identity_label']          = 'Login';
 $lang['forgot_password_email_identity_label']    = 'Email';
 $lang['forgot_password_email_not_found']         = 'Este email não foi encontrado.';
-$lang['forgot_password_identity_not_found']         = 'No record of that username address.';
+$lang['forgot_password_identity_not_found']         = 'Nenhum registro encontrado para esse nome de usuário.';
 
 // Reset Password
 $lang['reset_password_heading']                               = 'Mudar Senha';
