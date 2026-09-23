@@ -30,6 +30,15 @@ class Feed extends REST_Controller
 
 		$params['fields'] = $this->get('fields');
 
+		if ($params['limit'] > API_RESULT_MAX)
+		{
+			$this->response(
+				array('error' => 'Too many records requested.  Please reduce your "limit" parameter.  See '. base_url() .'api/info for details.'),
+				400 // Generic HTTP status for a bad or malformed request.
+			);
+			return;
+		}
+
 		// format already listened for
 
 		$audiobooks = $this->librivox_api->get_audiobooks($params);

@@ -90,6 +90,8 @@ define('IMG_PATH_RESULTS_LOGIN',	'img/login.jpg');
 //Catalog
 define('CATALOG_RESULT_COUNT',				25);
 
+define('API_RESULT_MAX', 500);
+
 define ('AUTOCOMPLETE_LIMIT', 100);
 
 define ('ALL_EXCEPT_ENGLISH', -1);
