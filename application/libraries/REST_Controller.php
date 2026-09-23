@@ -422,7 +422,7 @@ abstract class REST_Controller extends CI_Controller
 			header('Content-Length: ' . strlen($output));
 		}
 
-		exit($output);
+		echo $output;
 	}
 
 	/*
