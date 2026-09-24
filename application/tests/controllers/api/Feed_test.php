@@ -279,6 +279,28 @@ class Feed_test extends TestCase
 				)
 			),
 
+			// Test the new maximum for limit
+			array(
+				'params' => '?limit='. API_RESULT_MAX .'&fields=id', // This one is fine
+				'format' => 'xml',
+				'expected' => array(
+					'<id>47</id>'
+				),
+				'not_expected' => array(
+					'Too many records requested'
+				)
+			),
+			array(
+				'params' => '?limit='. (API_RESULT_MAX + 1) .'&fields=id', // This should give an error, and no results.
+				'format' => 'xml',
+				'expected' => array(
+					'<error>Too many records requested',
+				),
+				'not_expected' => array(
+					'<id>'
+				)
+			),
+
 			// Simple test of 'since' parameter
 			// NOTE: This query will have slightly different results depending on the server's time zone, hence the more flexible test.
 			// Currently, the live server is on Eastern Daylight Time (US/Los Angeles).
