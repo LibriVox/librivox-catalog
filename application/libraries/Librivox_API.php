@@ -98,6 +98,22 @@ class Librivox_API{
 
 		*/
 
+		// Run subqueries first, while the query builder is clean. The
+		// builder is stateful: WHERE clauses accumulate until a ->get()
+		// consumes and resets them. If we added main query clauses (e.g.
+		// p.title) before running these subqueries, they would leak into
+		// the subqueries (which query different tables without a 'p'
+		// alias), producing invalid SQL.
+		if (!empty($params['author']))
+		{
+			$author_project_id_list = $this->_build_author_project_id_list($params['author']);
+		}
+
+		if (!empty($params['genre']))
+		{
+			$genre_project_id_list = $this->_build_genre_project_id_list($params['genre']);
+		}
+
 		if ($params['id']) $this->db->where('p.id', $params['id']);
 
 		if ($params['since']) $this->db->where('UNIX_TIMESTAMP(STR_TO_DATE(p.date_catalog, "%Y-%m-%d")) >=  ', $params['since']);
@@ -116,17 +132,14 @@ class Librivox_API{
 			}
 		}
 
-
-		if (!empty($params['author']))
+		if (!empty($author_project_id_list))
 		{
-			$project_id_list = $this->_build_author_project_id_list($params['author']);
-			$this->db->where_in('p.id', $project_id_list);
+			$this->db->where_in('p.id', $author_project_id_list);
 		}
 
-		if (!empty($params['genre']))
+		if (!empty($genre_project_id_list))
 		{
-			$project_id_list = $this->_build_genre_project_id_list($params['genre']);
-			$this->db->where_in('p.id', $project_id_list);
+			$this->db->where_in('p.id', $genre_project_id_list);
 		}
 
 
@@ -311,11 +324,8 @@ class Librivox_API{
 			->result_array();
 
 		require_once(APPPATH.'libraries/Underscore.php');
-
 		$project_ids = __()->pluck($result , 'project_id');
-
-		return (empty($project_ids)) ? 0 : $project_ids;
-		//return implode(', ', $project_ids);
+		return $project_ids;
 
 	}
 
@@ -336,13 +346,9 @@ class Librivox_API{
 			->get('genres g')
 			->result_array();
 
-		//return $result;
-
 		require_once(APPPATH.'libraries/Underscore.php');
-
-		return $project_ids = __()->pluck($result , 'project_id');
-		//return implode(', ', $project_ids);
-
+		$project_ids = __()->pluck($result , 'project_id');
+        return $project_ids;
 	}
 
 }
