@@ -279,9 +279,9 @@ class Feed_test extends TestCase
 				)
 			),
 
-			// Test the new maximum for limit
+			// Test the new maximum for limit (500, as of 2026-09)
 			array(
-				'params' => '?limit='. API_RESULT_MAX .'&fields=id', // This one is fine
+				'params' => '?limit=500&fields=id', // This one is fine
 				'format' => 'xml',
 				'expected' => array(
 					'<id>47</id>'
@@ -291,7 +291,7 @@ class Feed_test extends TestCase
 				)
 			),
 			array(
-				'params' => '?limit='. (API_RESULT_MAX + 1) .'&fields=id', // This should give an error, and no results.
+				'params' => '?limit=501&fields=id', // This should give an error, and no results.
 				'format' => 'xml',
 				'expected' => array(
 					'<error>Too many records requested',
